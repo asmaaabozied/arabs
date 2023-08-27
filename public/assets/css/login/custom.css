@@ -1,0 +1,21 @@
+/************ Start of email verification form input responsive style **********/
+
+@media screen and (max-width: 460px) {
+    .login_form .em-veri {
+        padding-right: 20px !important;
+    }
+}
+
+/************ End of email verification form input responsive style **********/
+
+/************ Anchor Hover Color **********************/
+
+.anchor-hover-color {
+    width: auto;
+}
+
+.anchor-hover-color:hover {
+    color: #e00b19;
+}
+
+/************* End of Anchor Hover Color **************/

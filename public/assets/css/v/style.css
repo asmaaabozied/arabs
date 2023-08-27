@@ -762,6 +762,29 @@ button#button-edit {
 }
 
 
+.f_links_bottom ul {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    row-gap: 22px;
+}
+
+.f_links_bottom ul a {
+    display: block;
+    color: #818181;
+    font-weight: 400 !important;
+    font-family: 'Cairo', sans-serif;
+}
+.f_links_bottom ul li a{
+    transition: .3s linear;
+    display: inline-block;
+}
+
+.f_links_bottom ul li:hover a{
+    transform: scale(1.2);
+}
 /******************************************************
  Start of Profile Style
  ****************************************************/
@@ -1218,8 +1241,8 @@ Start of Dashboard Buttons
 End of Dashboard Buttons
 ******************************************************/
 
-/*********************************************************** 
-Start of Employer Task Proof Status Change 
+/***********************************************************
+Start of Employer Task Proof Status Change
 ************************************************************/
 .proofStatus {
   padding: 5px 40px;
@@ -1233,8 +1256,8 @@ Start of Employer Task Proof Status Change
   color: var(--light);
   border: 2px solid var(--primary);
 }
-/*********************************************************** 
-Start of Employer Task Proof Status Change 
+/***********************************************************
+Start of Employer Task Proof Status Change
 ************************************************************/
 
 
@@ -1252,7 +1275,7 @@ End of Employer Transaction page style
 *****************************************************/
 
 /******************************************************
-Start of edit task page design  
+Start of edit task page design
 ********************************************************/
 .edit-task-input{
   margin-bottom: 35px;
@@ -1272,7 +1295,7 @@ Start of edit task page design
   background-color: unset;
 }
 /******************************************************
-End of edit task page design  
+End of edit task page design
 ********************************************************/
 
 
@@ -1301,8 +1324,8 @@ End of Worker Withdraw Request Page Design
 
 
 
-/********************************************************************** 
-Start of Site Setting Style 
+/**********************************************************************
+Start of Site Setting Style
 ***********************************************************************/
 .admin-profile-img{
   width: 200px;
@@ -1314,7 +1337,7 @@ Start of Site Setting Style
   margin-top: 30px;
 }
 
-/********************************************************************** 
-End of Site Setting Style 
+/**********************************************************************
+End of Site Setting Style
 ***********************************************************************/
 

@@ -16,4 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('dashboard::layouts.employer.master');
 });
+Route::get('login', function () {
+    return view('dashboard::layouts.auth.login');
+});
+Route::get('signup', function () {
+    return view('dashboard::layouts.auth.signup');
+});
 

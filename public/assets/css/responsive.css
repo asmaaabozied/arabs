@@ -9,15 +9,15 @@
 
 @media screen and (max-width: 991px) {
 
-    /* .navbar {
-        padding-bottom: 40px;
-    } */
-    .btn-group {
-        padding-bottom: 30px;
+    .navbar .container-fluid {
+        justify-content: flex-start !important;
+    }
+
+    .navbar-toggler {
+        margin-right: auto;
     }
 
     .navbar-nav .nav-link.active {
-
         border-bottom: unset;
     }
 
@@ -27,9 +27,32 @@
 
     }
 
-    .reset-btn{
-        margin-bottom: 40px;
+    .side_menu {
+        padding: 50px 30px;
     }
+
+    .container-fluid {
+        padding-right: 30px;
+        padding-left: 30px;
+    }
+
+    /**** Filter page **************/
+    .add-category{
+        margin-bottom: 25px;
+    }
+
+    /* Start of Worker withdraw Request page */
+    .show-amount{
+        margin-bottom: 20px;
+    }
+    /* End of Worker withdraw Request page */
+
+    /* Log Out Dropdown */
+    .admin-nav .dropdown-menu[data-bs-popper] {
+        right: 30px;
+        left: auto;
+    }
+
 }
 
 /* medium screen  */
@@ -48,109 +71,71 @@
         margin-bottom: 80px;
     }
 
-    .empty-place{
-        height: 200px;
-        background-color: var(--secondary);
-    }
-
-    .home-task-main{
-        background-color: #FFFFFF;
-    }
-
-    .home-task{
-        margin-top: -70px;
-    }
-
-    .page-heading{
-        color: var(--white);
-        padding-top: 40px;
-    }
-
-    .mission-container{
-        padding: 30px 15px;
-    }
-
-    /* Task Details Information */
-    .task-features .box{
-        flex: 1;
-        white-space: nowrap;
-    }    
-    .task-details-info .task-details-table td{
-        padding-left: 10px;
-    }
+    
 }
 
-/*---------------------------------------------
- small screen  
- ---------------------------------------------*/
+/* small screen  */
+
 @media screen and (max-width: 576px) {
+    .navbar-brand {
+        margin-left: 0px;
+    }
+
+    .brand-logo {
+        width: 150px;
+    }
+
     .form_container {
         padding: 30px;
     }
 
-    .empty-place{
-        height: 150px;
-        background-color: var(--secondary);
-    }
-
-      .home-task-main{
-        background-color: #FFFFFF;
-    }
-
-      .home-task{
-        margin-top: -60px;
-    }
-
-      .page-heading{
-        color: var(--white);
-        padding-top: 30px;
-    }
-
-    /* -------------------------------
-        Start of Browse all Task Style
-    ---------------------------------*/
-    .active_task_active{
-        flex-direction: column;
-        row-gap: 30px;
-    }
-    .active_task{
-        flex-direction: column;
-        row-gap: 30px;
-    }
-    .pro_img img {
-        width: 70px;
-        height: 70px;
-        margin-left: 2px;
-    }
-    .btn_boxxx p {
-        padding: 2px 2px;
-    }
-    /* --------------------------------
-        End of Browse all Task
-    -----------------------------------*/
-
-    .sales_box{
-        aspect-ratio: auto;
-        margin-bottom: 20px;
+    .page_continer .container-fluid {
+        padding: 35px 20px;
       }
 
-}
-
-
-
-
-
-/* ------------------------------------------
-Home Header Responsive 
---------------------------------------------*/
-@media screen and (min-width:992px) and (max-width:1041px) {
-    .navbar-nav {
-        gap: 25px;
+    .profile-single-info1{
+        padding-left: 10px;
     }
-    .green-button {
-        padding: 12px 30px;
+
+    .tab-ul{
+        padding-right: 0;
+        margin-bottom: 25px;
     }
-    .blue-button {
-        padding: 12px 30px;
+    .tab-ul .nav-link{
+        color: #000;
+        font-weight: 400;
+        padding: 5px 10px;
     }
+    /************************************************
+    Start of Worker, Employer and task details page
+    ************************************************/
+    .profile-total {
+        margin-bottom: 5px;
+    }
+    .main-info{
+        margin-bottom: 20px;
+    }
+    /************************************************
+    End of Worker, Employer and task details page
+    ************************************************/
+
+    /* Profile Pages */
+    .user-status{
+        margin-top: 20px;
+    }
+
+    /*********************************************************** 
+    Start of Employer Task Proof Status Change 
+    ************************************************************/
+    .proofStatus {
+        padding: 5px 20px;
+    }
+    .proof-change-btn {
+        padding: 8px 20px;
+        margin-right: 10px;
+    }
+    /*********************************************************** 
+    Start of Employer Task Proof Status Change 
+    ************************************************************/
+
 }

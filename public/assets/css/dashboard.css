@@ -4224,8 +4224,8 @@ justify-content:space-between
 }
 
 .navbar-brand {
-padding-top:.3125rem;
-padding-bottom:.3125rem;
+padding-top:0 rem;
+padding-bottom:0 rem;
 margin-right:1rem;
 font-size:1.25rem;
 text-decoration:none;
