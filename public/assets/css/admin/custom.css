@@ -1,0 +1,32 @@
+
+/********** Dashboard Form Style ************/
+.dashboard-form select {
+    background-image: url(../../public/images/down.svg);
+    background-repeat: no-repeat;
+    background-position: left 0.75rem center;
+    background-size: 16px 12px;
+}
+
+.dashboard-form .form-select {
+    padding-right: .75rem;
+}
+
+.submit-btn {
+    color: #FFF;
+    border: 2px solid var(--primary);
+    padding: 7px 20px;
+    background: var(--primary);
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.dashboard-form .form-textarea{
+    width: 100%;
+}
+
+.dashboard-form .form-date-location input{
+    width: 100%;
+}
+
+
+

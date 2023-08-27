@@ -1,0 +1,156 @@
+/* extra extra large screen start  */
+@media screen and (max-width: 1400px) {}
+
+/* extra large screen  */
+
+@media screen and (max-width: 1200px) {}
+
+/* large screen  */
+
+@media screen and (max-width: 991px) {
+
+    /* .navbar {
+        padding-bottom: 40px;
+    } */
+    .btn-group {
+        padding-bottom: 30px;
+    }
+
+    .navbar-nav .nav-link.active {
+
+        border-bottom: unset;
+    }
+
+    .navbar-nav {
+        gap: unset;
+        padding-right: 10px;
+
+    }
+
+    .reset-btn{
+        margin-bottom: 40px;
+    }
+}
+
+/* medium screen  */
+
+@media screen and (max-width: 768px) {
+    footer {
+        padding-top: 60px;
+    }
+
+    .form-heading {
+        margin-bottom: 30px;
+    }
+
+    .page_main {
+        margin-top: 80px;
+        margin-bottom: 80px;
+    }
+
+    .empty-place{
+        height: 200px;
+        background-color: var(--secondary);
+    }
+
+    .home-task-main{
+        background-color: #FFFFFF;
+    }
+
+    .home-task{
+        margin-top: -70px;
+    }
+
+    .page-heading{
+        color: var(--white);
+        padding-top: 40px;
+    }
+
+    .mission-container{
+        padding: 30px 15px;
+    }
+
+    /* Task Details Information */
+    .task-features .box{
+        flex: 1;
+        white-space: nowrap;
+    }    
+    .task-details-info .task-details-table td{
+        padding-left: 10px;
+    }
+}
+
+/*---------------------------------------------
+ small screen  
+ ---------------------------------------------*/
+@media screen and (max-width: 576px) {
+    .form_container {
+        padding: 30px;
+    }
+
+    .empty-place{
+        height: 150px;
+        background-color: var(--secondary);
+    }
+
+      .home-task-main{
+        background-color: #FFFFFF;
+    }
+
+      .home-task{
+        margin-top: -60px;
+    }
+
+      .page-heading{
+        color: var(--white);
+        padding-top: 30px;
+    }
+
+    /* -------------------------------
+        Start of Browse all Task Style
+    ---------------------------------*/
+    .active_task_active{
+        flex-direction: column;
+        row-gap: 30px;
+    }
+    .active_task{
+        flex-direction: column;
+        row-gap: 30px;
+    }
+    .pro_img img {
+        width: 70px;
+        height: 70px;
+        margin-left: 2px;
+    }
+    .btn_boxxx p {
+        padding: 2px 2px;
+    }
+    /* --------------------------------
+        End of Browse all Task
+    -----------------------------------*/
+
+    .sales_box{
+        aspect-ratio: auto;
+        margin-bottom: 20px;
+      }
+
+}
+
+
+
+
+
+/* ------------------------------------------
+Home Header Responsive 
+--------------------------------------------*/
+@media screen and (min-width:992px) and (max-width:1041px) {
+    .navbar-nav {
+        gap: 25px;
+    }
+    .green-button {
+        padding: 12px 30px;
+    }
+    .blue-button {
+        padding: 12px 30px;
+    }
+}
