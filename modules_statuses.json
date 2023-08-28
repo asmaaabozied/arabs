@@ -16,5 +16,7 @@
     "Google": true,
     "Privilege": true,
     "Currency": true,
-    "Api": true
+    "Api": true,
+    "LandingPage": true,
+    "Home": true
 }

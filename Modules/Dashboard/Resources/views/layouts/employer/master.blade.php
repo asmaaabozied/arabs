@@ -16,9 +16,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/v/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/v/responsive.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/v/custom.css')}}">
-{{--    <link rel="stylesheet" href="{{asset('assets/css/libs.css')}}">--}}
     <link rel="stylesheet" href="{{asset('assets/css/dataTables.min.css')}}">
-{{--    <link rel="stylesheet" href="{{asset('assets/css/style2.css')}}">--}}
 </head>
 
 <body>
