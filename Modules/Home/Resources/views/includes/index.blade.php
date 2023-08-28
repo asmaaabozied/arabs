@@ -266,7 +266,7 @@
             padding: 0 !important;
         }
     </style>
-    <link rel='stylesheet' id='astra-theme-css-rtl-css' href='https://arabworkers.com/wp-content/themes/astra/assets/css/minified/main.min-rtl.css?ver=4.1.5' media='all' />
+    <link rel='stylesheet' id='astra-theme-css-rtl-css' href='{{asset('assets/home/wp-content/themes/astra/assets/css/minified/main.min-rtl.css')}}' media='all' />
     <style id='astra-theme-css-inline-css'>
         :root {
             --ast-container-default-xlg-padding: 3em;
@@ -2584,7 +2584,7 @@
         }
     </style>
     <link rel='stylesheet' id='astra-google-fonts-css' href='https://fonts.googleapis.com/css?family=Cairo%3A400%2C500%2C700%2C800&#038;display=fallback&#038;ver=4.1.5' media='all' />
-    <link rel='stylesheet' id='wp-block-library-rtl-css' href='https://arabworkers.com/wp-includes/css/dist/block-library/style-rtl.min.css?ver=6.3' media='all' />
+    <link rel='stylesheet' id='wp-block-library-rtl-css' href='{{asset('assets/home/wp-includes/css/dist/block-library/style-rtl.min.css')}}' media='all' />
     <style id='global-styles-inline-css'>
         body {
             --wp--preset--color--black: #000000;
@@ -3124,23 +3124,23 @@
             line-height: 1.6;
         }
     </style>
-    <link rel='stylesheet' id='hfe-style-css' href='https://arabworkers.com/wp-content/plugins/header-footer-elementor/assets/css/header-footer-elementor.css?ver=1.6.14' media='all' />
-    <link rel='stylesheet' id='elementor-icons-css' href='https://arabworkers.com/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min.css?ver=5.20.0' media='all' />
-    <link rel='stylesheet' id='elementor-frontend-css' href='https://arabworkers.com/wp-content/uploads/elementor/css/custom-frontend-lite-rtl.min.css?ver=1688545652' media='all' />
-    <link rel='stylesheet' id='swiper-css' href='https://arabworkers.com/wp-content/plugins/elementor/assets/lib/swiper/css/swiper.min.css?ver=5.3.6' media='all' />
-    <link rel='stylesheet' id='elementor-post-5-css' href='https://arabworkers.com/wp-content/uploads/elementor/css/post-5.css?ver=1688545652' media='all' />
-    <link rel='stylesheet' id='elementor-pro-css' href='https://arabworkers.com/wp-content/uploads/elementor/css/custom-pro-frontend-lite-rtl.min.css?ver=1688545652' media='all' />
-    <link rel='stylesheet' id='elementor-post-13-css' href='https://arabworkers.com/wp-content/uploads/elementor/css/post-13.css?ver=1688928495' media='all' />
-    <link rel='stylesheet' id='hfe-widgets-style-css' href='https://arabworkers.com/wp-content/plugins/header-footer-elementor/inc/widgets-css/frontend.css?ver=1.6.14' media='all' />
-    <link rel='stylesheet' id='elementor-post-50-css' href='https://arabworkers.com/wp-content/uploads/elementor/css/post-50.css?ver=1688930102' media='all' />
-    <link rel='stylesheet' id='elementor-post-148-css' href='https://arabworkers.com/wp-content/uploads/elementor/css/post-148.css?ver=1688545653' media='all' />
+    <link rel='stylesheet' id='hfe-style-css' href='{{asset('assets/home/wp-content/plugins/header-footer-elementor/assets/css/header-footer-elementor.css')}}' media='all' />
+    <link rel='stylesheet' id='elementor-icons-css' href='{{asset('assets/home/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min.css')}}' media='all' />
+    <link rel='stylesheet' id='elementor-frontend-css' href='{{asset('assets/home/wp-content/uploads/elementor/css/custom-frontend-lite-rtl.min.css')}}' media='all' />
+    <link rel='stylesheet' id='swiper-css' href='{{asset('assets/home/wp-content/plugins/elementor/assets/lib/swiper/css/swiper.min.css')}}' media='all' />
+    <link rel='stylesheet' id='elementor-post-5-css' href='{{asset('assets/home/wp-content/uploads/elementor/css/post-5.css')}}' media='all' />
+    <link rel='stylesheet' id='elementor-pro-css' href='{{asset('assets/home/wp-content/uploads/elementor/css/custom-pro-frontend-lite-rtl.min.css')}}' media='all' />
+    <link rel='stylesheet' id='elementor-post-13-css' href='{{asset('assets/home/wp-content/uploads/elementor/css/post-13.css')}}' media='all' />
+    <link rel='stylesheet' id='hfe-widgets-style-css' href='{{asset('assets/home/wp-content/plugins/header-footer-elementor/inc/widgets-css/frontend.css')}}' media='all' />
+    <link rel='stylesheet' id='elementor-post-50-css' href='{{asset('assets/home/wp-content/uploads/elementor/css/post-50.css')}}' media='all' />
+    <link rel='stylesheet' id='elementor-post-148-css' href='{{asset('assets/home/wp-content/uploads/elementor/css/post-148.css')}}' media='all' />
     <link rel='stylesheet' id='google-fonts-1-css' href='https://fonts.googleapis.com/css?family=Roboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto+Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CEl+Messiri%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CCairo%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&#038;display=auto&#038;ver=6.3' media='all' />
-    <link rel='stylesheet' id='elementor-icons-shared-0-css' href='https://arabworkers.com/wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.min.css?ver=5.15.3' media='all' />
-    <link rel='stylesheet' id='elementor-icons-fa-solid-css' href='https://arabworkers.com/wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.min.css?ver=5.15.3' media='all' />
-    <link rel='stylesheet' id='elementor-icons-fa-brands-css' href='https://arabworkers.com/wp-content/plugins/elementor/assets/lib/font-awesome/css/brands.min.css?ver=5.15.3' media='all' />
+    <link rel='stylesheet' id='elementor-icons-shared-0-css' href='{{asset('assets/home/wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.min.css')}}' media='all' />
+    <link rel='stylesheet' id='elementor-icons-fa-solid-css' href='{{asset('assets/home/wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.min.css')}}' media='all' />
+    <link rel='stylesheet' id='elementor-icons-fa-brands-css' href='{{asset('assets/home/wp-content/plugins/elementor/assets/lib/font-awesome/css/brands.min.css')}}' media='all' />
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <!--[if IE]>
-    <script src='https://arabworkers.com/wp-content/themes/astra/assets/js/minified/flexibility.min.js?ver=4.1.5' id='astra-flexibility-js'></script>
+    <script src='{{asset('assets/home/wp-content/themes/astra/assets/js/minified/flexibility.min.js')}}' id='astra-flexibility-js'></script>
     <script id="astra-flexibility-js-after">
         flexibility(document.documentElement);
     </script>
@@ -3148,7 +3148,6 @@
     <link rel="https://api.w.org/" href="https://arabworkers.com/wp-json/" />
     <link rel="alternate" type="application/json" href="https://arabworkers.com/wp-json/wp/v2/pages/13" />
     <link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://arabworkers.com/xmlrpc.php?rsd" />
-    <meta name="generator" content="WordPress 6.3" />
     <link rel='shortlink' href='https://arabworkers.com/' />
     <link rel="alternate" type="application/json+oembed" href="https://arabworkers.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Farabworkers.com%2F" />
     <link rel="alternate" type="text/xml+oembed" href="https://arabworkers.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Farabworkers.com%2F&#038;format=xml" />
@@ -3203,7 +3202,7 @@
                             </div>
                             <div class="elementor-element elementor-element-99dde1f elementor-nav-menu__align-right elementor-nav-menu--dropdown-mobile elementor-nav-menu--stretch elementor-widget-mobile__width-auto elementor-nav-menu__text-align-center elementor-nav-menu--toggle elementor-nav-menu--burger elementor-widget elementor-widget-nav-menu" data-id="99dde1f" data-element_type="widget" data-settings="{&quot;full_width&quot;:&quot;stretch&quot;,&quot;layout&quot;:&quot;horizontal&quot;,&quot;submenu_icon&quot;:{&quot;value&quot;:&quot;&lt;i class=\&quot;fas fa-caret-down\&quot;&gt;&lt;\/i&gt;&quot;,&quot;library&quot;:&quot;fa-solid&quot;},&quot;toggle&quot;:&quot;burger&quot;}" data-widget_type="nav-menu.default">
                                 <div class="elementor-widget-container">
-                                    <link rel="stylesheet" href="https://arabworkers.com/wp-content/plugins/elementor-pro/assets/css/widget-nav-menu-rtl.min.css">
+                                    <link rel="stylesheet" href="{{asset('assets/home/wp-content/plugins/elementor-pro/assets/css/widget-nav-menu-rtl.min.css')}}">
                                     <nav migration_allowed="1" migrated="0" role="navigation" class="elementor-nav-menu--main elementor-nav-menu__container elementor-nav-menu--layout-horizontal e--pointer-overline e--animation-fade">
                                         <ul id="menu-1-99dde1f" class="elementor-nav-menu">
                                             <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2084">
@@ -3334,7 +3333,7 @@
                                 </div>
                                 <div class="elementor-element elementor-element-17251c0 elementor-widget__width-initial elementor-widget-mobile__width-inherit elementor-position-top elementor-view-default elementor-mobile-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="17251c0" data-element_type="widget" data-widget_type="icon-box.default">
                                     <div class="elementor-widget-container">
-                                        <link rel="stylesheet" href="https://arabworkers.com/wp-content/uploads/elementor/css/custom-widget-icon-box-rtl.min.css?ver=1688545654">
+                                        <link rel="stylesheet" href="{{asset('assets/home/wp-content/uploads/elementor/css/custom-widget-icon-box-rtl.min.css')}}">
                                         <div class="elementor-icon-box-wrapper">
                                             <div class="elementor-icon-box-icon">
                             <span class="elementor-icon elementor-animation-">
@@ -3487,7 +3486,7 @@
                                             <div class="elementor-widget-wrap elementor-element-populated">
                                                 <div class="elementor-element elementor-element-90a4e8d elementor-mobile-align-right elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="90a4e8d" data-element_type="widget" data-widget_type="icon-list.default">
                                                     <div class="elementor-widget-container">
-                                                        <link rel="stylesheet" href="https://arabworkers.com/wp-content/uploads/elementor/css/custom-widget-icon-list-rtl.min.css?ver=1688545654">
+                                                        <link rel="stylesheet" href="{{asset('assets/home/wp-content/uploads/elementor/css/custom-widget-icon-list-rtl.min.css')}}">
                                                         <ul class="elementor-icon-list-items">
                                                             <li class="elementor-icon-list-item">
                                     <span class="elementor-icon-list-icon">
@@ -4015,7 +4014,7 @@
                                 </div>
                                 <div class="elementor-element elementor-element-61e8940 elementor-grid-4 elementor-grid-tablet-2 elementor-grid-mobile-1 elementor-posts--thumbnail-top elementor-widget elementor-widget-posts" data-id="61e8940" data-element_type="widget" data-settings="{&quot;classic_columns&quot;:&quot;4&quot;,&quot;classic_row_gap&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:30,&quot;sizes&quot;:[]},&quot;classic_columns_tablet&quot;:&quot;2&quot;,&quot;classic_columns_mobile&quot;:&quot;1&quot;,&quot;classic_row_gap_widescreen&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;classic_row_gap_laptop&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;classic_row_gap_tablet_extra&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;classic_row_gap_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;classic_row_gap_mobile_extra&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;classic_row_gap_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]}}" data-widget_type="posts.classic">
                                     <div class="elementor-widget-container">
-                                        <link rel="stylesheet" href="https://arabworkers.com/wp-content/plugins/elementor-pro/assets/css/widget-posts-rtl.min.css">
+                                        <link rel="stylesheet" href="{{asset('assets/home/wp-content/plugins/elementor-pro/assets/css/widget-posts-rtl.min.css')}}">
                                         <div class="elementor-posts-container elementor-posts elementor-posts--skin-classic elementor-grid">
                                             <article class="elementor-post elementor-grid-item post-2802 post type-post status-publish format-standard has-post-thumbnail hentry category-1 tag-36 tag-35 tag-38 tag-39 tag-37">
                                                 <a class="elementor-post__thumbnail__link" href="https://arabworkers.com/%d8%a7%d9%84%d8%b1%d8%a8%d8%ad-%d9%85%d9%86-%d8%a7%d9%84%d8%a7%d9%86%d8%aa%d8%b1%d9%86%d8%aa-%d9%81%d9%8a-%d9%85%d8%b5%d8%b1/">
@@ -5715,10 +5714,10 @@
     </footer>
 </div>
 <!-- #page -->
-<link rel='stylesheet' id='elementor-post-1056-css' href='https://arabworkers.com/wp-content/uploads/elementor/css/post-1056.css?ver=1688545654' media='all' />
-<link rel='stylesheet' id='elementor-post-1738-css' href='https://arabworkers.com/wp-content/uploads/elementor/css/post-1738.css?ver=1688545655' media='all' />
-<link rel='stylesheet' id='astra-galleries-css-css' href='https://arabworkers.com/wp-content/themes/astra/assets/css/minified/galleries.min.css?ver=4.1.5' media='all' />
-<link rel='stylesheet' id='e-animations-css' href='https://arabworkers.com/wp-content/plugins/elementor/assets/lib/animations/animations.min.css?ver=3.14.1' media='all' />
+<link rel='stylesheet' id='elementor-post-1056-css' href='{{asset('assets/home/wp-content/uploads/elementor/css/post-1056.css')}}' media='all' />
+<link rel='stylesheet' id='elementor-post-1738-css' href='{{asset('assets/home/wp-content/uploads/elementor/css/post-1738.css')}}' media='all' />
+<link rel='stylesheet' id='astra-galleries-css-css' href='{{asset('assets/home/wp-content/themes/astra/assets/css/minified/galleries.min.css')}}' media='all' />
+<link rel='stylesheet' id='e-animations-css' href='{{asset('assets/home/wp-content/plugins/elementor/assets/lib/animations/animations.min.css')}}' media='all' />
 <script id='astra-theme-js-js-extra'>
     var astra = {
         "break_point": "921",
@@ -5728,15 +5727,15 @@
         "is_header_footer_builder_active": "1"
     };
 </script>
-<script src='https://arabworkers.com/wp-content/themes/astra/assets/js/minified/frontend.min.js?ver=4.1.5' id='astra-theme-js-js'></script>
-<script src='https://arabworkers.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.0' id='jquery-core-js'></script>
-<script src='https://arabworkers.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1' id='jquery-migrate-js'></script>
-<script src='https://arabworkers.com/wp-content/plugins/elementor-pro/assets/lib/smartmenus/jquery.smartmenus.min.js?ver=1.0.1' id='smartmenus-js'></script>
-<script src='https://arabworkers.com/wp-content/plugins/elementor/assets/lib/jquery-numerator/jquery-numerator.min.js?ver=0.2.1' id='jquery-numerator-js'></script>
-<script src='https://arabworkers.com/wp-includes/js/imagesloaded.min.js?ver=4.1.4' id='imagesloaded-js'></script>
-<script src='https://arabworkers.com/wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.min.js?ver=3.5.2' id='elementor-pro-webpack-runtime-js'></script>
-<script src='https://arabworkers.com/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=3.14.1' id='elementor-webpack-runtime-js'></script>
-<script src='https://arabworkers.com/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=3.14.1' id='elementor-frontend-modules-js'></script>
+<script src='{{asset('assets/home/wp-content/themes/astra/assets/js/minified/frontend.min.js')}}' id='astra-theme-js-js'></script>
+<script src='{{asset('assets/home/wp-includes/js/jquery/jquery.min.js')}}' id='jquery-core-js'></script>
+<script src='{{asset('assets/home/wp-includes/js/jquery/jquery-migrate.min.js')}}' id='jquery-migrate-js'></script>
+<script src='{{asset('assets/home/wp-content/plugins/elementor-pro/assets/lib/smartmenus/jquery.smartmenus.min.js')}}' id='smartmenus-js'></script>
+<script src='{{asset('assets/home/wp-content/plugins/elementor/assets/lib/jquery-numerator/jquery-numerator.min.js')}}' id='jquery-numerator-js'></script>
+<script src='{{asset('assets/home/wp-includes/js/imagesloaded.min.js')}}' id='imagesloaded-js'></script>
+<script src='{{asset('assets/home/wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.min.js')}}' id='elementor-pro-webpack-runtime-js'></script>
+<script src='{{asset('assets/home/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js')}}' id='elementor-webpack-runtime-js'></script>
+<script src='{{asset('assets/home/wp-content/plugins/elementor/assets/js/frontend-modules.min.js')}}' id='elementor-frontend-modules-js'></script>
 <script id="elementor-pro-frontend-js-before">
     var ElementorProFrontendConfig = {
         "ajaxurl": "https:\/\/arabworkers.com\/wp-admin\/admin-ajax.php",
@@ -5822,9 +5821,9 @@
         }
     };
 </script>
-<script src='https://arabworkers.com/wp-content/plugins/elementor-pro/assets/js/frontend.min.js?ver=3.5.2' id='elementor-pro-frontend-js'></script>
-<script src='https://arabworkers.com/wp-content/plugins/elementor/assets/lib/waypoints/waypoints.min.js?ver=4.0.2' id='elementor-waypoints-js'></script>
-<script src='https://arabworkers.com/wp-includes/js/jquery/ui/core.min.js?ver=1.13.2' id='jquery-ui-core-js'></script>
+<script src='{{asset('assets/home/wp-content/plugins/elementor-pro/assets/js/frontend.min.js')}}' id='elementor-pro-frontend-js'></script>
+<script src='{{asset('assets/home/wp-content/plugins/elementor/assets/lib/waypoints/waypoints.min.js')}}' id='elementor-waypoints-js'></script>
+<script src='{{asset('assets/home/wp-includes/js/jquery/ui/core.min.js')}}' id='jquery-ui-core-js'></script>
 <script id="elementor-frontend-js-before">
     var elementorFrontendConfig = {
         "environmentMode": {
@@ -5946,8 +5945,8 @@
         }
     };
 </script>
-<script src='https://arabworkers.com/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.14.1' id='elementor-frontend-js'></script>
-<script src='https://arabworkers.com/wp-content/plugins/elementor-pro/assets/js/elements-handlers.min.js?ver=3.5.2' id='pro-elements-handlers-js'></script>
+<script src='{{asset('assets/home/wp-content/plugins/elementor/assets/js/frontend.min.js')}}' id='elementor-frontend-js'></script>
+<script src='{{asset('assets/home/wp-content/plugins/elementor-pro/assets/js/elements-handlers.min.js')}}' id='pro-elements-handlers-js'></script>
 <script>
     /(trident|msie)/i.test(navigator.userAgent) && document.getElementById && window.addEventListener && window.addEventListener("hashchange", function() {
         var t, e = location.hash.substring(1);
