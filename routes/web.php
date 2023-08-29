@@ -45,4 +45,13 @@ Route::get('faq', function () {
 Route::get('whoAreWe', function () {
     return view('home::layouts.whoAreWe');
 });
+Route::get('fees', function () {
+    return view('home::layouts.feesOfWebSite');
+});
+Route::get('terms', function () {
+    return view('home::layouts.termsOfUse');
+});
+Route::get('privacyPolicy', function () {
+    return view('home::layouts.privacyPolicy');
+});
 
