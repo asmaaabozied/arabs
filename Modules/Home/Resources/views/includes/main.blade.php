@@ -140,6 +140,32 @@
     <link rel='dns-prefetch' href='//fonts.googleapis.com' />
     <link rel="alternate" type="application/rss+xml" title="Arab Workers &laquo; الخلاصة" href="https://arabworkers.com/feed/" />
     <link rel="alternate" type="application/rss+xml" title="Arab Workers &laquo; خلاصة التعليقات" href="https://arabworkers.com/comments/feed/" />
+{{--    <link rel='stylesheet' id='astra-theme-css-rtl-css' href='{{asset('assets/home/wp-content/themes/astra/assets/css/minified/main.min-rtl.css')}}' media='all' />--}}
+{{--    <link rel='stylesheet' id='astra-google-fonts-css' href='https://fonts.googleapis.com/css?family=Cairo%3A400%2C500%2C700%2C800&#038;display=fallback&#038;ver=4.1.5' media='all' />--}}
+{{--    <link rel='stylesheet' id='wp-block-library-rtl-css' href='{{asset('assets/home/wp-includes/css/dist/block-library/style-rtl.min.css')}}' media='all' />--}}
+{{--    <link rel='stylesheet' id='hfe-style-css' href='{{asset('assets/home/wp-content/plugins/header-footer-elementor/assets/css/header-footer-elementor.css')}}' media='all' />--}}
+{{--    <link rel='stylesheet' id='elementor-icons-css' href='{{asset('assets/home/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min.css')}}' media='all' />--}}
+{{--    <link rel='stylesheet' id='elementor-frontend-css' href='{{asset('assets/home/wp-content/uploads/elementor/css/custom-frontend-lite-rtl.min.css')}}' media='all' />--}}
+{{--    <link rel='stylesheet' id='swiper-css' href='{{asset('assets/home/wp-content/plugins/elementor/assets/lib/swiper/css/swiper.min.css')}}' media='all' />--}}
+{{--    <link rel='stylesheet' id='elementor-post-5-css' href='{{asset('assets/home/wp-content/uploads/elementor/css/post-5.css')}}' media='all' />--}}
+{{--    <link rel='stylesheet' id='elementor-pro-css' href='{{asset('assets/home/wp-content/uploads/elementor/css/custom-pro-frontend-lite-rtl.min.css')}}' media='all' />--}}
+{{--    <link rel='stylesheet' id='elementor-post-13-css' href='{{asset('assets/home/wp-content/uploads/elementor/css/post-13.css')}}' media='all' />--}}
+{{--    <link rel='stylesheet' id='hfe-widgets-style-css' href='{{asset('assets/home/wp-content/plugins/header-footer-elementor/inc/widgets-css/frontend.css')}}' media='all' />--}}
+{{--    <link rel='stylesheet' id='elementor-post-50-css' href='{{asset('assets/home/wp-content/uploads/elementor/css/post-50.css')}}' media='all' />--}}
+{{--    <link rel='stylesheet' id='elementor-post-148-css' href='{{asset('assets/home/wp-content/uploads/elementor/css/post-148.css')}}' media='all' />--}}
+{{--    <link rel='stylesheet' id='google-fonts-1-css' href='https://fonts.googleapis.com/css?family=Roboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto+Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CEl+Messiri%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CCairo%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&#038;display=auto&#038;ver=6.3' media='all' />--}}
+{{--    <link rel='stylesheet' id='elementor-icons-shared-0-css' href='{{asset('assets/home/wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.min.css')}}' media='all' />--}}
+{{--    <link rel='stylesheet' id='elementor-icons-fa-solid-css' href='{{asset('assets/home/wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.min.css')}}' media='all' />--}}
+{{--    <link rel='stylesheet' id='elementor-icons-fa-brands-css' href='{{asset('assets/home/wp-content/plugins/elementor/assets/lib/font-awesome/css/brands.min.css')}}' media='all' />--}}
+{{--    <link rel="stylesheet" href="{{asset('assets/home/home.main.css')}}">--}}
+{{--    <link rel="stylesheet" href="{{asset('assets/home/wp-content/plugins/elementor-pro/assets/css/widget-posts-rtl.min.css')}}">--}}
+{{--    <link rel="stylesheet" href="{{asset('assets/home/wp-content/plugins/elementor-pro/assets/css/widget-nav-menu-rtl.min.css')}}">--}}
+{{--    <link rel="stylesheet" href="{{asset('assets/home/wp-content/uploads/elementor/css/custom-widget-icon-box-rtl.min.css')}}">--}}
+{{--    <link rel="stylesheet" href="{{asset('assets/home/wp-content/uploads/elementor/css/custom-widget-icon-list-rtl.min.css')}}">--}}
+{{--    <link rel='stylesheet' id='elementor-post-1056-css' href='{{asset('assets/home/wp-content/uploads/elementor/css/post-1056.css')}}' media='all' />--}}
+{{--    <link rel='stylesheet' id='elementor-post-1738-css' href='{{asset('assets/home/wp-content/uploads/elementor/css/post-1738.css')}}' media='all' />--}}
+{{--    <link rel='stylesheet' id='astra-galleries-css-css' href='{{asset('assets/home/wp-content/themes/astra/assets/css/minified/galleries.min.css')}}' media='all' />--}}
+{{--    <link rel='stylesheet' id='e-animations-css' href='{{asset('assets/home/wp-content/plugins/elementor/assets/lib/animations/animations.min.css')}}' media='all' />--}}
     <link rel='stylesheet' id='astra-theme-css-rtl-css' href='{{asset('assets/home/wp-content/themes/astra/assets/css/minified/main.min-rtl.css')}}' media='all' />
     <link rel='stylesheet' id='astra-google-fonts-css' href='https://fonts.googleapis.com/css?family=Cairo%3A400%2C500%2C700%2C800&#038;display=fallback&#038;ver=4.1.5' media='all' />
     <link rel='stylesheet' id='wp-block-library-rtl-css' href='{{asset('assets/home/wp-includes/css/dist/block-library/style-rtl.min.css')}}' media='all' />
@@ -166,6 +192,17 @@
     <link rel='stylesheet' id='elementor-post-1738-css' href='{{asset('assets/home/wp-content/uploads/elementor/css/post-1738.css')}}' media='all' />
     <link rel='stylesheet' id='astra-galleries-css-css' href='{{asset('assets/home/wp-content/themes/astra/assets/css/minified/galleries.min.css')}}' media='all' />
     <link rel='stylesheet' id='e-animations-css' href='{{asset('assets/home/wp-content/plugins/elementor/assets/lib/animations/animations.min.css')}}' media='all' />
+    <link rel='stylesheet' id='elementor-post-851-css' href='{{asset('assets/home/wp-content/uploads/elementor/css/post-851.css')}}' media='all' />
+    <link rel='stylesheet' id='elementor-post-2340-css' href='{{asset('assets/home/wp-content/uploads/elementor/css/post-2340.css')}}' media='all' />
+    <link rel='stylesheet' id='elementor-post-639-css' href='{{asset('assets/home/wp-content/uploads/elementor/css/post-639.css')}}' media='all' />
+    <link rel='stylesheet' id='elementor-post-2310-css' href='{{asset('assets/home/wp-content/uploads/elementor/css/post-2310.css')}}' media='all' />
+    <link rel='stylesheet' id='elementor-post-2335-css' href='{{asset('assets/home/wp-content/uploads/elementor/css/post-2335.css')}}' media='all' />
+    <link rel='stylesheet' id='elementor-post-1799-css' href='{{asset('assets/home/wp-content/uploads/elementor/css/post-1799.css')}}' media='all' />
+    <link rel='stylesheet' id='elementor-post-2316-css' href='{{asset('assets/home/wp-content/uploads/elementor/css/post-2316.css')}}' media='all' />
+    <link rel='stylesheet' id='elementor-post-2331-css' href='{{asset('assets/home/wp-content/uploads/elementor/css/post-2331.css')}}' media='all' />
+    <link rel='stylesheet' id='elementor-post-2326-css' href='{{asset('assets/home/wp-content/uploads/elementor/css/post-2326.css')}}' media='all' />
+
+
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <!--[if IE]>
     <script src='{{asset('assets/home/wp-content/themes/astra/assets/js/minified/flexibility.min.js')}}' id='astra-flexibility-js'></script>
@@ -534,19 +571,19 @@
         </div>
     </footer>
 </div>
-<script src='{{asset('assets/home/wp-content/themes/astra/assets/js/minified/frontend.min.js')}}' id='astra-theme-js-js'></script>
+{{--<script src='{{asset('assets/home/wp-content/themes/astra/assets/js/minified/frontend.min.js')}}' id='astra-theme-js-js'></script>--}}
 <script src='{{asset('assets/home/wp-includes/js/jquery/jquery.min.js')}}' id='jquery-core-js'></script>
-<script src='{{asset('assets/home/wp-includes/js/jquery/jquery-migrate.min.js')}}' id='jquery-migrate-js'></script>
+{{--<script src='{{asset('assets/home/wp-includes/js/jquery/jquery-migrate.min.js')}}' id='jquery-migrate-js'></script>--}}
 <script src='{{asset('assets/home/wp-content/plugins/elementor-pro/assets/lib/smartmenus/jquery.smartmenus.min.js')}}' id='smartmenus-js'></script>
 <script src='{{asset('assets/home/wp-content/plugins/elementor/assets/lib/jquery-numerator/jquery-numerator.min.js')}}' id='jquery-numerator-js'></script>
 <script src='{{asset('assets/home/wp-includes/js/imagesloaded.min.js')}}' id='imagesloaded-js'></script>
 <script src='{{asset('assets/home/wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.min.js')}}' id='elementor-pro-webpack-runtime-js'></script>
 <script src='{{asset('assets/home/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js')}}' id='elementor-webpack-runtime-js'></script>
-<script src='{{asset('assets/home/wp-content/plugins/elementor/assets/js/frontend-modules.min.js')}}' id='elementor-frontend-modules-js'></script>
-<script src='{{asset('assets/home/wp-content/plugins/elementor-pro/assets/js/frontend.min.js')}}' id='elementor-pro-frontend-js'></script>
+{{--<script src='{{asset('assets/home/wp-content/plugins/elementor/assets/js/frontend-modules.min.js')}}' id='elementor-frontend-modules-js'></script>--}}
+{{--<script src='{{asset('assets/home/wp-content/plugins/elementor-pro/assets/js/frontend.min.js')}}' id='elementor-pro-frontend-js'></script>--}}
 <script src='{{asset('assets/home/wp-content/plugins/elementor/assets/lib/waypoints/waypoints.min.js')}}' id='elementor-waypoints-js'></script>
 <script src='{{asset('assets/home/wp-includes/js/jquery/ui/core.min.js')}}' id='jquery-ui-core-js'></script>
-<script src='{{asset('assets/home/wp-content/plugins/elementor/assets/js/frontend.min.js')}}' id='elementor-frontend-js'></script>
+{{--<script src='{{asset('assets/home/wp-content/plugins/elementor/assets/js/frontend.min.js')}}' id='elementor-frontend-js'></script>--}}
 <script src='{{asset('assets/home/wp-content/plugins/elementor-pro/assets/js/elements-handlers.min.js')}}' id='pro-elements-handlers-js'></script>
 </body>
 </html>

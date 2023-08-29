@@ -7,3 +7,17 @@
         This view is loaded from module: {!! config('home.name') !!}
     </p>
 @endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
