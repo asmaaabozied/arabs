@@ -28,4 +28,21 @@ Route::get('home', function () {
 Route::get('connect', function () {
     return view('home::layouts.ConnectWithUs');
 });
+Route::get('Marketing', function () {
+    return view('home::layouts.AffiliateMarketing');
+});
+
+Route::get('blog', function () {
+    return view('home::layouts.blog');
+});
+Route::get('workInInternet', function () {
+    return view('home::layouts.workInInternet');
+});
+Route::get('faq', function () {
+    return view('home::layouts.faq');
+});
+
+Route::get('whoAreWe', function () {
+    return view('home::layouts.whoAreWe');
+});
 
