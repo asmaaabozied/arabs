@@ -23,6 +23,9 @@ Route::get('signup', function () {
     return view('dashboard::layouts.auth.signup');
 });
 Route::get('home', function () {
-    return view('home::includes.index');
+    return view('home::layouts.homeContent');
+});
+Route::get('connect', function () {
+    return view('home::layouts.ConnectWithUs');
 });
 
