@@ -340,7 +340,7 @@ img.hamburger_menu {
     text-align: right;
     padding-top: 20px;
     padding-bottom: 20px;
-    background-image: url(../../public/images/down.svg);
+    background-image: url(../../img/down.svg);
     background-repeat: no-repeat;
     background-position: left 0.75rem center;
     background-size: 16px 12px;
@@ -450,7 +450,7 @@ img.hamburger_menu {
     height: 1.25rem;
     margin-right: auto;
     content: "";
-    background-image: url(../../public/images/down.svg);
+    background-image: url(../../img/down.svg);
     /* background-image: url(../images/down.svg); */
     background-repeat: no-repeat;
     background-size: 1.25rem;
@@ -639,7 +639,7 @@ img.hamburger_menu {
     text-align: right;
     padding-top: 16px;
     padding-bottom: 17px;
-    background-image: url(../../public/images/down.svg);
+    background-image: url(../../img/down.svg);
     /* background-image: url(../images/down.svg); */
     background-repeat: no-repeat;
     background-position: left 0.75rem center;
@@ -1156,7 +1156,7 @@ End of Create Task Style
 /* End of home Profile Dropdown */
 
 /*-------------------------------------------------
-Start of Browse Task Style  
+Start of Browse Task Style
 --------------------------------------------------*/
 
 .browse-container {
@@ -1270,7 +1270,7 @@ Start of Browse Task Style
 } */
 
 /**************************************************************
-End of Browse Task Style  
+End of Browse Task Style
 *****************************************************************/
 
 /************************************************************
@@ -1437,7 +1437,7 @@ End of Task Details Style
 }
 
 /*******************************************************************
-Start of Login page Style  
+Start of Login page Style
 ********************************************************************/
 
 .inputPlaceholder::placeholder {
@@ -1445,7 +1445,7 @@ Start of Login page Style
 }
 
 /*******************************************************************
-Start of Login page Style  
+Start of Login page Style
 ********************************************************************/
 
 /************************************************************************************************************************************

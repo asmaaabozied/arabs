@@ -7967,6 +7967,9 @@ fieldset:disabled .btn {
 .bg-light {
     background-color: #f8f9fa !important
 }
+.bg-primary {
+    background-color: #0099ff !important
+}
 
 .bg-dark {
     background-color: #212529 !important

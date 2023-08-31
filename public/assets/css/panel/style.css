@@ -287,33 +287,58 @@ form.Sreach_form_box button#button-addon1 {
   /*overflow-y: scroll;*/
 }
 
-.side_menu a {
-  display: block;
-  background: #fff;
-  padding: 13px 10px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  align-items: center;
-  text-decoration: none;
-  /* width: 205px; */
-  margin-left: auto;
-  /* margin-right: auto; */
-  /* font-weight: 700; */
-  color: var(--dark);
-  text-transform: capitalize;
-  transition: .3s linear;
-  white-space: nowrap;
+/*.side_menu a {*/
+/*  display: block;*/
+/*  background: #fff;*/
+/*  padding: 13px 10px;*/
+/*  border-radius: 8px;*/
+/*  margin-bottom: 20px;*/
+/*  align-items: center;*/
+/*  text-decoration: none;*/
+/*  !* width: 205px; *!*/
+/*  margin-left: auto;*/
+/*  !* margin-right: auto; *!*/
+/*  !* font-weight: 700; *!*/
+/*  color: var(--dark);*/
+/*  text-transform: capitalize;*/
+/*  transition: .3s linear;*/
+/*  white-space: nowrap;*/
+/*}*/
+
+/*.side_menu a:hover {*/
+/*  background: var(--secondary);*/
+/*  color: var(--light);*/
+
+/*}*/
+
+/*.side_menu a span {*/
+/*  margin-right: 20px;*/
+
+/*}*/
+
+.mr-20{
+    margin-right: 20px;
 }
-
-.side_menu a:hover {
-  background: var(--secondary);
-  color: var(--light);
-
+.side_menu_item {
+    display: block;
+    background: #fff;
+    padding: 13px 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    align-items: center;
+    text-decoration: none;
+    /* width: 205px; */
+    margin-left: auto;
+    /* margin-right: auto; */
+    /* font-weight: 700; */
+    color: var(--dark);
+    text-transform: capitalize;
+    transition: .3s linear;
+    white-space: nowrap;
 }
-
-.side_menu a span {
-  margin-right: 20px;
-
+.side_menu_item:hover{
+    background: var(--secondary);
+    color: var(--light);
 }
 
 .fixed {
@@ -1336,7 +1361,16 @@ Start of Site Setting Style
 .site-setting-content{
   margin-top: 30px;
 }
-
+.bg-custom-red{
+    background-color:#EF626C ;
+}
+.navbox:hover{
+    background-color:#EF626C ;
+}
+.navboxli{
+    font-size: 20px;
+    line-height: 1.5;
+}
 /**********************************************************************
 End of Site Setting Style
 ***********************************************************************/
