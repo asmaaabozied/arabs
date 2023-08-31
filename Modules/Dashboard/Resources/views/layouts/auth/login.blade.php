@@ -17,8 +17,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/login/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/login/responsive.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/login/custom.css')}}">
-
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
 
 </head>
@@ -36,7 +35,7 @@
 <nav class="navbar navbar-expand-lg bg-light home-nav">
     <div class="container">
 
-        <a class="navbar-brand" href="https://arabworkers.com/"><img src="http://127.0.0.1:8000/images/logo.png"
+        <a class="navbar-brand" href="https://arabworkers.com/"><img src="{{asset('assets/img/logo.png')}}"
                                                                      class="brand-logo"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -86,12 +85,12 @@
                             <div class="col-md-12 relative">
                                 <input type="email" class="form-control input-lg inputPlaceholder"
                                        placeholder="البريد الإلكتروني" name="email" required value="">
-                                <img src="http://127.0.0.1:8000/images/mail.png" class="input_img" width="20">
+                                <img src="{{asset('assets/img/mail.png')}}" class="input_img" width="20">
                             </div>
                             <div class="col-md-12 relative">
                                 <input type="Password" id="lpassword" class="form-control input-lg inputPlaceholder"
                                        placeholder="كلمة المرور" name="password" required>
-                                <img src="http://127.0.0.1:8000/images/pass.png" class="input_img" id="myInput"
+                                <img src="{{asset('assets/img/pass.png')}}" class="input_img" id="myInput"
                                      width="16">
                                 <div id="lpassword-close-eye">
                                     <i type="button" class="fas fa-eye-slash" id="togglePassword"
@@ -130,7 +129,7 @@
             <div class="col-lg-8 col-md-12">
                 <div class="row gy-4">
                     <div class="col-12">
-                        <img src="http://127.0.0.1:8000/images/logo_f.png" class="mb-2">
+                        <img src="{{asset('assets/img/logo_f.png')}}" class="mb-2">
                     </div>
                     <!-- 1 -->
                     <div class="col-md-4 col-sm-6">
@@ -214,9 +213,9 @@
             <div class="col-12">
                 <div class="copy_right">
                     <div class="pay_links text-center mb-3">
-                        <img src="http://127.0.0.1:8000/images/p1.png" class="des-block">
-                        <img src="http://127.0.0.1:8000/images/p2.png" class="des-block">
-                        <img src="http://127.0.0.1:8000/images/p3.png" class="des-block">
+                        <img src="{{asset('assets/img/p1.png')}}" class="des-block">
+                        <img src="{{asset('assets/img/p2.png')}}" class="des-block">
+                        <img src="{{asset('assets/img/p3.png')}}" class="des-block">
                     </div>
                     <p class="text-center">عرب وركرز - منصة عربية مسجلة في وزارة الاستثمار المصرية - جميع الحقوق
                         محفوظة. 2020 - 2022 ©</p>
@@ -226,7 +225,7 @@
     </div>
 </footer>
 
-<script src="http://127.0.0.1:8000/js/libs.js"></script>
+<script src="{{asset('assets/js/libs.js')}}"></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>

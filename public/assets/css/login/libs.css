@@ -10612,7 +10612,7 @@ fieldset:disabled .btn {
  */
 
 .fa {
-    font-family: var(--fa-style-family, "Font Awesome 6 Free");
+    font-family: var(--fa-style-family, "fa-brands-400.woff2");
     font-weight: var(--fa-style, 900)
 }
 

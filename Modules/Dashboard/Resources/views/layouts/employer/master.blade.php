@@ -11,12 +11,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('assets/css/dashboard.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/v/default.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/v/style.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/v/responsive.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/v/custom.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/dataTables.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/panel/dashboard.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/panel/default.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/panel/style.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/panel/responsive.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/panel/custom.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/panel/dataTables.min.css')}}">
 </head>
 
 <body>
@@ -42,10 +42,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link link active" aria-current="page" href="{{url('https://arabworkers.com/')}}">مسكن</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link link" href="#">تصفح المهمة</a>
+                    <a class="nav-link link active" href="#">تصفح المهمة</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link link" href="#">قم بإنشاء مهمة</a>
@@ -60,11 +57,11 @@
                             data-bs-toggle="dropdown" aria-expanded="false">
                         <a class="user-name profile_name" href="#">
                             <img src="{{asset('assets/images/public-profile.png')}}" class="profile">
-                            <span class="me-2">Auth User Name</span>
+                            <span class="me-2">Employer Name</span>
                         </a>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">LogOut</a></li>
+                        <li><a class="dropdown-item" href="#">Logout</a></li>
                     </ul>
                 </div>
 
@@ -74,19 +71,19 @@
 </nav>
 
 <div class="side_menu">
-    <a href="#" class="active_menu"><i class="fa-solid fa-chart-line"></i> <span>لوحة القيادة</span> </a>
+    <a href="#" class="active_menu"><i class="fa-solid fa-chart-line"></i> <span>Panel</span> </a>
 
-    <a href="#" class=""><i class="fa-solid fa-user"></i> <span>الملف الشخصي</span> </a>
+    <a href="#" class=""><i class="fa-solid fa-user"></i> <span>Profile</span> </a>
 
-    <a href="#" class=""><i class="fa-solid fa-tag"></i> <span>مهمتي</span> </a>
+    <a href="#" class=""><i class="fa-solid fa-tag"></i> <span>Tasks</span> </a>
 
-    <a href="#"><i class="fa-solid fa-plus"></i> <span>قم بإنشاء مهمة</span> </a>
+    <a href="#"><i class="fa-solid fa-plus"></i> <span>Create Task</span> </a>
 
-    <a href="#" class=""><i class="fa-solid fa-credit-card"></i> <span>عملية</span> </a>
+    <a href="#" class=""><i class="fa-solid fa-credit-card"></i> <span>Transaction</span> </a>
 
-    <a href="#"><i class="fa-solid fa-headphones-simple"></i> <span>طلب دعم</span> </a>
+    <a href="#"><i class="fa-solid fa-headphones-simple"></i> <span>Support </span> </a>
 
-    <a href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i> <span>تسجيل خروج</span> </a>
+    <a href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i> <span>Logout</span> </a>
 </div>
 
 
@@ -96,9 +93,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="heading mb-5">
-                    <h1><span class="purul">مرحبًا، </span>
+                    <h1><span class="purul">Hello </span>
                         <span class="purul">
-                 Auth USer NAme
+                 Employer Name
                 </span></h1>
                 </div>
             </div>
@@ -295,12 +292,10 @@
 
                             <div class="f_links_bottom">
                                 <ul>
-                                    <li><a href="https://arabworkers.com/">الرئيسية</a></li>
-                                    <li><a href="http://127.0.0.1:8000/browse-tasks"> تصفح المهام</a></li>
-                                    <li><a href="http://127.0.0.1:8000/create-task">إنشاء
-                                            مهمة
-                                        </a></li>
-                                    <li><a href="https://arabworkers.com/%d8%a7%d9%84%d8%aa%d8%b3%d9%88%d9%8a%d9%82-%d8%a8%d8%a7%d9%84%d8%b9%d9%85%d9%88%d9%84%d8%a9/"> التسويق بالعمولة</a></li>
+                                    <li><a href="https://arabworkers.com/">Home</a></li>
+                                    <li><a href="http://127.0.0.1:8000/browse-tasks">Browse Task</a></li>
+                                    <li><a href="http://127.0.0.1:8000/create-task">Create Task</a></li>
+                                    <li><a href="#">Marketing</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -309,12 +304,10 @@
                     <div class="col-md-4 col-sm-6">
                         <div class="f_links_bottom">
                             <ul>
-                                <li><a href="https://arabworkers.com/%d8%a7%d9%84%d8%a3%d8%b3%d8%a6%d9%84%d8%a9-%d8%a7%d9%84%d8%b4%d8%a7%d8%a6%d8%b9%d8%a9/"> الأسئلة الشائعة</a></li>
-                                <li><a href="https://arabworkers.com/%d9%85%d9%86-%d9%86%d8%ad%d9%86/"> عن عرب وركرز</a></li>
-                                <li><a href="https://arabworkers.com/%d8%b9%d9%85%d9%88%d9%84%d8%a9-%d8%b9%d8%b1%d8%a8-%d9%88%d8%b1%d9%83%d8%b1%d8%b2/">
-                                        عمولة عرب وركرز</a></li>
-                                <li><a href="https://arabworkers.com/%d8%aa%d9%88%d8%a7%d8%b5%d9%84-%d9%85%d8%b9%d9%86%d8%a7/">تواصل معنا
-                                    </a></li>
+                                <li><a href="#">FAQ</a></li>
+                                <li><a href="#">AboutAs</a></li>
+                                <li><a href="">Fees</a></li>
+                                <li><a href="#">Contact as</a></li>
                             </ul>
                         </div>
                     </div>
@@ -322,12 +315,10 @@
                     <div class="col-md-4 col-sm-6">
                         <div class="f_links_bottom">
                             <ul>
-                                <li><a href="https://arabworkers.com/blog/"> دروس ومقالات </a></li>
-                                <li><a href="https://arabworkers.com/%d8%a7%d9%84%d8%a3%d8%b3%d8%a6%d9%84%d8%a9-%d8%a7%d9%84%d8%b4%d8%a7%d8%a6%d8%b9%d8%a9/"> الأسئلة الشائعة</a></li>
-                                <li><a href="https://arabworkers.com/%d8%b4%d8%b1%d9%88%d8%b7-%d8%a7%d9%84%d8%a7%d8%b3%d8%aa%d8%ae%d8%af%d8%a7%d9%85/">
-                                        شروط الاستخدام</a></li>
-                                <li><a href="https://arabworkers.com/%d8%b3%d9%8a%d8%a7%d8%b3%d8%a9-%d8%a7%d9%84%d8%ae%d8%b5%d9%88%d8%b5%d9%8a%d8%a9/">سياسة الخصوصية
-                                    </a></li>
+                                <li><a href="#">Blog</a></li>
+                                <li><a href="">FAQ</a></li>
+                                <li><a href="#">Term and condetion</a></li>
+                                <li><a href="#">Policy</a></li>
                             </ul>
                         </div>
                     </div>
@@ -335,14 +326,14 @@
             </div>
             <div class="col-lg-4 col-sm-12 d-flex flex-column justify-content-center">
                 <div class="f_links text-center">
-                    <h4 style="font-size: 21px;" class="purple-text fw-bold">تواصل معنا</h4>
+                    <h4 style="font-size: 21px;" class="purple-text fw-bold">Contact As</h4>
                     <div class="social_links mb-5 my-4">
                         <a style="color: #395185;" href="#"><svg class="svg-inline--fa fa-facebook" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path></svg><!-- <i class="fa-brands fa-facebook"></i> Font Awesome fontawesome.com --></a>
                         <a style="color: #55ACEE;" href="#"><svg class="svg-inline--fa fa-twitter" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg><!-- <i class="fa-brands fa-twitter"></i> Font Awesome fontawesome.com -->
                         </a><a style="color: #FF0000;" href="#"><svg class="svg-inline--fa fa-youtube" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path></svg><!-- <i class="fa-brands fa-youtube"></i> Font Awesome fontawesome.com --></a>
                         <a style="color: #0A66C2;" href="#"><svg class="svg-inline--fa fa-linkedin" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="linkedin" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path></svg><!-- <i class="fa-brands fa-linkedin"></i> Font Awesome fontawesome.com --></a>
                     </div>
-                    <h4 class="mb-4 purple-text fs-6 fw-bold">اشترك في النشرة البريدية</h4>
+                    <h4 class="mb-4 purple-text fs-6 fw-bold">Subscribe</h4>
                     <div class="f-link_box ">
                         <form class="d-flex mb-2" role="search">
                             <input class="form-control footer-field" type="search" placeholder="البريد الالكتروني" aria-label="Search">
@@ -354,13 +345,25 @@
             </div>
             <div class="col-12">
                 <div class="copy_right">
-                    <div class="pay_links text-center mb-3">
-                        <img src="http://127.0.0.1:8000/images/p1.png" class="des-block">
-                        <img src="http://127.0.0.1:8000/images/p2.png" class="des-block">
-                        <img src="http://127.0.0.1:8000/images/p3.png" class="des-block">
+                    <div class="copyright text-center text-sm text-muted">
+                        <a href="https://arabworkers.com/" class="font-weight-bold" target="_blank">
+                            {{trans('admin::admin.company_name')}}
+                        </a> {{trans('admin::admin.company_description')}}
+                        {{trans('admin::admin.allRightsAreSave')}}
+                        ©
+                        <script>
+                            document.write(new Date().getFullYear())
+                        </script>
+
                     </div>
-                    <p class="text-center">عرب وركرز - منصة عربية مسجلة في وزارة الاستثمار المصرية - جميع الحقوق
-                        محفوظة. 2020 - 2022 ©</p>
+                    <div class="f_links text-center">
+                        <div class="social_links mb-1 my-1">
+                            <a style="color: #395185;" href="#"><svg class="svg-inline--fa fa-facebook" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path></svg><!-- <i class="fa-brands fa-facebook"></i> Font Awesome fontawesome.com --></a>
+                            <a style="color: #55ACEE;" href="#"><svg class="svg-inline--fa fa-twitter" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg><!-- <i class="fa-brands fa-twitter"></i> Font Awesome fontawesome.com -->
+                            </a><a style="color: #FF0000;" href="#"><svg class="svg-inline--fa fa-youtube" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path></svg><!-- <i class="fa-brands fa-youtube"></i> Font Awesome fontawesome.com --></a>
+                            <a style="color: #0A66C2;" href="#"><svg class="svg-inline--fa fa-linkedin" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="linkedin" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path></svg><!-- <i class="fa-brands fa-linkedin"></i> Font Awesome fontawesome.com --></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
