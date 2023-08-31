@@ -11,6 +11,37 @@
 |
 */
 
-//Route::prefix('home')->group(function() {
-//    Route::get('/', 'HomeController@index');
-//});
+use Illuminate\Support\Facades\Route;
+
+Route::get('home', function () {
+    return view('home::layouts.homeContent');
+});
+Route::get('connect', function () {
+    return view('home::layouts.ConnectWithUs');
+});
+Route::get('Marketing', function () {
+    return view('home::layouts.AffiliateMarketing');
+});
+
+Route::get('blog', function () {
+    return view('home::layouts.blog');
+});
+Route::get('workInInternet', function () {
+    return view('home::layouts.workInInternet');
+});
+Route::get('faq', function () {
+    return view('home::layouts.faq');
+});
+
+Route::get('whoAreWe', function () {
+    return view('home::layouts.whoAreWe');
+});
+Route::get('fees', function () {
+    return view('home::layouts.feesOfWebSite');
+});
+Route::get('terms', function () {
+    return view('home::layouts.termsOfUse');
+});
+Route::get('privacyPolicy', function () {
+    return view('home::layouts.privacyPolicy');
+});
