@@ -340,10 +340,35 @@ form.Sreach_form_box button#button-addon1 {
     background: var(--secondary)!important;
     color: var(--light)!important;
 }
-
+.active{
+    background: var(--secondary)!important;
+    /*color: var(--light)!important;*/
+}
+.active-text{
+    color: var(--light)!important;
+}
+.nav-text{
+    color: var(--dark)!important;
+}
+.nav-text:hover{
+    /*background: var(--secondary)!important;*/
+    color: var(--light)!important;
+}
+.nav-text:active{
+    /*background: var(--secondary)!important;*/
+    color: var(--light)!important;
+}
 .fixed {
   position: fixed;
   top: 0;
+}
+.active-select-nav{
+    color: #4E4187!important;
+    font-weight: bold!important;
+}
+.active-select-nav:hover{
+    color: #4E4187!important;
+    font-weight: bold!important;
 }
 
 .side_menu a img {
