@@ -28,7 +28,7 @@
     }
 
     .side_menu {
-        padding: 50px 30px;
+        padding: 20px 0px;
     }
 
     .container-fluid {
@@ -71,7 +71,7 @@
         margin-bottom: 80px;
     }
 
-    
+
 }
 
 /* small screen  */
@@ -124,8 +124,8 @@
         margin-top: 20px;
     }
 
-    /*********************************************************** 
-    Start of Employer Task Proof Status Change 
+    /***********************************************************
+    Start of Employer Task Proof Status Change
     ************************************************************/
     .proofStatus {
         padding: 5px 20px;
@@ -134,8 +134,8 @@
         padding: 8px 20px;
         margin-right: 10px;
     }
-    /*********************************************************** 
-    Start of Employer Task Proof Status Change 
+    /***********************************************************
+    Start of Employer Task Proof Status Change
     ************************************************************/
 
 }

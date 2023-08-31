@@ -275,11 +275,11 @@ form.Sreach_form_box button#button-addon1 {
   background: #E8E8E8;
   height: 100vh;
   overflow-x: hidden;
-  overflow-y: hidden;
+  overflow-y: scroll;
   position: absolute;
   right: 0;
   transition: 0.5s;
-  padding: 50px 60px 0px 30px;
+  padding: 15px 0px 0px 0px;
   z-index: 99;
 }
 
@@ -322,7 +322,7 @@ form.Sreach_form_box button#button-addon1 {
 .side_menu_item {
     display: block;
     background: #fff;
-    padding: 13px 10px;
+    padding: 6px 10px;
     border-radius: 8px;
     margin-bottom: 20px;
     align-items: center;
@@ -337,8 +337,8 @@ form.Sreach_form_box button#button-addon1 {
     white-space: nowrap;
 }
 .side_menu_item:hover{
-    background: var(--secondary);
-    color: var(--light);
+    background: var(--secondary)!important;
+    color: var(--light)!important;
 }
 
 .fixed {

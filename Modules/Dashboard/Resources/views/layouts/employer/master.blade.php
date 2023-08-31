@@ -72,35 +72,308 @@
     </div>
 </nav>
 
-<div class="side_menu">
-    <a href="#" class="side_menu_item active_menu"><i class="fa-solid fa-chart-line"></i> <span
-            class="mr-20">Panel</span> </a>
+{{--<div class="side_menu">--}}
 
-    <a href="#" class="side_menu_item"><i class="fa-solid fa-user"></i> <span class="mr-20">Profile</span> </a>
+{{--    <a href="#" class="side_menu_item"><i class="fa-solid fa-user"></i> <span class="mr-20">Profile</span> </a>--}}
 
-    <a href="#" class="side_menu_item"><i class="fa-solid fa-tag"></i> <span class="mr-20">Tasks</span> </a>
-    <a href="#" class="side_menu_item" data-bs-toggle="collapse" data-bs-target="#Taskcollapse" aria-expanded="false"
-       aria-controls="Taskcollapse"><i class="fa-solid fa-tag"><span>Tasks</span></i>
-        <span class="mr-20">Tasks</span>
-        <ul class="collapse collapse-horizontal" id="Taskcollapse">
-            <li>Active Task</li>
-            <li>Pending Task</li>
-            <li>Rejected Task</li>
-        </ul>
-    </a>
+{{--    <a href="#" class="side_menu_item"><i class="fa-solid fa-tag"></i> <span class="mr-20">Tasks</span> </a>--}}
+{{--    <a href="#" class="side_menu_item"><i class="fa-solid fa-credit-card"></i> <span--}}
+{{--            class="mr-20">Financial Affairs</span> </a>--}}
 
-    <a href="#" class="side_menu_item"><i class="fa-solid fa-credit-card"></i> <span
-            class="mr-20">Financial Affairs</span> </a>
+{{--    <a href="#" class="side_menu_item"><i class="fa fa-list-ol"></i><span class="mr-20">Management Affairs</span> </a>--}}
 
-    <a href="#" class="side_menu_item"><i class="fa fa-list-ol"></i><span class="mr-20">Management Affairs</span> </a>
+{{--    <a href="#" class="side_menu_item"><i class="fa-solid fa-headphones-simple"></i> <span class="mr-20">Support </span>--}}
+{{--    </a>--}}
 
-    <a href="#" class="side_menu_item"><i class="fa-solid fa-headphones-simple"></i> <span class="mr-20">Support </span>
-    </a>
+{{--    <a href="#" class="side_menu_item"><i class="fa-solid fa fa-globe"></i> <span class="mr-20">Language </span> </a>--}}
+{{--    <a href="#" class="side_menu_item"> <i class="fa fa-usd"></i><span class="mr-20">Currency </span> </a>--}}
 
-    <a href="#" class="side_menu_item"><i class="fa-solid fa fa-globe"></i> <span class="mr-20">Language </span> </a>
-    <a href="#" class="side_menu_item"> <i class="fa fa-usd"></i><span class="mr-20">Currency </span> </a>
+{{--</div>--}}
 
+<div class="side_menu" >
+    <ul class="">
+        <li class="side_menu_item">
+            <a class="nav-link  active" href="http://127.0.0.1:8001/panel/employer">
+                <i class="fa-solid fa fa-globe"></i>
+                <span class="nav-link-text m-2">لوحة التحكم</span>
+            </a>
+        </li>
+        <li class="side_menu_item">
+            <a class="nav-link  " href="http://127.0.0.1:8001/panel/employer/my-profile">
+                <i class="fa-solid fa-user"></i>
+                <span class="nav-link-text m-2">البروفايل</span>
+            </a>
+        </li>
+        <li class="side_menu_item">
+            <a data-bs-toggle="collapse" href="#dashboardsExamples" class="nav-link collapsed" aria-controls="dashboardsExamples" role="button" aria-expanded="false">
+                <i class="fa-solid fa-tag"></i>
+                <span class="nav-link-text m-2">المَهام</span>
+            </a>
+            <div class="active collapse" id="dashboardsExamples" style="">
+                <ul class="nav ms-4 ps-3">
+                    <li class=" ">
+                        <a class="nav-link " href="http://127.0.0.1:8001/panel/employer/create-task">
+                            <span class="sidenav-normal">  إنشاء مهمة </span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a class="nav-link
+
+
+                                " href="http://127.0.0.1:8001/panel/employer/tasks/pending-tasks">
+                            <span class="sidenav-normal"> المهام قيد التحقق </span>
+                        </a>
+                    </li>
+                    <li class="nav-item
+
+
+
+
+
+                            ">
+                        <a class="nav-link " href="http://127.0.0.1:8001/panel/employer/tasks/active-tasks">
+                            <span class="sidenav-normal"> المهام النَشِطة </span>
+                        </a>
+                    </li>
+                    <li class="nav-item
+
+
+
+
+
+
+                            ">
+                        <a class="nav-link " href="http://127.0.0.1:8001/panel/employer/tasks/complete-tasks">
+                            <span class="sidenav-normal"> المهام المُكتملة </span>
+                        </a>
+                    </li>
+                    <li class="nav-item
+
+
+                            ">
+                        <a class="nav-link " href="http://127.0.0.1:8001/panel/employer/tasks/rejected-tasks">
+                            <span class="sidenav-normal"> المهام المرفوضة </span>
+                        </a>
+                    </li>
+                    <li class="nav-item
+
+
+                            ">
+                        <a class="nav-link " href="http://127.0.0.1:8001/panel/employer/tasks/not-payed-tasks">
+                            <span class="sidenav-normal"> المهام غير المدفوعة </span>
+                        </a>
+                    </li>
+                    <li class="nav-item
+
+
+
+                            ">
+                        <a class="nav-link " href="http://127.0.0.1:8001/panel/employer/tasks/not-published-tasks">
+                            <span class="sidenav-normal"> المهام غير المنشورة </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="side_menu_item">
+            <a data-bs-toggle="collapse" href="#FinancialAffairs" class="nav-link collapsed" aria-controls="FinancialAffairs" role="button" aria-expanded="false">
+                <i class="fa-solid fa-credit-card"></i>
+                <span class="nav-link-text m-2">الشؤون المالية</span>
+            </a>
+            <div class="active collapse" id="FinancialAffairs" style="">
+                <ul class="nav ms-4 ps-3">
+
+                    <li class="">
+                        <a class="nav-link
+
+                                " href="http://127.0.0.1:8001/panel/employer/discountCode">
+                            <span class="sidenav-normal"> أكواد الخصم </span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a class="nav-link
+
+                                " href="http://127.0.0.1:8001/panel/employer/financial-affairs/wages-and-costs">
+                            <span class="sidenav-normal"> الأجور والتكاليف </span>
+                        </a>
+                    </li>
+
+                    <li class="">
+                        <a class="nav-link
+
+                                " href="http://127.0.0.1:8001/panel/employer/management-affairs/switch-account/employer-to-worker-with-transfer-wallet-balance">
+                            <span class="sidenav-normal"> نقل رصيد المحفظة </span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a class="nav-link
+
+
+                                " href="http://127.0.0.1:8001/panel/employer/financial-affairs/wallet-history">
+                            <span class="sidenav-normal"> سجل المحفظة الإلكترونية</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="side_menu_item">
+            <a data-bs-toggle="collapse" href="#ManagementSection" class="nav-link
+
+
+
+                    " aria-controls="ManagementSection" role="button" aria-expanded="
+
+
+
+                       ">
+                <i class="fa fa-list-ol"></i>
+                <span class="nav-link-text m-2">الشؤون الإدارية</span>
+            </a>
+            <div class="collapse
+
+
+
+
+
+                    active
+                    " id="ManagementSection" style="">
+                <ul class="nav ms-4 ps-3">
+
+                    <li class="">
+                        <a class="nav-link
+
+                                " href="http://127.0.0.1:8001/panel/employer/management-affairs/switch-account/history">
+                            <span class="sidenav-normal"> سجل تبديل الحساب </span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a class="nav-link
+
+                                " href="http://127.0.0.1:8001/panel/employer/management-affairs/show-privilege-history">
+                            <span class="sidenav-normal"> سجل الإمتيازات </span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a class="nav-link
+
+                                " href="http://127.0.0.1:8001/panel/employer/management-affairs/rule-of-privileges">
+                            <span class="sidenav-normal"> قواعد الإمتيازات </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="side_menu_item">
+            <a data-bs-toggle="collapse" href="#EmployerSupport" class="nav-link
+
+
+
+                    " aria-controls="EmployerSupport" role="button" aria-expanded="
+
+
+
+                       ">
+                <i class="fa-solid fa-headphones-simple"></i>
+                <span class="nav-link-text m-2">قسم الدعم</span>
+
+            </a>
+            <div class="collapse
+
+
+
+
+
+                    active
+                    " id="EmployerSupport" style="">
+                <ul class="nav ms-4 ps-3">
+
+                    <li class="">
+                        <a class="nav-link
+
+
+
+                                " href="http://127.0.0.1:8001/panel/employer/support/tickets">
+                            <span class="sidenav-normal"> التذاكر </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+
+        <li class="side_menu_item">
+            <a data-bs-toggle="collapse" href="#AppLanguage" class="nav-link
+
+                    " aria-controls="AppLanguage" role="button" aria-expanded="
+
+                       ">
+                <i class="fa-solid fa fa-globe"></i>
+
+                <span class="nav-link-text m-2">اللغة</span>
+            </a>
+            <div class="collapse
+
+                    active
+                    " id="AppLanguage" style="">
+                <ul class="nav ms-4 ps-3">
+
+                    <li class="">
+                        <a class="nav-link
+
+                                " href="http://127.0.0.1:8001/panel/employer/settings/change-app-language/ar">
+                            <span class="sidenav-normal"> العربية  </span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a class="nav-link
+
+                                " href="http://127.0.0.1:8001/panel/employer/settings/change-app-language/en">
+                            <span class="sidenav-normal"> الإنجليزية  </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="side_menu_item">
+            <a data-bs-toggle="collapse" href="#SelectedCurrency" class="nav-link
+
+                    " aria-controls="SelectedCurrency" role="button" aria-expanded="
+
+                       ">
+                <i class="fa fa-usd"></i>
+                <span class="nav-link-text m-2">العملات</span>
+            </a>
+            <div class="collapse
+
+                    active
+                    " id="SelectedCurrency" style="">
+                <ul class="nav ms-4 ps-3">
+                    <li class="">
+                        <a class="nav-link
+                        active
+                                        " href="http://127.0.0.1:8001/panel/employer/settings/change-app-currency/USD">
+                            <span class="sidenav-normal"> دولار أمريكي  </span>
+
+                        </a>
+                    </li>
+                    <li class="">
+                        <a class="nav-link
+
+                                        " href="http://127.0.0.1:8001/panel/employer/settings/change-app-currency/EGP">
+                            <span class="sidenav-normal"> جنيه مصري  </span>
+
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+    </ul>
 </div>
+
 
 
 <div class="page_continer">
