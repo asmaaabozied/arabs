@@ -13,8 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Route::get('/', function () {
+//    return view('dashboard::layouts.employer.master');
+//});
 Route::get('/', function () {
-    return view('dashboard::layouts.employer.master');
+    return view('employer::layouts.employer.index');
 });
 Route::get('login', function () {
     return view('dashboard::layouts.auth.login');
