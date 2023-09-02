@@ -15,7 +15,12 @@ return new class extends Migration
     {
         Schema::create('currencies', function (Blueprint $table) {
             $table->id();
-
+            $table->string('en_name');
+            $table->string('ar_name');
+            $table->float('rate');
+            $table->string('icon')->nullable();
+            $table->enum('is_default', ['true', 'false']);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

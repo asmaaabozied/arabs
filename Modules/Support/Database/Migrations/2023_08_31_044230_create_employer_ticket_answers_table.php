@@ -15,7 +15,15 @@ return new class extends Migration
     {
         Schema::create('employer_ticket_answers', function (Blueprint $table) {
             $table->id();
-
+            $table->foreignId('employer_ticket_id')->constrained('employer_tickets');
+            $table->foreignId('admin_id')->constrained('admins');
+            $table->text('admin_answer');
+            $table->string('admin_attached_file')->nullable();
+            $table->timestamp('admin_answered_at')->nullable();
+            $table->text('employer_answer')->nullable();
+            $table->string('employer_attached_file')->nullable();
+            $table->timestamp('employer_answered_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

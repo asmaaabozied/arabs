@@ -4,15 +4,15 @@ namespace Modules\Currency\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class SupportedCurrencyCode extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
 
-    protected $fillable = [];
-    
-    protected static function newFactory()
-    {
-        return \Modules\Currency\Database\factories\SupportedCurrencyCodeFactory::new();
-    }
+    protected $fillable = [
+        'currency_name',
+        'currency_code'
+    ];
+
 }

@@ -15,7 +15,13 @@ return new class extends Migration
     {
         Schema::create('employer_transactions', function (Blueprint $table) {
             $table->id();
-
+            $table->foreignId('employer_id')->constrained('employers');
+            $table->string('payment_id');
+            $table->string('payer_id');
+            $table->string('payer_email');
+            $table->double('amount');
+            $table->string('currency');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

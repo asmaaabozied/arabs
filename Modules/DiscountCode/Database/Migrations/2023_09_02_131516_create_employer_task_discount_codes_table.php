@@ -15,7 +15,10 @@ return new class extends Migration
     {
         Schema::create('employer_task_discount_codes', function (Blueprint $table) {
             $table->id();
-
+            $table->foreignId('employer_id')->constrained('employers');
+            $table->foreignId('task_id')->constrained('tasks');
+            $table->foreignId('discount_code_id')->constrained('discount_codes');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

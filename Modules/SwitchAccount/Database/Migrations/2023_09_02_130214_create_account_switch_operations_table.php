@@ -13,18 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('worker_paypal_transactions', function (Blueprint $table) {
+        Schema::create('account_switch_operations', function (Blueprint $table) {
             $table->id();
+            $table->enum('from', ['employer', 'worker']);
+            $table->enum('to', ['employer', 'worker']);
+            $table->foreignId('employer_id')->constrained('employers');
             $table->foreignId('worker_id')->constrained('workers');
-            $table->string('payout_batch_id');
-            $table->string('sender_batch_id');
-            $table->double('amount_requested');
-            $table->double('amount_payed');
-            $table->double('paypal_fees');
-            $table->string('currency');
-            $table->string('receiver_email');
-            $table->string('note');
-            $table->string('href');
+            $table->enum('isTransferWalletBalance',['true','false'])->default('false');
+            $table->double('transferred_amount')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });
@@ -37,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('worker_paypal_transactions');
+        Schema::dropIfExists('account_switch_operations');
     }
 };

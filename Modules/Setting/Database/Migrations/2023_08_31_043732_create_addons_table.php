@@ -15,7 +15,11 @@ return new class extends Migration
     {
         Schema::create('addons', function (Blueprint $table) {
             $table->id();
-
+            $table->string('title');
+            $table->string('ar_title');
+            $table->string('icon')->nullable();
+            $table->double('fees');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

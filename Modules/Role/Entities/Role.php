@@ -4,15 +4,19 @@ namespace Modules\Role\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\Admin\Entities\Admin;
 
 class Role extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
 
-    protected $fillable = [];
-    
-    protected static function newFactory()
+    protected $fillable = [
+        'name',
+        'routs',
+    ];
+    public function Admin(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
-        return \Modules\Role\Database\factories\RoleFactory::new();
+        return $this->hasOne(Admin::class);
     }
 }

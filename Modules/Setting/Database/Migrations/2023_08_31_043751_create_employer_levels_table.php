@@ -15,7 +15,11 @@ return new class extends Migration
     {
         Schema::create('employer_levels', function (Blueprint $table) {
             $table->id();
-
+            $table->string('name');
+            $table->double('minimum_spend');
+            $table->double('minimum_task');
+            $table->string('description')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

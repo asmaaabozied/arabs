@@ -4,15 +4,32 @@ namespace Modules\Admin\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\Role\Entities\Role;
 
 class Admin extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
+    protected $guard = 'admin';
+    protected $fillable = [
+        'name',
+        'email',
+        'avatar',
+        'administrative_number',
+        'role_id',
+        'status',
+        'password',
+        'current_currency',
 
-    protected $fillable = [];
-    
-    protected static function newFactory()
+
+    ];
+
+    protected $hidden = [
+//        'password',
+    ];
+
+    public function role(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return \Modules\Admin\Database\factories\AdminFactory::new();
+        return $this->belongsTo(Role::class);
     }
 }

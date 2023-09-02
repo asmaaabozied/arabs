@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('task_work_flows', function (Blueprint $table) {
             $table->id();
-
+            $table->foreignId('task_id')->constrained('tasks');
+            $table->string('work_flow');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

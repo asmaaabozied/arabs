@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('task_category_actions', function (Blueprint $table) {
             $table->id();
-
+            $table->foreignId('task_id')->constrained('tasks');
+            $table->foreignId('category_action_id')->constrained('category_actions');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

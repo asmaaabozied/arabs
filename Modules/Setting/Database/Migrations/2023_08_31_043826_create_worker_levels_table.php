@@ -15,7 +15,10 @@ return new class extends Migration
     {
         Schema::create('worker_levels', function (Blueprint $table) {
             $table->id();
-
+            $table->string('name');
+            $table->double('minimum_approved_proof');
+            $table->string('description')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

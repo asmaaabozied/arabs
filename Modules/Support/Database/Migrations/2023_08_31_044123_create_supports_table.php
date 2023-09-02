@@ -15,7 +15,11 @@ return new class extends Migration
     {
         Schema::create('supports', function (Blueprint $table) {
             $table->id();
-
+            $table->string('ar_name');
+            $table->string('en_name');
+            $table->text('en_description');
+            $table->text('ar_description');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

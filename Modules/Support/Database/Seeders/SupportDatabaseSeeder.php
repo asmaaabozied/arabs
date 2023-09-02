@@ -14,8 +14,8 @@ class SupportDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
+        $this->call(SupportSectionTableSeeder::class);
+        $this->call(TicketStatusTableSeeder::class);
 
-        // $this->call("OthersTableSeeder");
     }
 }

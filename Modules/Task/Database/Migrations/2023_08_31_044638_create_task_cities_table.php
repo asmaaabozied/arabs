@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('task_cities', function (Blueprint $table) {
             $table->id();
-
+            $table->foreignId('task_id')->constrained('tasks');
+            $table->foreignId('city_id')->constrained('cities');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -15,7 +15,11 @@ return new class extends Migration
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
-
+            $table->foreignId('country_id')->constrained('countries');
+            $table->string('name')->unique();
+            $table->string('ar_name')->unique();
+            $table->double('min_city_cost');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

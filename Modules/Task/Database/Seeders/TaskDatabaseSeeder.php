@@ -14,8 +14,14 @@ class TaskDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
+        $this->call(TaskTableSeeder::class);
+        $this->call(TaskStatusTableSeeder::class);
+        $this->call(TaskWorkFlowTableSeeder::class);
 
-        // $this->call("OthersTableSeeder");
+        $this->call(TaskCountryTableSeeder::class);
+        $this->call(TaskCityTableSeeder::class);
+        $this->call(TaskCategoryActionTableSeeder::class);
+
+
     }
 }

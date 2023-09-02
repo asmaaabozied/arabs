@@ -4,15 +4,18 @@ namespace Modules\Privilege\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Privilege extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
 
-    protected $fillable = [];
-    
-    protected static function newFactory()
-    {
-        return \Modules\Privilege\Database\factories\PrivilegeFactory::new();
-    }
+    protected $fillable = [
+        'title',
+        'code',
+        'privileges',
+        'type',
+        'for',
+
+    ];
 }

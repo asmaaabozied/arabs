@@ -15,7 +15,11 @@ return new class extends Migration
     {
         Schema::create('category_actions', function (Blueprint $table) {
             $table->id();
-
+            $table->foreignId('category_id')->constrained('categories');
+            $table->string('name');
+            $table->string('ar_name');
+            $table->double('price');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

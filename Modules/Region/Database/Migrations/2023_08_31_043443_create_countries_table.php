@@ -15,7 +15,13 @@ return new class extends Migration
     {
         Schema::create('countries', function (Blueprint $table) {
             $table->id();
-
+            $table->string('name')->unique();
+            $table->string('ar_name')->unique();
+            $table->string('calling_code')->unique();
+            $table->string('flag')->nullable();
+            $table->double('min_price');
+            $table->enum('is_arabic',['true','false']);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

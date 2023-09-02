@@ -4,15 +4,18 @@ namespace Modules\Setting\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Addon extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
 
-    protected $fillable = [];
-    
-    protected static function newFactory()
-    {
-        return \Modules\Setting\Database\factories\AddonFactory::new();
-    }
+    protected $fillable = [
+        'title',
+        'ar_title',
+        'icon',
+        'fees',
+
+    ];
+
 }

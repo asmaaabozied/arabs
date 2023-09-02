@@ -9,10 +9,11 @@ class Email extends Model
 {
     use HasFactory;
 
-    protected $fillable = [];
-    
-    protected static function newFactory()
-    {
-        return \Modules\Mail\Database\factories\EmailFactory::new();
-    }
+    protected $fillable = [
+        'subject',
+        'from',
+        'to',
+
+    ];
+
 }

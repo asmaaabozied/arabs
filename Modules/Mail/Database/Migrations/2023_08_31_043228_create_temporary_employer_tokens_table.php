@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('temporary_employer_tokens', function (Blueprint $table) {
             $table->id();
-
+            $table->foreignId('employer_id')->constrained('workers');
+            $table->string('token');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

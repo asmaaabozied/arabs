@@ -15,7 +15,11 @@ return new class extends Migration
     {
         Schema::create('worker_privileges', function (Blueprint $table) {
             $table->id();
-
+            $table->foreignId('worker_id')->constrained('workers');
+            $table->integer('count_of_privileges');
+            $table->enum('type', ['plus', 'minus']);
+            $table->string('description');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -14,8 +14,10 @@ class SettingDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
-
-        // $this->call("OthersTableSeeder");
+        $this->call(AddonTableSeeder::class);
+        $this->call(EmployerLevelTableSeeder::class);
+        $this->call(SettingTableSeeder::class);
+        $this->call(WorkerLevelTableSeeder::class);
+        $this->call(StatusTableSeeder::class);
     }
 }

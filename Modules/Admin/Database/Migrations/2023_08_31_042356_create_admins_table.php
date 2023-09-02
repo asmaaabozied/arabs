@@ -15,7 +15,15 @@ return new class extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
-
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('avatar')->nullable();
+            $table->string('administrative_number')->unique();
+            $table->string('password');
+            $table->foreignId('role_id')->constrained('roles');
+            $table->enum('status', ['accepted', 'rejected', 'pending'])->default('pending');
+            $table->string('current_currency')->default('USD');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

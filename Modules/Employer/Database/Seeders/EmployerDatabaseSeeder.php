@@ -14,8 +14,7 @@ class EmployerDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
+        $this->call(EmployerTableSeeder::class);
 
-        // $this->call("OthersTableSeeder");
     }
 }

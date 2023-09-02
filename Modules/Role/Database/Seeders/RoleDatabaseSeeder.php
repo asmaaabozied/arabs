@@ -4,6 +4,7 @@ namespace Modules\Role\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Role\Entities\Role;
 
 class RoleDatabaseSeeder extends Seeder
 {
@@ -14,8 +15,31 @@ class RoleDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
+        $roles = [
+            [
+                'name' => 'GeneralManager',
+                'routes' => 'all',
 
-        // $this->call("OthersTableSeeder");
+            ],
+            [
+                'name' => 'FinancialManager',
+                'routes' => 'home|changePassword|Pay',
+
+            ],
+            [
+                'name' => 'TaskManager',
+                'routes' => 'tasks|createTask|RemoveTask',
+
+            ],
+            [
+                'name' => 'SupportManager',
+                'routes' => 'support|addAnswer|RemoveAnswer|Tickets',
+
+            ],
+
+        ];
+        foreach ($roles as $role){
+            Role::create($role);
+        }
     }
 }

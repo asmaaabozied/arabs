@@ -14,8 +14,7 @@ class DiscountCodeDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
+        $this->call(DiscountCodeTableSeeder::class);
 
-        // $this->call("OthersTableSeeder");
     }
 }
