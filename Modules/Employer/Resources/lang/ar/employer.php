@@ -266,7 +266,12 @@ return [
     'The location has been successfully changed' => 'لقد تم تغيير لغة الموقع بنجاح',
     'The currency has been successfully changed' => 'لقد تم تغيير العملة الإفتراضية للموقع بنجاح',
     'The requested currency is not supported' => 'إن العملة المطلوبة غير مدعومة',
-    '' => '',
+
+
+
+    'hello' => 'مرحبا ب',
+    'employer_name' => 'اسم العميل',
+    'snapshot_costs_paid_tasks' => 'ملخص التكلفة المدفوعة لإنشاء مهمات',
     '' => '',
     '' => '',
     '' => '',

@@ -4,9 +4,9 @@
     <div class="row">
         <div class="col-md-12">
             <div class="heading mb-5">
-                <h1><span class="purul">Hello </span>
+                <h1><span class="purul">{{trans('employer::employer.hello')}} </span>
                     <span class="purul">
-                 Employer Name
+                        {{trans('employer::employer.employer_name')}}
                 </span></h1>
             </div>
         </div>
@@ -42,7 +42,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Active Tasks
+                                {{trans('employer::employer.taskInActive')}}
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
                         </div>
@@ -65,7 +65,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Pending Tasks
+                                {{trans('employer::employer.taskInPendingToAcceptAdmin')}}
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">50</div>
                         </div>
@@ -89,7 +89,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Canceled Task
+                                {{trans('employer::employer.taskInCanceled')}}
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">50</div>
                         </div>
@@ -113,7 +113,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Not Payed Tasks
+                                {{trans('employer::employer.NotPayedTasks')}}
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
                         </div>
@@ -137,7 +137,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Not Published Tasks
+                                {{trans('employer::employer.NotPublishedTasks')}}
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
                         </div>
@@ -163,7 +163,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="heading mb-5">
-                <h1><span class="purul">A snapshot of costs paid to create tasks</span></h1>
+                <h1><span class="purul">{{trans('employer::employer.snapshot_costs_paid_tasks')}}</span></h1>
             </div>
         </div>
     </div>
@@ -175,7 +175,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Main Task Cost
+                                {{trans('employer::employer.MainCosts')}}
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                 <pre>1500 US</pre>
@@ -200,7 +200,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Additional Task costs
+                                {{trans('employer::employer.AdditionalCosts')}}
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                 <pre>750 US</pre>
