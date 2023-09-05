@@ -5,12 +5,19 @@
 
             <div class="form_container  bg-white ">
                 <div class="heading text-center">
-                    <h1 class="form-heading">اشتراك</h1>
+                    <h1 class="form-heading">{{trans('admin::signup.register')}}</h1>
                 </div>
+                  <!-- In the callback, you would hide the gSignInWrapper element on a successful sign in -->
+                  <div id="gSignInWrapper" class="center_btn mt-3 mb-3">
+                    <div id="customBtn" class="customGPlusSignIn">
+                        <span class=""></span>
+                  <span class="buttonText">{{trans('admin::signIn.google_sigin_in')}}</span>
+                  </div>
+              </div>
                 <div class="login_form form-default">
                     <form id="reg_form" class="row g-4" method="POST" action="http://127.0.0.1:8000/auth/customRegistration">
                         <input type="hidden" name="_token" value="e0OplWT1VS9Bx6WMpI97SXI1DyWXtQ5IQhbEZbCJ">            <div class="col-md-12 relative">
-                            <input type="text" class="form-control inputPlaceholder" placeholder="اسم" name="name" required id="name">
+                            <input type="text" class="form-control inputPlaceholder" placeholder="{{trans('admin::signup.name')}}" name="name" required id="name">
                             <img src="{{asset('assets/img/user.png')}}" class="input_img" width="20">
                         </div>
 
@@ -20,7 +27,7 @@
 
 
                         <div class="col-md-12 relative">
-                            <input type="email" class="form-control inputPlaceholder" placeholder="البريد الإلكتروني" name="email" required id="email">
+                            <input type="email" class="form-control inputPlaceholder" placeholder="{{trans('admin::signup.email')}}" name="email" required id="email">
                             <img src="{{asset('assets/img/mail.png')}}" class="input_img" width="20">
                         </div>
 
@@ -30,7 +37,7 @@
 
 
                         <div class="col-md-12 relative">
-                            <input type="Password" class="form-control inputPlaceholder" placeholder="كلمة المرور" name="password" required id="password">
+                            <input type="Password" class="form-control inputPlaceholder" placeholder="{{trans('admin::signup.password')}}" name="password" required id="password">
                             <img src="{{asset('assets/img/pass.png')}}" class="input_img" id="myInput" width="16">
                             <div id="password-close-eye">
                                 <i type="button" class="fas fa-eye-slash" id="togglePassword" onclick="myFunction()"></i>
@@ -48,7 +55,7 @@
 
 
                         <div class="col-md-12 relative">
-                            <input type="Password" class="form-control inputPlaceholder" placeholder="تأكيد كلمة المرور" name="password_confirmation" required id="confirm-password">
+                            <input type="Password" class="form-control inputPlaceholder" placeholder="{{trans('admin::signup.confirm_password')}}" name="password_confirmation" required id="confirm-password">
                             <img src="{{asset('assets/img/pass.png')}}" class="input_img" id="myInput1" width="16">
                             <div id="confirm-close-eye">
                                 <i type="button" class="fas fa-eye-slash" id="togglePassword" onclick="myFunction1()"></i>
@@ -65,7 +72,19 @@
 
                         <div class="col-md-12 relative">
                             <select class="form-select" aria-label="Default select example" name="country_id" required id="country-select">
-                                <option value="">حدد الدولة</option>
+                                <option value="">{{trans('admin::signup.select_country')}}</option>
+                            </select>
+                        </div>
+
+                        <div class="d-none" id="country-validation">
+                            <span class='text-danger d-block' id="country-show"></span>
+                        </div>
+
+
+
+                        <div class="col-md-12 relative">
+                            <select class="form-select" aria-label="Default select example" name="city_id" required id="city-select">
+                                <option value="">{{trans('admin::signup.select_city')}}</option>
                             </select>
                         </div>
 
@@ -76,7 +95,7 @@
 
                         <div class="col-md-12 relative">
                             <select class="form-select" aria-label="Default select example" name="user_type" required id="user-type-select">
-                                <option value="">حدد نوع الحساب</option>
+                                <option value="">{{trans('admin::signup.account_type')}}</option>
                                 <option value="employer">Employer</option>
                                 <option value="worker">Worker</option>
                             </select>
@@ -91,9 +110,7 @@
                             <div class="check_boxx">
                                 <div class="form-check">
                                     <input class="form-check-input the-check-box" type="checkbox" value="" id="condition1" name="condition1" required>
-                                    <label class="form-check-label" for="condition1">
-                                        بالتسجيل للحصول على حساب فإنك توافق على الشروط والأحكام الخاصة بنا
-                                    </label>
+                                    <label class="form-check-label" for="condition1">{{trans('admin::signup.confirm_condition')}}</label>
                                 </div>
 
                                 <div class="d-none" id="condition1-validation">
@@ -103,17 +120,15 @@
 
                                 <div class="form-check">
                                     <input class="form-check-input the-check-box" type="checkbox" value="" id="condition2" name="condition2">
-                                    <label class="form-check-label" for="condition2">
-                                        أرغب في الحصول على النشرة الإخبارية
-                                    </label>
+                                    <label class="form-check-label" for="condition2">{{trans('admin::signup.news_letter')}}</label>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <button type="button" class="btn w-100 theme_green font-28 pt-2 pb-2 mt-4 mb-3" onclick="reg_form_validation()">اشتراك</button>
+                            <button type="button" class="btn w-100 theme_green font-28 pt-2 pb-2 mt-4 mb-3" onclick="reg_form_validation()">{{ trans('admin::signup.register') }}</button>
                         </div>
                         <div class="col-md-12">
-                            <p class="black-text font-20 text-center mt-3 mb-3">للدي حساب بالفعل؟   <a href="http://127.0.0.1:8000/auth/login" class="blu-text">تسجيل الدخول</a>  </p>
+                            <p class="black-text font-20 text-center mt-3 mb-3">{{trans('admin::signup.have_account')}}  <a href="http://127.0.0.1:8000/auth/login" class="blu-text">{{ trans('admin::signup.login') }}</a>  </p>
                         </div>
                     </form>
 

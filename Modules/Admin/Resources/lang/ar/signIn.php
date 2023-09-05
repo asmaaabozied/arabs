@@ -21,10 +21,9 @@ return [
     'the captcha code entered is incorrect' => 'إن رمز التحقق المُدخل غير متطابق من الرمز الأصلي',
     'You have been successfully logged in by e-mail' => 'لقد قمت بتسجيل الدخول بنجاح بوساطة الإيميل',
     'You have been successfully logged in by administrative number' => 'لقد قمت بتسجيل الدخول بنجاح بوساطة الرقم الإداري',
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => '',
+    'google_sigin_in' => 'التسجيل بـ Google',
+    'email' => 'البريد الالكتروني ',
+    'not_have_account' => 'ليس لديك حساب ؟ ',
+    'register' => 'انشئ حساب',
 
 ];
