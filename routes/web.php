@@ -16,14 +16,15 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/', function () {
 //    return view('dashboard::layouts.employer.master');
 //});
-Route::get('/', function () {
-    return view('employer::layouts.employer.index');
-});
-Route::get('login', function () {
-    return view('dashboard::layouts.auth.login');
-});
-Route::get('signup', function () {
-    return view('dashboard::layouts.auth.signup');
-});
+Route::view('/','employer::layouts.employer.index');
+Route::view('login','dashboard::layouts.auth.login');
+Route::view('signup','dashboard::layouts.auth.signup');
+Route::view('forget','dashboard::layouts.auth.forget');
+Route::view('reset','dashboard::layouts.auth.reset');
+Route::view('error','error');
 
+Route::view('profile', 'employer::layouts.employer.profile');
+Route::view('edit', 'employer::layouts.employer.edit');
 
+// Route::view('my-profile','dashboard::layouts.auth.signup');
+// Route::view('my-profile','dashboard::layouts.auth.signup');
