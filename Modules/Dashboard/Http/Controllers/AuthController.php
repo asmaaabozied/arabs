@@ -12,6 +12,8 @@ use Illuminate\Support\Str;
 use Mews\Captcha\Facades\Captcha;
 use Modules\Dashboard\Http\Requests\AuthRequest;
 use Modules\Dashboard\Http\Requests\SignUpRequest;
+use Modules\Employer\Entities\Employer;
+use Modules\Privilege\Entities\EmployerPrivilege;
 use Modules\Privilege\Entities\Privilege;
 use Modules\Privilege\Entities\WorkerPrivilege;
 use Modules\Region\Entities\City;
@@ -73,7 +75,6 @@ class AuthController extends Controller
     }
 
 
-
     public function fetchCity(Request $request)
     {
         $lang = app()->getLocale();
@@ -89,7 +90,8 @@ class AuthController extends Controller
     }
 
 
-    public function showSignUpForm(){
+    public function showSignUpForm()
+    {
         $page_name = 'ArabWorkers | SignUp';
         $countries = Country::withoutTrashed()->get();
         return view('dashboard::layouts.auth.signup', compact('page_name', 'countries'));
@@ -99,6 +101,7 @@ class AuthController extends Controller
     public function signingUp(SignUpRequest $request)
     {
         $validated = $request->validated();
+//        dd($validated, 'this is validated');
         $country = Country::withoutTrashed()->with('cities')->findOrFail($validated['country']);
         for ($i = 0; $i < $country->cities()->count(); $i++) {
             $array_of_cities_id [] = $country->cities[$i]->id;
@@ -107,30 +110,60 @@ class AuthController extends Controller
         if (in_array($validated['city'], $array_of_cities_id) == "true") {
             /**          check if the selected phone number contain the international calling code for the selected country? */
             if (Str::contains($validated['phone'], $country->calling_code) and Str::length($validated['phone']) > Str::length($country->calling_code)) {
-                $random_worker_number = "W" . Carbon::now()->format('ym') . Str::random(1) . Carbon::now()->format('s') . Str::random(2) . random_int(10, 99);
-//                dd($validated);
-                $worker = Worker::create([
-                    'worker_number' => $random_worker_number,
-                    'name' => $validated['name'],
-                    'email' => $validated['email'],
-                    'country_id' => $validated['country'],
-                    'city_id' => $validated['city'],
-                    'phone' => $validated['phone'],
-                    'password' => Hash::make($validated['password']),
-                ]);
-                $privilege = Privilege::withoutTrashed()->where([
-                    ['code', 'STA'],
-                    ['for', 'dual'],
-                ])->first();
-                WorkerPrivilege::create([
-                    'worker_id' => $worker->id,
-                    'count_of_privileges' => $privilege->privileges,
-                    'type' => $privilege->type,
-                    'description' => $privilege->title,
-                ]);
-                $this->guard()->login($worker);
-                alert()->toast(trans('worker::signIn.You have been successfully signing up'), 'success');
-                return redirect()->route('worker.show.main.page');
+                if ($validated['registration_type'] == "worker") {
+                    $random_worker_number = "W" . Carbon::now()->format('ym') . Str::random(1) . Carbon::now()->format('s') . Str::random(2) . random_int(10, 99);
+                    $worker = Worker::create([
+                        'worker_number' => $random_worker_number,
+                        'name' => $validated['name'],
+                        'email' => $validated['email'],
+                        'country_id' => $validated['country'],
+                        'city_id' => $validated['city'],
+                        'phone' => $validated['phone'],
+                        'password' => Hash::make($validated['password']),
+                    ]);
+                    $privilege = Privilege::withoutTrashed()->where([
+                        ['code', 'STA'],
+                        ['for', 'dual'],
+                    ])->first();
+                    WorkerPrivilege::create([
+                        'worker_id' => $worker->id,
+                        'count_of_privileges' => $privilege->privileges,
+                        'type' => $privilege->type,
+                        'description' => $privilege->title,
+                    ]);
+                    auth()->guard('worker')->login($worker);
+                    alert()->toast(trans('worker::signIn.You have been successfully signing up'), 'success');
+                    return redirect()->route('show.worker.panel');
+                } elseif ($validated['registration_type'] == "employer") {
+                    $random_employer_number = "E" . Carbon::now()->format('ym') . Str::random(1) . Carbon::now()->format('s') . Str::random(2) . random_int(10, 99);
+                    $employer = Employer::create([
+                        'employer_number' => $random_employer_number,
+                        'name' => $validated['name'],
+                        'email' => $validated['email'],
+                        'country_id' => $validated['country'],
+                        'city_id' => $validated['city'],
+                        'phone' => $validated['phone'],
+                        'password' => Hash::make($validated['password']),
+                    ]);
+                    $privilege = Privilege::withoutTrashed()->where([
+                        ['code', 'STA'],
+                        ['for', 'dual'],
+                    ])->first();
+                    EmployerPrivilege::create([
+                        'employer_id' => $employer->id,
+                        'count_of_privileges' => $privilege->privileges,
+                        'type' => $privilege->type,
+                        'description' => $privilege->title,
+                    ]);
+
+
+                    auth()->guard('employer')->login($employer);
+                    alert()->toast(trans('employer::signIn.You have been successfully signing up'), 'success');
+                    return redirect()->route('show.employer.panel');
+                } else {
+                    return redirect()->back()->with([trans('error') => trans('dashboard::auth.An error has occurred, please check that the data entered is correct and try again')]);
+                }
+
             } else {
                 return redirect()->back()->with(['error' => trans('worker::signIn.The phone number entered is incorrect')]);
             }

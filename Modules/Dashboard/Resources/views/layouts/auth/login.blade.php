@@ -94,6 +94,8 @@
                                 <option value="employer">{{trans('dashboard::auth.employer')}}</option>
                                 <option value="worker">{{trans('dashboard::auth.worker')}}</option>
                             </select>
+                            <img src="{{asset('assets/img/default/type.png')}}" class="input_img" width="20">
+
                         </div>
 
                         <div class="col-md-12 relative">

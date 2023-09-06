@@ -121,6 +121,8 @@
                                 <option value="employer">{{trans('dashboard::auth.employer')}}</option>
                                 <option value="worker">{{trans('dashboard::auth.worker')}}</option>
                             </select>
+                            <img src="{{asset('assets/img/default/type.png')}}" class="input_img" width="20">
+
                         </div>
 
                         <div class="col-md-12 relative">
@@ -146,9 +148,25 @@
 
                         <div class="col-md-12 relative">
                             <select class="form-select" aria-label="Default select example" name="country" required
-                                    id="country-select">
-                                <option value="">{{trans('dashboard::auth.select_country')}}</option>
+                                    id="country-dropdown">
+                                <option class="text-primary">{{trans('dashboard::auth.select_country')}}</option>
+                                @if(count($countries) > 0)
+                                    @if(app()->getLocale() == "ar")
+                                        @foreach($countries as $country)
+                                            <option value="{{$country->id}}">{{$country->ar_name}}</option>
+                                        @endforeach
+                                    @else
+                                        @foreach($countries as $country)
+                                            <option value="{{$country->id}}">{{$country->name}}</option>
+                                        @endforeach
+                                    @endif
+                                @else
+                                    <option>{{trans('dashboard::auth.NoCountryFound')}}</option>
+
+                                @endif
                             </select>
+                            <img src="{{asset('assets/img/default/map.png')}}" class="input_img" width="20">
+
                         </div>
 
                         <div class="d-none" id="country-validation">
@@ -158,9 +176,11 @@
 
                         <div class="col-md-12 relative">
                             <select class="form-select" aria-label="Default select example" name="city" required
-                                    id="city-select">
+                                    id="city-dropdown">
                                 <option value="">{{trans('dashboard::auth.select_city')}}</option>
                             </select>
+                            <img src="{{asset('assets/img/default/home.png')}}" class="input_img" width="20">
+
                         </div>
 
                         <div class="d-none" id="country-validation">
@@ -169,10 +189,10 @@
 
 
                         <div class="col-md-12 relative">
-                            <select class="form-select" aria-label="" name="phone" required
-                                    id="phone">
-                                <option value="">{{trans('dashboard::auth.phone')}}</option>
-                            </select>
+                            <input type="text" class="form-control inputPlaceholder"
+                                   placeholder="{{trans('dashboard::auth.phone')}}" value="" name="phone"
+                                   id="CallingCode" required>
+                            <img src="{{asset('assets/img/default/phone.png')}}" class="input_img" width="20">
                         </div>
 
 
@@ -239,8 +259,8 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <button type="button" class="btn w-100 theme_green font-28 pt-2 pb-2 mt-4 mb-3"
-                                    onclick="reg_form_validation()">{{ trans('dashboard::auth.Signing up') }}</button>
+                            <button type="submit"  class="btn w-100 theme_green font-28 pt-2 pb-2 mt-4 mb-3"
+                                    >{{ trans('dashboard::auth.Signing up') }}</button>
                         </div>
                         <div class="col-md-12">
                             <p class="black-text font-20 text-center mt-3 mb-3">{{trans('dashboard::auth.do_you_have_account')}}
@@ -255,6 +275,42 @@
 
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!--fetch city by country-->
+    <script>
+        $(document).ready(function () {
+            $('#country-dropdown').on('change', function () {
+                var idCountry = this.value;
+                $("#city-dropdown").html('');
+                $.ajax({
+                    url: "{{route('fetch.cities.when.sign.up')}}",
+                    type: "POST",
+                    data: {
+                        country_id: idCountry,
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType: 'json',
+                    success: function (result) {
+                        $('#city-dropdown').html('<option class="text-primary" value="">{{trans('employer::signIn.pleas select your city')}}</option>');
+                        @if(app()->getLocale()=="ar")
+                        $.each(result.cities, function (key, value) {
+                            $("#city-dropdown").append('<option value="' + value
+                                .id + '">' + value.ar_name + '</option>');
+                        });
+                        @else
+                        $.each(result.cities, function (key, value) {
+                            $("#city-dropdown").append('<option value="' + value
+                                .id + '">' + value.name + '</option>');
+                        });
+                        @endif
+                        document.getElementById("CallingCode").value = result['phone'].calling_code;
+
+                    }
+                });
+            });
+        });
+    </script>
     <script>
 
         function reg_form_validation() {

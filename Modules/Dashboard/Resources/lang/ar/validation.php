@@ -211,6 +211,9 @@ return [
         'new_minimum_cost_per_worker'                     => 'التكلفة الجديدة لكل عامل',
         'answer_text'                     => 'الجواب الذي يثبت إنجاز المهمة',
         'screenshot'                     => 'لقطة الشاشة',
+        'registration_type'                     => 'نوع الحساب',
+        'auth_type'                     => 'نوع الحساب',
+        ''                     => '',
         ''                     => '',
         ''                     => '',
 

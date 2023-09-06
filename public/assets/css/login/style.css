@@ -339,8 +339,9 @@ img.hamburger_menu {
     border: 0px;
     color: #000;
     text-align: right;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    /*padding-top: 20px;*/
+    /*padding-bottom: 20px;*/
+    padding: 20px 60px 20px 60px;
     background-image: url(../../img/down.svg);
     background-repeat: no-repeat;
     background-position: left 0.75rem center;
