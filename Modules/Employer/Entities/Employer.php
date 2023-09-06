@@ -5,6 +5,7 @@ namespace Modules\Employer\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Modules\DiscountCode\Entities\EmployerTaskDiscountCode;
 use Modules\Mail\Entities\TemporaryEmployerToken;
 use Modules\Privilege\Entities\EmployerPrivilege;
@@ -13,27 +14,24 @@ use Modules\Region\Entities\Country;
 use Modules\Setting\Entities\EmployerLevel;
 use Modules\Support\Entities\EmployerTicket;
 use Modules\Task\Entities\Task;
+use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
-class Employer extends Model
+
+class Employer extends Authenticatable implements JWTSubject
 {
     use HasFactory, SoftDeletes;
     protected $guard = 'employer';
+
 
     public function getJWTIdentifier()
     {
         return $this->getKey();
     }
 
-    /**
-     * Return a key value array, containing any custom claims to be added to the JWT.
-     *
-     * @return array
-     */
     public function getJWTCustomClaims()
     {
         return [];
     }
-
 
 
     protected $fillable = [

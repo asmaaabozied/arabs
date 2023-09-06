@@ -5,6 +5,7 @@ namespace Modules\Worker\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Modules\Mail\Entities\TemporaryWorkerToken;
 use Modules\Privilege\Entities\WorkerPrivilege;
 use Modules\Region\Entities\City;
@@ -13,8 +14,9 @@ use Modules\Setting\Entities\WorkerLevel;
 use Modules\Support\Entities\WorkerTicket;
 use Modules\Task\Entities\TaskProof;
 use Modules\Task\Entities\TaskWorker;
+use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
-class Worker extends Model
+class Worker extends Authenticatable implements JWTSubject
 {
     use HasFactory,SoftDeletes;
 

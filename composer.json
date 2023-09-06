@@ -12,6 +12,7 @@
         "laravel/tinker": "^2.8",
         "mews/captcha": "^3.3",
         "nwidart/laravel-modules": "^10.0",
+        "php-open-source-saver/jwt-auth": "^2.1",
         "realrashid/sweet-alert": "^7.1"
     },
     "require-dev": {
