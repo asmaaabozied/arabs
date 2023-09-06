@@ -55,12 +55,12 @@ class WorkerDashboardController extends Controller
             ['isEmployerAcceptProof', 'No'],
             ['isAdminAcceptProof', 'NotSeenYet'],
         ])->count();
-        dd(
-            $activeTasks,
-            $finishTasks,
-            $acceptedTasks,
-            $rejectedTask
-        );
+//        dd(
+//            $activeTasks,
+//            $finishTasks,
+//            $acceptedTasks,
+//            $rejectedTask
+//        );
         return view('worker::layouts.worker.index', compact([
             'page_name',
             'main_breadcrumb',
@@ -72,6 +72,17 @@ class WorkerDashboardController extends Controller
         ]));
 
     }
+    public function getCurrentLang()
+    {
+        $current_lange = Session::get('applocale');
+        if ($current_lange != null) {
+            $lang = $current_lange;
+        } else {
+            $lang = "ar";
+        }
+
+        return $lang;
+    }
 
     public function logout(Request $request)
     {
@@ -80,6 +91,6 @@ class WorkerDashboardController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         Session::put('applocale', $lang);
-        return redirect()->route('signing.in.to.panel');
+        return redirect()->route('show.login.form');
     }
 }

@@ -13,7 +13,10 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     protected $moduleNamespace = 'Modules\Worker\Http\Controllers';
-
+    protected $moduleTaskNamespace = 'Modules\Worker\Http\Controllers\Task';
+    protected $moduleTransactionNamespace = 'Modules\Worker\Http\Controllers\Transaction';
+    protected $modulePrivilegeNamespace = 'Modules\Worker\Http\Controllers\Privilege';
+    protected $moduleSettingNamespace = 'Modules\Worker\Http\Controllers\Setting';
     /**
      * Called before routes are registered.
      *
@@ -36,6 +39,12 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
+
+        $this->mapTaskRoutes();
+
+        $this->mapTransactionRoutes();
+        $this->mapPrivilegeRoutes();
+        $this->mapSettingRoutes();
     }
 
     /**
@@ -50,6 +59,31 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware('web')
             ->namespace($this->moduleNamespace)
             ->group(module_path('Worker', '/Routes/web.php'));
+    }
+    protected function mapTaskRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->moduleTaskNamespace)
+            ->group(module_path('Worker', '/Routes/task.php'));
+    }
+    protected function mapTransactionRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->moduleTransactionNamespace)
+            ->group(module_path('Worker', '/Routes/transaction.php'));
+    }
+
+    protected function mapPrivilegeRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->modulePrivilegeNamespace)
+            ->group(module_path('Worker', '/Routes/privilege.php'));
+    }
+    protected function mapSettingRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->moduleSettingNamespace)
+            ->group(module_path('Worker', '/Routes/setting.php'));
     }
 
     /**

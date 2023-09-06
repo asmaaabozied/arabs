@@ -69,8 +69,14 @@ If any error occurs later in the style of a page, please check this file -->
                         </a>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                        <li><a class="dropdown-item"
+                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                            >Logout</a></li>
                     </ul>
+                    <form id="logout-form" action="{{ route('employer.logout') }}" method="POST"
+                          class="d-none">
+                        @csrf
+                    </form>
                 </div>
 
             </div>

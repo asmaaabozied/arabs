@@ -13,6 +13,10 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     protected $moduleNamespace = 'Modules\Employer\Http\Controllers';
+    protected $moduleTaskNamespace = 'Modules\Employer\Http\Controllers\Task';
+    protected $moduleTransactionNamespace = 'Modules\Employer\Http\Controllers\Transaction';
+    protected $modulePrivilegeNamespace = 'Modules\Employer\Http\Controllers\Privilege';
+    protected $moduleSettingNamespace = 'Modules\Employer\Http\Controllers\Setting';
 
     /**
      * Called before routes are registered.
@@ -36,6 +40,10 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
+        $this->mapTaskRoutes();
+        $this->mapTransactionRoutes();
+        $this->mapPrivilegeRoutes();
+        $this->mapSettingRoutes();
     }
 
     /**
@@ -50,6 +58,34 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware('web')
             ->namespace($this->moduleNamespace)
             ->group(module_path('Employer', '/Routes/web.php'));
+    }
+    protected function mapTaskRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->moduleTaskNamespace)
+            ->prefix('panel')
+            ->group(module_path('Employer', '/Routes/task.php'));
+    }
+    protected function mapTransactionRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->moduleTransactionNamespace)
+            ->prefix('panel')
+            ->group(module_path('Employer', '/Routes/transaction.php'));
+    }
+    protected function mapPrivilegeRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->modulePrivilegeNamespace)
+            ->prefix('panel')
+            ->group(module_path('Employer', '/Routes/privilege.php'));
+    }
+    protected function mapSettingRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->moduleSettingNamespace)
+            ->prefix('panel')
+            ->group(module_path('Employer', '/Routes/setting.php'));
     }
 
     /**

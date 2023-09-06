@@ -17,12 +17,12 @@ use Illuminate\Support\Facades\Route;
 //    return view('dashboard::layouts.employer.master');
 //});
 
-Route::get('worker-panel', function () {
-    return view('worker::layouts.worker.index');
-});
-Route::get('employer-panel', function () {
-    return view('employer::layouts.employer.index');
-});
+//Route::get('worker-panel', function () {
+//    return view('worker::layouts.worker.index');
+//});
+//Route::get('employer-panel', function () {
+//    return view('employer::layouts.employer.index');
+//});
 
 //Route::view('/','employer::layouts.employer.index');
 //Route::view('login','dashboard::layouts.auth.login');

@@ -1489,6 +1489,9 @@ Start of Site Setting Style
 .font-30 {
     font-size: 30px;
 }
+.d-none{
+    display: none!important;
+}
 
 /**********************************************************************
 End of Site Setting Style

@@ -103,16 +103,16 @@ class EmployerDashboardController extends Controller
         $total_task_cost = collect($pendingTasks)->sum('task_cost') + collect($activeTasks)->sum('task_cost') + collect($completeTasks)->sum('task_cost');
         $total_other_cost = collect($pendingTasks)->sum('other_cost') + collect($activeTasks)->sum('other_cost') + collect($completeTasks)->sum('other_cost');
 
-        dd(
-            $unPayedTasks,
-            $pendingTasks,
-            $activeTasks,
-            $completeTasks,
-            $rejectedTasks,
-            $count_NotPublished_tasks,
-            $total_task_cost,
-            $total_other_cost,
-        );
+//        dd(
+//            $unPayedTasks,
+//            $pendingTasks,
+//            $activeTasks,
+//            $completeTasks,
+//            $rejectedTasks,
+//            $count_NotPublished_tasks,
+//            $total_task_cost,
+//            $total_other_cost,
+//        );
 
         return view('employer::layouts.employer.index', compact(
             [
@@ -130,6 +130,17 @@ class EmployerDashboardController extends Controller
                 'total_other_cost',
             ]));
     }
+    public function getCurrentLang()
+    {
+        $current_lange = Session::get('applocale');
+        if ($current_lange != null) {
+            $lang = $current_lange;
+        } else {
+            $lang = "ar";
+        }
+
+        return $lang;
+    }
 
     public function logout(Request $request)
     {
@@ -138,6 +149,6 @@ class EmployerDashboardController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         Session::put('applocale', $lang);
-        return redirect()->route('signing.in.to.panel');
+        return redirect()->route('show.login.form');
     }
 }
