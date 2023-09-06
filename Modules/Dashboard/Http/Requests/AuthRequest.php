@@ -38,8 +38,6 @@ class AuthRequest extends FormRequest
         return [
             'auth_type.required' => trans('dashboard::validation.required'),
             'auth_type.in' => trans('dashboard::validation.in'),
-
-
             'email.required' => trans('dashboard::validation.required'),
             'password.required' => trans('dashboard::validation.required'),
             'captcha.required' => trans('dashboard::validation.required'),
