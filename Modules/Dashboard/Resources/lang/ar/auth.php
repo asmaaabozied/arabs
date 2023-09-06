@@ -14,7 +14,7 @@ return [
     'You have been successfully logged in by e-mail' => 'لقد قمت بتسجيل الدخول بنجاح باستخدام البريد الإكتروني',
     'You have been successfully logged in by account_number' => 'لقد قمت بتسجيل الدخول بنجاح باستخدام رقم الحساب',
     'The email or account number or password is incorrect' => 'إن بيانات تسجيل الدخول غير صحيحة، يرجى التأكد من صحة البيانات المُدخلة والمحاولة مجدداً',
-    '' => '',
+    'An error has occurred, please check that the data entered is correct and try again' => 'لقد حصل خطأ ما، يرجى التأكد من صحة البيانات المُدخلة والمحاولة مجدداً',
     '' => '',
     '' => '',
     '' => '',

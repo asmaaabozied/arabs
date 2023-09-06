@@ -18,4 +18,7 @@ Route::prefix('panel')->controller('AuthController')->group(function() {
     Route::post('authentication', 'authentication')->name('signing.in.to.panel');
     Route::get('refresh-captcha', 'refreshCaptcha')->name('refreshCaptcha');
 
+    Route::get('sign-up', 'showSignUpForm')->name('show.sign.up.form');
+    Route::post('signing-up', 'signingUp')->name('signing.to.arab.workers');
+    Route::post('fetch-cities', 'fetchCity')->name('fetch.cities.when.sign.up');
 });

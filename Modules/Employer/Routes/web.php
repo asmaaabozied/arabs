@@ -11,6 +11,17 @@
 |
 */
 
-Route::prefix('employer')->group(function() {
-    Route::get('/', 'EmployerController@index');
+use Illuminate\Support\Facades\Route;
+
+Route::prefix('panel/employer')->controller('Dashboard\EmployerDashboardController')->middleware('auth:employer')->group(function () {
+
+    Route::get('/', 'index')->name('show.employer.panel');
+    Route::post('log-out', 'logout')->name('employer.logout');
 });
+//Route::prefix('panel/employer/my-profile')->middleware('auth:employer')->group(function() {
+//
+//    Route::get('/', 'Employer\EmployerProfileController@showMyProfile')->name('employer.show.my.profile');
+//    Route::get('edit-my-profile','Employer\EmployerProfileController@showUpdateMyProfileForm')->name('employer.show.edit.my.profile.form');
+//    Route::post('update-my-profile', 'Employer\EmployerProfileController@updateMyProfile')->name('employer.update.my.profile');
+//
+//});
