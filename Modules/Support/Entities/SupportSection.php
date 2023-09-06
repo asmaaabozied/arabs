@@ -23,6 +23,4 @@ class SupportSection extends Model
         return $this->hasMany(WorkerTicket::class);
     }
 
-
-
 }

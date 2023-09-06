@@ -92,7 +92,6 @@ class DashboardDatabaseSeeder extends Seeder
     php artisan module:migrate Region
     php artisan module:seed Region
 
-    php artisan module:migrate User
 
 
     php artisan module:migrate Employer

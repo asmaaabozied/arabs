@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "033a97be0b4d60393c803ea2298c8fe6",
+    "content-hash": "60f3fdeef8cc8f3b0a3d69221ed04e4f",
     "packages": [
         {
             "name": "brick/math",
@@ -2386,6 +2386,46 @@
                 }
             ],
             "time": "2023-02-16T11:08:15+00:00"
+        },
+        {
+            "name": "php-extended/php-extended-all-suite",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-extended/php-extended-all-suite.git",
+                "reference": "f19c5752361cccc4871b1126a22ec79fd5844eb4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-extended/php-extended-all-suite/zipball/f19c5752361cccc4871b1126a22ec79fd5844eb4",
+                "reference": "f19c5752361cccc4871b1126a22ec79fd5844eb4",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anastaszor",
+                    "homepage": "https://github.com/Anastaszor",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Metapackage that lists all the packages under the php-extended namespace",
+            "homepage": "https://github.com/php-extended/php-extended-all-suite",
+            "keywords": [
+                "all",
+                "extended",
+                "php",
+                "suite"
+            ],
+            "support": {
+                "issues": "https://github.com/php-extended/php-extended-all-suite/issues",
+                "source": "https://github.com/php-extended/php-extended-all-suite"
+            },
+            "time": "2017-04-15T09:24:56+00:00"
         },
         {
             "name": "phpoption/phpoption",
