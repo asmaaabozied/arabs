@@ -14,7 +14,7 @@
                                  alt="Google sign-in"
                                  src="{{asset('assets/img/Google5.png')}}"/>
                         </div>
-                        <span class="mt-2 font-20 text-white">{{trans('employer::signIn.SignIn Using Google Account')}}</span>
+                        <span class="mt-2 font-20 text-white">{{trans('dashboard::auth.SignIn Using Google Account')}}</span>
 
                     </a>
                 </div>
@@ -32,7 +32,7 @@
                     @if(Session::has('error'))
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                         <span
-                                            class="alert-text"><strong>{{trans('employer::signIn.Error!')}}</strong> {{Session::get('error')}}</span>
+                                            class="alert-text"><strong>{{trans('dashboard::auth.Error!')}}</strong> {{Session::get('error')}}</span>
                             <button type="button" class="btn-close" data-bs-dismiss="alert"
                                     aria-label="Close">
                             </button>
@@ -52,7 +52,7 @@
 
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                         <span
-                                            class="alert-text"><strong>{{trans('employer::signIn.Error!')}}</strong> {{ $errors->first('email') }}</span>
+                                            class="alert-text"><strong>{{trans('dashboard::auth.Error!')}}</strong> {{ $errors->first('email') }}</span>
                             <button type="button" class="btn-close" data-bs-dismiss="alert"
                                     aria-label="Close">
                             </button>
@@ -62,7 +62,7 @@
 
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                         <span
-                                            class="alert-text"><strong>{{trans('employer::signIn.Error!')}}</strong> {{ $errors->first('auth_type') }}</span>
+                                            class="alert-text"><strong>{{trans('dashboard::auth.Error!')}}</strong> {{ $errors->first('auth_type') }}</span>
                             <button type="button" class="btn-close" data-bs-dismiss="alert"
                                     aria-label="Close">
                             </button>
@@ -71,7 +71,7 @@
                     @if($errors->has('password'))
 
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <span class="alert-text"><strong>{{trans('employer::signIn.Error!')}}</strong> {{ $errors->first('password') }}</span>
+                            <span class="alert-text"><strong>{{trans('dashboard::auth.Error!')}}</strong> {{ $errors->first('password') }}</span>
                             <button type="button" class="btn-close" data-bs-dismiss="alert"
                                     aria-label="Close">
                             </button>
@@ -80,7 +80,7 @@
                     @if($errors->has('captcha'))
 
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <span class="alert-text"><strong>{{trans('employer::signIn.Error!')}}</strong> {{ $errors->first('captcha') }}</span>
+                            <span class="alert-text"><strong>{{trans('dashboard::auth.Error!')}}</strong> {{ $errors->first('captcha') }}</span>
                             <button type="button" class="btn-close" data-bs-dismiss="alert"
                                     aria-label="Close">
                             </button>
@@ -98,7 +98,7 @@
 
                         <div class="col-md-12 relative">
                             <input type="email" class="form-control input-lg inputPlaceholder"
-                                   placeholder="{{trans('employer::signIn.Email Or Administrator Number')}}" name="email" required value="{{old('email')}}">
+                                   placeholder="{{trans('dashboard::auth.Email Or Administrator Number')}}" name="email" required value="{{old('email')}}">
                             <img src="{{asset('assets/img/mail.png')}}" class="input_img" width="20">
                         </div>
                         <div class="col-md-12 relative">
@@ -119,7 +119,7 @@
 
                         <div class="col-md-12 relative">
                             <input type="text" id="captcha" class="form-control input-lg inputPlaceholder"
-                                   placeholder="{{trans('employer::signIn.captcha_code')}}" name="captcha" required>
+                                   placeholder="{{trans('dashboard::auth.captcha_code')}}" name="captcha" required>
                             <img src="{{asset('assets/img/default/captcha.png')}}" class="input_captcha" width="20">
                             <div>
                                 <i type="button" class="fas fa-rotate" id="toggleCapatch"
@@ -131,10 +131,10 @@
                         <a class="text-red anchor-hover-color" href="#">{{trans('dashboard::auth.are_you_forget_password')}}</a>
 
                         <div class="col-md-12">
-                            <button type="submit" class="btn w-100 theme_green font-28 pt-2 pb-2">{{trans('dashboard::auth.Sign in')}}
+                            <button type="submit" class="btn w-100 theme_green font-28 pt-2 pb-2">{{trans('dashboard::auth.Signing in')}}
                             </button>
                             <p class="black-text text-center mt-4   font-20 mb-0">{{trans('dashboard::auth.not_have_account')}} <a
-                                    href="#"
+                                    href="{{route('show.sign.up.form')}}"
                                     class="blu-text"> {{trans('dashboard::auth.GoToRegisterForm')}}</a></p>
                         </div>
                     </form>

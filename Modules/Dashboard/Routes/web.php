@@ -14,7 +14,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('panel')->controller('AuthController')->group(function() {
-    Route::get('login', 'showLoginForm')->name('show.login.form');
+    Route::get('sign-in', 'showLoginForm')->name('show.login.form');
     Route::post('authentication', 'authentication')->name('signing.in.to.panel');
     Route::get('refresh-captcha', 'refreshCaptcha')->name('refreshCaptcha');
 

@@ -2,12 +2,22 @@
 
 namespace Modules\Dashboard\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Mews\Captcha\Facades\Captcha;
 use Modules\Dashboard\Http\Requests\AuthRequest;
+use Modules\Dashboard\Http\Requests\SignUpRequest;
+use Modules\Privilege\Entities\Privilege;
+use Modules\Privilege\Entities\WorkerPrivilege;
+use Modules\Region\Entities\City;
+use Modules\Region\Entities\Country;
+use Modules\Worker\Entities\Worker;
+use Modules\Worker\Http\Requests\WorkerSignUpRequest;
 
 class AuthController extends Controller
 {
@@ -59,6 +69,74 @@ class AuthController extends Controller
             }
         } else {
             return redirect()->back()->with([trans('error') => trans('dashboard::auth.The email or account number or password is incorrect')]);
+        }
+    }
+
+
+
+    public function fetchCity(Request $request)
+    {
+        $lang = app()->getLocale();
+        if ($lang == "ar") {
+            $data['cities'] = City::withoutTrashed()->where("country_id", $request->country_id)->get(["id", "ar_name"]);
+            $data['phone'] = Country::select('calling_code')->find($request->country_id);
+        } else {
+            $data['cities'] = City::withoutTrashed()->where("country_id", $request->country_id)->get(["id", "name"]);
+            $data['phone'] = Country::select('calling_code')->find($request->country_id);
+
+        }
+        return response()->json($data);
+    }
+
+
+    public function showSignUpForm(){
+        $page_name = 'ArabWorkers | SignUp';
+        $countries = Country::withoutTrashed()->get();
+        return view('dashboard::layouts.auth.signup', compact('page_name', 'countries'));
+    }
+
+
+    public function signingUp(SignUpRequest $request)
+    {
+        $validated = $request->validated();
+        $country = Country::withoutTrashed()->with('cities')->findOrFail($validated['country']);
+        for ($i = 0; $i < $country->cities()->count(); $i++) {
+            $array_of_cities_id [] = $country->cities[$i]->id;
+        }
+        /**        check if is the selected city actually located in the selected country */
+        if (in_array($validated['city'], $array_of_cities_id) == "true") {
+            /**          check if the selected phone number contain the international calling code for the selected country? */
+            if (Str::contains($validated['phone'], $country->calling_code) and Str::length($validated['phone']) > Str::length($country->calling_code)) {
+                $random_worker_number = "W" . Carbon::now()->format('ym') . Str::random(1) . Carbon::now()->format('s') . Str::random(2) . random_int(10, 99);
+//                dd($validated);
+                $worker = Worker::create([
+                    'worker_number' => $random_worker_number,
+                    'name' => $validated['name'],
+                    'email' => $validated['email'],
+                    'country_id' => $validated['country'],
+                    'city_id' => $validated['city'],
+                    'phone' => $validated['phone'],
+                    'password' => Hash::make($validated['password']),
+                ]);
+                $privilege = Privilege::withoutTrashed()->where([
+                    ['code', 'STA'],
+                    ['for', 'dual'],
+                ])->first();
+                WorkerPrivilege::create([
+                    'worker_id' => $worker->id,
+                    'count_of_privileges' => $privilege->privileges,
+                    'type' => $privilege->type,
+                    'description' => $privilege->title,
+                ]);
+                $this->guard()->login($worker);
+                alert()->toast(trans('worker::signIn.You have been successfully signing up'), 'success');
+                return redirect()->route('worker.show.main.page');
+            } else {
+                return redirect()->back()->with(['error' => trans('worker::signIn.The phone number entered is incorrect')]);
+            }
+        } else {
+            return redirect()->back()->with(['error' => trans('worker::signIn.The selected city is not located in the selected country')]);
+
         }
     }
 }
