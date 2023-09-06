@@ -11,6 +11,11 @@
 |
 */
 
-Route::prefix('dashboard')->group(function() {
-    Route::get('/', 'DashboardController@index');
+use Illuminate\Support\Facades\Route;
+
+Route::prefix('panel')->controller('AuthController')->group(function() {
+    Route::get('login', 'showLoginForm');
+    Route::post('authentication', 'auththentication');
+    Route::get('refresh-captcha', 'refreshCaptcha')->name('refreshCaptcha');
+
 });

@@ -5,29 +5,40 @@
 
             <div class="form_container  bg-white ">
                 <div class="heading text-center">
-                    <h1 class="form-heading">{{trans('admin::signIn.Sign in')}}</h1>
+                    <h1 class="form-heading">{{trans('dashboard::auth.Sign in')}}</h1>
                 </div>
-                  <!-- In the callback, you would hide the gSignInWrapper element on a successful sign in -->
+                <div class="col-12 center-align mb-2">
+                    <a class="btn bg-primary d-flex justify-content-between flex-row-reverse " href="#" style="text-transform:none">
+                        <div class="">
+                            <img width="50px" style="margin-top:0px; margin-right:0px"
+                                 alt="Google sign-in"
+                                 src="{{asset('assets/img/Google5.png')}}"/>
+                        </div>
+                        <span class="mt-2 font-20 text-white">{{trans('employer::signIn.SignIn Using Google Account')}}</span>
+
+                    </a>
+                </div>
+
+                <!-- In the callback, you would hide the gSignInWrapper element on a successful sign in -->
                   <div id="gSignInWrapper" class="center_btn mt-3 mb-3">
                       <div id="customBtn" class="customGPlusSignIn">
                           <span class=""></span>
-                    <span class="buttonText">{{trans('admin::signIn.google_sigin_in')}}</span>
                     </div>
                 </div>
                 <div id="name"></div>
                 <div class="login_form form-default">
                     <div id="err" style="color: red">
                     </div>
-                    <form class="row g-4" action="http://127.0.0.1:8000/auth/customLogIn" method="POST" id="logIn_form">
-                        <input type="hidden" name="_token" value="e0OplWT1VS9Bx6WMpI97SXI1DyWXtQ5IQhbEZbCJ">
+                    <form class="row g-4" action="#" method="POST" id="logIn_form">
+                        @csrf
                         <div class="col-md-12 relative">
                             <input type="email" class="form-control input-lg inputPlaceholder"
-                                   placeholder="{{trans('admin::signIn.email')}}" name="email" required value="">
+                                   placeholder="{{trans('dashboard::auth.email')}}" name="email" required value="">
                             <img src="{{asset('assets/img/mail.png')}}" class="input_img" width="20">
                         </div>
                         <div class="col-md-12 relative">
                             <input type="Password" id="lpassword" class="form-control input-lg inputPlaceholder"
-                                   placeholder="{{trans('admin::signIn.password')}}" name="password" required>
+                                   placeholder="{{trans('dashboard::auth.password')}}" name="password" required>
                             <img src="{{asset('assets/img/pass.png')}}" class="input_img" id="myInput"
                                  width="16">
                             <div id="lpassword-close-eye">
@@ -40,14 +51,27 @@
                             </div>
                         </div>
 
-                        <a class="text-red anchor-hover-color" href="http://127.0.0.1:8000/forgot-password">{{trans('admin::signIn.forget_password')}}</a>
+
+                        <div class="col-md-12 relative">
+                            <input type="text" id="captcha" class="form-control input-lg inputPlaceholder"
+                                   placeholder="{{trans('employer::signIn.captcha_code')}}" name="captcha" required>
+                            <img src="{{asset('assets/img/default/captcha.png')}}" class="input_captcha" width="20">
+                            <div>
+                                <i type="button" class="fas fa-rotate refresh-button" id="toggleCapatch"
+                                   onclick=""></i>
+                            </div>
+                            <span class="captcha-image">{!! Captcha::img() !!}</span> &nbsp;&nbsp;
+
+                        </div>
+
+                        <a class="text-red anchor-hover-color" href="#">{{trans('dashboard::auth.are_you_forget_password')}}</a>
 
                         <div class="col-md-12">
-                            <button type="submit" class="btn w-100 theme_green font-28 pt-2 pb-2">{{trans('admin::signIn.Sign in')}}
+                            <button type="submit" class="btn w-100 theme_green font-28 pt-2 pb-2">{{trans('dashboard::auth.Sign in')}}
                             </button>
-                            <p class="black-text text-center mt-4   font-20 mb-0">{{trans('admin::signIn.not_have_account')}} <a
-                                    href="http://127.0.0.1:8000/auth/registration"
-                                    class="blu-text"> {{trans('admin::signIn.register')}}</a></p>
+                            <p class="black-text text-center mt-4   font-20 mb-0">{{trans('dashboard::auth.not_have_account')}} <a
+                                    href="#"
+                                    class="blu-text"> {{trans('dashboard::auth.GoToRegisterForm')}}</a></p>
                         </div>
                     </form>
                 </div>
@@ -56,6 +80,21 @@
 
         </div>
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.refresh-button').click(function () {
+                $.ajax({
+                    type: 'get',
+                    url: '{{ route('refreshCaptcha') }}',
+                    success: function (data) {
+                        $('.captcha-image').html(data.captcha);
+                    }
+                });
+            });
+        });
+    </script>
+
     <script type="text/javascript">
         $(document).ready(function () {
             $('.select2').select2();

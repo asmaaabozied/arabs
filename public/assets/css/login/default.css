@@ -390,3 +390,10 @@ footer .form-control::placeholder {
 [type=url] {
     direction: rtl;
 }
+.input_captcha{
+    width: 32px;
+    right: 26px;
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+}

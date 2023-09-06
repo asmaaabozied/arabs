@@ -225,6 +225,7 @@ img.hamburger_menu {
     top: 19px;
     left: 19px;
     color: #2aa9fe;
+    font-size: 25px;
 }
 
 .text-red {
@@ -1799,6 +1800,13 @@ Start of Email Template Design
 
 .task-invoice-info {
     width: fit-content;
+}
+#toggleCapatch {
+    position: absolute;
+    top: 19px;
+    left: 19px;
+    color: #2aa9fe;
+    font-size: 25px;
 }
 
 /*************************************************************************************************

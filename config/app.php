@@ -170,6 +170,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Nwidart\Modules\LaravelModulesServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        Mews\Captcha\CaptchaServiceProvider::class,
 
 
     ])->toArray(),
@@ -189,7 +190,7 @@ return [
         // 'Example' => App\Facades\Example::class,
         'Module' => Nwidart\Modules\Facades\Module::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
-
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
 
     ])->toArray(),
 

@@ -8,7 +8,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>
-        {{trans('employer::employer.panel')}}
+        {{trans('dashboard::auth.'.$page_name)}}
     </title>
     <link rel="icon" type="image/x-icon" href="{{asset('favicon.ico')}}">
 
@@ -46,24 +46,24 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link link" href="http://127.0.0.1:8000/browse-tasks">تصفح المهام</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link link" href="http://127.0.0.1:8000/create-task">إنشاء مهمة</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link link"
-                       href="https://arabworkers.com/%d8%a7%d9%84%d8%aa%d8%b3%d9%88%d9%8a%d9%82-%d8%a8%d8%a7%d9%84%d8%b9%d9%85%d9%88%d9%84%d8%a9/">التسويق
-                        بالعمولة</a>
-                </li>
-            </ul>
-            <div class="btn-group">
+                    <a class="nav-link link " href="#">{{trans('dashboard::auth.GoToHomePage')}}</a>
 
-                <button onclick="window.location.href='http://127.0.0.1:8000/auth/login'" class="green-button">
-                    <span id="logInText">حسابي</span>
-                    <i class="fa-solid fa-user logInIcon"></i>
-                </button>
-            </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link" href="#">{{trans('dashboard::auth.browseTask')}}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link" href="#">{{trans('dashboard::auth.TermsAndConditions')}}</a>
+                </li>
+
+            </ul>
+{{--            <div class="btn-group">--}}
+
+{{--                <button onclick="window.location.href='http://127.0.0.1:8000/auth/login'" class="green-button">--}}
+{{--                    <span id="logInText">حسابي</span>--}}
+{{--                    <i class="fa-solid fa-user logInIcon"></i>--}}
+{{--                </button>--}}
+{{--            </div>--}}
         </div>
     </div>
 </nav>
