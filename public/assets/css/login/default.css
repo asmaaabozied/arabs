@@ -394,6 +394,6 @@ footer .form-control::placeholder {
     width: 32px;
     right: 26px;
     position: absolute;
-    top: 40%;
+    top: 50%;
     transform: translateY(-50%);
 }

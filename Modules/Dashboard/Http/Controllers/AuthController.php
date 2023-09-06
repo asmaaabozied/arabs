@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Mews\Captcha\Facades\Captcha;
+use Modules\Dashboard\Http\Requests\AuthRequest;
 
 class AuthController extends Controller
 {
@@ -14,11 +15,14 @@ class AuthController extends Controller
     {
         return Auth::guard('employer');
     }
+
     protected function WorkerGuard()
     {
         return Auth::guard('employer');
     }
-    public function showLoginForm(){
+
+    public function showLoginForm()
+    {
         $page_name = 'ArabWorkers | SignIn';
         return view('dashboard::layouts.auth.login', compact('page_name'));
     }
@@ -30,7 +34,10 @@ class AuthController extends Controller
             'captcha' => Captcha::img()
         ]);
     }
-    public function auththentication(){
 
+    public function authentication(AuthRequest $request)
+    {
+        $validated = $request->validated();
+        dd($validated);
     }
 }
