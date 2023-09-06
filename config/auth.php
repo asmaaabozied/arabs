@@ -40,6 +40,35 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+//       web guards
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+        'worker' => [
+            'driver' => 'session',
+            'provider' => 'workers',
+        ],
+        'employer' => [
+            'driver' => 'session',
+            'provider' => 'employers',
+        ],
+
+        'api' => [
+            'driver' => 'jwt',
+            'provider' => 'users',
+            'hash' => false,
+        ],
+//       api guards
+        'employerApi' => [
+            'driver' => 'jwt',
+            'provider' => 'employers',
+        ],
+        'workerApi' => [
+            'driver' => 'jwt',
+            'provider' => 'workers',
+        ],
+
     ],
 
     /*
@@ -65,10 +94,19 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' =>\Modules\Admin\Entities\Admin::class,
+        ],
+
+        'workers' => [
+            'driver' => 'eloquent',
+            'model' =>\Modules\Worker\Entities\Worker::class,
+        ],
+        'employers' => [
+            'driver' => 'eloquent',
+            'model' =>\Modules\Employer\Entities\Employer::class,
+        ],
     ],
 
     /*
