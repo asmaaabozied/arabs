@@ -30,5 +30,13 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    //    todo comment redirect to localhost url and replace with redirect to server line
+    'google' => [
+        'client_id' => '195978537766-ekmm5putvges54pot5audmpduv5vq022.apps.googleusercontent.com',
+        'client_secret' => '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',
+//        'redirect' => 'https://arabworkers.com/app/authorized/google/callback',
+        'redirect' => 'http://127.0.0.1:8000/authorized/google/callback',
+    ],
+
 
 ];
