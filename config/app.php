@@ -171,6 +171,8 @@ return [
         Nwidart\Modules\LaravelModulesServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         Mews\Captcha\CaptchaServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
+
 
 
     ])->toArray(),
@@ -191,6 +193,8 @@ return [
         'Module' => Nwidart\Modules\Facades\Module::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+
 
     ])->toArray(),
 
