@@ -7,7 +7,7 @@
                 <div class="heading text-center">
                     <h1 class="form-heading">{{trans('dashboard::auth.SignUpToArabWorker')}}</h1>
                     <div class="col-12 center-align mb-2">
-                        <a class="btn bg-primary d-flex justify-content-between flex-row-reverse " href="#"
+                        <a class="btn bg-primary d-flex justify-content-between flex-row-reverse " href="{{route('auth.using.google')}}"
                            style="text-transform:none">
                             <div class="">
                                 <img width="50px" style="margin-top:0px; margin-right:0px"

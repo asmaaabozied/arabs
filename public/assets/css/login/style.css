@@ -1825,6 +1825,14 @@ Start of Email Template Design
     max-width: 100%;
     height: auto;
 }
+.worker-auth-type-border{
+    border: 1px #198754 solid;
+    border-radius: 20px;
+}
+.employer-auth-type-border{
+    border: 1px #0099FFFF solid;
+    border-radius: 20px;
+}
 
 /*************************************************************************************************
 End of Email Template Design

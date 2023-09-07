@@ -8,7 +8,7 @@
                     <h1 class="form-heading">{{trans('dashboard::auth.Sign in')}}</h1>
                 </div>
                 <div class="col-12 center-align mb-2">
-                    <a class="btn bg-primary d-flex justify-content-between flex-row-reverse " href="#" style="text-transform:none">
+                    <a class="btn bg-primary d-flex justify-content-between flex-row-reverse " href="{{route('auth.using.google')}}" style="text-transform:none">
                         <div class="">
                             <img width="50px" style="margin-top:0px; margin-right:0px"
                                  alt="Google sign-in"

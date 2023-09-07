@@ -11,6 +11,10 @@
 |
 */
 
-Route::prefix('google')->group(function() {
-    Route::get('/', 'GoogleController@index');
+use Illuminate\Support\Facades\Route;
+
+Route::controller('GoogleController')->group(function() {
+    Route::get('auth/google', 'redirectToGoogle')->name('auth.using.google');
+    Route::get('authorized/google/callback', 'handleGoogleCallback')->name('handle.authentication.using.google');
+    Route::post('set/auth/type/{authType}/{tempGoogleAccountID}', 'setAuthType')->name('set.auth.google.type');
 });
