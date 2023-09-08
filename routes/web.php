@@ -29,7 +29,6 @@ use Illuminate\Support\Facades\Route;
 //Route::view('signup','dashboard::layouts.auth.signup');
 //Route::view('forget','dashboard::layouts.auth.forget');
 //Route::view('reset','dashboard::layouts.auth.reset');
-//Route::view('error','error');
 //
 //Route::view('profile', 'employer::layouts.employer.profile');
 //Route::view('edit', 'employer::layouts.employer.edit');

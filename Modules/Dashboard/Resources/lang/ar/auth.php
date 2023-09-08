@@ -48,7 +48,7 @@ return [
     'You have successfully created an account with your Google account by employer type' => 'لقد قمت بنجاح بالإشتراك على منصة عرب وركرز بصفة عميل عبر حسابك على غوغل',
     'Email Or Administrator Number' => 'البريد الإلكتروني أو رقم الحساب',
     'captcha_code' => 'رمز التحقق',
-    '' => '',
+    '404' => 'عرب وركرز | خطأ 404',
     '' => '',
     '' => '',
     '' => '',
