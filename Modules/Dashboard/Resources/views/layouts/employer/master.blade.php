@@ -296,7 +296,7 @@ If any error occurs later in the style of a page, please check this file -->
             <ol class="breadcrumb">
                 {{--                <li class="breadcrumb-item"><a href="#">Home</a></li>--}}
                 {{--                <li class="breadcrumb-item "><a href="#">Library</a></li>--}}
-                <li class="breadcrumb-item text-primary font-26" aria-current="page">لوحة التحكم</li>
+                <li class="breadcrumb-item text-primary font-26" aria-current="page"></li>
             </ol>
         </nav>
         @yield('content')
