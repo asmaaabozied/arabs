@@ -27,7 +27,9 @@ Route::prefix('panel/employer/my-profile')->middleware('auth:employer')->group(f
 });
 
 
-Route::prefix('panel/employer/management-affairs/switch-account')->controller('Employer\SwitchingAccountController')->middleware(['auth:employer','employerProfileCompleted','enabledEmployer','IsEmployerVerifyEmail'])->group(function() {
+Route::prefix('panel/employer/management-affairs/switch-account')->controller('Employer\SwitchingAccountController')
+//    ->middleware(['auth:employer','employerProfileCompleted','enabledEmployer','IsEmployerVerifyEmail'])->group(function() {
+    ->middleware(['auth:employer'])->group(function() {
     Route::post('/', 'switchToWorker')->name('employer.switch.account.to.worker');
 //    Route::get('history','history')->name('employer.show.switching.account.history');
 //    Route::get('employer-to-worker-with-transfer-wallet-balance','showSwitchToWorkerAndTransferWalletBalanceForm')->name('employer.show.switch.account.to.worker.with.transfer.wallet.balance.form');

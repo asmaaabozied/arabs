@@ -26,7 +26,9 @@ Route::prefix('panel/worker/my-profile')->middleware('auth:worker')->group(funct
 //    Route::post('update-my-profile', 'Worker\WorkerProfileController@updateMyProfile')->name('worker.update.my.profile');
 //
 });
-Route::prefix('panel/worker/management-affairs/switchAccount')->controller('Worker\SwitchingAccountController')->middleware(['auth:worker','workerProfileCompleted','enabledWorker','IsWorkerVerifyEmail'])->group(function() {
+Route::prefix('panel/worker/management-affairs/switchAccount')->controller('Worker\SwitchingAccountController')
+//    ->middleware(['auth:worker','workerProfileCompleted','enabledWorker','IsWorkerVerifyEmail'])->group(function() {
+    ->middleware(['auth:worker'])->group(function() {
     Route::post('/', 'switchToEmployer')->name('worker.switch.account.to.employer');
 //    Route::get('history','history')->name('worker.show.switching.account.history');
 //    Route::get('worker-to-employer-with-transfer-wallet-balance','showSwitchToEmployerAndTransferWalletBalanceForm')->name('worker.show.switch.account.to.employer.with.transfer.wallet.balance.form');
