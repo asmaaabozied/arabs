@@ -12,7 +12,7 @@
 */
 
 use Illuminate\Support\Facades\Route;
-\Illuminate\Support\Facades\Session::put('applocale','en');
+\Illuminate\Support\Facades\Session::put('applocale','ar');
 
 Route::prefix('panel')->controller('AuthController')->group(function() {
     Route::get('sign-in', 'showLoginForm')->name('show.login.form');
