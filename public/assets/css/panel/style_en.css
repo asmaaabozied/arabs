@@ -436,7 +436,15 @@ a.active_menu {
 }
 
 .purul {
+    text-align: left;
+    direction:ltr;
+    float: left;
+    padding-bottom:2%;
     color: var(--puruul);
+}
+.row{
+    text-align: left;
+    direction:ltr;
 }
 
 .right img {
