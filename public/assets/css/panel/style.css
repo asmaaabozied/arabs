@@ -269,7 +269,7 @@ form.Sreach_form_box button#button-addon1 {
 }
 
 .side_menu {
-    width: 310px;
+    width: 350px;
     background: #E8E8E8;
     height: 100vh;
     overflow-x: hidden;
@@ -418,7 +418,7 @@ a.active_menu {
 }
 
 .page_continer {
-    margin-right: 310px;
+    margin-right: 345px;
 
 }
 
@@ -609,7 +609,7 @@ table.table tr th {
 
 .display {
     transition: 0.5s;
-    right: 0 !important;
+    right: -37px !important;
     /* height: fit-content !important; */
 }
 
@@ -969,7 +969,7 @@ End of Profile work
 @media only screen and (max-width: 992px) {
 
     .side_menu {
-        right: -100%;
+        right: -125%;
     }
 
     .hamburger {
@@ -1492,7 +1492,19 @@ Start of Site Setting Style
 .d-none{
     display: none!important;
 }
+.action-border-radius {
+    border: 1px solid #919aa3;
+    border-radius: 13px;
+    height: 50px;
+    align-items: center;
+}
 
+.action-border-radius-details {
+    border-right: 1px solid #919aa3;
+    padding-right: 17px;
+    padding-left: 17px;
+
+}
 /**********************************************************************
 End of Site Setting Style
 ***********************************************************************/
