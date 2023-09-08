@@ -446,7 +446,9 @@ a.active_menu {
     text-align: left;
     direction:ltr;
 }
-
+.nav{
+    margin-left:-0.7rem!important;
+}
 .right img {
     padding: 7px;
     background: #EEEEEE;
