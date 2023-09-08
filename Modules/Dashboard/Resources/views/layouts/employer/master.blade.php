@@ -93,13 +93,13 @@ If any error occurs later in the style of a page, please check this file -->
 <div class="side_menu">
     <ul class="">
         <li class="side_menu_item active">
-            <a class="nav-link nav-text  " href="http://127.0.0.1:8001/panel/employer">
+            <a class="nav-link nav-text  " href="#">
                 <i class="fa-solid fa fa-globe active-text"></i>
                 <span class="nav-link-text m-2 fw-bold active-text">{{trans('employer::employer.panel')}}</span>
             </a>
         </li>
         <li class="side_menu_item">
-            <a class="nav-link nav-text  " href="http://127.0.0.1:8001/panel/employer/my-profile">
+            <a class="nav-link nav-text  " href="#">
                 <i class="fa-solid fa-user"></i>
                 <span class="nav-link-text m-2 fw-bold">{{trans('employer::employer.MyProfile')}}</span>
             </a>
@@ -113,39 +113,39 @@ If any error occurs later in the style of a page, please check this file -->
             <div class="collapse" id="dashboardsExamples" style="">
                 <ul class="nav ms-4 ps-3">
                     <li class=" ">
-                        <a class="nav-link nav-text " href="http://127.0.0.1:8001/panel/employer/create-task">
+                        <a class="nav-link nav-text " href="#">
                             <span class="sidenav-normal">   {{trans('employer::employer.createTask')}} </span>
                         </a>
                     </li>
                     <li class="">
-                        <a class="nav-link nav-text" href="http://127.0.0.1:8001/panel/employer/tasks/pending-tasks">
+                        <a class="nav-link nav-text" href="#">
                             <span
                                 class="sidenav-normal"> {{trans('employer::employer.taskInPendingToAcceptAdmin')}} </span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-text " href="http://127.0.0.1:8001/panel/employer/tasks/active-tasks">
+                        <a class="nav-link nav-text " href="#">
                             <span class="sidenav-normal"> {{trans('employer::employer.taskInActive')}} </span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-text " href="http://127.0.0.1:8001/panel/employer/tasks/complete-tasks">
+                        <a class="nav-link nav-text " href="#">
                             <span class="sidenav-normal"> {{trans('employer::employer.taskInComplete')}}  </span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-text " href="http://127.0.0.1:8001/panel/employer/tasks/rejected-tasks">
+                        <a class="nav-link nav-text " href="#">
                             <span class="sidenav-normal">  {{trans('employer::employer.taskInCanceled')}} </span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-text " href="http://127.0.0.1:8001/panel/employer/tasks/not-payed-tasks">
+                        <a class="nav-link nav-text " href="#">
                             <span class="sidenav-normal">{{trans('employer::employer.NotPayedTasks')}}</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link nav-text "
-                           href="http://127.0.0.1:8001/panel/employer/tasks/not-published-tasks">
+                           href="#">
                             <span class="sidenav-normal">{{trans('employer::employer.NotPublishedTasks')}} </span>
                         </a>
                     </li>
@@ -163,27 +163,27 @@ If any error occurs later in the style of a page, please check this file -->
                 <ul class="nav ms-4 ps-3">
 
                     <li class="">
-                        <a class="nav-link nav-text" href="http://127.0.0.1:8001/panel/employer/discountCode">
+                        <a class="nav-link nav-text" href="#">
                             <span class="sidenav-normal">  {{trans('employer::employer.DiscountCodes')}}</span>
                         </a>
                     </li>
                     <li class="">
                         <a class="nav-link nav-text"
-                           href="http://127.0.0.1:8001/panel/employer/financial-affairs/wages-and-costs">
+                           href="#">
                             <span class="sidenav-normal"> {{trans('employer::employer.WagesAndCosts')}} </span>
                         </a>
                     </li>
 
                     <li class="">
                         <a class="nav-link nav-text"
-                           href="http://127.0.0.1:8001/panel/employer/management-affairs/switch-account/employer-to-worker-with-transfer-wallet-balance">
+                           href="#">
                             <span
                                 class="sidenav-normal"> {{trans('employer::employer.TransferEmployerWalletBalanceToWorker')}} </span>
                         </a>
                     </li>
                     <li class="">
                         <a class="nav-link nav-text"
-                           href="http://127.0.0.1:8001/panel/employer/financial-affairs/wallet-history">
+                           href="#">
                             <span class="sidenav-normal">{{trans('employer::employer.walletHistory')}}</span>
                         </a>
                     </li>
@@ -201,20 +201,20 @@ If any error occurs later in the style of a page, please check this file -->
 
                     <li class="">
                         <a class="nav-link nav-text"
-                           href="http://127.0.0.1:8001/panel/employer/management-affairs/switch-account/history">
+                           href="#">
                             <span
                                 class="sidenav-normal">  {{trans('employer::employer.switchingAccountHistory')}}</span>
                         </a>
                     </li>
                     <li class="">
                         <a class="nav-link nav-text"
-                           href="http://127.0.0.1:8001/panel/employer/management-affairs/show-privilege-history">
+                           href="#">
                             <span class="sidenav-normal">  {{trans('employer::employer.PrivilegesHistory')}} </span>
                         </a>
                     </li>
                     <li class="">
                         <a class="nav-link nav-text"
-                           href="http://127.0.0.1:8001/panel/employer/management-affairs/rule-of-privileges">
+                           href="#">
                             <span class="sidenav-normal">{{trans('employer::employer.RuleOfPrivileges')}} </span>
                         </a>
                     </li>
@@ -233,7 +233,7 @@ If any error occurs later in the style of a page, please check this file -->
                 <ul class="nav ms-4 ps-3">
 
                     <li class="">
-                        <a class="nav-link nav-text" href="http://127.0.0.1:8001/panel/employer/support/tickets">
+                        <a class="nav-link nav-text" href="">
                             <span class="sidenav-normal "> {{trans('employer::employer.myTickets')}} </span>
                         </a>
                     </li>
@@ -253,13 +253,13 @@ If any error occurs later in the style of a page, please check this file -->
                 <ul class="nav ms-4 ps-3">
                     <li class="">
                         <a class="nav-link nav-text active-select-nav"
-                           href="http://127.0.0.1:8001/panel/employer/settings/change-app-language/ar">
+                           href="#">
                             <span class="sidenav-normal"> العربية  </span>
                         </a>
                     </li>
                     <li class="">
                         <a class="nav-link nav-text"
-                           href="http://127.0.0.1:8001/panel/employer/settings/change-app-language/en">
+                           href="#">
                             <span class="sidenav-normal"> الإنجليزية  </span>
                         </a>
                     </li>
@@ -277,14 +277,14 @@ If any error occurs later in the style of a page, please check this file -->
                 <ul class="nav ms-4 ps-3">
                     <li class="">
                         <a class="nav-link nav-text active-select-nav"
-                           href="http://127.0.0.1:8001/panel/employer/settings/change-app-currency/USD">
+                           href="#">
                             <span class="sidenav-normal"> دولار أمريكي  </span>
 
                         </a>
                     </li>
                     <li class="">
                         <a class="nav-link nav-text"
-                           href="http://127.0.0.1:8001/panel/employer/settings/change-app-currency/EGP">
+                           href="#">
                             <span class="sidenav-normal"> جنيه مصري  </span>
                         </a>
                     </li>
@@ -298,7 +298,7 @@ If any error occurs later in the style of a page, please check this file -->
                 </div>
                 <div class="">
                     <div class="h-100">
-                        <h5 class="mb-0 fw-bold">تبديل الحساب</h5>
+                        <h5 class="mb-0 fw-bold">{{trans('employer::employer.switchToWorkerAccount')}}</h5>
                     </div>
                 </div>
             </div>

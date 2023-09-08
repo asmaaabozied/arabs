@@ -272,7 +272,7 @@ return [
     'hello' => 'مرحبا ب',
     'employer_name' => 'اسم العميل',
     'snapshot_costs_paid_tasks' => 'ملخص التكلفة المدفوعة لإنشاء مهمات',
-    '' => '',
+    'switchToWorkerAccount' => 'التبديل إلى حساب عامل',
     '' => '',
     '' => '',
     '' => '',
