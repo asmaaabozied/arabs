@@ -372,7 +372,7 @@ If any error occurs later in the style of a page, please check this file -->
                 <button class="btn bg-dark text-white w-auto m-4"
                         onclick="hideSwal()">{{trans('worker::worker.cancelBtn')}}</button>
             </div>
-            <form id="switch-account-form" action="#" method="POST"
+            <form id="switch-account-form" action="{{route('worker.switch.account.to.employer')}}" method="POST"
                   class="d-none">
                 @csrf
             </form>

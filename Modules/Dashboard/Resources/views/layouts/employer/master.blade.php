@@ -486,7 +486,7 @@ If any error occurs later in the style of a page, please check this file -->
                 <button class="btn bg-dark text-white w-auto m-4"
                         onclick="hideSwal()">{{trans('employer::employer.cancelBtn')}}</button>
             </div>
-            <form id="switch-account-form" action="#" method="POST"
+            <form id="switch-account-form" action="{{route('employer.switch.account.to.worker')}}" method="POST"
                   class="d-none">
                 @csrf
             </form>

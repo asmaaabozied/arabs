@@ -25,3 +25,13 @@ Route::prefix('panel/employer')->controller('Dashboard\EmployerDashboardControll
 //    Route::post('update-my-profile', 'Employer\EmployerProfileController@updateMyProfile')->name('employer.update.my.profile');
 //
 //});
+
+
+Route::prefix('panel/employer/management-affairs/switch-account')->controller('Employer\SwitchingAccountController')->middleware(['auth:employer','employerProfileCompleted','enabledEmployer','IsEmployerVerifyEmail'])->group(function() {
+    Route::post('/', 'switchToWorker')->name('employer.switch.account.to.worker');
+//    Route::get('history','history')->name('employer.show.switching.account.history');
+//    Route::get('employer-to-worker-with-transfer-wallet-balance','showSwitchToWorkerAndTransferWalletBalanceForm')->name('employer.show.switch.account.to.worker.with.transfer.wallet.balance.form');
+//    Route::post('switch-to-worker-and-transfer-balance','switchToWorkerAndTransferWalletBalance')->name('employer.switch.account.to.worker.with.transfer.wallet.balance');
+
+});
+
