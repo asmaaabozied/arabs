@@ -269,9 +269,9 @@ return [
 
 
 
-    'hello' => 'مرحبا ب',
+    'hello' => 'مرحباً:',
     'employer_name' => 'اسم العميل',
-    'snapshot_costs_paid_tasks' => 'ملخص التكلفة المدفوعة لإنشاء مهمات',
+    'snapshot_costs_paid_tasks' => 'لمحة عن التكاليف المدفوعة لإنشاء المهام',
     'switchToWorkerAccount' => 'التبديل إلى حساب عامل',
     '' => '',
     '' => '',

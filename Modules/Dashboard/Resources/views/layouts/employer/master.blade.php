@@ -70,8 +70,16 @@ If any error occurs later in the style of a page, please check this file -->
                     <button class="dropdown-toggle profile-dropdown" type="button" id="dropdownMenuButton1"
                             data-bs-toggle="dropdown" aria-expanded="false">
                         <a class="user-name profile_name" href="#">
-                            <img src="{{asset('assets/img/marie.jpg')}}" class="profile">
-                            <span class="me-2 text-primary">Employer Name</span>
+                            @if(auth()->user()->google_id == null)
+                           @if(auth()->user()->avatar != null)
+                            <img src="{{Storage::url(auth()->user()->avatar)}}" class="profile">
+                            @else
+                            <img src="{{asset('assets/img/default/employer-avatar.svg')}}" class="profile">
+                            @endif
+                            @else
+                                <img src="{{auth()->user()->avatar}}" class="profile">
+                            @endif
+                            <span class="me-2 text-sm text-primary text-uppercase">{{auth()->user()->name}}</span>
                         </a>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -314,7 +322,7 @@ If any error occurs later in the style of a page, please check this file -->
             <ol class="breadcrumb">
                 {{--                <li class="breadcrumb-item"><a href="#">Home</a></li>--}}
                 {{--                <li class="breadcrumb-item "><a href="#">Library</a></li>--}}
-                <li class="breadcrumb-item text-primary font-26" aria-current="page"></li>
+                <li class="breadcrumb-item text-primary font-26" aria-current="page">لوحة التحكم</li>
             </ol>
         </nav>
         @yield('content')

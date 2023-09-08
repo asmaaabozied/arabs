@@ -1505,6 +1505,21 @@ Start of Site Setting Style
     padding-left: 17px;
 
 }
+.text-lg {
+    font-size: 1.125rem !important
+}
+
+.text-sm {
+    font-size: .875rem !important
+}
+
+.text-xs {
+    font-size: .75rem !important
+}
+
+.text-xxs {
+    font-size: .65rem !important
+}
 /**********************************************************************
 End of Site Setting Style
 ***********************************************************************/
