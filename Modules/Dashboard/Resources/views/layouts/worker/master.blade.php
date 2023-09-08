@@ -273,7 +273,18 @@ If any error occurs later in the style of a page, please check this file -->
                 </ul>
             </div>
         </li>
-
+        <div class=" side_menu_item ">
+            <div class="d-flex justify-content-around col-auto pt-2 pb-2 ">
+                <div class="form-check form-switch my-auto">
+                    <input class="form-check-input features" style="cursor: pointer" onclick="ShowSwal()" type="checkbox">
+                </div>
+                <div class="">
+                    <div class="h-100">
+                        <h5 class="mb-0 fw-bold">{{trans('worker::worker.switchToEmployerAccount')}}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
     </ul>
 </div>
 
@@ -347,8 +358,41 @@ If any error occurs later in the style of a page, please check this file -->
         </div>
     </footer>
 </div>
+<div class="swal-overlay swal-overlay--show-modal d-none" id="CustomSwal" tabindex="-1">
+    <div class="swal-modal" role="dialog" aria-modal="true">
+        <div class="swal-icon swal-icon--info"></div>
+        <div class="swal-title">{{trans('worker::worker.switchAccountToEmployerTitle')}}</div>
+        <div class="swal-text text-center">
+            {{trans('worker::worker.switchAccountToEmployerText')}}
+        </div>
+        <div class="swal-footer">
+            <div class="swal-button-container d-flex justify-content-between">
+                <a onclick="event.preventDefault(); document.getElementById('switch-account-form').submit();"
+                   class="btn bg-success text-white w-auto m-4 ">{{trans('worker::worker.switchBtn')}}</a>
+                <button class="btn bg-dark text-white w-auto m-4"
+                        onclick="hideSwal()">{{trans('worker::worker.cancelBtn')}}</button>
+            </div>
+            <form id="switch-account-form" action="#" method="POST"
+                  class="d-none">
+                @csrf
+            </form>
+        </div>
+    </div>
+</div>
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+<script>
+
+    function ShowSwal() {
+        document.getElementById('CustomSwal').classList.remove('d-none')
+    }
+
+    function hideSwal() {
+        document.getElementById('CustomSwal').classList.add('d-none');
+        $("input[type=checkbox]").prop("checked", false);
+    }
+</script>
 <script src="{{asset('assets/js/dashboard.js')}}"></script>
 <script src="{{asset('assets/js/plugins/datatables-ar.js')}}"></script>
 <script>
