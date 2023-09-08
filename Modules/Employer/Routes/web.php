@@ -18,13 +18,13 @@ Route::prefix('panel/employer')->controller('Dashboard\EmployerDashboardControll
     Route::get('/', 'index')->name('show.employer.panel');
     Route::post('log-out', 'logout')->name('employer.logout');
 });
-//Route::prefix('panel/employer/my-profile')->middleware('auth:employer')->group(function() {
+Route::prefix('panel/employer/my-profile')->middleware('auth:employer')->group(function() {
 //
-//    Route::get('/', 'Employer\EmployerProfileController@showMyProfile')->name('employer.show.my.profile');
-//    Route::get('edit-my-profile','Employer\EmployerProfileController@showUpdateMyProfileForm')->name('employer.show.edit.my.profile.form');
+    Route::get('/', 'Employer\EmployerProfileController@showMyProfile')->name('employer.show.my.profile');
+    Route::get('edit-my-profile','Employer\EmployerProfileController@showUpdateMyProfileForm')->name('employer.show.edit.my.profile.form');
 //    Route::post('update-my-profile', 'Employer\EmployerProfileController@updateMyProfile')->name('employer.update.my.profile');
 //
-//});
+});
 
 
 Route::prefix('panel/employer/management-affairs/switch-account')->controller('Employer\SwitchingAccountController')->middleware(['auth:employer','employerProfileCompleted','enabledEmployer','IsEmployerVerifyEmail'])->group(function() {

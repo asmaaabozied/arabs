@@ -2,6 +2,17 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\Api\ApiEmployerProfileCompleted;
+use App\Http\Middleware\Api\CheckToken;
+use App\Http\Middleware\Api\EnabledApiEmployer;
+use App\Http\Middleware\Api\IsApiEmployerVerifyEmail;
+use App\Http\Middleware\CompleteEmployerProfile;
+use App\Http\Middleware\CompleteWorkerProfile;
+use App\Http\Middleware\EnabledEmployer;
+use App\Http\Middleware\EnabledWorker;
+use App\Http\Middleware\IsEmployerVerifyEmail;
+use App\Http\Middleware\IsWorkerVerifyEmail;
+use App\Http\Middleware\Language;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -36,6 +47,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            Language::class
         ],
 
         'api' => [
@@ -64,5 +76,11 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'employerProfileCompleted'=>CompleteEmployerProfile::class,
+        'workerProfileCompleted'=>CompleteWorkerProfile::class,
+        'enabledEmployer'=>EnabledEmployer::class,
+        'enabledWorker'=>EnabledWorker::class,
+        'IsWorkerVerifyEmail' => IsWorkerVerifyEmail::class,
+        'IsEmployerVerifyEmail' => IsEmployerVerifyEmail::class,
     ];
 }

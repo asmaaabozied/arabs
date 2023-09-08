@@ -13,8 +13,13 @@ class EnabledWorker
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
+        $worker = $request->user();
+        if ( $worker->status == "disable" ){
+            alert()->toast(trans('worker::worker.Your account is currently disabled and you cannot take this action'), 'error');
+            return redirect()->route('worker.show.my.profile');
+        }
         return $next($request);
     }
 }
