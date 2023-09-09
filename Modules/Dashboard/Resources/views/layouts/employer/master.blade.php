@@ -171,7 +171,7 @@ If any error occurs later in the style of a page, please check this file -->
                 <ul class="nav ms-4 ps-3">
 
                     <li class="">
-                        <a class="nav-link nav-text" href="#">
+                        <a class="nav-link nav-text" href="{{route('discount_codes')}}">
                             <span class="sidenav-normal">  {{trans('employer::employer.DiscountCodes')}}</span>
                         </a>
                     </li>
@@ -322,7 +322,7 @@ If any error occurs later in the style of a page, please check this file -->
             <ol class="breadcrumb">
                 {{--                <li class="breadcrumb-item"><a href="#">Home</a></li>--}}
                 {{--                <li class="breadcrumb-item "><a href="#">Library</a></li>--}}
-                <li class="breadcrumb-item text-primary font-26" aria-current="page">لوحة التحكم</li>
+                {{-- <li class="breadcrumb-item text-primary font-26" aria-current="page">لوحة التحكم</li> --}}
             </ol>
         </nav>
         @yield('content')

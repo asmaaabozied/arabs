@@ -131,6 +131,10 @@ return [
     | specify a specific custom language line for a given attribute rule.
     |
     */
+    'Page Not Found' => 'Page Not Found',
+    'Back to back' => 'Back to back',
+    'The page you are looking for doesn’t exist' => 'The page you are looking for doesn’t exist',
+
 
     'custom' => [
         'attribute-name' => [

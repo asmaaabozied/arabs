@@ -1512,3 +1512,47 @@ Start of Site Setting Style
 End of Site Setting Style
 ***********************************************************************/
 
+
+/**********************************************************************
+        Start Discound Page Style
+***********************************************************************/
+
+.discount_card{
+    background-color:#4E4187;
+    border-radius: 20px;
+}
+.discount_card_icon{
+    background-color:white;
+    margin-left:5%;
+    padding:1.5%;
+}
+
+.timeline {
+    border-left: 2px solid hsl(0, 0%, 90%);
+    position: relative;
+    list-style: none;
+    direction: rtl;
+  }
+
+  .timeline .timeline-item {
+    position: relative;
+  }
+
+  .timeline .timeline-item:after {
+    position: absolute;
+    display: block;
+    top: 0;
+  }
+
+  .timeline .timeline-item:after {
+    background-color: hsl(0, 0%, 90%);
+    left: -38px;
+    border-radius: 50%;
+    height: 11px;
+    width: 11px;
+    content: "";
+  }
+
+/**********************************************************************
+        End Discound Page Style
+***********************************************************************/
