@@ -11,6 +11,8 @@
     <link rel="icon" type="image/x-icon" href="{{asset('favicon.ico')}}">
     <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="{{asset('assets/css/panel/icon/nucleo-icons.css')}}" rel="stylesheet"/>
+    <link href="{{asset('assets/css/panel/icon/nucleo-svg.css')}}" rel="stylesheet"/>
 
     <link rel="stylesheet" href="{{asset('assets/css/panel/dashboard.css')}}">
     @if(app()->getLocale() == 'ar')
@@ -100,14 +102,18 @@ If any error occurs later in the style of a page, please check this file -->
 
 <div class="side_menu">
     <ul class="">
-        <li class="side_menu_item active">
-            <a class="nav-link nav-text  " href="#">
-                <i class="fa-solid fa fa-globe active-text"></i>
-                <span class="nav-link-text m-2 fw-bold active-text">{{trans('employer::employer.panel')}}</span>
+        <li class="side_menu_item
+            {{request()->routeIs('show.employer.panel') ? 'active' : ''}}
+        ">
+            <a class="nav-link nav-text  " href="{{route('show.employer.panel')}}">
+                <i class="fa-solid fa fa-globe"></i>
+                <span class="nav-link-text m-2 fw-bold">{{trans('employer::employer.panel')}}</span>
             </a>
         </li>
-        <li class="side_menu_item">
-            <a class="nav-link nav-text  " href="#">
+        <li class="side_menu_item
+            {{request()->routeIs('employer.show.my.profile') ? 'active' : ''}}
+          ">
+            <a class="nav-link nav-text" href="{{route('employer.show.my.profile')}}">
                 <i class="fa-solid fa-user"></i>
                 <span class="nav-link-text m-2 fw-bold">{{trans('employer::employer.MyProfile')}}</span>
             </a>
@@ -322,7 +328,7 @@ If any error occurs later in the style of a page, please check this file -->
             <ol class="breadcrumb">
                 {{--                <li class="breadcrumb-item"><a href="#">Home</a></li>--}}
                 {{--                <li class="breadcrumb-item "><a href="#">Library</a></li>--}}
-                <li class="breadcrumb-item text-primary font-26" aria-current="page">لوحة التحكم</li>
+                <li class="breadcrumb-item text-primary font-26" aria-current="page">{{trans('employer::employer.'.$sub_breadcrumb)}}</li>
             </ol>
         </nav>
         @yield('content')
@@ -503,6 +509,23 @@ If any error occurs later in the style of a page, please check this file -->
 </div>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+@if(app()->getLocale() == "en")
+    <script src="{{asset('assets/js/plugins/datatables-en.js')}}"></script>
+@else
+    <script src="{{asset('assets/js/plugins/datatables-ar.js')}}"></script>
+
+@endif
+<script>
+    if (document.getElementById('datatable-list')) {
+        const dataTableSearch = new simpleDatatables.DataTable("#datatable-list", {
+            searchable: true,
+            fixedHeight: false,
+            perPage: 10
+        });
+
+    }
+    ;
+</script>
 <script>
 
     function ShowSwal() {
