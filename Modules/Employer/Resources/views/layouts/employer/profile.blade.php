@@ -5,9 +5,18 @@
         <div class="row gx-4">
             <div class="col-auto">
                 <div class="avatar avatar-xl position-relative ">
-                    <img
-                        src="https://lh3.googleusercontent.com/a/AAcHTtf5-X8Yj-LZSKvek9fITcuBKDH6oyx9WY8o2iiISZz1rA=s96-c"
-                        class="w-100 border-radius-lg rounded-circle shadow-sm" alt="avatar">
+                    @if($employer->google_id == null)
+                        @if($employer->avatar != Null)
+                            <img src="{{Storage::url($employer->avatar)}}" class="w-100 border-radius-lg shadow-sm"
+                                 alt="avatar">
+                        @else
+                            <img src="{{asset('assets/img/default/default-avatar.svg')}}"
+                                 class="w-100 border-radius-lg shadow-sm" alt="avatar">
+                        @endif
+                    @else
+                        <img src="{{$employer->avatar}}"
+                             class="w-100 border-radius-lg shadow-sm" alt="avatar">
+                    @endif
                 </div>
             </div>
             <div class="col-auto my-auto">
@@ -344,7 +353,7 @@
                                                     class="avatar avatar-sm me-3" alt="category icon">
                                             @endif
                                         </div>
-                                        <div class="d-flex flex-column justify-content-center">
+                                        <div class="d-flex mx-3 flex-column justify-content-center">
                                             <h6 class="mb-0 text-sm">{{$tasks[$i]->task_number}}</h6>
                                             <p class="text-xs text-secondary mb-0">{{ Str::words($tasks[$i]->title, 3,'...')}}</p>
                                         </div>

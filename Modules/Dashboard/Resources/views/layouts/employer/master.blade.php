@@ -16,11 +16,11 @@
 
     <link rel="stylesheet" href="{{asset('assets/css/panel/dashboard.css')}}">
     @if(app()->getLocale() == 'ar')
-    <link rel="stylesheet" href="{{asset('assets/css/panel/default.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/panel/style.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/panel/default.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/panel/style.css')}}">
     @else
-    <link rel="stylesheet" href="{{asset('assets/css/panel/default_en.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/panel/style_en.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/panel/default_en.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/panel/style_en.css')}}">
     @endif
 
     <link rel="stylesheet" href="{{asset('assets/css/panel/responsive.css')}}">
@@ -72,11 +72,11 @@ If any error occurs later in the style of a page, please check this file -->
                             data-bs-toggle="dropdown" aria-expanded="false">
                         <a class="user-name profile_name" href="#">
                             @if(auth()->user()->google_id == null)
-                           @if(auth()->user()->avatar != null)
-                            <img src="{{Storage::url(auth()->user()->avatar)}}" class="profile">
-                            @else
-                            <img src="{{asset('assets/img/default/employer-avatar.svg')}}" class="profile">
-                            @endif
+                                @if(auth()->user()->avatar != null)
+                                    <img src="{{Storage::url(auth()->user()->avatar)}}" class="profile">
+                                @else
+                                    <img src="{{asset('assets/img/default/default-avatar.svg')}}" class="profile">
+                                @endif
                             @else
                                 <img src="{{auth()->user()->avatar}}" class="profile">
                             @endif
@@ -103,7 +103,7 @@ If any error occurs later in the style of a page, please check this file -->
     <ul class="">
         <li class="side_menu_item
             {{request()->routeIs('show.employer.panel') ? 'active' : ''}}
-        ">
+            ">
             <a class="nav-link nav-text  " href="{{route('show.employer.panel')}}">
                 <i class="fa-solid fa fa-globe"></i>
                 <span class="nav-link-text m-2 fw-bold">{{trans('employer::employer.panel')}}</span>
@@ -111,7 +111,7 @@ If any error occurs later in the style of a page, please check this file -->
         </li>
         <li class="side_menu_item
             {{request()->routeIs('employer.show.my.profile') ? 'active' : ''}}
-          ">
+            ">
             <a class="nav-link nav-text" href="{{route('employer.show.my.profile')}}">
                 <i class="fa-solid fa-user"></i>
                 <span class="nav-link-text m-2 fw-bold">{{trans('employer::employer.MyProfile')}}</span>
@@ -307,7 +307,8 @@ If any error occurs later in the style of a page, please check this file -->
         <div class=" side_menu_item ">
             <div class="d-flex justify-content-around col-auto pt-2 pb-2 ">
                 <div class="form-check form-switch my-auto">
-                    <input class="form-check-input features" style="cursor: pointer" onclick="ShowSwal()" type="checkbox">
+                    <input class="form-check-input features" style="cursor: pointer" onclick="ShowSwal()"
+                           type="checkbox">
                 </div>
                 <div class="">
                     <div class="h-100">
@@ -327,7 +328,8 @@ If any error occurs later in the style of a page, please check this file -->
             <ol class="breadcrumb">
                 {{--                <li class="breadcrumb-item"><a href="#">Home</a></li>--}}
                 {{--                <li class="breadcrumb-item "><a href="#">Library</a></li>--}}
-                <li class="breadcrumb-item text-primary font-26" aria-current="page">{{trans('employer::employer.'.$sub_breadcrumb)}}</li>
+                <li class="breadcrumb-item text-primary font-26"
+                    aria-current="page">{{trans('employer::employer.'.$sub_breadcrumb)}}</li>
             </ol>
         </nav>
         @yield('content')
@@ -556,7 +558,7 @@ If any error occurs later in the style of a page, please check this file -->
     });
 </script>
 <script>
-    window.onload = function() {
+    window.onload = function () {
         // Select the div element by its ID
         const preloader = document.getElementById("loader");
 
