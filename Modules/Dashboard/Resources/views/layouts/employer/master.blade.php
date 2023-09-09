@@ -32,18 +32,17 @@ If any error occurs later in the style of a page, please check this file -->
 I examined it and did not find any class in it that could help us in the project
 If any error occurs later in the style of a page, please check this file -->
     <link rel="stylesheet" href="{{asset('assets/css/panel/dataTable.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/panel/loader.css')}}">
 </head>
 
 <body>
 
-<div class="preloader preloader-1" id="preloader">
-    <div class="spinner">
-        <div class="bounce1"></div>
-        <div class="bounce2"></div>
-        <div class="bounce3"></div>
-    </div>
+<div class="loader" id="loader">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
 </div>
-
 <nav class="navbar navbar-expand-lg bg-light dashboard-nav">
     <div class="container-lg">
         <li class="nav-item hamburger">
@@ -555,6 +554,20 @@ If any error occurs later in the style of a page, please check this file -->
             }
         });
     });
+</script>
+<script>
+    window.onload = function() {
+        // Select the div element by its ID
+        const preloader = document.getElementById("loader");
+
+        // Function to hide the div
+        function hideLoader() {
+            preloader.style.display = "none";
+        }
+
+        // Hide the div after all assets are loaded
+        hideLoader();
+    };
 </script>
 @include('sweetalert::alert')
 </body>
