@@ -808,7 +808,7 @@
                     labels: {
                         placeholder: "بحث ... ",
                         perPage: "{select}  عدد العناصر في الصفحة  ",
-                        noRows: "لا يوجد بينات",
+                        noRows: "لم يتم العثور على أي نتائج",
                         info: "مشاهدة {start} إلى {end} نتيجة، من أصل {rows} نتيجة"
                     },
                     layout: {

@@ -11,14 +11,16 @@
     <link rel="icon" type="image/x-icon" href="{{asset('favicon.ico')}}">
     <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="{{asset('assets/css/panel/icon/nucleo-icons.css')}}" rel="stylesheet"/>
+    <link href="{{asset('assets/css/panel/icon/nucleo-svg.css')}}" rel="stylesheet"/>
 
     <link rel="stylesheet" href="{{asset('assets/css/panel/dashboard.css')}}">
     @if(app()->getLocale() == 'ar')
-    <link rel="stylesheet" href="{{asset('assets/css/panel/default.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/panel/style.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/panel/default.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/panel/style.css')}}">
     @else
-    <link rel="stylesheet" href="{{asset('assets/css/panel/default_en.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/panel/style_en.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/panel/default_en.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/panel/style_en.css')}}">
     @endif
 
     <link rel="stylesheet" href="{{asset('assets/css/panel/responsive.css')}}">
@@ -30,18 +32,17 @@ If any error occurs later in the style of a page, please check this file -->
 I examined it and did not find any class in it that could help us in the project
 If any error occurs later in the style of a page, please check this file -->
     <link rel="stylesheet" href="{{asset('assets/css/panel/dataTable.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/panel/loader.css')}}">
 </head>
 
 <body>
 
-<div class="preloader preloader-1" id="preloader">
-    <div class="spinner">
-        <div class="bounce1"></div>
-        <div class="bounce2"></div>
-        <div class="bounce3"></div>
-    </div>
+<div class="loader" id="loader">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
 </div>
-
 <nav class="navbar navbar-expand-lg bg-light dashboard-nav">
     <div class="container-lg">
         <li class="nav-item hamburger">
@@ -71,11 +72,11 @@ If any error occurs later in the style of a page, please check this file -->
                             data-bs-toggle="dropdown" aria-expanded="false">
                         <a class="user-name profile_name" href="#">
                             @if(auth()->user()->google_id == null)
-                           @if(auth()->user()->avatar != null)
-                            <img src="{{Storage::url(auth()->user()->avatar)}}" class="profile">
-                            @else
-                            <img src="{{asset('assets/img/default/employer-avatar.svg')}}" class="profile">
-                            @endif
+                                @if(auth()->user()->avatar != null)
+                                    <img src="{{Storage::url(auth()->user()->avatar)}}" class="profile">
+                                @else
+                                    <img src="{{asset('assets/img/default/default-avatar.svg')}}" class="profile">
+                                @endif
                             @else
                                 <img src="{{auth()->user()->avatar}}" class="profile">
                             @endif
@@ -100,14 +101,18 @@ If any error occurs later in the style of a page, please check this file -->
 
 <div class="side_menu">
     <ul class="">
-        <li class="side_menu_item active">
-            <a class="nav-link nav-text  " href="#">
-                <i class="fa-solid fa fa-globe active-text"></i>
-                <span class="nav-link-text m-2 fw-bold active-text">{{trans('employer::employer.panel')}}</span>
+        <li class="side_menu_item
+            {{request()->routeIs('show.employer.panel') ? 'active' : ''}}
+            ">
+            <a class="nav-link nav-text  " href="{{route('show.employer.panel')}}">
+                <i class="fa-solid fa fa-globe"></i>
+                <span class="nav-link-text m-2 fw-bold">{{trans('employer::employer.panel')}}</span>
             </a>
         </li>
-        <li class="side_menu_item">
-            <a class="nav-link nav-text  " href="#">
+        <li class="side_menu_item
+            {{request()->routeIs('employer.show.my.profile') ? 'active' : ''}}
+            ">
+            <a class="nav-link nav-text" href="{{route('employer.show.my.profile')}}">
                 <i class="fa-solid fa-user"></i>
                 <span class="nav-link-text m-2 fw-bold">{{trans('employer::employer.MyProfile')}}</span>
             </a>
@@ -302,7 +307,8 @@ If any error occurs later in the style of a page, please check this file -->
         <div class=" side_menu_item ">
             <div class="d-flex justify-content-around col-auto pt-2 pb-2 ">
                 <div class="form-check form-switch my-auto">
-                    <input class="form-check-input features" style="cursor: pointer" onclick="ShowSwal()" type="checkbox">
+                    <input class="form-check-input features" style="cursor: pointer" onclick="ShowSwal()"
+                           type="checkbox">
                 </div>
                 <div class="">
                     <div class="h-100">
@@ -322,7 +328,8 @@ If any error occurs later in the style of a page, please check this file -->
             <ol class="breadcrumb">
                 {{--                <li class="breadcrumb-item"><a href="#">Home</a></li>--}}
                 {{--                <li class="breadcrumb-item "><a href="#">Library</a></li>--}}
-                {{-- <li class="breadcrumb-item text-primary font-26" aria-current="page">لوحة التحكم</li> --}}
+                <li class="breadcrumb-item text-primary font-26"
+                    aria-current="page">{{trans('employer::employer.'.$sub_breadcrumb)}}</li>
             </ol>
         </nav>
         @yield('content')
@@ -503,6 +510,23 @@ If any error occurs later in the style of a page, please check this file -->
 </div>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+@if(app()->getLocale() == "en")
+    <script src="{{asset('assets/js/plugins/datatables-en.js')}}"></script>
+@else
+    <script src="{{asset('assets/js/plugins/datatables-ar.js')}}"></script>
+
+@endif
+<script>
+    if (document.getElementById('datatable-list')) {
+        const dataTableSearch = new simpleDatatables.DataTable("#datatable-list", {
+            searchable: true,
+            fixedHeight: false,
+            perPage: 10
+        });
+
+    }
+    ;
+</script>
 <script>
 
     function ShowSwal() {
@@ -532,6 +556,20 @@ If any error occurs later in the style of a page, please check this file -->
             }
         });
     });
+</script>
+<script>
+    window.onload = function () {
+        // Select the div element by its ID
+        const preloader = document.getElementById("loader");
+
+        // Function to hide the div
+        function hideLoader() {
+            preloader.style.display = "none";
+        }
+
+        // Hide the div after all assets are loaded
+        hideLoader();
+    };
 </script>
 @include('sweetalert::alert')
 </body>
