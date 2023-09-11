@@ -13,4 +13,39 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::prefix('employer/tasks')->middleware(['auth:employer','employerProfileCompleted','enabledEmployer','IsEmployerVerifyEmail'])->controller('EmployerMyTaskController')->group(function() {
+    Route::get('not-published-tasks', 'showNotPublishedTasks')->name('employer.show.not.published.tasks');
+    Route::get('delete-not-published-task/{task_id}/{task_number}', 'DeleteNoPublishedTask')->name('employer.delete.not.published.task');
+
+    Route::get('show-task-details-after-create/{task_id}/{task_number}','showTaskDetailsAfterCreate')->name('employer.show.task.details.after.create');
+
+
+    Route::get('not-payed-tasks', 'showNotPayedTasks')->name('employer.show.not.payed.tasks');
+    Route::get('not-payed-task-details/{task_id}/{task_number}', 'unPayedTaskDetails')->name('employer.show.not.payed.tasks.details');
+    Route::get('check-if-wallet-contains-enough-money-to-pay-task/{task_id}/{task_number}','checkIfWalletContainsEnoughMoneyToPayTask')->name('check.if.wallet.contains.enough.money.to.pay.task');
+    Route::get('delete-not-payed-task/{task_id}/{task_number}', 'DeleteUnPayedTask')->name('employer.delete.not.payed.task');
+
+    Route::get('pending-tasks', 'showPendingTasks')->name('employer.show.task.in.pending.status');
+    Route::get('pending-task-details/{task_id}/{task_number}', 'pendingTaskDetails')->name('employer.show.pending.tasks.details');
+
+
+    Route::get('active-tasks', 'showActiveTasks')->name('employer.show.task.in.active.status');
+    Route::get('show-or-hide-active-task/{task_id}/{task_number}', 'showOrHideActiveTask')->name('employer.show.or.hide.active.task');
+    Route::get('active-task-details/{task_id}/{task_number}', 'activeTaskDetails')->name('employer.show.active.tasks.details');
+    Route::get('active-task-proofs/{task_id}/{task_number}', 'activeTaskProofs')->name('employer.show.active.tasks.proofs');
+    Route::get('active-task-proof-details/{task_id}/{proof_id}', 'activeTaskProofDetails')->name('employer.show.active.tasks.proof.details');
+    Route::get('accept-task-proof/{task_id}/{task_number}/{proof_id}/{worker_id}', 'acceptTaskProof')->name('employer.accept.task.proof');
+    Route::get('reject-task-proof/{task_id}/{task_number}/{proof_id}/{worker_id}', 'rejectTaskProof')->name('employer.reject.task.proof');
+
+
+    Route::get('complete-tasks', 'showCompleteTasks')->name('employer.show.task.in.complete.status');
+    Route::get('complete-task-details/{task_id}/{task_number}', 'completeTaskDetails')->name('employer.show.complete.tasks.details');
+    Route::get('complete-task-proofs/{task_id}/{task_number}', 'completeTaskProofs')->name('employer.show.complete.tasks.proofs');
+    Route::get('complete-task-proof-details/{task_id}/{proof_id}', 'completeTaskProofDetails')->name('employer.show.complete.tasks.proof.details');
+
+
+    Route::get('rejected-tasks', 'showRejectedTasks')->name('employer.show.task.in.rejected.status');
+    Route::get('rejected-task-details/{task_id}/{task_number}', 'rejectedTaskDetails')->name('employer.show.rejected.tasks.details');
+
+});
 
