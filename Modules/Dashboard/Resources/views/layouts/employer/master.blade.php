@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>
-        {{trans('employer::employer.panel')}}
+        {{trans('employer::employer.'.$page_name)}}
     </title>
     <link rel="icon" type="image/x-icon" href="{{asset('favicon.ico')}}">
     <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
@@ -117,13 +117,28 @@ If any error occurs later in the style of a page, please check this file -->
                 <span class="nav-link-text m-2 fw-bold">{{trans('employer::employer.MyProfile')}}</span>
             </a>
         </li>
-        <li class="side_menu_item">
+        <li class="side_menu_item
+                     {{request()->routeIs('employer.show.not.published.tasks') ? 'active' : ''}}
+                     {{request()->routeIs('employer.show.not.payed.tasks') ? 'active' : ''}}
+                     {{request()->routeIs('employer.show.task.in.rejected.status') ? 'active' : ''}}
+                     {{request()->routeIs('employer.show.task.in.complete.status') ? 'active' : ''}}
+                     {{request()->routeIs('employer.show.task.in.active.status') ? 'active' : ''}}
+                     {{request()->routeIs('employer.show.task.in.pending.status') ? 'active' : ''}}
+
+            ">
             <a data-bs-toggle="collapse" href="#dashboardsExamples" class="nav-link nav-text collapsed"
                aria-controls="dashboardsExamples" role="button" aria-expanded="false">
                 <i class="fa-solid fa-tag"></i>
                 <span class="nav-link-text m-2 fw-bold">{{trans('employer::employer.tasks')}}</span>
             </a>
-            <div class="collapse" id="dashboardsExamples" style="">
+            <div class="collapse
+                  {{request()->routeIs('employer.show.not.published.tasks') ? 'show' : ''}}
+                  {{request()->routeIs('employer.show.not.payed.tasks') ? 'show' : ''}}
+                  {{request()->routeIs('employer.show.task.in.rejected.status') ? 'show' : ''}}
+                  {{request()->routeIs('employer.show.task.in.complete.status') ? 'show' : ''}}
+                  {{request()->routeIs('employer.show.task.in.active.status') ? 'show' : ''}}
+                  {{request()->routeIs('employer.show.task.in.pending.status') ? 'show' : ''}}
+                " id="dashboardsExamples" style="">
                 <ul class="nav ms-4 ps-3">
                     <li class=" ">
                         <a class="nav-link nav-text " href="#">
@@ -131,34 +146,49 @@ If any error occurs later in the style of a page, please check this file -->
                         </a>
                     </li>
                     <li class="">
-                        <a class="nav-link nav-text" href="#">
+                        <a class="nav-link nav-text
+                        {{request()->routeIs('employer.show.task.in.pending.status') ? 'active-select-nav' : ''}}
+                        " href="{{route('employer.show.task.in.pending.status')}}">
                             <span
                                 class="sidenav-normal"> {{trans('employer::employer.taskInPendingToAcceptAdmin')}} </span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-text " href="#">
+                        <a class="nav-link nav-text
+                          {{request()->routeIs('employer.show.task.in.active.status') ? 'active-select-nav' : ''}}
+
+                        " href="{{route('employer.show.task.in.active.status')}}">
                             <span class="sidenav-normal"> {{trans('employer::employer.taskInActive')}} </span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-text " href="#">
+                        <a class="nav-link nav-text
+                          {{request()->routeIs('employer.show.task.in.complete.status') ? 'active-select-nav' : ''}}
+
+                        " href="{{route('employer.show.task.in.complete.status')}}">
                             <span class="sidenav-normal"> {{trans('employer::employer.taskInComplete')}}  </span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-text " href="#">
+                        <a class="nav-link nav-text
+                          {{request()->routeIs('employer.show.task.in.rejected.status') ? 'active-select-nav' : ''}}
+                            " href="{{route('employer.show.task.in.rejected.status')}}">
                             <span class="sidenav-normal">  {{trans('employer::employer.taskInCanceled')}} </span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-text " href="#">
+                        <a class="nav-link nav-text
+                         {{request()->routeIs('employer.show.not.payed.tasks') ? 'active-select-nav' : ''}}
+                        " href="{{route('employer.show.not.payed.tasks')}}">
                             <span class="sidenav-normal">{{trans('employer::employer.NotPayedTasks')}}</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-text "
-                           href="#">
+                        <a class="nav-link nav-text
+                            {{request()->routeIs('employer.show.not.published.tasks') ? 'active-select-nav' : ''}}
+
+                            "
+                           href="{{route('employer.show.not.published.tasks')}}">
                             <span class="sidenav-normal">{{trans('employer::employer.NotPublishedTasks')}} </span>
                         </a>
                     </li>
@@ -176,7 +206,7 @@ If any error occurs later in the style of a page, please check this file -->
                 <ul class="nav ms-4 ps-3">
 
                     <li class="">
-                        <a class="nav-link nav-text" href="{{route('discount_codes')}}">
+                        <a class="nav-link nav-text" href="#">
                             <span class="sidenav-normal">  {{trans('employer::employer.DiscountCodes')}}</span>
                         </a>
                     </li>
