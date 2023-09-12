@@ -1552,6 +1552,16 @@ End of Site Setting Style
     width: 11px;
     content: "";
   }
+  .active_mission
+  {
+      float: left;
+  }
+
+  .div_3part{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      flex-grow: 1;
 
 /**********************************************************************
         End Discound Page Style
