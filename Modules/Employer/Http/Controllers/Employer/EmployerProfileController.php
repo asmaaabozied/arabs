@@ -62,6 +62,18 @@ class EmployerProfileController extends Controller
         $employer = Employer::withoutTrashed()->with('level')->findOrFail(auth()->user()->id);
         $default_avatar = $this->avatar();
         $countries = Country::withoutTrashed()->get();
+        if ($employer->privileges()->exists() == true){
+            for($i=0;$i<$employer->privileges()->count();$i++){
+                if ($employer->privileges[$i]->type == "plus") {
+                    $total[] = "+" . $employer->privileges[$i]->count_of_privileges;
+                }
+                else{
+                    $total[] = "-" . $employer->privileges[$i]->count_of_privileges;
+                }
+            }
+        }else{
+            $total [] = 0;
+        }
         return view('employer::layouts.employer.editProfile', compact([
             'page_name',
             'main_breadcrumb',
@@ -69,6 +81,7 @@ class EmployerProfileController extends Controller
             'employer',
             'default_avatar',
             'countries',
+            'total',
         ]));
     }
     public function fetchCity(Request $request)

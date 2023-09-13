@@ -111,6 +111,7 @@ If any error occurs later in the style of a page, please check this file -->
         </li>
         <li class="side_menu_item
             {{request()->routeIs('employer.show.my.profile') ? 'active' : ''}}
+            {{request()->routeIs('employer.show.edit.my.profile.form') ? 'active' : ''}}
             ">
             <a class="nav-link nav-text" href="{{route('employer.show.my.profile')}}">
                 <i class="fa-solid fa-user"></i>
