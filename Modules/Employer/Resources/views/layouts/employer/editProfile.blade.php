@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="col-auto my-auto">
                                         <div class="h-100">
-                                            <h5 class="mb-1">
+                                            <h5 class="mb-1 text-uppercase">
                                                 {{$employer->name}}
                                             </h5>
                                             <p class="mb-0 font-weight-bold text-sm text-purple">
@@ -185,6 +185,8 @@
                                         </div>
                                     </td>
                                 </tr>
+
+                                @if($employer->google_id !=null and $employer->phone ==null and $employer->country_id == null and $employer->city_id == null )
                                 <tr>
                                     <td class="name-td text-purple">{{trans('employer::employer.country')}}</td>
                                     <td class="table-details">
@@ -250,8 +252,8 @@
                                             {{$employer->phone}}
                                         @else
                                             <div class="col-12 relative">
-                                                <input type="tel" class="form-control input-lg inputPlaceholder"
-                                                       placeholder="{{trans('employer::signIn.phone')}}" name="phone"
+                                                <input type="text" class="form-control input-lg inputPlaceholder"
+                                                       placeholder="{{trans('employer::signIn.phone')}}" id="CallingCode" name="phone"
                                                        required value="{{$employer->phone}}">
                                                 <img src="{{asset('assets/img/default/phone.png')}}" class="input_img"
                                                      width="20">
@@ -261,6 +263,7 @@
 
                                     </td>
                                 </tr>
+                                @endif
                                 <tr>
                                     <td class="name-td text-purple">{{trans('employer::employer.address')}}</td>
                                     <td class="table-details col-8">
@@ -377,7 +380,6 @@
 
     </style>
 
-
     @if($employer->google_id !=null and $employer->phone ==null and $employer->country_id == null and $employer->city_id == null)
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -408,16 +410,12 @@
                                     .id + '">' + value.name + '</option>');
                             });
                             @endif
-                            // console.log(result['phone'].calling_code);
-                            // var phone = document.getElementById("CallingCode").value;
                             document.getElementById("CallingCode").value = result['phone'].calling_code;
-                            // phone = result['phone'].calling_code;
-                            // $('#phone').innerText(result['phone'].calling_code);
-
                         }
                     });
                 });
             });
         </script>
     @endif
+
 @stop
