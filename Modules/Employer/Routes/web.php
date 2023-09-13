@@ -19,13 +19,17 @@ Route::prefix('panel/employer')->controller('Dashboard\EmployerDashboardControll
     Route::post('log-out', 'logout')->name('employer.logout');
 });
 Route::prefix('panel/employer/my-profile')->controller('Employer\EmployerProfileController')->middleware('auth:employer')->group(function() {
-//
     Route::get('/', 'showMyProfile')->name('employer.show.my.profile');
     Route::get('edit-my-profile','showUpdateMyProfileForm')->name('employer.show.edit.my.profile.form');
     Route::post('update-my-profile', 'updateMyProfile')->name('employer.update.my.profile');
     Route::post('fetch-cities', 'fetchCity')->name('employer.fetch.cities.when.update.profile');
+});
 
-//
+Route::prefix('panel/employer/verify-account')->middleware('auth:employer')->controller('Employer\VerifyAccountController')->group(function() {
+    Route::get('send-verify-email', 'SendEmailVerification')->name('employer.send.email.verify');
+    Route::get('verify-email-account/{token}/{employer_number}', 'verifyAccount')->name('verify.employer.account');
+    Route::get('send-sms-verification', 'SendSMSVerification')->name('employer.send.sms.verification');
+
 });
 
 
