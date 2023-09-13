@@ -2,7 +2,7 @@
 @section('content')
     <div class="container-fluid">
 
-        <div class="row gx-4">
+        <div class="row gx-4 align-items-center">
             <div class="col-auto">
                 <div class="avatar avatar-xl position-relative ">
                     @if($employer->google_id == null)
@@ -22,14 +22,14 @@
             <div class="col-auto my-auto">
                 <div class="h-100">
                     <h5 class="mb-1 text-uppercase">
-                      {{$employer->name}}
+                        {{$employer->name}}
                     </h5>
                     <p class="mb-0 font-weight-bold text-sm">
-                        <span class="mb-0 font-weight-bold text-sm text-primary">{{trans('admin::employer.Joined_at')}}: {{$employer->created_at->format('d-m-Y')}}</span>
+                        <span
+                            class="mb-0 font-weight-bold text-sm text-primary">{{trans('admin::employer.Joined_at')}}: {{$employer->created_at->format('d-m-Y')}}</span>
                     </p>
                 </div>
             </div>
-
         </div>
         <div class="row mt-4">
             <div class="col-xl-3 col-sm-6 mb-xl-3 mb-4">
@@ -293,7 +293,7 @@
                                     <td class="table-details">
                                         @if($employer->email_verified_at == null)
                                             <a class="text-warning"
-                                               href="#">{{trans('employer::employer.Not confirmed yet, click here to confirm')}}</a>
+                                               href="{{route('employer.send.email.verify')}}">{{trans('employer::employer.Not confirmed yet, click here to confirm')}}</a>
                                         @else
                                             <span
                                                 class=" text-success">  {{trans('employer::employer.EmailVerifiedAt:')}} {{$employer->email_verified_at}}</span>
@@ -306,7 +306,7 @@
                                         @if($employer->mobile_verified_at == null)
 
                                             <a class="text-warning"
-                                               href="#">{{trans('employer::employer.Not confirmed yet, click here to confirm')}}</a>
+                                               href="{{route('employer.send.sms.verification')}}">{{trans('employer::employer.Not confirmed yet, click here to confirm')}}</a>
                                         @else
                                             <span
                                                 class=" text-success">{{trans('employer::employer.EmailVerifiedAt:')}}{{$employer->mobile_verified_at}}</span>
@@ -316,6 +316,12 @@
                                 </tr>
                             </table>
                         </div>
+                        <div class="col-12">
+                            <a href="{{route('employer.show.edit.my.profile.form')}}"
+                               class="btn bg-gradient-primary text-white w-100 mt-4 mb-0"><i class="fa fa-pencil"></i>
+                                <span>{{trans('employer::employer.updateMyProfileBtn')}}</span></a>
+                        </div>
+
                     </div>
                 </div>
             </div>

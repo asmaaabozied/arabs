@@ -8,6 +8,108 @@
 
     </div>
     <div class="card card-body blur shadow-blur overflow-hidden">
+        @if($errors->has('name'))
+
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('name') }}</span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+        @if($errors->has('address'))
+
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('address') }}</span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+        @if($errors->has('zip_code'))
+
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('zip_code') }}</span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+        @if($errors->has('description'))
+
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('description') }}</span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+        @if($errors->has('gender'))
+
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('gender') }}</span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+
+
+        @if($errors->has('avatar'))
+
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('avatar') }}</span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+
+        @if($errors->has('phone'))
+
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('phone') }}</span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+        @if($errors->has('country'))
+
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('country') }}</span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+        @if($errors->has('city'))
+
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('city') }}</span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+        @if($errors->has('new_password'))
+
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('new_password') }}</span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+        @if($errors->has('password_confirmation'))
+
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('password_confirmation') }}</span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
         <div class="row profile-row">
             <div class="task-details-info task-sections">
                 <div class="task-details-table d-flex flex-wrap justify-content-between">
@@ -176,7 +278,7 @@
                                     <td class="table-details text-uppercase">
 
                                         <div class="col-12 relative">
-                                            <input type="email" class="form-control input-lg inputPlaceholder"
+                                            <input type="text" class="form-control input-lg inputPlaceholder"
                                                    placeholder="{{trans('employer::employer.Name')}}" name="name"
                                                    required
                                                    value="{{$employer->name}}">
@@ -308,7 +410,7 @@
                                     <td class="table-details">
                                         <div class="col-md-12 relative">
                                             <select class="form-select" aria-label="Default select example"
-                                                    name="registration_type"
+                                                    name="gender"
                                                     required>
                                                 @if($employer->gender == "male")
                                                     <option selected class="bg-primary"
@@ -336,7 +438,7 @@
                                         <div class="col-md-12 relative">
                                             <input type="password" class="form-control inputPlaceholder"
                                                    placeholder="{{trans('employer::employer.New Password')}}"
-                                                   name="new_password" required
+                                                   name="new_password"
                                                    id="password">
                                             <img src="{{asset('assets/img/pass.png')}}" class="input_img" id="myInput"
                                                  width="16">
@@ -350,7 +452,7 @@
                                         <div class="col-md-12 relative">
                                             <input type="password" class="form-control inputPlaceholder"
                                                    placeholder="{{trans('employer::employer.Confirm Password')}}"
-                                                   name="password_confirmation" required id="confirm-password">
+                                                   name="password_confirmation" id="confirm-password">
                                             <img src="{{asset('assets/img/pass.png')}}" class="input_img" id="myInput1"
                                                  width="16">
                                         </div>
