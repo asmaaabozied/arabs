@@ -13,6 +13,22 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::prefix('employer/tasks')->controller('EmployerCreateTaskController')->middleware(['auth:employer','employerProfileCompleted','enabledEmployer','IsEmployerVerifyEmail'])->group(function() {
+
+    Route::get('create-task', 'showCreateTaskForm')->name('employer.show.create.task.page');
+    Route::get('show-tasks', 'showTasks')->name('employer.show.tasks.page');
+    Route::post('fetch-cities', 'fetchCity')->name('employer.fetch.cities');
+    Route::post('fetch-category', 'fetchCategory')->name('employer.fetch.category');
+    Route::get('category-actions/{categoryType}',  'categoryActions')->name('employer.fetch.category.actions');
+
+    Route::post('fetch-city', 'cityPrice')->name('employer.fetch.city.price');
+    Route::post('fetch-category-action', 'fetchCategoryAction')->name('employer.fetch.category.action');
+    Route::post('check-trust-discount-code/{task_id}', 'checkTrustDiscountCode')->name('employer.check.trust.discount.code');
+    Route::post('create-task-steep-one', 'createTaskSteepOne')->name('employer.create.task.steep.one');
+    Route::get('show-task-details-after-create/{task_id}/{task_number}','showTaskDetailsAfterCreate')->name('employer.show.task.details.after.create');
+    Route::post('submit-and-save-task/{task_id}/{task_number}','submitAndSaveTask')->name('employer.submit.and.save.task');
+
+});
 Route::prefix('employer/tasks')->middleware(['auth:employer','employerProfileCompleted','enabledEmployer','IsEmployerVerifyEmail'])->controller('EmployerMyTaskController')->group(function() {
     Route::get('not-published-tasks', 'showNotPublishedTasks')->name('employer.show.not.published.tasks');
     Route::get('delete-not-published-task/{task_id}/{task_number}', 'DeleteNoPublishedTask')->name('employer.delete.not.published.task');
