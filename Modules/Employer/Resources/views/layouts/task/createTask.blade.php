@@ -7,6 +7,7 @@
         }
     </style>
     <div class="row">
+    <div class="col-lg-12">
         <div class="multisteps-form ">
 
             @if($errors->has('category_id'))
@@ -155,7 +156,7 @@
                 </div>
             @endif
             <div class="row">
-                <div class="col-12 col-lg-10 mx-auto">
+                <div class="col-11 col-lg-10 mx-auto">
                     <div class="multisteps-form__progress">
                         <button class="multisteps-form__progress-btn js-active" type="button"
                                 title="{{trans('employer::task.ChoosingCategoryAndActions')}}">
@@ -168,7 +169,16 @@
                                 title="{{trans('employer::task.preferential information')}}">{{trans('employer::task.preferential information')}}</button>
                     </div>
                 </div>
+                <div class="col-md-1 col" >
+                    <div class="card text-center" style="position:fixed; z-index:99; float:right; border-radius:5px;">
+                        <div class="text-muted">Price</div>
+                        <h2>$49.99</h2>
+                    </div>
+                 </div>
+
             </div>
+
+
             <div class="row">
                 <div class="col-12 col-lg-12 m-auto">
                     <form action="{{route('employer.create.task.steep.one')}}" method="POST"
@@ -661,6 +671,7 @@
                 </div>
 
             </div>
+        </div>
         </div>
     </div>
     <?php
