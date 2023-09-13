@@ -23,6 +23,8 @@ Route::prefix('panel/employer/my-profile')->controller('Employer\EmployerProfile
     Route::get('/', 'showMyProfile')->name('employer.show.my.profile');
     Route::get('edit-my-profile','showUpdateMyProfileForm')->name('employer.show.edit.my.profile.form');
     Route::post('update-my-profile', 'updateMyProfile')->name('employer.update.my.profile');
+    Route::post('fetch-cities', 'fetchCity')->name('employer.fetch.cities.when.update.profile');
+
 //
 });
 

@@ -124,6 +124,7 @@ If any error occurs later in the style of a page, please check this file -->
                      {{request()->routeIs('employer.show.task.in.complete.status') ? 'active' : ''}}
                      {{request()->routeIs('employer.show.task.in.active.status') ? 'active' : ''}}
                      {{request()->routeIs('employer.show.task.in.pending.status') ? 'active' : ''}}
+                     {{request()->routeIs('employer.show.create.task.page') ? 'active' : ''}}
 
             ">
             <a data-bs-toggle="collapse" href="#dashboardsExamples" class="nav-link nav-text collapsed"
@@ -138,10 +139,14 @@ If any error occurs later in the style of a page, please check this file -->
                   {{request()->routeIs('employer.show.task.in.complete.status') ? 'show' : ''}}
                   {{request()->routeIs('employer.show.task.in.active.status') ? 'show' : ''}}
                   {{request()->routeIs('employer.show.task.in.pending.status') ? 'show' : ''}}
+                  {{request()->routeIs('employer.show.create.task.page') ? 'show' : ''}}
                 " id="dashboardsExamples" style="">
                 <ul class="nav ms-4 ps-3">
                     <li class=" ">
-                        <a class="nav-link nav-text " href="#">
+                        <a class="nav-link nav-text
+                         {{request()->routeIs('employer.show.create.task.page') ? 'active-select-nav' : ''}}
+
+                            " href="{{route('employer.show.create.task.page')}}">
                             <span class="sidenav-normal">   {{trans('employer::employer.createTask')}} </span>
                         </a>
                     </li>
