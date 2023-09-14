@@ -202,21 +202,32 @@ If any error occurs later in the style of a page, please check this file -->
             </div>
         </li>
 
-        <li class="side_menu_item">
+        <li class="side_menu_item
+              {{request()->routeIs('employer.show.my.discount.code') ? 'active' : ''}}
+              {{request()->routeIs('employer.show.discountCode.invoice') ? 'active' : ''}}
+            ">
+
             <a data-bs-toggle="collapse" href="#FinancialAffairs" class="nav-link nav-text collapsed"
                aria-controls="FinancialAffairs" role="button" aria-expanded="false">
                 <i class="fa-solid fa-credit-card"></i>
                 <span class="nav-link-text m-2 fw-bold">{{trans('employer::employer.Financial Affairs')}}</span>
             </a>
-            <div class="collapse" id="FinancialAffairs" style="">
+            <div class="collapse
+            {{request()->routeIs('employer.show.my.discount.code') ? 'show' : ''}}
+            {{request()->routeIs('employer.show.discountCode.invoice') ? 'show' : ''}}
+
+            " id="FinancialAffairs" style="">
                 <ul class="nav ms-4 ps-3">
 
-                    <li class="">
-                        <a class="nav-link nav-text" href="#">
+                    <li class="nav-item">
+                        <a class="nav-link nav-text
+                           {{request()->routeIs('employer.show.my.discount.code') ? 'active-select-nav' : ''}}
+                           {{request()->routeIs('employer.show.discountCode.invoice') ? 'active-select-nav' : ''}}
+                            " href="{{route('employer.show.my.discount.code')}}">
                             <span class="sidenav-normal">  {{trans('employer::employer.DiscountCodes')}}</span>
                         </a>
                     </li>
-                    <li class="">
+                    <li class="nav-item">
                         <a class="nav-link nav-text"
                            href="#">
                             <span class="sidenav-normal"> {{trans('employer::employer.WagesAndCosts')}} </span>

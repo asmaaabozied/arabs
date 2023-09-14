@@ -31,6 +31,10 @@ Route::prefix('panel/employer/verify-account')->middleware('auth:employer')->con
     Route::get('send-sms-verification', 'SendSMSVerification')->name('employer.send.sms.verification');
 
 });
+Route::prefix('panel/employer/discountCode')->middleware(['auth:employer','employerProfileCompleted','enabledEmployer','IsEmployerVerifyEmail'])->group(function() {
+    Route::get('/', 'Employer\DiscountCodeController@index')->name('employer.show.my.discount.code');
+    Route::get('invoice-of-discount/{task}/{discountCode}', 'Employer\DiscountCodeController@showDiscountCodeInvoice')->name('employer.show.discountCode.invoice');
+});
 
 
 Route::prefix('panel/employer/management-affairs/switch-account')->controller('Employer\SwitchingAccountController')
