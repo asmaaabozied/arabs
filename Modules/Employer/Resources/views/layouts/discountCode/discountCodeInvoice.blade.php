@@ -4,14 +4,15 @@
         .max-w-unset {
             max-width: unset !important;
         }
+
         .last-ch:last-child {
             display: none;
         }
     </style>
-    <div class="row mt-2">
+    <div class="row mt-2 p-3">
         <div class="col-lg-4 col-md-6 col-12">
             <div class="card">
-                <div class="card-body p-3">
+                <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-8">
                             <div class="numbers mx-3">
@@ -89,40 +90,38 @@
 
     </div>
 
-
-
-    <div class="row mt-2">
-        <div class="card mt-3 bg-gradient-secondary">
-            <div class="card-header bg-transparent pb-0">
-                <h6 class="text-white">{{trans('employer::task.TaskStatusFlow')}}</h6>
-            </div>
+    <div class="row mt-2 p-3">
+        <h5 class="mt-3 text-primary">{{trans('employer::task.TaskStatusFlow')}}</h5>
+        <div class="card mt-3 bg-white">
             <div class="card-body p-3">
                 <div class="timeline timeline-one-side" data-timeline-axis-style="dashed">
                     @for($i=0;$i<count($task->TaskStatuses);$i++)
                         <div class="timeline-block mb-3">
-                            <span class="timeline-step bg-light">
-                            <i class="ni ni-bullet-list-67 text-success text-gradient"></i>
+                            <span class="timeline-step ">
+                               <i class=""><img src="{{asset('assets/img/process.png')}}" alt="Step" width="50"
+                                                height="50"></i>
                             </span>
                             <div class="timeline-content max-w-unset">
-                                <h6 class="text-white text-sm font-weight-bold mb-0">{{trans('employer::task.status_number')}}
+                                <h6 class="text-dark fw-bold text-sm font-weight-bold mb-0">{{trans('employer::task.status_number')}}
                                     ({{$i+1}}): <span
                                         class="text-lg">{{trans('employer::task.'.$task->TaskStatuses[$i]->status->name)}}</span>
                                 </h6>
                                 <p class="text-warning font-weight-bold text-xs mt-1 mb-0">{{$task->TaskStatuses[$i]->created_at}}</p>
-                                <p class="text-white text-lg mt-3 mb-2">
+                                <p class="text-dark text-lg mt-3 mb-2">
                                     {{trans('employer::task.status_flow_'.$task->TaskStatuses[$i]->status->name)}}
                                 </p>
                             </div>
                         </div>
                     @endfor
                     <div class="timeline-block mb-3">
-                            <span class="timeline-step bg-light">
-                            <i class="ni ni-user-run text-success text-gradient"></i>
+                            <span class="timeline-step ">
+                              <i class=""><img src="{{asset('assets/img/order.png')}}" alt="Step" width="40"
+                                               height="40"></i>
                             </span>
                         <div class="timeline-content max-w-unset">
-                            <h6 class="text-white text-sm font-weight-bold mb-0">{{trans('employer::task.worker_approved_to_now')}}</h6>
+                            <h6 class="text-dark fw-bold text-sm font-weight-bold mb-0">{{trans('employer::task.worker_approved_to_now')}}</h6>
                             <p class="text-warning font-weight-bold text-xs mt-1 mb-0">{{\Carbon\Carbon::now()}}</p>
-                            <p class="text-white text-lg mt-3 mb-2">
+                            <p class="text-dark text-lg mt-3 mb-2">
                                 <span
                                     class="text-primary text-lg">{{$task->approved_workers}}</span> {{trans('employer::task.worker')}}  {{trans('employer::task.form_all_worker')}}
                                 <span
@@ -134,236 +133,206 @@
             </div>
         </div>
     </div>
-    <div class="row col-lg-12 col-sm-12 mt-4">
-        <div class="col-lg-6 col-sm-12 mb-2 ">
-            <div class="card">
-                <div class="card-header p-3 pb-0">
-                    <div class="row">
-                        <div class="col-12 d-flex">
-                            <div>
-                                <img src="{{Storage::url($task->category->image)}}"
-                                     class="avatar avatar-xl me-2"
-                                     alt="avatar image">
-                            </div>
-                            <div class="d-flex flex-column justify-content-center">
-                                <h6 class="mb-0 text-lg">{{trans("employer::task.task_category")}}</h6>
-                                <p class="text-xl">{{$task->category->title}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr class="horizontal dark">
-                <div class="card-body p-3 pt-1">
-                    <h6>{{trans("employer::task.task_title")}}</h6>
-                    <p class="text-sm"> {{$task->title}}</p>
-                </div>
-                <hr class="horizontal dark">
-                <div class="card-body p-3 pt-1">
-                    <h6>{{trans("employer::task.task_description")}}</h6>
-                    <p class="text-sm">{{$task->description}}</p>
-                </div>
-                <hr class="horizontal dark">
-                <div class="card-body pt-0">
-                    <h6>{{trans('employer::task.category_actions')}}</h6>
-                    @for($i=0;$i<count($task->actions);$i++)
-                        <div class="d-flex align-items-center">
-                            <div class="text-center mx-2 w-5">
-                                <img src="{{asset('assets/img/default/action.png')}}" class="avatar-sm" alt="Actions">
-                            </div>
-                            <div class="my-auto ms-3">
-                                <div class="h-100">
-                                    <p class="text-sm mb-1">
-                                        {{$task->actions[$i]->categoryAction->name}}
-                                    </p>
-                                </div>
-                            </div>
-                            <span
-                                class="badge bg-gradient-success badge-sm my-auto ms-auto me-3">{{trans('employer::task.action_enable')}}</span>
-                        </div>
-                        <hr class="horizontal dark last-ch">
-                    @endfor
 
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 col-sm-12 ">
-            <div class="card">
-                <div class="card-header pb-0 p-3">
-                    <div class="d-flex justify-content-between">
-                        <h6 class="mb-0">{{trans('employer::task.TaskRegion')}}</h6>
-                    </div>
-                </div>
-                <div class="card-body p-3">
-                    <ul class="list-group list-group-flush list my--3">
-                        @for($i=0;$i<count($result);$i++)
-                            <li class="list-group-item px-0 border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-
-                                        <img src="{{Storage::url($result[$i]['flag'])}}" class="avatar-sm"
-                                             alt="Country flag">
-                                    </div>
-                                    <div class="col">
-                                        <h6 class="text-sm mb-0">{{$result[$i]['country']}}</h6>
-                                    </div>
-                                    <div class="col text-center">
-                                        <ul class="font-elmessiry">
-                                            @if(is_array($result[$i]['cities']))
-                                                <ul>
-                                                    @if($app_local == "ar")
-                                                        @for($j=0;$j<count($result[$i]['cities']);$j++)
-                                                            <li> {{\Modules\Region\Entities\City::withoutTrashed()->find($result[$i]['cities'][$j])->ar_name}} </li>
-                                                        @endfor
-                                                    @else
-                                                        <li> {{\Modules\Region\Entities\City::withoutTrashed()->find($result[$i]['cities'][$j])->name}} </li>
-
-                                                    @endif
-                                                </ul>
-
-                                            @else
-                                                <span
-                                                    class="text-primary">{{trans('employer::task.all_city_in:').$result[$i]['country']}}</span>
-                                            @endif
-                                        </ul>
-                                    </div>
-                                </div>
-
-                            </li>
-                            <hr class="horizontal dark mt-3 mb-1 last-ch">
-                        @endfor
-                    </ul>
-                </div>
-            </div>
-            <div class="card mt-3 bg-gradient-secondary">
-                <div class="card-header bg-transparent pb-0">
-                    <h6 class="text-white">{{trans('employer::task.TaskWorkFlow')}}</h6>
-                </div>
-                <div class="card-body p-3">
-                    <div class="timeline timeline-one-side" data-timeline-axis-style="dashed">
-                        @for($i=0;$i<count($task->workflows);$i++)
-                            <div class="timeline-block mb-3">
-                            <span class="timeline-step bg-light">
-                            <i class="ni ni-ui-04 text-success text-gradient"></i>
-                            </span>
-                                <div class="timeline-content">
-                                    <h6 class="text-white text-sm font-weight-bold mb-0">{{trans('employer::task.steep_number: ')}}{{$i+1}}</h6>
-                                    <p class="text-white text-sm mt-3 mb-2">
-                                        {{$task->workflows[$i]->work_flow}}
-                                    </p>
-                                </div>
-                            </div>
-                        @endfor
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card mt-4 mx-lg-4 mx-sm-0 col-lg-6 col-sm-12">
+    <div class="row mt-2 p-3">
+        <h5 class="mt-3 text-primary">{{trans('employer::task.TaskInformation')}}</h5>
+        <div class="card mt-3 bg-white">
             <div class="card-body p-3">
-                <div class="d-flex">
-                    <div class="avatar mx-2 avatar-lg">
-                        <img class="" alt="Image placeholder" src="{{asset('assets/img/default/asking.png')}}">
-                    </div>
-                    <div class="ms-2 my-auto">
-                        <h6 class="mb-0">{{trans('employer::task.question_as_worker')}}</h6>
+                <div class="row">
+                    <div class="col-12 text-center ">
+                        <div class="mx-2">
+                            <img src="{{Storage::url($task->category->image)}}"
+                                 class="avatar avatar-xxl me-2"
+                                 alt="avatar image">
+                        </div>
                     </div>
                 </div>
-                @if($task->proof_request_ques == null)
-                    <p class="mt-3 text-danger"> {{trans('employer::task.not_proof_request_ques')}} </p>
-                @else
-                    <p class="mt-3"> {{$task->proof_request_ques}}</p>
-                @endif
+                <div class="row">
+                    <div class="col-12">
+                        <div class="task-details-info task-sections">
+                            <div class="task-details-table d-flex flex-wrap justify-content-between">
+                                <div class="col-12 col-lg-6 col-md-6 mt-4">
+                                        <div class="d-lg-flex d-sm-grid d-md-grid align-items-baseline">
+                                            <div class="name-td text-dark fw-bold">{{trans("employer::task.task_title")}}</div>
+                                            <div class="table-details text-uppercase">{{$task->title}}</div>
+                                        </div>
+                                        <div class="d-lg-flex d-sm-grid d-md-grid align-items-baseline">
+                                            <div class="name-td text-dark fw-bold">{{trans("employer::task.task_description")}}</div>
+                                            <div class="table-details">{{$task->description}}</div>
+                                        </div>
+                                        <div class="d-lg-flex d-sm-grid d-md-grid align-items-baseline">
+                                            <div class="name-td text-dark fw-bold">{{trans('employer::task.TaskWorkFlow')}}</div>
+                                            <div class="table-details">
+                                                <ul>
+                                                    @for($i=0;$i<count($task->workflows);$i++)
+                                                        <li>
+                                                            <p class="text-sm mb-1">
+                                                                {{$task->workflows[$i]->work_flow}}
+                                                            </p>
+                                                        </li>
+                                                    @endfor
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="d-lg-flex d-sm-grid d-md-grid align-items-baseline">
+                                            <div class="name-td text-dark fw-bold">{{trans('employer::task.TaskRegion2')}}</div>
+                                            <div class="table-details">
+                                                <ul class="list-group list-group-flush list my--3">
+                                                    @for($i=0;$i<count($result);$i++)
+                                                        <li class="list-group-item px-0 border-0">
+                                                            <div class="row align-items-center">
+                                                                <div class="col-auto">
 
-                <hr class="horizontal dark">
-                <div class="d-flex">
-                    <div class="avatar mx-2 avatar-lg">
-                        <img alt="Image placeholder" src="{{asset('assets/img/default/screenshot-2.png')}}">
-                    </div>
-                    <div class="ms-2 my-auto">
-                        <h6 class="mb-0">{{trans('employer::task.screenshot_as_worker')}}</h6>
+                                                                    <img src="{{Storage::url($result[$i]['flag'])}}" class="avatar-sm"
+                                                                         alt="Country flag">
+                                                                </div>
+                                                                <div class="col">
+                                                                    <h6 class="text-sm mb-0">{{$result[$i]['country']}}</h6>
+                                                                </div>
+                                                                <div class="col text-center">
+                                                                    <ul class="font-elmessiry">
+                                                                        @if(is_array($result[$i]['cities']))
+                                                                            <ul>
+                                                                                @if($app_local == "ar")
+                                                                                    @for($j=0;$j<count($result[$i]['cities']);$j++)
+                                                                                        <li> {{\Modules\Region\Entities\City::withoutTrashed()->find($result[$i]['cities'][$j])->ar_name}} </li>
+                                                                                    @endfor
+                                                                                @else
+                                                                                    <li> {{\Modules\Region\Entities\City::withoutTrashed()->find($result[$i]['cities'][$j])->name}} </li>
+
+                                                                                @endif
+                                                                            </ul>
+
+                                                                        @else
+                                                                            <span
+                                                                                class="text-primary">{{trans('employer::task.all_city_in:').$result[$i]['country']}}</span>
+                                                                        @endif
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+
+                                                        </li>
+                                                        <hr class="horizontal dark mt-3 mb-1 last-ch">
+                                                    @endfor
+                                                </ul>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="col-12 col-lg-6 col-md-6">
+                                        <div class="d-lg-flex d-sm-grid d-md-grid align-items-baseline" >
+                                            <div class="name-td text-dark fw-bold">{{trans('employer::task.question_as_worker2')}}</div>
+                                            <div class="table-details text-uppercase">
+                                                @if($task->proof_request_ques == null)
+                                                    <p class="mt-3 text-danger"> {{trans('employer::task.not_proof_request_ques')}} </p>
+                                                @else
+                                                    <p class="mt-3"> {{$task->proof_request_ques}}</p>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="d-lg-flex d-sm-grid d-md-grid align-items-baseline" >
+                                            <div class="name-td text-dark fw-bold"> {{trans('employer::task.screenshot_as_worker')}} </div>
+                                            <div class="table-details">
+                                                @if($task->proof_request_screenShot == null)
+                                                    <p class="mt-3 text-danger"> {{trans('employer::task.not_proof_request_screenShot')}} </p>
+                                                @else
+                                                    <p class="mt-3">{{$task->proof_request_screenShot }}</p>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="d-lg-flex d-sm-grid d-md-grid align-items-baseline" >
+                                            <div class="name-td text-dark fw-bold">{{trans('employer::task.category_actions')}}</div>
+                                            <div class="table-details">
+                                                <ul>
+                                                    @for($i=0;$i<count($task->actions);$i++)
+                                                        <li>
+                                                            @if(app()->getLocale()=="ar")
+                                                                <p class="text-sm mb-1">
+                                                                    {{$task->actions[$i]->categoryAction->ar_name}}
+                                                                </p>
+                                                            @else
+                                                                <p class="text-sm mb-1">
+                                                                    {{$task->actions[$i]->categoryAction->name}}
+                                                                </p>
+                                                            @endif
+                                                        </li>
+                                                    @endfor
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="d-lg-flex d-sm-grid d-md-grid align-items-baseline" >
+                                            <div class="name-td text-dark fw-bold">{{trans('employer::task.Additional features')}}</div>
+                                            <div class="table-details">
+                                                <ul>
+                                                    <li>
+                                                        <div class="d-flex align-items-center justify-content-between">
+                                                            <p class="my-auto ms-3">{{trans('employer::task.professionalOnly')}}</p>
+                                                            @if($task->only_professional == "true")
+                                                                <span
+                                                                    class="badge bg-gradient-success badge-sm my-auto me-3">{{trans('employer::task.feather_enable')}}</span>
+                                                            @else
+                                                                <span
+                                                                    class="badge bg-gradient-danger badge-sm my-auto me-3">{{trans('employer::task.feather_disable')}}</span>
+                                                            @endif
+
+
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="d-flex align-items-center justify-content-between">
+                                                            <p class="my-auto ms-3">{{trans('employer::task.pinTaskTop')}}</p>
+                                                            @if($task->special_access == "true")
+                                                                <span
+                                                                    class="badge bg-gradient-success badge-sm my-auto me-3">{{trans('employer::task.feather_enable')}}</span>
+                                                            @else
+                                                                <span
+                                                                    class="badge bg-gradient-danger badge-sm my-auto me-3">{{trans('employer::task.feather_disable')}}</span>
+                                                            @endif
+
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="d-flex align-items-center justify-content-between">
+
+                                                            @if($task->daily_limit == null)
+                                                                <div class="my-auto ms-3">
+                                                                    <div class="h-100">
+                                                                        <p class="text-sm mb-1">
+                                                                            {{trans('employer::task.worker_daily_limit')}}
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                <span
+                                                                    class="badge bg-gradient-danger badge-sm my-auto me-3">{{trans('employer::task.feather_disable')}}</span>
+                                                            @else
+                                                                <div class="my-auto ms-3">
+                                                                    <div class="h-100">
+                                                                        <p class="text-sm mb-1">
+                                                                            {{trans('employer::task.worker_daily_limit')}}
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                <span
+                                                                    class="badge bg-gradient-success badge-sm my-auto me-3">{{trans('employer::task.feather_enable')}}</span>
+                                                            @endif
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                @if($task->proof_request_screenShot == null)
-                    <p class="mt-3 text-danger"> {{trans('employer::task.not_proof_request_screenShot')}} </p>
-                @else
-                    <p class="mt-3">{{$task->proof_request_screenShot }}</p>
-                @endif
 
             </div>
         </div>
-        <div class="card mt-4 mx-1 col-lg-5  ">
-            <div class="card-header pb-3">
-                <h5>{{trans('employer::task.Additional features')}}</h5>
-            </div>
-            <div class="card-body pt-0">
-                <div class="d-flex align-items-center">
-                    <div class="text-center mx-2 w-5">
-                        <img src="{{asset('assets/img/default/onlyProfessional.png')}}" class="avatar-sm"
-                             alt="professionalOnly">
-                    </div>
-                    <p class="my-auto ms-3">{{trans('employer::task.professionalOnly')}}</p>
-                    @if($task->only_professional == "true")
-                        <span
-                            class="badge bg-gradient-success badge-sm my-auto ms-auto me-3">{{trans('employer::task.feather_enable')}}</span>
-                    @else
-                        <span
-                            class="badge bg-gradient-danger badge-sm my-auto ms-auto me-3">{{trans('employer::task.feather_disable')}}</span>
-                    @endif
 
-
-                </div>
-                <hr class="horizontal dark">
-                <div class="d-flex align-items-center">
-                    <div class="text-center mx-2 w-5">
-                        <img src="{{asset('assets/img/default/taskFeatured.png')}}" class="avatar-sm"
-                             alt="taskFeatured">
-                    </div>
-                    <p class="my-auto ms-3">{{trans('employer::task.pinTaskTop')}}</p>
-                    @if($task->special_access == "true")
-                        <span
-                            class="badge bg-gradient-success badge-sm my-auto ms-auto me-3">{{trans('employer::task.feather_enable')}}</span>
-                    @else
-                        <span
-                            class="badge bg-gradient-danger badge-sm my-auto ms-auto me-3">{{trans('employer::task.feather_disable')}}</span>
-                    @endif
-
-                </div>
-                <hr class="horizontal dark">
-                <div class="d-flex align-items-center">
-                    <div class="text-center mx-2 w-5">
-                        <img src="{{asset('assets/img/default/dailyLimit.png')}}" class="avatar-sm"
-                             alt="worker_daily_limit">
-                    </div>
-                    @if($task->daily_limit == null)
-                        <div class="my-auto ms-3">
-                            <div class="h-100">
-                                <p class="text-sm mb-1">
-                                    {{trans('employer::task.worker_daily_limit')}}
-                                </p>
-                            </div>
-                        </div>
-                        <span
-                            class="badge bg-gradient-danger badge-sm my-auto ms-auto me-3">{{trans('employer::task.feather_disable')}}</span>
-                    @else
-                        <div class="my-auto ms-3">
-                            <div class="h-100">
-                                <p class="text-sm mb-1">
-                                    {{trans('employer::task.worker_daily_limit')}}
-                                </p>
-                                <p class="mb-0 text-xs">
-                                    {{$task->daily_limit}}  {{trans('employer::task.worker_in_task')}}
-                                </p>
-                            </div>
-                        </div>
-                        <span
-                            class="badge bg-gradient-success badge-sm my-auto ms-auto me-3">{{trans('employer::task.feather_enable')}}</span>
-                    @endif
-                </div>
-            </div>
-        </div>
     </div>
 
-    <div class="row mt-4">
+
+    <div class="row mt-2">
+        <h5 class="mt-3 text-primary">{{trans('employer::task.discountCodeDetails')}}</h5>
         <div class="col-2"></div>
         <div class="col-lg-8 col-sm-12 mt-4 mt-lg-0">
             <div class="card bg-gradient-white">
@@ -372,17 +341,18 @@
                         <div class="col-12">
                             <div class="numbers">
                                 @if($data->discountCode->type == "MainCosts")
-                                    <div class="d-flex align-items-center">
+                                    <div class="d-flex justify-content-between align-items-center">
                                         <h6 class="font-weight-bolder mb-0">
                                             {{trans('employer::task.main_task_price')}}
                                         </h6>
-                                        <span class="badge bg-gradient-secondary badge-lg my-auto ms-auto me-3 text-lg decuration"
-                                              id="OldMainCostsBadge">
+                                        <span
+                                            class="badge bg-gradient-secondary badge-lg text-lg decuration"
+                                            id="OldMainCostsBadge">
                                              {{ convertCurrency($task->task_cost + ($task->task_cost * $data->discountCode->discount_amount / 100), auth()->user()->current_currency) }}
                                              <span class="text-xxs">{{auth()->user()->current_currency}}</span>
 
                                         </span>
-                                        <span class="badge bg-gradient-success badge-lg my-auto ms-auto me-3 text-lg  "
+                                        <span class="badge bg-gradient-success badge-lg text-lg  "
                                               id="NewMainCostsBadge">
                                            {{ convertCurrency($task->task_cost, auth()->user()->current_currency) }}
                                              <span class="text-xxs">{{auth()->user()->current_currency}}</span>
@@ -390,89 +360,95 @@
                                         </span>
                                     </div>
                                     <hr class="horizontal dark">
-                                    <div class="d-flex align-items-center">
+                                    <div class="d-flex justify-content-between align-items-center">
                                         <h6 class="font-weight-bolder mb-0">
                                             {{trans('employer::task.other_task_price')}}
                                         </h6>
-                                        <span class="badge bg-gradient-secondary badge-lg my-auto ms-auto me-3  text-lg"
+                                        <span class="badge bg-gradient-secondary badge-lg  text-lg"
                                               id="OldAdditionalCostsBadge">
                                             {{ convertCurrency($task->other_cost, auth()->user()->current_currency) }}
                                              <span class="text-xxs">{{auth()->user()->current_currency}}</span>
                                         </span>
-                                        <span class="badge bg-gradient-secondary badge-lg my-auto ms-auto me-3  text-lg "
-                                              id="NewAdditionalCostsBadge">
+                                        <span
+                                            class="badge bg-gradient-secondary badge-lg  text-lg "
+                                            id="NewAdditionalCostsBadge">
                                             {{ convertCurrency($task->other_cost, auth()->user()->current_currency) }}
                                              <span class="text-xxs">{{auth()->user()->current_currency}}</span>
                                         </span>
                                     </div>
                                     <hr class="horizontal dark">
-                                    <div class="d-flex align-items-center">
+                                    <div class="d-flex justify-content-between align-items-center">
 
                                         <h6 class="font-weight-bolder mb-0">
                                             {{trans('employer::task.final_task_price')}}
                                         </h6>
-                                        <span class="badge bg-gradient-secondary badge-lg my-auto ms-auto me-3 text-lg decuration"
-                                              id="OldTotalCostsBadge">{{
+                                        <span
+                                            class="badge bg-gradient-secondary badge-lg text-lg decuration"
+                                            id="OldTotalCostsBadge">{{
                                             convertCurrency(($task->task_cost + ($task->task_cost * $data->discountCode->discount_amount / 100)) + ($task->other_cost), auth()->user()->current_currency)
                                                                             }}
                                                 <span class="text-xxs">{{auth()->user()->current_currency}}</span>
                                         </span>
-                                        <span class="badge bg-gradient-secondary badge-lg my-auto ms-auto me-3 text-lg  "
-                                              id="NewTotalCostsBadge">
+                                        <span
+                                            class="badge bg-gradient-secondary badge-lg text-lg  "
+                                            id="NewTotalCostsBadge">
                                             {{ convertCurrency($task->total_cost, auth()->user()->current_currency) }}
                                              <span class="text-xxs">{{auth()->user()->current_currency}}</span>
                                         </span>
                                     </div>
                                 @endif
                                 @if($data->discountCode->type == "AdditionalCosts")
-                                    <div class="d-flex align-items-center">
+                                    <div class="d-flex justify-content-between align-items-center">
                                         <h6 class="font-weight-bolder mb-0">
                                             {{trans('employer::task.main_task_price')}}
                                         </h6>
-                                        <span class="badge bg-gradient-secondary badge-lg my-auto ms-auto me-3 text-lg"
+                                        <span class="badge bg-gradient-secondary badge-lg text-lg"
                                               id="OldMainCostsBadge">
                                             {{ convertCurrency($task->task_cost, auth()->user()->current_currency) }}
                                              <span class="text-xxs">{{auth()->user()->current_currency}}</span>
                                         </span>
-                                        <span class="badge bg-gradient-secondary badge-lg my-auto ms-auto me-3 text-lg  "
-                                              id="NewMainCostsBadge">
+                                        <span
+                                            class="badge bg-gradient-secondary badge-lg text-lg  "
+                                            id="NewMainCostsBadge">
 
                                                 {{ convertCurrency($task->task_cost, auth()->user()->current_currency) }}
                                              <span class="text-xxs">{{auth()->user()->current_currency}}</span>
                                         </span>
                                     </div>
                                     <hr class="horizontal dark">
-                                    <div class="d-flex align-items-center">
+                                    <div class="d-flex justify-content-between align-items-center">
                                         <h6 class="font-weight-bolder mb-0">
                                             {{trans('employer::task.other_task_price')}}
                                         </h6>
-                                        <span class="badge bg-gradient-secondary badge-lg my-auto ms-auto me-3  text-lg decuration"
-                                              id="OldAdditionalCostsBadge ">{{
+                                        <span
+                                            class="badge bg-gradient-secondary badge-lg  text-lg decuration"
+                                            id="OldAdditionalCostsBadge ">{{
 
                                          convertCurrency(($task->other_cost + ($task->other_cost * $data->discountCode->discount_amount / 100)), auth()->user()->current_currency)
 
                                     }}
                                         <span class="text-xxs">{{auth()->user()->current_currency}}</span>
                                         </span>
-                                        <span class="badge bg-gradient-success badge-lg my-auto ms-auto me-3  text-lg "
+                                        <span class="badge bg-gradient-success badge-lg  text-lg "
                                               id="NewAdditionalCostsBadge">
                                              {{ convertCurrency($task->other_cost, auth()->user()->current_currency) }}
                                              <span class="text-xxs">{{auth()->user()->current_currency}}</span>
                                         </span>
                                     </div>
                                     <hr class="horizontal dark">
-                                    <div class="d-flex align-items-center">
+                                    <div class="d-flex justify-content-between align-items-center">
 
                                         <h6 class="font-weight-bolder mb-0">
                                             {{trans('employer::task.final_task_price')}}
                                         </h6>
-                                        <span class="badge bg-gradient-secondary badge-lg my-auto ms-auto me-3 text-lg decuration"
-                                              id="OldTotalCostsBadge">{{
+                                        <span
+                                            class="badge bg-gradient-secondary badge-lg text-lg decuration"
+                                            id="OldTotalCostsBadge">{{
                                             convertCurrency(($task->other_cost + ($task->other_cost * $data->discountCode->discount_amount / 100)) + $task->task_cost, auth()->user()->current_currency)
                                                     }}
                                              <span class="text-xxs">{{auth()->user()->current_currency}}</span>
                                         </span>
-                                        <span class="badge bg-gradient-secondary badge-lg my-auto ms-auto me-3 text-lg "
+                                        <span class="badge bg-gradient-secondary badge-lg text-lg "
                                               id="NewTotalCostsBadge">
                                          {{ convertCurrency($task->total_cost, auth()->user()->current_currency) }}
                                              <span class="text-xxs">{{auth()->user()->current_currency}}</span>
@@ -484,45 +460,48 @@
 
 
                                 @if($data->discountCode->type == "TotalCosts")
-                                    <div class="d-flex align-items-center">
+                                    <div class="d-flex justify-content-between align-items-center">
                                         <h6 class="font-weight-bolder mb-0">
                                             {{trans('employer::task.main_task_price')}}
                                         </h6>
-                                        <span class="badge bg-gradient-secondary badge-lg my-auto ms-auto me-3 text-lg"
+                                        <span class="badge bg-gradient-secondary badge-lg text-lg"
                                               id="OldMainCostsBadge">
                                               {{ convertCurrency($task->task_cost, auth()->user()->current_currency) }}
                                              <span class="text-xxs">{{auth()->user()->current_currency}}</span>
                                         </span>
-                                        <span class="badge bg-gradient-secondary badge-lg my-auto ms-auto me-3 text-lg  "
-                                              id="NewMainCostsBadge">
+                                        <span
+                                            class="badge bg-gradient-secondary badge-lg text-lg  "
+                                            id="NewMainCostsBadge">
                                                   {{ convertCurrency($task->task_cost, auth()->user()->current_currency) }}
                                              <span class="text-xxs">{{auth()->user()->current_currency}}</span>
                                         </span>
                                     </div>
-                                        <hr class="horizontal dark">
-                                    <div class="d-flex align-items-center">
+                                    <hr class="horizontal dark">
+                                    <div class="d-flex justify-content-between align-items-center">
                                         <h6 class="font-weight-bolder mb-0">
                                             {{trans('employer::task.other_task_price')}}
                                         </h6>
-                                        <span class="badge bg-gradient-secondary badge-lg my-auto ms-auto me-3  text-lg"
+                                        <span class="badge bg-gradient-secondary badge-lg  text-lg"
                                               id="OldAdditionalCostsBadge">
                                               {{ convertCurrency($task->other_cost, auth()->user()->current_currency) }}
                                              <span class="text-xxs">{{auth()->user()->current_currency}}</span>
                                         </span>
-                                        <span class="badge bg-gradient-secondary badge-lg my-auto ms-auto me-3  text-lg "
-                                              id="NewAdditionalCostsBadge">
+                                        <span
+                                            class="badge bg-gradient-secondary badge-lg  text-lg "
+                                            id="NewAdditionalCostsBadge">
                                              {{ convertCurrency($task->other_cost, auth()->user()->current_currency) }}
                                              <span class="text-xxs">{{auth()->user()->current_currency}}</span>
                                         </span>
                                     </div>
                                     <hr class="horizontal dark">
-                                    <div class="d-flex align-items-center">
+                                    <div class="d-flex justify-content-between align-items-center">
 
                                         <h6 class="font-weight-bolder mb-0">
                                             {{trans('employer::task.final_task_price')}}
                                         </h6>
-                                        <span class="badge bg-gradient-secondary badge-lg my-auto ms-auto me-3 text-lg decuration"
-                                              id="OldTotalCostsBadge ">{{
+                                        <span
+                                            class="badge bg-gradient-secondary badge-lg text-lg decuration"
+                                            id="OldTotalCostsBadge ">{{
 
                                     convertCurrency($task->total_cost + ($task->total_cost * $data->discountCode->discount_amount / 100), auth()->user()->current_currency)
 
@@ -530,7 +509,7 @@
 
                                              <span class="text-xxs">{{auth()->user()->current_currency}}</span>
                                         </span>
-                                        <span class="badge bg-gradient-success badge-lg my-auto ms-auto me-3 text-lg "
+                                        <span class="badge bg-gradient-success badge-lg text-lg "
                                               id="NewTotalCostsBadge">
                                                 {{ convertCurrency($task->total_cost, auth()->user()->current_currency) }}
                                              <span class="text-xxs">{{auth()->user()->current_currency}}</span>
@@ -550,7 +529,7 @@
     <div class="row mt-4">
         <div class="button-row ">
             <a href="{{route('employer.show.my.discount.code')}}"
-               class="btn btn-info btn-lg w-100   mb-2">{{trans('employer::task.back')}}</a>
+               class="btn btn-primary btn-lg w-100 text-white  mb-2">{{trans('employer::task.back')}}</a>
         </div>
     </div>
 
