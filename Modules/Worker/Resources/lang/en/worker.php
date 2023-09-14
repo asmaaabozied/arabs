@@ -238,7 +238,7 @@ return [
     'normal_level' => 'Normal',
     'tasks' => 'Tasks',
     'AppLanguage' => 'Language',
-
+    'worker_name' => 'Worker Name',
     'Currencies' => 'Currencies',
     'ArabicLang' => 'Arabic',
     'EnglishLang' => 'English',
