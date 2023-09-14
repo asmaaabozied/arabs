@@ -333,8 +333,8 @@
 
     <div class="row mt-2">
         <h5 class="mt-3 text-primary">{{trans('employer::task.discountCodeDetails')}}</h5>
-        <div class="col-2"></div>
-        <div class="col-lg-8 col-sm-12 mt-4 mt-lg-0">
+
+        <div class="col-lg-12 col-sm-12 mt-4 mt-lg-0">
             <div class="card bg-gradient-white">
                 <div class="card-body p-3">
                     <div class="row">
@@ -524,7 +524,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-2"></div>
     </div>
     <div class="row mt-4">
         <div class="button-row ">
