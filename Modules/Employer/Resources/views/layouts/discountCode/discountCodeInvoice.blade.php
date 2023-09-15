@@ -346,7 +346,7 @@
                                             {{trans('employer::task.main_task_price')}}
                                         </h6>
                                         <span
-                                            class="badge bg-gradient-secondary badge-lg text-lg decuration"
+                                            class="badge bg-gradient-primary badge-lg text-lg decuration"
                                             id="OldMainCostsBadge">
                                              {{ convertCurrency($task->task_cost + ($task->task_cost * $data->discountCode->discount_amount / 100), auth()->user()->current_currency) }}
                                              <span class="text-xxs">{{auth()->user()->current_currency}}</span>
@@ -364,13 +364,13 @@
                                         <h6 class="font-weight-bolder mb-0">
                                             {{trans('employer::task.other_task_price')}}
                                         </h6>
-                                        <span class="badge bg-gradient-secondary badge-lg  text-lg"
+                                        <span class="badge bg-gradient-primary badge-lg  text-lg"
                                               id="OldAdditionalCostsBadge">
                                             {{ convertCurrency($task->other_cost, auth()->user()->current_currency) }}
                                              <span class="text-xxs">{{auth()->user()->current_currency}}</span>
                                         </span>
                                         <span
-                                            class="badge bg-gradient-secondary badge-lg  text-lg "
+                                            class="badge bg-gradient-primary badge-lg  text-lg "
                                             id="NewAdditionalCostsBadge">
                                             {{ convertCurrency($task->other_cost, auth()->user()->current_currency) }}
                                              <span class="text-xxs">{{auth()->user()->current_currency}}</span>
@@ -383,14 +383,14 @@
                                             {{trans('employer::task.final_task_price')}}
                                         </h6>
                                         <span
-                                            class="badge bg-gradient-secondary badge-lg text-lg decuration"
+                                            class="badge bg-gradient-primary badge-lg text-lg decuration"
                                             id="OldTotalCostsBadge">{{
                                             convertCurrency(($task->task_cost + ($task->task_cost * $data->discountCode->discount_amount / 100)) + ($task->other_cost), auth()->user()->current_currency)
                                                                             }}
                                                 <span class="text-xxs">{{auth()->user()->current_currency}}</span>
                                         </span>
                                         <span
-                                            class="badge bg-gradient-secondary badge-lg text-lg  "
+                                            class="badge bg-gradient-primary badge-lg text-lg  "
                                             id="NewTotalCostsBadge">
                                             {{ convertCurrency($task->total_cost, auth()->user()->current_currency) }}
                                              <span class="text-xxs">{{auth()->user()->current_currency}}</span>
@@ -402,13 +402,13 @@
                                         <h6 class="font-weight-bolder mb-0">
                                             {{trans('employer::task.main_task_price')}}
                                         </h6>
-                                        <span class="badge bg-gradient-secondary badge-lg text-lg"
+                                        <span class="badge bg-gradient-primary badge-lg text-lg"
                                               id="OldMainCostsBadge">
                                             {{ convertCurrency($task->task_cost, auth()->user()->current_currency) }}
                                              <span class="text-xxs">{{auth()->user()->current_currency}}</span>
                                         </span>
                                         <span
-                                            class="badge bg-gradient-secondary badge-lg text-lg  "
+                                            class="badge bg-gradient-primary badge-lg text-lg  "
                                             id="NewMainCostsBadge">
 
                                                 {{ convertCurrency($task->task_cost, auth()->user()->current_currency) }}
@@ -421,7 +421,7 @@
                                             {{trans('employer::task.other_task_price')}}
                                         </h6>
                                         <span
-                                            class="badge bg-gradient-secondary badge-lg  text-lg decuration"
+                                            class="badge bg-gradient-primary badge-lg  text-lg decuration"
                                             id="OldAdditionalCostsBadge ">{{
 
                                          convertCurrency(($task->other_cost + ($task->other_cost * $data->discountCode->discount_amount / 100)), auth()->user()->current_currency)
@@ -442,13 +442,13 @@
                                             {{trans('employer::task.final_task_price')}}
                                         </h6>
                                         <span
-                                            class="badge bg-gradient-secondary badge-lg text-lg decuration"
+                                            class="badge bg-gradient-primary badge-lg text-lg decuration"
                                             id="OldTotalCostsBadge">{{
                                             convertCurrency(($task->other_cost + ($task->other_cost * $data->discountCode->discount_amount / 100)) + $task->task_cost, auth()->user()->current_currency)
                                                     }}
                                              <span class="text-xxs">{{auth()->user()->current_currency}}</span>
                                         </span>
-                                        <span class="badge bg-gradient-secondary badge-lg text-lg "
+                                        <span class="badge bg-gradient-primary badge-lg text-lg "
                                               id="NewTotalCostsBadge">
                                          {{ convertCurrency($task->total_cost, auth()->user()->current_currency) }}
                                              <span class="text-xxs">{{auth()->user()->current_currency}}</span>
@@ -464,13 +464,13 @@
                                         <h6 class="font-weight-bolder mb-0">
                                             {{trans('employer::task.main_task_price')}}
                                         </h6>
-                                        <span class="badge bg-gradient-secondary badge-lg text-lg"
+                                        <span class="badge bg-gradient-primary badge-lg text-lg"
                                               id="OldMainCostsBadge">
                                               {{ convertCurrency($task->task_cost, auth()->user()->current_currency) }}
                                              <span class="text-xxs">{{auth()->user()->current_currency}}</span>
                                         </span>
                                         <span
-                                            class="badge bg-gradient-secondary badge-lg text-lg  "
+                                            class="badge bg-gradient-primary badge-lg text-lg  "
                                             id="NewMainCostsBadge">
                                                   {{ convertCurrency($task->task_cost, auth()->user()->current_currency) }}
                                              <span class="text-xxs">{{auth()->user()->current_currency}}</span>
@@ -481,13 +481,13 @@
                                         <h6 class="font-weight-bolder mb-0">
                                             {{trans('employer::task.other_task_price')}}
                                         </h6>
-                                        <span class="badge bg-gradient-secondary badge-lg  text-lg"
+                                        <span class="badge bg-gradient-primary badge-lg  text-lg"
                                               id="OldAdditionalCostsBadge">
                                               {{ convertCurrency($task->other_cost, auth()->user()->current_currency) }}
                                              <span class="text-xxs">{{auth()->user()->current_currency}}</span>
                                         </span>
                                         <span
-                                            class="badge bg-gradient-secondary badge-lg  text-lg "
+                                            class="badge bg-gradient-primary badge-lg  text-lg "
                                             id="NewAdditionalCostsBadge">
                                              {{ convertCurrency($task->other_cost, auth()->user()->current_currency) }}
                                              <span class="text-xxs">{{auth()->user()->current_currency}}</span>
@@ -500,7 +500,7 @@
                                             {{trans('employer::task.final_task_price')}}
                                         </h6>
                                         <span
-                                            class="badge bg-gradient-secondary badge-lg text-lg decuration"
+                                            class="badge bg-gradient-primary badge-lg text-lg decuration"
                                             id="OldTotalCostsBadge ">{{
 
                                     convertCurrency($task->total_cost + ($task->total_cost * $data->discountCode->discount_amount / 100), auth()->user()->current_currency)
@@ -528,7 +528,7 @@
     <div class="row mt-4">
         <div class="button-row ">
             <a href="{{route('employer.show.my.discount.code')}}"
-               class="btn btn-primary btn-lg w-100 text-white  mb-2">{{trans('employer::task.back')}}</a>
+               class="btn bg-gradient-primary btn-lg w-100 text-white  mb-2">{{trans('employer::task.back')}}</a>
         </div>
     </div>
 
