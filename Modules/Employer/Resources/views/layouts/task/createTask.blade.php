@@ -7,7 +7,7 @@
         }
     </style>
     <div class="row">
-        <div class="multisteps-form ">
+        <div class="col-lg-12 multisteps-form ">
 
             @if($errors->has('category_id'))
 
@@ -170,7 +170,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 col-lg-12 m-auto">
+                <div class="col-10 col-lg-10 m-auto">
                     <form action="{{route('employer.create.task.steep.one')}}" method="POST"
                           enctype="multipart/form-data"
                           class="multisteps-form__form ">
@@ -659,6 +659,19 @@
                         </div>
                     </form>
                 </div>
+                <div class="col-md-2">
+                    <div class="card p-1 ">
+
+                            <div id="cart">
+                                <h4 class="text-center">Task Cost </h4>
+                                <ul id="cart-items"></ul>
+                                <div> <span >Total</span> <span id="cart-total" >$0</span></div>
+                            </div>
+
+                    </div>
+
+
+                </div>
 
             </div>
         </div>
@@ -668,7 +681,8 @@
     ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{{asset('assets/js/plugins/multistep-form.js')}}"></script>
     <!-- Repeater JavaScript -->
     <script src="{{asset('assets/js/plugins/repeater/jquery.min.js')}}"></script>
@@ -714,7 +728,7 @@
 
                                     '<div class="col-2 text-center">' +
                                     '<div class="form-check form-switch" >' +
-                                    '<input class="form-check-input features toggle" name="' + 'CategoryAction[' + actions.id + '][toggle]' + '"' + 'data-price="' + actions.price + '"' + 'type="checkbox" aria-checked="ch" >' +
+                                    '<input class="form-check-input features toggle" name="' + 'CategoryAction[' + actions.id + '][toggle]' + '"' + 'data-price="' + actions.price + '"' + 'data-item="' + actions.ar_name + '"' + 'type="checkbox" aria-checked="ch" >' +
                                     '</div>' +
                                     '</div>' +
                                     '</div>' +
@@ -731,7 +745,7 @@
 
                                     '<div class="col-3 text-center">' +
                                     '<div class="form-check form-switch" >' +
-                                    '<input class="form-check-input features toggle" name="' + 'CategoryAction[' + actions.id + '][toggle]' + '"' + 'data-price="' + actions.price + '"' + 'type="checkbox" data-toggle="off">' +
+                                    '<input class="form-check-input features toggle" name="' + 'CategoryAction[' + actions.id + '][toggle]' + '"' + 'data-price="' + actions.price + '"' + 'data-item="' + actions.ar_name + '"' + 'type="checkbox" data-toggle="off">' +
                                     '</div>' +
                                     '</div>' +
                                     '<div class="col-6">' +
@@ -762,6 +776,58 @@
                                 @endif
 
                             });
+
+                            $('.form-check-input').on('change', function() {
+
+                            var item = $(this).data('item');
+                            var price = $(this).data('price');
+
+                            if($(this).is(':checked')) {
+                            addToCart(item, price);
+                            } else {
+                            removeFromCart(item,price);
+                            }
+
+                            updateCartTotal();
+
+                            });
+
+                            function addToCart(item, price) {
+                                // add item html to cart
+                                $('#cart-items').append(`
+                                    <li data-item="${item}" data-price="${price}">
+                                    ${item}: $${price}
+                                    <a href="#" class="remove-item p-2 ">X</a>
+                                    </li>
+                                `);
+                            }
+
+                            function removeFromCart(item,price) {
+                                // remove item html from cart
+                                $('#cart-items li[data-item="'+item+'"]').remove();
+                            }
+
+
+                            function updateCartTotal() {
+                                var total = 0;
+
+                                $('#cart-items li').each(function() {
+                                var price = $(this).data('price');
+                                total += price;
+                                });
+
+                                $('#cart-total').text('$' + total);
+                            }
+
+                            $('#cart-items').on('click', '.remove-item', function() {
+
+                                var item = $(this).closest('li').data('item');
+
+                                $(this).closest('li').remove();
+
+                                updateCartTotal();
+
+                            })
 
                         } else {
                             // todo make handel else error
