@@ -529,6 +529,7 @@
                                                                                 class="form-check-input features toggle"
                                                                                 name=""
                                                                                 data-price="{{$pin_task_on_top->fees}}"
+                                                                                data-item="{{trans('employer::task.pinTaskTop')}}"
                                                                                 type="checkbox"
                                                                                 id=""
                                                                                 data-toggle="off" disabled>
@@ -575,6 +576,7 @@
                                                                             class="form-check-input features toggle"
                                                                             name="only_professional"
                                                                             data-price="{{$only_professional_worker->fees}}"
+                                                                            data-item="{{trans('employer::task.professionalOnly')}}"
                                                                             type="checkbox"
                                                                             id="professionalOnly_toggle"
                                                                             data-toggle="off">
@@ -610,6 +612,7 @@
                                                                             class="form-check-input features toggle"
                                                                             name="daily_limit_toggle"
                                                                             data-price="{{$daily_limit_worker->fees}}"
+                                                                            data-item="{{trans('employer::task.worker_daily_limit')}}"
                                                                             type="checkbox"
                                                                             id="worker_daily_limit_toggle"
                                                                         >
@@ -665,7 +668,7 @@
                             <div id="cart">
                                 <h4 class="text-center">Task Cost </h4>
                                 <ul id="cart-items"></ul>
-                                <div> <span >Total</span> <span id="cart-total" >$0</span></div>
+                                <div class="text-center"> <span >Total</span> <span id="cart-total" >$0</span></div>
                             </div>
 
                     </div>
@@ -796,8 +799,8 @@
                                 // add item html to cart
                                 $('#cart-items').append(`
                                     <li data-item="${item}" data-price="${price}">
-                                    ${item}: $${price}
-                                    <a href="#" class="remove-item p-2 ">X</a>
+                                    ${item} : $${price}
+
                                     </li>
                                 `);
                             }
@@ -819,7 +822,7 @@
                                 $('#cart-total').text('$' + total);
                             }
 
-                            $('#cart-items').on('click', '.remove-item', function() {
+                            $('#cart-items').on('click',  function() {
 
                                 var item = $(this).closest('li').data('item');
 
@@ -1031,21 +1034,21 @@
     <!-- final check if is all inputs is filled in step 2 -->
     <script>
         function checkAllInputs() {
-            const Toast = Swal.mixin({
-                toast: true,
-                @if(app()->getLocale() == "ar")
-                position: 'top-start',
-                @else
-                position: 'top-end',
-                @endif
-                showConfirmButton: false,
-                timer: 6000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            });
+            // const Toast = Swal.mixin({
+            //     toast: true,
+            //     @if(app()->getLocale() == "ar")
+            //     position: 'top-start',
+            //     @else
+            //     position: 'top-end',
+            //     @endif
+            //     showConfirmButton: false,
+            //     timer: 6000,
+            //     timerProgressBar: true,
+            //     didOpen: (toast) => {
+            //         toast.addEventListener('mouseenter', Swal.stopTimer)
+            //         toast.addEventListener('mouseleave', Swal.resumeTimer)
+            //     }
+            // });
             $(document).ready(function () {
                 var titleLenghth = document.getElementById('taskTitle').value.length;
                 var DescLenghth = document.getElementById('TaskDescription').value.length;
