@@ -931,7 +931,7 @@
                             for (let e = 1; e <= s; e++)
                                 if (1 == e || e == s || e >= o && e <= l) {
                                     const s = t[e - 1];
-                                    s.classList.remove("active"), d.push(s)
+                                    s.classList.remove("active2"), d.push(s)
                                 }
                             return d.forEach((e => {
                                 const s = e.children[0].getAttribute("data-page");
@@ -948,9 +948,9 @@
                                 }
                                 c.push(e), r = e
                             })), c
-                        })(this.links, this.currentPage, this.pages.length, this.options.pagerDelta, this.options.ellipsisText)), this.links[this.currentPage - 1].classList.add("active"), n.forEach((t => {
-                            t.classList.remove("active"), e.appendChild(t)
-                        })), this.links[this.currentPage - 1].classList.add("active"), this.options.nextPrev && e.appendChild(r(t, i, this.options.nextText)), this.options.firstLast && e.appendChild(r(t, this.totalPages, this.options.lastText)), this.pagers.forEach((t => {
+                        })(this.links, this.currentPage, this.pages.length, this.options.pagerDelta, this.options.ellipsisText)), this.links[this.currentPage - 1].classList.add("active2"), n.forEach((t => {
+                            t.classList.remove("active2"), e.appendChild(t)
+                        })), this.links[this.currentPage - 1].classList.add("active2"), this.options.nextPrev && e.appendChild(r(t, i, this.options.nextText)), this.options.firstLast && e.appendChild(r(t, this.totalPages, this.options.lastText)), this.pagers.forEach((t => {
                             t.appendChild(e.cloneNode(!0))
                         }))
                     }
@@ -1016,7 +1016,7 @@
                     let t = this.pages.length;
                     for (; t--;) {
                         const e = t + 1;
-                        this.links[t] = r(0 === t ? "active" : "", e, e)
+                        this.links[t] = r(0 === t ? "active2" : "", e, e)
                     }
                     this.sorting = !1, this.render("pager"), this.rows().update(), this.emit("datatable.update")
                 }

@@ -102,7 +102,7 @@ If any error occurs later in the style of a page, please check this file -->
 <div class="side_menu">
     <ul class="">
         <li class="side_menu_item
-            {{request()->routeIs('show.employer.panel') ? 'active' : ''}}
+            {{request()->routeIs('show.employer.panel') ? 'active_side' : ''}}
             ">
             <a class="nav-link nav-text  " href="{{route('show.employer.panel')}}">
                 <i class="fa-solid fa fa-globe"></i>
@@ -110,8 +110,8 @@ If any error occurs later in the style of a page, please check this file -->
             </a>
         </li>
         <li class="side_menu_item
-            {{request()->routeIs('employer.show.my.profile') ? 'active' : ''}}
-            {{request()->routeIs('employer.show.edit.my.profile.form') ? 'active' : ''}}
+            {{request()->routeIs('employer.show.my.profile') ? 'active_side' : ''}}
+        {{request()->routeIs('employer.show.edit.my.profile.form') ? 'active_side' : ''}}
             ">
             <a class="nav-link nav-text" href="{{route('employer.show.my.profile')}}">
                 <i class="fa-solid fa-user"></i>
@@ -119,13 +119,13 @@ If any error occurs later in the style of a page, please check this file -->
             </a>
         </li>
         <li class="side_menu_item
-                     {{request()->routeIs('employer.show.not.published.tasks') ? 'active' : ''}}
-                     {{request()->routeIs('employer.show.not.payed.tasks') ? 'active' : ''}}
-                     {{request()->routeIs('employer.show.task.in.rejected.status') ? 'active' : ''}}
-                     {{request()->routeIs('employer.show.task.in.complete.status') ? 'active' : ''}}
-                     {{request()->routeIs('employer.show.task.in.active.status') ? 'active' : ''}}
-                     {{request()->routeIs('employer.show.task.in.pending.status') ? 'active' : ''}}
-                     {{request()->routeIs('employer.show.create.task.page') ? 'active' : ''}}
+                     {{request()->routeIs('employer.show.not.published.tasks') ? 'active_side' : ''}}
+        {{request()->routeIs('employer.show.not.payed.tasks') ? 'active_side' : ''}}
+        {{request()->routeIs('employer.show.task.in.rejected.status') ? 'active_side' : ''}}
+        {{request()->routeIs('employer.show.task.in.complete.status') ? 'active_side' : ''}}
+        {{request()->routeIs('employer.show.task.in.active.status') ? 'active_side' : ''}}
+        {{request()->routeIs('employer.show.task.in.pending.status') ? 'active_side' : ''}}
+        {{request()->routeIs('employer.show.create.task.page') ? 'active_side' : ''}}
 
             ">
             <a data-bs-toggle="collapse" href="#dashboardsExamples" class="nav-link nav-text collapsed"
@@ -135,12 +135,12 @@ If any error occurs later in the style of a page, please check this file -->
             </a>
             <div class="collapse
                   {{request()->routeIs('employer.show.not.published.tasks') ? 'show' : ''}}
-                  {{request()->routeIs('employer.show.not.payed.tasks') ? 'show' : ''}}
-                  {{request()->routeIs('employer.show.task.in.rejected.status') ? 'show' : ''}}
-                  {{request()->routeIs('employer.show.task.in.complete.status') ? 'show' : ''}}
-                  {{request()->routeIs('employer.show.task.in.active.status') ? 'show' : ''}}
-                  {{request()->routeIs('employer.show.task.in.pending.status') ? 'show' : ''}}
-                  {{request()->routeIs('employer.show.create.task.page') ? 'show' : ''}}
+            {{request()->routeIs('employer.show.not.payed.tasks') ? 'show' : ''}}
+            {{request()->routeIs('employer.show.task.in.rejected.status') ? 'show' : ''}}
+            {{request()->routeIs('employer.show.task.in.complete.status') ? 'show' : ''}}
+            {{request()->routeIs('employer.show.task.in.active.status') ? 'show' : ''}}
+            {{request()->routeIs('employer.show.task.in.pending.status') ? 'show' : ''}}
+            {{request()->routeIs('employer.show.create.task.page') ? 'show' : ''}}
                 " id="dashboardsExamples" style="">
                 <ul class="nav ms-4 ps-3">
                     <li class=" ">
@@ -154,7 +154,7 @@ If any error occurs later in the style of a page, please check this file -->
                     <li class="">
                         <a class="nav-link nav-text
                         {{request()->routeIs('employer.show.task.in.pending.status') ? 'active-select-nav' : ''}}
-                        " href="{{route('employer.show.task.in.pending.status')}}">
+                            " href="{{route('employer.show.task.in.pending.status')}}">
                             <span
                                 class="sidenav-normal"> {{trans('employer::employer.taskInPendingToAcceptAdmin')}} </span>
                         </a>
@@ -163,7 +163,7 @@ If any error occurs later in the style of a page, please check this file -->
                         <a class="nav-link nav-text
                           {{request()->routeIs('employer.show.task.in.active.status') ? 'active-select-nav' : ''}}
 
-                        " href="{{route('employer.show.task.in.active.status')}}">
+                            " href="{{route('employer.show.task.in.active.status')}}">
                             <span class="sidenav-normal"> {{trans('employer::employer.taskInActive')}} </span>
                         </a>
                     </li>
@@ -171,7 +171,7 @@ If any error occurs later in the style of a page, please check this file -->
                         <a class="nav-link nav-text
                           {{request()->routeIs('employer.show.task.in.complete.status') ? 'active-select-nav' : ''}}
 
-                        " href="{{route('employer.show.task.in.complete.status')}}">
+                            " href="{{route('employer.show.task.in.complete.status')}}">
                             <span class="sidenav-normal"> {{trans('employer::employer.taskInComplete')}}  </span>
                         </a>
                     </li>
@@ -185,7 +185,7 @@ If any error occurs later in the style of a page, please check this file -->
                     <li class="nav-item">
                         <a class="nav-link nav-text
                          {{request()->routeIs('employer.show.not.payed.tasks') ? 'active-select-nav' : ''}}
-                        " href="{{route('employer.show.not.payed.tasks')}}">
+                            " href="{{route('employer.show.not.payed.tasks')}}">
                             <span class="sidenav-normal">{{trans('employer::employer.NotPayedTasks')}}</span>
                         </a>
                     </li>
@@ -203,8 +203,10 @@ If any error occurs later in the style of a page, please check this file -->
         </li>
 
         <li class="side_menu_item
-              {{request()->routeIs('employer.show.my.discount.code') ? 'active' : ''}}
-              {{request()->routeIs('employer.show.discountCode.invoice') ? 'active' : ''}}
+              {{request()->routeIs('employer.show.my.discount.code') ? 'active_side' : ''}}
+        {{request()->routeIs('employer.show.discountCode.invoice') ? 'active_side' : ''}}
+        {{request()->routeIs('employer.show.my.wages.and.costs') ? 'active_side' : ''}}
+        {{request()->routeIs('employer.show.my.wallet.history') ? 'active_side' : ''}}
             ">
 
             <a data-bs-toggle="collapse" href="#FinancialAffairs" class="nav-link nav-text collapsed"
@@ -215,21 +217,25 @@ If any error occurs later in the style of a page, please check this file -->
             <div class="collapse
             {{request()->routeIs('employer.show.my.discount.code') ? 'show' : ''}}
             {{request()->routeIs('employer.show.discountCode.invoice') ? 'show' : ''}}
+            {{request()->routeIs('employer.show.my.wages.and.costs') ? 'show' : ''}}
+            {{request()->routeIs('employer.show.my.wallet.history') ? 'show' : ''}}
 
-            " id="FinancialAffairs" style="">
+                " id="FinancialAffairs" style="">
                 <ul class="nav ms-4 ps-3">
 
                     <li class="nav-item">
                         <a class="nav-link nav-text
                            {{request()->routeIs('employer.show.my.discount.code') ? 'active-select-nav' : ''}}
-                           {{request()->routeIs('employer.show.discountCode.invoice') ? 'active-select-nav' : ''}}
+                        {{request()->routeIs('employer.show.discountCode.invoice') ? 'active-select-nav' : ''}}
                             " href="{{route('employer.show.my.discount.code')}}">
                             <span class="sidenav-normal">  {{trans('employer::employer.DiscountCodes')}}</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-text"
-                           href="#">
+                        <a class="nav-link nav-text
+                                {{request()->routeIs('employer.show.my.wages.and.costs') ? 'active-select-nav' : ''}}
+                            "
+                           href="{{route('employer.show.my.wages.and.costs')}}">
                             <span class="sidenav-normal"> {{trans('employer::employer.WagesAndCosts')}} </span>
                         </a>
                     </li>
@@ -242,39 +248,57 @@ If any error occurs later in the style of a page, please check this file -->
                         </a>
                     </li>
                     <li class="">
-                        <a class="nav-link nav-text"
-                           href="#">
+                        <a class="nav-link nav-text
+                               {{request()->routeIs('employer.show.my.wallet.history') ? 'active-select-nav' : ''}}
+                            "
+                           href="{{route('employer.show.my.wallet.history')}}">
                             <span class="sidenav-normal">{{trans('employer::employer.walletHistory')}}</span>
                         </a>
                     </li>
                 </ul>
             </div>
         </li>
-        <li class="side_menu_item">
+        <li class="side_menu_item
+          {{request()->routeIs('employer.show.switching.account.history') ? 'active_side' : ''}}
+        {{request()->routeIs('employer.show.my.privilege.history') ? 'active_side' : ''}}
+        {{request()->routeIs('employer.show.rule.of.privileges') ? 'active_side' : ''}}
+            ">
             <a data-bs-toggle="collapse" href="#ManagementSection" class="nav-link nav-text"
                aria-controls="ManagementSection" role="button" aria-expanded="">
                 <i class="fa fa-list-ol"></i>
                 <span class="nav-link-text m-2 fw-bold">{{trans('employer::employer.ManagementSection')}}</span>
             </a>
-            <div class="collapse" id="ManagementSection" style="">
+            <div class="collapse
+                {{request()->routeIs('employer.show.switching.account.history') ? 'show' : ''}}
+            {{request()->routeIs('employer.show.my.privilege.history') ? 'show' : ''}}
+            {{request()->routeIs('employer.show.rule.of.privileges') ? 'show' : ''}}
+                " id="ManagementSection" style="">
                 <ul class="nav ms-4 ps-3">
 
                     <li class="">
-                        <a class="nav-link nav-text"
-                           href="#">
+                        <a class="nav-link nav-text
+                            {{request()->routeIs('employer.show.switching.account.history') ? 'active-select-nav' : ''}}
+                            "
+                           href="{{route('employer.show.switching.account.history')}}">
                             <span
                                 class="sidenav-normal">  {{trans('employer::employer.switchingAccountHistory')}}</span>
                         </a>
                     </li>
                     <li class="">
-                        <a class="nav-link nav-text"
-                           href="#">
+                        <a class="nav-link nav-text
+                             {{request()->routeIs('employer.show.my.privilege.history') ? 'active-select-nav' : ''}}
+                            "
+
+                           href="{{route('employer.show.my.privilege.history')}}">
                             <span class="sidenav-normal">  {{trans('employer::employer.PrivilegesHistory')}} </span>
                         </a>
                     </li>
                     <li class="">
-                        <a class="nav-link nav-text"
-                           href="#">
+                        <a class="nav-link nav-text
+                             {{request()->routeIs('employer.show.rule.of.privileges') ? 'active-select-nav' : ''}}
+
+                            "
+                           href="{{route('employer.show.rule.of.privileges')}}">
                             <span class="sidenav-normal">{{trans('employer::employer.RuleOfPrivileges')}} </span>
                         </a>
                     </li>
@@ -303,54 +327,84 @@ If any error occurs later in the style of a page, please check this file -->
 
 
         <li class="side_menu_item">
-            <a data-bs-toggle="collapse" href="#AppLanguage" class="nav-link nav-text" aria-controls="AppLanguage"
-               role="button" aria-expanded="">
+            <a data-bs-toggle="collapse" href="#AppLanguage" class="nav-link nav-text"
+               aria-controls="AppLanguage" role="button" aria-expanded="">
                 <i class="fa-solid fa fa-globe"></i>
-
                 <span class="nav-link-text m-2 fw-bold">{{trans('employer::employer.AppLanguage')}}</span>
             </a>
-            <div class="collapse" id="AppLanguage" style="">
+            <div class="collapse " id="AppLanguage" style="">
                 <ul class="nav ms-4 ps-3">
                     <li class="">
                         <a class="nav-link nav-text active-select-nav"
-                           href="#">
-                            <span class="sidenav-normal"> العربية  </span>
+                           href="{{route('employer.change.app.language','ar')}}">
+                            <span class="sidenav-normal"> {{trans('employer::employer.ArabicLang')}} </span>
+
                         </a>
                     </li>
                     <li class="">
                         <a class="nav-link nav-text"
-                           href="#">
-                            <span class="sidenav-normal"> الإنجليزية  </span>
+                           href="{{route('employer.change.app.language','en')}}">
+                            <span class="sidenav-normal">  {{trans('employer::employer.EnglishLang')}} </span>
                         </a>
                     </li>
                 </ul>
             </div>
         </li>
-
         <li class="side_menu_item">
-            <a data-bs-toggle="collapse" href="#SelectedCurrency" class="nav-link nav-text"
-               aria-controls="SelectedCurrency" role="button" aria-expanded="">
+            <a data-bs-toggle="collapse" href="#SelectedCurrency" class="nav-link nav-text" aria-controls="SelectedCurrency"
+               role="button" aria-expanded="">
                 <i class="fa fa-usd"></i>
+
                 <span class="nav-link-text m-2 fw-bold">{{trans('employer::employer.Currencies')}}</span>
             </a>
-            <div class="collapse " id="SelectedCurrency" style="">
+            <div class="collapse" id="SelectedCurrency" style="">
                 <ul class="nav ms-4 ps-3">
-                    <li class="">
-                        <a class="nav-link nav-text active-select-nav"
-                           href="#">
-                            <span class="sidenav-normal"> دولار أمريكي  </span>
+                    <?php
+                    $currencies = \Modules\Currency\Entities\Currency::withoutTrashed()->get();
+                    ?>
 
-                        </a>
-                    </li>
-                    <li class="">
-                        <a class="nav-link nav-text"
-                           href="#">
-                            <span class="sidenav-normal"> جنيه مصري  </span>
-                        </a>
-                    </li>
+                    @if(app()->getLocale() == "ar")
+                        @foreach($currencies as $currency)
+                            <li class="">
+                                <a class="nav-link nav-text
+                                 {{auth()->user()->current_currency == $currency->en_name  ? 'active-select-nav' : ''}}
+                                    "
+                                   href="{{route('employer.change.app.currency',$currency->en_name)}}">
+                                    <span class="sidenav-normal"> {{$currency->ar_name}}   </span>
+                                </a>
+                            </li>
+                        @endforeach
+                    @elseif(app()->getLocale() == "en")
+                        @foreach($currencies as $currency)
+                            <li class="">
+                                <a class="nav-link nav-text
+                                 {{auth()->user()->current_currency == $currency->en_name  ? 'active-select-nav' : ''}}
+                                    "
+                                   href="{{route('employer.change.app.currency',$currency->en_name)}}">
+                                    <span class="sidenav-normal"> {{$currency->ar_name}}   </span>
+                                </a>
+                            </li>
+                        @endforeach
+                    @else
+                        @foreach($currencies as $currency)
+                            <li class="">
+                                <a class="nav-link nav-text
+                                 {{auth()->user()->current_currency == $currency->en_name  ? 'active-select-nav' : ''}}
+                                    "
+                                   href="{{route('employer.change.app.currency',$currency->en_name)}}">
+                                    <span class="sidenav-normal"> {{$currency->ar_name}}   </span>
+                                </a>
+                            </li>
+                        @endforeach
+                    @endif
                 </ul>
             </div>
         </li>
+
+
+
+
+
         <div class=" side_menu_item ">
             <div class="d-flex justify-content-around col-auto pt-2 pb-2 ">
                 <div class="form-check form-switch my-auto">
@@ -494,7 +548,8 @@ If any error occurs later in the style of a page, please check this file -->
                         <div class="d-flex justify-content-center my-2">
                             <div class="mx-2">
                                 <a style="color: #395185;" href="#">
-                                    <svg class="svg-inline--fa fa-facebook" width="25" aria-hidden="true" focusable="false"
+                                    <svg class="svg-inline--fa fa-facebook" width="25" aria-hidden="true"
+                                         focusable="false"
                                          data-prefix="fab" data-icon="facebook" role="img"
                                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
                                         <path fill="currentColor"
@@ -504,7 +559,8 @@ If any error occurs later in the style of a page, please check this file -->
                             </div>
                             <div class="mx-2">
                                 <a style="color: #55ACEE;" href="#">
-                                    <svg class="svg-inline--fa fa-twitter" width="25" aria-hidden="true" focusable="false"
+                                    <svg class="svg-inline--fa fa-twitter" width="25" aria-hidden="true"
+                                         focusable="false"
                                          data-prefix="fab" data-icon="twitter" role="img"
                                          xmlns="http://www.w3.org/2000/svg"
                                          viewBox="0 0 512 512" data-fa-i2svg="">
@@ -513,9 +569,10 @@ If any error occurs later in the style of a page, please check this file -->
                                     </svg><!-- <i class="fa-brands fa-twitter"></i> Font Awesome fontawesome.com -->
                                 </a>
                             </div>
-                            <div class="mx-2" >
+                            <div class="mx-2">
                                 <a style="color: #FF0000;" href="#">
-                                    <svg class="svg-inline--fa fa-youtube" width="25" aria-hidden="true" focusable="false"
+                                    <svg class="svg-inline--fa fa-youtube" width="25" aria-hidden="true"
+                                         focusable="false"
                                          data-prefix="fab" data-icon="youtube" role="img"
                                          xmlns="http://www.w3.org/2000/svg"
                                          viewBox="0 0 576 512" data-fa-i2svg="">
@@ -523,9 +580,10 @@ If any error occurs later in the style of a page, please check this file -->
                                               d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path>
                                     </svg><!-- <i class="fa-brands fa-youtube"></i> Font Awesome fontawesome.com --></a>
                             </div>
-                            <div class="mx-2" >
+                            <div class="mx-2">
                                 <a style="color: #0A66C2;" href="#">
-                                    <svg class="svg-inline--fa fa-linkedin" width="25" aria-hidden="true" focusable="false"
+                                    <svg class="svg-inline--fa fa-linkedin" width="25" aria-hidden="true"
+                                         focusable="false"
                                          data-prefix="fab" data-icon="linkedin" role="img"
                                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
                                         <path fill="currentColor"
@@ -534,43 +592,43 @@ If any error occurs later in the style of a page, please check this file -->
                                 </a>
                             </div>
                         </div>
-{{--                        <div class="f_links text-center">--}}
-{{--                            <div class="social_links mb-1 my-1">--}}
-{{--                                <a style="color: #395185;" href="#">--}}
-{{--                                    <svg class="svg-inline--fa fa-facebook" aria-hidden="true" focusable="false"--}}
-{{--                                         data-prefix="fab" data-icon="facebook" role="img"--}}
-{{--                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">--}}
-{{--                                        <path fill="currentColor"--}}
-{{--                                              d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path>--}}
-{{--                                    </svg><!-- <i class="fa-brands fa-facebook"></i> Font Awesome fontawesome.com -->--}}
-{{--                                </a>--}}
-{{--                                <a style="color: #55ACEE;" href="#">--}}
-{{--                                    <svg class="svg-inline--fa fa-twitter" aria-hidden="true" focusable="false"--}}
-{{--                                         data-prefix="fab" data-icon="twitter" role="img"--}}
-{{--                                         xmlns="http://www.w3.org/2000/svg"--}}
-{{--                                         viewBox="0 0 512 512" data-fa-i2svg="">--}}
-{{--                                        <path fill="currentColor"--}}
-{{--                                              d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path>--}}
-{{--                                    </svg><!-- <i class="fa-brands fa-twitter"></i> Font Awesome fontawesome.com -->--}}
-{{--                                </a>--}}
-{{--                                <a style="color: #FF0000;" href="#">--}}
-{{--                                    <svg class="svg-inline--fa fa-youtube" aria-hidden="true" focusable="false"--}}
-{{--                                         data-prefix="fab" data-icon="youtube" role="img"--}}
-{{--                                         xmlns="http://www.w3.org/2000/svg"--}}
-{{--                                         viewBox="0 0 576 512" data-fa-i2svg="">--}}
-{{--                                        <path fill="currentColor"--}}
-{{--                                              d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path>--}}
-{{--                                    </svg><!-- <i class="fa-brands fa-youtube"></i> Font Awesome fontawesome.com --></a>--}}
-{{--                                <a style="color: #0A66C2;" href="#">--}}
-{{--                                    <svg class="svg-inline--fa fa-linkedin" aria-hidden="true" focusable="false"--}}
-{{--                                         data-prefix="fab" data-icon="linkedin" role="img"--}}
-{{--                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">--}}
-{{--                                        <path fill="currentColor"--}}
-{{--                                              d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path>--}}
-{{--                                    </svg><!-- <i class="fa-brands fa-linkedin"></i> Font Awesome fontawesome.com -->--}}
-{{--                                </a>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
+                        {{--                        <div class="f_links text-center">--}}
+                        {{--                            <div class="social_links mb-1 my-1">--}}
+                        {{--                                <a style="color: #395185;" href="#">--}}
+                        {{--                                    <svg class="svg-inline--fa fa-facebook" aria-hidden="true" focusable="false"--}}
+                        {{--                                         data-prefix="fab" data-icon="facebook" role="img"--}}
+                        {{--                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">--}}
+                        {{--                                        <path fill="currentColor"--}}
+                        {{--                                              d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path>--}}
+                        {{--                                    </svg><!-- <i class="fa-brands fa-facebook"></i> Font Awesome fontawesome.com -->--}}
+                        {{--                                </a>--}}
+                        {{--                                <a style="color: #55ACEE;" href="#">--}}
+                        {{--                                    <svg class="svg-inline--fa fa-twitter" aria-hidden="true" focusable="false"--}}
+                        {{--                                         data-prefix="fab" data-icon="twitter" role="img"--}}
+                        {{--                                         xmlns="http://www.w3.org/2000/svg"--}}
+                        {{--                                         viewBox="0 0 512 512" data-fa-i2svg="">--}}
+                        {{--                                        <path fill="currentColor"--}}
+                        {{--                                              d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path>--}}
+                        {{--                                    </svg><!-- <i class="fa-brands fa-twitter"></i> Font Awesome fontawesome.com -->--}}
+                        {{--                                </a>--}}
+                        {{--                                <a style="color: #FF0000;" href="#">--}}
+                        {{--                                    <svg class="svg-inline--fa fa-youtube" aria-hidden="true" focusable="false"--}}
+                        {{--                                         data-prefix="fab" data-icon="youtube" role="img"--}}
+                        {{--                                         xmlns="http://www.w3.org/2000/svg"--}}
+                        {{--                                         viewBox="0 0 576 512" data-fa-i2svg="">--}}
+                        {{--                                        <path fill="currentColor"--}}
+                        {{--                                              d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path>--}}
+                        {{--                                    </svg><!-- <i class="fa-brands fa-youtube"></i> Font Awesome fontawesome.com --></a>--}}
+                        {{--                                <a style="color: #0A66C2;" href="#">--}}
+                        {{--                                    <svg class="svg-inline--fa fa-linkedin" aria-hidden="true" focusable="false"--}}
+                        {{--                                         data-prefix="fab" data-icon="linkedin" role="img"--}}
+                        {{--                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">--}}
+                        {{--                                        <path fill="currentColor"--}}
+                        {{--                                              d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path>--}}
+                        {{--                                    </svg><!-- <i class="fa-brands fa-linkedin"></i> Font Awesome fontawesome.com -->--}}
+                        {{--                                </a>--}}
+                        {{--                            </div>--}}
+                        {{--                        </div>--}}
                     </div>
                 </div>
             </div>

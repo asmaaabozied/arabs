@@ -82,7 +82,7 @@
                                 <div class="numbers mx-3">
                                     <p class="text-sm mb-0 text-capitalize font-weight-bold">{{trans('employer::employer.employer_privileges')}}</p>
                                     <h5 class="font-weight-bolder text-primary mb-0">
-                                        <a class="text-secondary" href="#">  {{array_sum($total)}}</a>
+                                        <a class="text-primary" href="{{route('employer.show.my.privilege.history')}}">  {{array_sum($total)}}</a>
 
                                     </h5>
                                 </div>

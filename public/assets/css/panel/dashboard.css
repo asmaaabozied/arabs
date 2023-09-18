@@ -7813,11 +7813,11 @@ textarea.form-control-lg {
 }
 
 .text-start {
-    text-align: right !important
+    text-align: left !important
 }
 
 .text-end {
-    text-align: left !important
+    text-align: right !important
 }
 
 .text-center {
@@ -19520,14 +19520,14 @@ Github: https://github.com/fiduswriter/Simple-DataTables
 .dataTable-bottom > nav:first-child,
 .dataTable-top > div:first-child,
 .dataTable-top > nav:first-child {
-    float: left
+    float: right;
 }
 
 .dataTable-bottom > div:last-child,
 .dataTable-bottom > nav:last-child,
 .dataTable-top > div:last-child,
 .dataTable-top > nav:last-child {
-    float: right
+    float: left;
 }
 
 .dataTable-selector {
@@ -19692,7 +19692,7 @@ Github: https://github.com/fiduswriter/Simple-DataTables
 }
 
 .dataTable-wrapper .dataTable-top .dataTable-dropdown {
-    float: left
+    float: right;
 }
 
 .dataTable-wrapper .dataTable-top .dataTable-dropdown label {

@@ -38,12 +38,11 @@ Route::prefix('panel/employer/discountCode')->middleware(['auth:employer','emplo
 
 
 Route::prefix('panel/employer/management-affairs/switch-account')->controller('Employer\SwitchingAccountController')
-//    ->middleware(['auth:employer','employerProfileCompleted','enabledEmployer','IsEmployerVerifyEmail'])->group(function() {
-    ->middleware(['auth:employer'])->group(function() {
+    ->middleware(['auth:employer','employerProfileCompleted','enabledEmployer','IsEmployerVerifyEmail'])->group(function() {
     Route::post('/', 'switchToWorker')->name('employer.switch.account.to.worker');
-//    Route::get('history','history')->name('employer.show.switching.account.history');
-//    Route::get('employer-to-worker-with-transfer-wallet-balance','showSwitchToWorkerAndTransferWalletBalanceForm')->name('employer.show.switch.account.to.worker.with.transfer.wallet.balance.form');
-//    Route::post('switch-to-worker-and-transfer-balance','switchToWorkerAndTransferWalletBalance')->name('employer.switch.account.to.worker.with.transfer.wallet.balance');
+    Route::get('history','history')->name('employer.show.switching.account.history');
+    Route::get('employer-to-worker-with-transfer-wallet-balance','showSwitchToWorkerAndTransferWalletBalanceForm')->name('employer.show.switch.account.to.worker.with.transfer.wallet.balance.form');
+    Route::post('switch-to-worker-and-transfer-balance','switchToWorkerAndTransferWalletBalance')->name('employer.switch.account.to.worker.with.transfer.wallet.balance');
 
 });
 

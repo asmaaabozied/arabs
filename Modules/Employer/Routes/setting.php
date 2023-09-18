@@ -12,5 +12,10 @@
 */
 
 use Illuminate\Support\Facades\Route;
+Route::prefix('employer/settings')->controller('LangAndCurrencyController')->middleware(['auth:employer'])->group(function() {
+    Route::get('change-app-language/{lang}', 'changeAppLang')->name('employer.change.app.language');
+    Route::get('change-app-currency/{currency}', 'changeCurrentCurrency')->name('employer.change.app.currency');
+
+});
 
 
