@@ -161,7 +161,7 @@ class EmployerCreateTaskController extends Controller
                 return redirect()->back();
 
             } else {
-                $average_price_of_category_actions = array_sum($price_of_category_actions) / count($price_of_category_actions);
+                $average_price_of_category_actions = array_sum($price_of_category_actions);
             }
 
 
@@ -313,8 +313,8 @@ class EmployerCreateTaskController extends Controller
             $final_average_of_all_country_and_city = array_sum($true_country_min_price) / count($true_country_min_price);
             $final_average_of_all_region_and_actions = $final_average_of_all_country_and_city + $average_price_of_category_actions;
         } elseif (count($true_country_min_price) == 0) {
-            $final_average_of_all_country_and_city = array_sum($average_selected_cities) / count($average_selected_cities);
-            $final_average_of_all_region_and_actions = $final_average_of_all_country_and_city + $average_price_of_category_actions;
+
+            $final_average_of_all_region_and_actions = array_sum($average_selected_cities) + $average_price_of_category_actions;
 
         } else {
             $average_of_selected_country = array_sum($true_country_min_price) / count($true_country_min_price);

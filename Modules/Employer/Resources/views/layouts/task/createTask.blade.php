@@ -877,14 +877,13 @@
                     success: function (result) {
                         @if(app()->getLocale() == "ar")
                         $city_repeater.html('<option class="bg-gray-500" selected  value="all_cities_in_this_country[' + idCountry + ']">' + "{{trans('employer::task.select_all_cities_in_this_country')}}" + '</option>');
-
-
                         $.each(result.cities, function (key, value) {
-                            $city_repeater.append('<option value="' + value
+                            $city_repeater.append('<option data-cost="'+value.min_city_cost+'" value="' + value
                                 .id + '">' + value.ar_name + '</option>');
                         });
                         @else
                         $city_repeater.html('<option class="bg-gray-500" selected  value="all_cities_in_this_country[' + idCountry + ']">' + "{{trans('employer::task.select_all_cities_in_this_country')}}" + '</option>');
+
                         $.each(result.cities, function (key, value) {
                             $city_repeater.append('<option value="' + value
                                 .id + '">' + value.name + '</option>');
