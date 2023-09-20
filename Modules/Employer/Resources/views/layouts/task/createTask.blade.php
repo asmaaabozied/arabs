@@ -350,7 +350,7 @@
 
                                             <input id="textQuestion" name="proof_request_ques"
                                                    class="multisteps-form__input  w-100 form-control" type="text"
-                                                   value="{{old('proof_request_ques')}}"
+                                                    value="{{old('proof_request_ques')}}"
                                                    placeholder="{{trans('employer::task.proof_request_ques')}}"
                                                    onfocus="focused(this)" onfocusout="defocused(this)">
                                         </div>
@@ -861,6 +861,36 @@
     <!--fetch city by country-->
     <script>
         $(document).ready(function () {
+            function city_update_price(){
+                $('.city_repeater').unbind();
+                $('.city_repeater').on('change',function(){
+                    $('.workers_city').remove();
+                    $('#cart-items').append(`<hr class='workers_city'>`);
+
+                $.each($('.city-select'),function(item){
+                    var cost = $(this).find('option:selected').data('cost');
+                    var city = $(this).find('option:selected').text();
+                    var workers  = $('#workerCount').val();
+                    var price = parseFloat(workers) * parseFloat(cost);
+
+
+                    $('#cart-items').append(`
+                            <li class='workers_city' data-item="${city}" data-price="${price}">
+                            ${workers} × ${city} : ${price}
+                            </li>
+                        `);
+                })
+                updateCartTotal();
+            })
+            }
+            function updateCartTotal() {
+                var total = 0;
+                $('#cart-items li').each(function() {
+                var price = $(this).data('price');
+                    total += price;
+                });
+                $('#cart-total').text('$' + total);
+            }
             $(document).on('change', '.mession-list .country_repeater', function () {
                 var idCountry = this.value;
 
@@ -885,10 +915,12 @@
                         $city_repeater.html('<option class="bg-gray-500" selected  value="all_cities_in_this_country[' + idCountry + ']">' + "{{trans('employer::task.select_all_cities_in_this_country')}}" + '</option>');
 
                         $.each(result.cities, function (key, value) {
-                            $city_repeater.append('<option value="' + value
+                            $city_repeater.append('<option data-cost="'+value.min_city_cost+'" value="' + value
                                 .id + '">' + value.name + '</option>');
                         });
                         @endif
+
+                        city_update_price();
 
                     }
                 });
