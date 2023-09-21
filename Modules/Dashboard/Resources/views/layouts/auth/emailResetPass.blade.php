@@ -5,7 +5,7 @@
 
             <div class="form_container  bg-white ">
                 <div class="heading text-center">
-                    <h1 class="form-heading">{{trans('dashboard::auth.reset Your password')}}</h1>
+                    <h1 class="form-heading">{{trans('dashboard::auth.reset Mail Your password')}}</h1>
 
                 </div>
                 <div class="login_form form-default">
@@ -30,10 +30,10 @@
                     @endif
 
 
-                    @if($errors->has('password'))
+                    @if($errors->has('email'))
 
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <span class="alert-text"><strong>{{trans('dashboard::auth.Error!')}}</strong> {{ $errors->first('password') }}</span>
+                            <span class="alert-text"><strong>{{trans('dashboard::auth.Error!')}}</strong> {{ $errors->first('email') }}</span>
                             <button type="button" class="btn-close" data-bs-dismiss="alert"
                                     aria-label="Close">
                             </button>
@@ -41,58 +41,19 @@
                     @endif
 
 
-                    @if($errors->has('confirm-password'))
-
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <span class="alert-text"><strong>{{trans('dashboard::auth.Error!')}}</strong> {{ $errors->first('confirm-password') }}</span>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close">
-                            </button>
-                        </div>
-                    @endif
-                    <form id="reg_form" class="row g-4" method="POST" action="{{route('signing.to.arab.workers')}}">
+                    <form id="reg_form" class="row g-4" method="POST" action="{{route('mail-forget-password')}}">
                         @csrf
 
 
                         <div class="col-md-12 relative">
-                            <input type="Password" class="form-control inputPlaceholder"
-                                   placeholder="{{trans('dashboard::auth.password')}}" name="password" required
-                                   id="password">
-                            <img src="{{asset('assets/img/pass.png')}}" class="input_img" id="myInput" width="16">
-                            <div id="password-close-eye">
-                                <i type="button" class="fas fa-eye-slash" id="togglePassword"
-                                   onclick="myFunction()"></i>
-                            </div>
-                            <div id="password-open-eye">
-                                <i type="button" class="fas fa-eye" id="togglePassword" onclick="myFunction()"></i>
-                            </div>
+                            <input type="email" class="form-control inputPlaceholder"
+                                   placeholder="{{trans('dashboard::auth.email')}}" name="email" required id="email">
+                            <img src="{{asset('assets/img/mail.png')}}" class="input_img" width="20">
                         </div>
 
-                        <div class="d-none" id="password-validation">
-                            <span class='text-danger d-block' id="match-pass"></span>
-                            <span class='text-danger d-block' id="min-length"></span>
-                            <span class='text-danger d-block' id="pass-show"></span>
+                        <div class="d-none" id="email-validation">
+                            <span class='text-danger d-block' id="email-show"></span>
                         </div>
-
-
-                        <div class="col-md-12 relative">
-                            <input type="password" class="form-control inputPlaceholder"
-                                   placeholder="{{trans('dashboard::auth.confirm_password')}}"
-                                   name="password_confirmation" required id="confirm-password">
-                            <img src="{{asset('assets/img/pass.png')}}" class="input_img" id="myInput1" width="16">
-                            <div id="confirm-close-eye">
-                                <i type="button" class="fas fa-eye-slash" id="togglePassword"
-                                   onclick="myFunction1()"></i>
-                            </div>
-                            <div id="confirm-open-eye">
-                                <i type="button" class="fas fa-eye" id="togglePassword" onclick="myFunction1()"></i>
-                            </div>
-                        </div>
-
-                        <div class="d-none" id="cpassword-validation">
-                            <span class='text-danger d-block' id="cpass-show"></span>
-                        </div>
-
 
 
                         <div class="col-md-12">

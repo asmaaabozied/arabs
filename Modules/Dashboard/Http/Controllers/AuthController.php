@@ -172,4 +172,20 @@ class AuthController extends Controller
 
         }
     }
+
+
+    public function showMailForgetForm(){
+        $page_name = 'ArabWorkers | Reset Password';
+        return view('dashboard::layouts.auth.emailResetPass', compact('page_name'));
+    }
+
+    public function sendMailForgetForm()
+    {
+        dd(1);
+    }
+    public function showForgetForm()
+    {
+        $page_name = 'ArabWorkers | Reset Password';
+        return view('dashboard::layouts.auth.resetPassword', compact('page_name'));
+    }
 }

@@ -49,8 +49,11 @@ return [
     'Email Or Administrator Number' => 'البريد الإلكتروني أو رقم الحساب',
     'captcha_code' => 'رمز التحقق',
     '404' => 'عرب وركرز | خطأ 404',
-    '' => '',
-    '' => '',
+    'reset Your password' => 'إعادة تعيين كلمة السر ',
+    'ArabWorkers | Reset Password' => 'إعادة تعيين كلمة السر ',
+
+    'confirm' => 'تاكيد',
+    'reset Mail Your password' => 'إرسال بريد لإعادة تعيين كلمة السر',
     '' => '',
     '' => '',
     '' => '',

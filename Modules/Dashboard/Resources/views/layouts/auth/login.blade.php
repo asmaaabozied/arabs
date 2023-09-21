@@ -130,7 +130,7 @@
                         </div>
                         <div> <span class="captcha-image">{!! Captcha::img() !!}</span> &nbsp;&nbsp;</div>
 
-                        <a class="text-red anchor-hover-color"  href="#">{{trans('dashboard::auth.are_you_forget_password')}}</a>
+                        <a class="text-red anchor-hover-color"  href="{{ route('show.forget.pass.form')}}">{{trans('dashboard::auth.are_you_forget_password')}}</a>
 
                         <div class="col-md-12">
                             <button type="submit" class="btn w-100 theme_green font-28 pt-2 pb-2">{{trans('dashboard::auth.Signing in')}}

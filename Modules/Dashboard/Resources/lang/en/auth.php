@@ -35,8 +35,12 @@ return [
      'NoCountryFound' => 'No countries found',
      'Error!' => 'Error!',
      'An error occurred while trying to create the account using google account, please try again' => 'An error occurred while trying to create the account using google account, please try again', 'You have successfully signed in with your Google account' => 'You have successfully signed in with your Google account', 'You have successfully signed up using your Google account, one step remains, which is to choose the type of membership you want to subscribe to on the ArabWorkers platform' => 'You have successfully signed up using your Google account, one step remains, which is to choose the type of membership you want to subscribe to on the ArabWorkers platform', 'Pleas Select Auth Type' => 'Please select auth type', 'Employer' => 'Employer', 'Worker' => 'Worker', 'employerAuthTypeDescription' => 'By subscribing to our platform as a client, you can create and manage various types of tasks, and delegate the task completion to the most skilled workers in the Arab world', 'workerAuthTypeDescription' => 'By subscribing to our platform as a worker, you can view tasks and apply to complete them and earn money and transfer it to your bank accounts easily', 'authByWorkerType' => 'Subscribe as a worker', 'authByEmployerType' => 'Subscribe as a client', 'You have successfully created an account with your Google account by worker type' => 'You have successfully created an account with your Google account by worker type', 'You have successfully created an account with your Google account by employer type' => 'You have successfully created an account with your Google account by employer type', 'Email Or Administrator Number' => 'Email or administrator number', 'captcha_code' => 'Captcha code',
-    // '' => '',
-    // '' => '',
+     'reset Your password' => 'Reset Your Password',
+     'ArabWorkers | Reset Password' => 'Reset Your Password',
+     'confirm' => 'Confirm',
+     'reset Mail Your password' => 'Send Reset Password to Your Mail',
+
+
     // '' => '',
     // '' => '',
     // '' => '',

@@ -22,4 +22,12 @@ Route::prefix('panel')->controller('AuthController')->group(function() {
     Route::get('sign-up', 'showSignUpForm')->name('show.sign.up.form');
     Route::post('signing-up', 'signingUp')->name('signing.to.arab.workers');
     Route::post('fetch-cities', 'fetchCity')->name('fetch.cities.when.sign.up');
+
+    // forget pass using mail
+    Route::get('forget-auth', 'showMailForgetForm')->name('show.forget.pass.mail.form');
+    Route::post('forget-auth', 'sendMailForgetForm')->name('mail-forget-password');
+
+    // submit passwords
+    Route::get('forget-pass', 'showForgetForm')->name('show.forget.pass.form');
+    Route::post('forget-pass', 'newPasswords')->name('submit.forget.pass.form');
 });
