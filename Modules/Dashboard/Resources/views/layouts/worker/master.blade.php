@@ -92,7 +92,7 @@ If any error occurs later in the style of a page, please check this file -->
             </a>
         </li>
         <li class="side_menu_item">
-            <a class="nav-link nav-text  " href="#">
+            <a class="nav-link nav-text  " href="{{ route('worker.show.my.profile')}}">
                 <i class="fa-solid fa-user"></i>
                 <span class="nav-link-text m-2 fw-bold">{{trans('worker::worker.MyProfile')}}</span>
             </a>

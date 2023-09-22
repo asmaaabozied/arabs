@@ -20,11 +20,9 @@ Route::prefix('panel/worker')->controller('Dashboard\WorkerDashboardController')
 });
 
 Route::prefix('panel/worker/my-profile')->middleware('auth:worker')->group(function() {
-//
     Route::get('/', 'Worker\WorkerProfileController@showMyProfile')->name('worker.show.my.profile');
     Route::get('edit-my-profile','Worker\WorkerProfileController@showUpdateMyProfileForm')->name('worker.show.edit.my.profile.form');
 //    Route::post('update-my-profile', 'Worker\WorkerProfileController@updateMyProfile')->name('worker.update.my.profile');
-//
 });
 Route::prefix('panel/worker/management-affairs/switchAccount')->controller('Worker\SwitchingAccountController')
 //    ->middleware(['auth:worker','workerProfileCompleted','enabledWorker','IsWorkerVerifyEmail'])->group(function() {
