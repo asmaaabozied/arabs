@@ -300,7 +300,7 @@ class SwitchingAccountController extends Controller
                 $this->workerGuard()->login($my_worker_account);
                 Session::put('applocale', $lang);
                 alert()->toast(trans('employer::employer.You have been successfully Account SwitchingToWorker And Transferred Balance'), 'success');
-                return redirect()->route('worker.show.main.page');
+                return redirect()->route('show.worker.panel');
             }
 
 

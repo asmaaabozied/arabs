@@ -14617,6 +14617,10 @@ textarea.form-control-lg {
 .fa-wallet:before {
     content: "\f555"
 }
+.fa-wallet2:before {
+    content: "\f555";
+    font-size: 35px;
+}
 
 .fa-clipboard-check:before {
     content: "\f46c"
@@ -16005,6 +16009,11 @@ textarea.form-control-lg {
 .fa-credit-card-alt:before, .fa-credit-card:before {
     content: "\f09d"
 }
+.fa-credit-card-alt2:before, .fa-credit-card-alt2:before {
+    content: "\f09d";
+    font-size: 35px;
+
+}
 
 .fa-automobile:before, .fa-car:before {
     content: "\f1b9"
@@ -17200,6 +17209,11 @@ textarea.form-control-lg {
 
 .fa-exchange-alt:before, .fa-right-left:before {
     content: "\f362"
+}
+.fa-exchange-alt2:before, .fa-right-left:before {
+    content: "\f362";
+    font-size: 35px;
+
 }
 
 .fa-paper-plane:before {
