@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('support_sections', function (Blueprint $table) {
             $table->id();
+            $table->string('icon')->nullable();
             $table->string('ar_name');
             $table->string('en_name');
             $table->text('en_description');

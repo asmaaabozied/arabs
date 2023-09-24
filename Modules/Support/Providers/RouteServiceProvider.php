@@ -13,6 +13,9 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     protected $moduleNamespace = 'Modules\Support\Http\Controllers';
+    protected $moduleAdminNamespace = 'Modules\Support\Http\Controllers\Admin';
+    protected $moduleEmployerNamespace = 'Modules\Support\Http\Controllers\Employer';
+    protected $moduleWorkerNamespace = 'Modules\Support\Http\Controllers\Worker';
 
     /**
      * Called before routes are registered.
@@ -36,6 +39,10 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
+
+        $this->mapAdminRoutes();
+        $this->mapEmployerRoutes();
+        $this->mapWorkerRoutes();
     }
 
     /**
@@ -50,6 +57,27 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware('web')
             ->namespace($this->moduleNamespace)
             ->group(module_path('Support', '/Routes/web.php'));
+    }
+
+    protected function mapAdminRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->moduleAdminNamespace)
+            ->group(module_path('Support', '/Routes/admin.php'));
+    }
+
+    protected function mapEmployerRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->moduleEmployerNamespace)
+            ->group(module_path('Support', '/Routes/employer.php'));
+    }
+
+    protected function mapWorkerRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->moduleWorkerNamespace)
+            ->group(module_path('Support', '/Routes/worker.php'));
     }
 
     /**

@@ -24,13 +24,6 @@
     @endif
 
     <link rel="stylesheet" href="{{asset('assets/css/panel/responsive.css')}}">
-    <!-- This file was causing some problems in displaying the font type in the project
-I examined it and did not find any class in it that could help us in the project
-If any error occurs later in the style of a page, please check this file -->
-{{--    <link rel="stylesheet" href="{{asset('assets/css/panel/custom.css')}}">--}}
-<!-- This file was causing some problems in displaying the font type in the project
-I examined it and did not find any class in it that could help us in the project
-If any error occurs later in the style of a page, please check this file -->
     <link rel="stylesheet" href="{{asset('assets/css/panel/dataTable.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/panel/loader.css')}}">
 </head>
@@ -306,18 +299,24 @@ If any error occurs later in the style of a page, please check this file -->
             </div>
         </li>
 
-        <li class="side_menu_item ">
+        <li class="side_menu_item
+ {{request()->routeIs('employer.show.my.tickets') ? 'active_side' : ''}}
+            ">
             <a data-bs-toggle="collapse" href="#EmployerSupport" class="nav-link nav-text"
                aria-controls="EmployerSupport" role="button" aria-expanded="">
                 <i class="fa-solid fa-headphones-simple"></i>
                 <span class="nav-link-text m-2 fw-bold">{{trans('employer::employer.SupportSection')}}</span>
 
             </a>
-            <div class="collapse" id="EmployerSupport" style="">
+            <div class="collapse
+                  {{request()->routeIs('employer.show.my.tickets') ? 'show' : ''}}
+                " id="EmployerSupport" style="">
                 <ul class="nav ms-4 ps-3">
 
                     <li class="">
-                        <a class="nav-link nav-text" href="">
+                        <a class="nav-link nav-text
+                         {{request()->routeIs('employer.show.my.tickets') ? 'active-select-nav' : ''}}
+                            " href="{{route('employer.show.my.tickets')}}">
                             <span class="sidenav-normal "> {{trans('employer::employer.myTickets')}} </span>
                         </a>
                     </li>
@@ -351,7 +350,8 @@ If any error occurs later in the style of a page, please check this file -->
             </div>
         </li>
         <li class="side_menu_item">
-            <a data-bs-toggle="collapse" href="#SelectedCurrency" class="nav-link nav-text" aria-controls="SelectedCurrency"
+            <a data-bs-toggle="collapse" href="#SelectedCurrency" class="nav-link nav-text"
+               aria-controls="SelectedCurrency"
                role="button" aria-expanded="">
                 <i class="fa fa-usd"></i>
 
@@ -400,9 +400,6 @@ If any error occurs later in the style of a page, please check this file -->
                 </ul>
             </div>
         </li>
-
-
-
 
 
         <div class=" side_menu_item ">

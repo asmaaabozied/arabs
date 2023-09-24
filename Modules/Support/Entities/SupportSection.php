@@ -11,6 +11,7 @@ class SupportSection extends Model
     use HasFactory,softDeletes;
 
     protected $fillable = [
+        'icon',
         'ar_name',
         'en_name',
         'en_description',
