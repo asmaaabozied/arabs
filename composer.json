@@ -11,8 +11,10 @@
         "laravel/sanctum": "^3.2",
         "laravel/socialite": "^5.9",
         "laravel/tinker": "^2.8",
+        "league/omnipay": "^3.2",
         "mews/captcha": "^3.3",
         "nwidart/laravel-modules": "^10.0",
+        "omnipay/paypal": "^3.0",
         "php-open-source-saver/jwt-auth": "^2.1",
         "realrashid/sweet-alert": "^7.1"
     },
