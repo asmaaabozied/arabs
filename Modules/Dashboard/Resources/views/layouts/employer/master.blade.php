@@ -201,6 +201,7 @@
         {{request()->routeIs('employer.show.my.wages.and.costs') ? 'active_side' : ''}}
         {{request()->routeIs('employer.show.my.wallet.history') ? 'active_side' : ''}}
         {{request()->routeIs('employer.show.switch.account.to.worker.with.transfer.wallet.balance.form') ? 'active_side' : ''}}
+        {{request()->routeIs('employer.show.charge.wallet.form') ? 'active_side' : ''}}
             ">
 
             <a data-bs-toggle="collapse" href="#FinancialAffairs" class="nav-link nav-text collapsed"
@@ -214,6 +215,7 @@
             {{request()->routeIs('employer.show.my.wages.and.costs') ? 'show' : ''}}
             {{request()->routeIs('employer.show.my.wallet.history') ? 'show' : ''}}
             {{request()->routeIs('employer.show.switch.account.to.worker.with.transfer.wallet.balance.form') ? 'show' : ''}}
+            {{request()->routeIs('employer.show.charge.wallet.form') ? 'show' : ''}}
 
                 " id="FinancialAffairs" style="">
                 <ul class="nav ms-4 ps-3">
@@ -248,6 +250,7 @@
                     <li class="">
                         <a class="nav-link nav-text
                                {{request()->routeIs('employer.show.my.wallet.history') ? 'active-select-nav' : ''}}
+                               {{request()->routeIs('employer.show.charge.wallet.form') ? 'active-select-nav' : ''}}
                             "
                            href="{{route('employer.show.my.wallet.history')}}">
                             <span class="sidenav-normal">{{trans('employer::employer.walletHistory')}}</span>
