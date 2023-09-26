@@ -33,8 +33,6 @@ Route::prefix('employer/tasks')->middleware(['auth:employer','employerProfileCom
     Route::get('not-published-tasks', 'showNotPublishedTasks')->name('employer.show.not.published.tasks');
     Route::get('delete-not-published-task/{task_id}/{task_number}', 'DeleteNoPublishedTask')->name('employer.delete.not.published.task');
 
-//    Route::get('show-task-details-after-create/{task_id}/{task_number}','showTaskDetailsAfterCreate')->name('employer.show.task.details.after.create');
-
 
     Route::get('not-payed-tasks', 'showNotPayedTasks')->name('employer.show.not.payed.tasks');
     Route::get('not-payed-task-details/{task_id}/{task_number}', 'unPayedTaskDetails')->name('employer.show.not.payed.tasks.details');

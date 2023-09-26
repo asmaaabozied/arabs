@@ -2,16 +2,23 @@
 
 namespace Modules\Employer\Http\Controllers\Task;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Employer\Entities\Employer;
+use Modules\Employer\Http\Requests\RejectTaskProofRequest;
 use Modules\Privilege\Entities\EmployerPrivilege;
 use Modules\Privilege\Entities\Privilege;
+use Modules\Privilege\Entities\WorkerPrivilege;
 use Modules\Region\Entities\City;
+use Modules\Setting\Entities\Setting;
 use Modules\Setting\Entities\Status;
+use Modules\Task\Entities\DeferredTask;
 use Modules\Task\Entities\Task;
+use Modules\Task\Entities\TaskProof;
 use Modules\Task\Entities\TaskStatus;
+use Modules\Worker\Entities\Worker;
 
 class EmployerMyTaskController extends Controller
 {
@@ -126,6 +133,8 @@ class EmployerMyTaskController extends Controller
         ]));
     }
 
+
+
     public function showActiveTasks()
     {
         $page_name = "ArabWorkers | Employer Panel - Active Tasks";
@@ -153,6 +162,311 @@ class EmployerMyTaskController extends Controller
             'activeTasks',
         ]));
     }
+
+    public function showOrHideActiveTask($task_id, $task_number)
+    {
+        $task = Task::withoutTrashed()->where([
+            ['employer_id', auth()->user()->id],
+            ['task_number', $task_number],
+            ['publish_status', 'Published'],
+        ])->findOrFail($task_id);
+
+        if ($task->is_hidden == "false") {
+            $task->update([
+                'is_hidden' => 'true',
+            ]);
+            alert()->toast(trans('employer::task.The task has been successfully hidden from workers, and will no longer appear unless you show it manually'), 'info');
+            return redirect()->route('employer.show.task.in.active.status');
+        } elseif ($task->is_hidden == "true") {
+            $task->update([
+                'is_hidden' => 'false',
+            ]);
+            alert()->toast(trans('employer::task.The task has been successfully showed for all workers, and will now be able to view for workers and complete them'), 'success');
+            return redirect()->route('employer.show.task.in.active.status');
+        }
+    }
+
+    public function activeTaskDetails($task_id, $task_number)
+    {
+        $page_name = "ArabWorkers | Employer Panel - Active Task Details";
+        $main_breadcrumb = "Active Tasks";
+        $sub_breadcrumb = "ActiveTaskDetails";
+        $task = Task::withoutTrashed()->where([
+            ['employer_id', auth()->user()->id],
+            ['task_number', $task_number],
+            ['publish_status', 'Published'],
+        ])->with('countries.country', 'cities.city', 'category', 'workflows', 'actions.categoryAction', 'TaskStatuses.status', 'deferred')->findOrFail($task_id);
+        $active = Status::withoutTrashed()->where('name', 'active')->first();
+        if ($task->TaskStatuses()->latest()->first()->task_status_id == $active->id) {
+            $app_local = app()->getLocale();
+
+            for ($i = 0; $i < count($task->countries); $i++) {
+                $country [$task->countries[$i]->country_id] = City::withoutTrashed()->where('country_id', $task->countries[$i]->country_id)->count();
+            }
+
+            for ($i = 0; $i < count($task->countries); $i++) {
+                for ($j = 0; $j < count($task->cities); $j++) {
+                    if ($task->cities[$j]->city->country_id == $task->countries[$i]->country_id)
+                        $region [$task->countries[$i]->country_id] [] = $task->cities[$j]->city->id;
+                }
+            }
+            $keys = array_keys($country);
+            for ($i = 0; $i < count($keys); $i++) {
+                if (count($region[$keys[$i]]) == $country[$keys[$i]]) {
+                    if ($app_local == "ar") {
+                        $result [] = [
+                            'country' => $task->countries[$i]->country->ar_name,
+                            'flag' => $task->countries[$i]->country->flag,
+                            'cities' => 'all_cities'
+                        ];
+                    } else {
+                        $result [] = [
+                            'country' => $task->countries[$i]->country->name,
+                            'flag' => $task->countries[$i]->country->flag,
+                            'cities' => 'all_cities'
+                        ];
+                    }
+
+
+                } else {
+                    if ($app_local == "ar") {
+                        $result [] = [
+                            'country' => $task->countries[$i]->country->ar_name,
+                            'flag' => $task->countries[$i]->country->flag,
+                            'cities' => $region[$keys[$i]],
+                        ];
+                    } else {
+                        $result [] = [
+                            'country' => $task->countries[$i]->country->name,
+                            'flag' => $task->countries[$i]->country->flag,
+                            'cities' => $region[$keys[$i]],
+                        ];
+                    }
+
+                }
+            }
+//            dd($task->deferred()->latest()->first());
+            return view('employer::layouts.task.ActiveTaskDetails', compact([
+                'page_name',
+                'main_breadcrumb',
+                'sub_breadcrumb',
+                'task',
+                'result',
+                'app_local',
+            ]));
+        } else {
+            alert()->toast(trans('employer::task.An error has occurred, please try again later'), 'error');
+            return redirect()->back();
+        }
+
+    }
+
+    public function activeTaskProofs($task_id, $task_number)
+    {
+        $page_name = "ArabWorkers | Employer Panel - Active Tasks Proofs";
+        $main_breadcrumb = "Active Tasks Proofs";
+        $sub_breadcrumb = "Proofs";
+
+
+        $task = Task::withoutTrashed()->where([
+            ['task_number', $task_number],
+            ['publish_status', 'Published'],
+            ['employer_id', auth()->user()->id],
+        ])->with('category')->findOrFail($task_id);
+        $active = Status::withoutTrashed()->where('name', 'active')->first();
+
+        if ($task->TaskStatuses()->with('status')->latest()->first()->status->name == $active->name) {
+            $proofs = $task->proofs()->with('worker')->get();
+//            dd($proofs,$task);
+            return view('employer::layouts.task.ActiveTaskProofs', compact([
+                'page_name',
+                'main_breadcrumb',
+                'sub_breadcrumb',
+                'proofs',
+                'task',
+
+            ]));
+
+        } else {
+            alert()->toast(trans('employer::task.An error has occurred, please try again later'), 'error');
+            return redirect()->back();
+        }
+
+    }
+
+    public function activeTaskProofDetails($task_id, $proof_id)
+    {
+        $page_name = "ArabWorkers | Employer Panel - Active Tasks Proof Details";
+        $main_breadcrumb = "Tasks Proof details";
+        $sub_breadcrumb = "Proof Details";
+
+        $task = Task::withoutTrashed()->where([
+            ['employer_id', auth()->user()->id],
+            ['publish_status', 'Published'],
+        ])->findOrFail($task_id);
+        $active = Status::withoutTrashed()->where('name', 'active')->first();
+
+        if ($task->TaskStatuses()->with('status')->latest()->first()->status->name == $active->name) {
+            $proof = TaskProof::withoutTrashed()->where([
+                ['employer_id', auth()->user()->id],
+                ['task_id', $task->id],
+            ])->findOrFail($proof_id);
+            return view('employer::layouts.task.ActiveTaskProofDetails', compact([
+                'page_name',
+                'main_breadcrumb',
+                'sub_breadcrumb',
+                'proof',
+                'task',
+
+            ]));
+        } else {
+            alert()->toast(trans('employer::task.An error has occurred, please try again later'), 'error');
+            return redirect()->back();
+        }
+
+    }
+
+    public function acceptTaskProof($task_id, $task_number, $proof_id, $worker_id)
+    {
+
+        $task = Task::withoutTrashed()->where([
+            ['employer_id', auth()->user()->id],
+            ['task_number', $task_number],
+            ['publish_status', 'Published'],
+        ])->findOrFail($task_id);
+        $status = Status::withoutTrashed()->get();
+        $active = $status->where('name', 'active')->first();
+        $completed = $status->where('name', 'completed')->first();
+        if ($task->TaskStatuses()->with('status')->latest()->first()->status->name == $active->name) {
+            if ($task->proofs()->where('isEmployerAcceptProof', '=', 'NotSeenYet')->count() <= $task->total_worker_limit) {
+                $proof = TaskProof::withoutTrashed()->where([
+                    ['task_id', $task->id],
+                    ['employer_id', $task->employer_id],
+                    ['worker_id', $worker_id],
+                    ['isEmployerAcceptProof', 'NotSeenYet'],
+                ])->findOrFail($proof_id);
+                $proof->update([
+                    'isEmployerAcceptProof' => 'Yes',
+                    'isAdminAcceptProof' => 'Yes',
+
+                ]);
+                $worker = Worker::withoutTrashed()->findOrFail($proof->worker_id);
+                $worker->update([
+                    'wallet_balance' => $worker->wallet_balance + $task->cost_per_worker,
+                    'total_earns' => $worker->total_earns + $task->cost_per_worker,
+                ]);
+
+                /**
+                 * check worker level after accept his proof
+                 */
+                CheckAcceptedProofCountAndUpdateLevel($worker->id);
+
+                $privilege = Privilege::withoutTrashed()->where([
+                    ['code', 'ATF'],
+                    ['for', 'worker'],
+                ])->first();
+                /** plus Privilege to the worker who provided acceptable proof **/
+                WorkerPrivilege::create([
+                    'worker_id' => $worker->id,
+                    'count_of_privileges' => $privilege->privileges,
+                    'type' => $privilege->type,
+                    'description' => $privilege->title,
+                ]);
+                if ($task->proofs()->where('isEmployerAcceptProof', '=', 'Yes')->count() == $task->total_worker_limit) {
+                    TaskStatus::create([
+                        'task_id' => $task->id,
+                        'task_status_id' => $completed->id,
+                    ]);
+                    alert()->toast(trans('employer::task.The last proofs submitted by this worker have been successfully confirmed, and task status changed to complete'), 'success');
+                    return redirect()->route('employer.show.task.in.complete.status');
+
+                }
+                alert()->toast(trans('employer::task.The proofs submitted by this worker have been successfully confirmed'), 'success');
+                return redirect()->route('employer.show.active.tasks.proofs', [$task->id, $task->task_number]);
+
+            } else {
+                alert()->toast(trans('employer::task.This action is not available because the task has already been completed'), 'warning');
+                return redirect()->back();
+            }
+        } else {
+            alert()->toast(trans('employer::task.An error has occurred, please try again later'), 'error');
+            return redirect()->route('employer.show.active.tasks.proofs', [$task->id, $task->task_number]);
+        }
+
+    }
+
+    public function rejectTaskProof(RejectTaskProofRequest $request, $task_id, $task_number, $proof_id, $worker_id)
+    {
+        $validated = $request->validated();
+        $task = Task::withoutTrashed()->where([
+            ['employer_id', auth()->user()->id],
+            ['task_number', $task_number],
+            ['publish_status', 'Published'],
+        ])->findOrFail($task_id);
+        $status = Status::withoutTrashed()->get();
+        $active = $status->where('name', 'active')->first();
+        if ($task->TaskStatuses()->with('status')->latest()->first()->status->name == $active->name) {
+            if ($task->proofs()->where('isEmployerAcceptProof', '=', 'NotSeenYet')->count() <= $task->total_worker_limit) {
+                $proof = TaskProof::withoutTrashed()->where([
+                    ['task_id', $task->id],
+                    ['employer_id', $task->employer_id],
+                    ['worker_id', $worker_id],
+                    ['isEmployerAcceptProof', 'NotSeenYet'],
+                ])->findOrFail($proof_id);
+                $proof->update([
+                    'isEmployerAcceptProof' => 'No',
+                    'isAdminAcceptProof' => 'No',
+                    'reasonOfEmployerRefuse' => $validated['reasonOfReject'],
+                    'reasonOfAdminRefuse' => $validated['reasonOfReject'],
+                ]);
+                $worker = Worker::withoutTrashed()->findOrFail($proof->worker_id);
+                $privilege = Privilege::withoutTrashed()->where([
+                    ['code', 'RTF'],
+                    ['for', 'worker'],
+                ])->first();
+                /** Minus Privilege from the worker who provided unacceptable proof **/
+                WorkerPrivilege::create([
+                    'worker_id' => $worker->id,
+                    'count_of_privileges' => $privilege->privileges,
+                    'type' => $privilege->type,
+                    'description' => $privilege->title,
+                ]);
+                $added_days = Setting::select('days_added_to_task_end_date_when_reject_task_proof')->first();
+                /** insert new and old task data (task_end_date + total_worker_limit) in the DeferredTask table **/
+                DeferredTask::create([
+                    'task_id' => $task->id,
+                    'main_end_date' => $task->task_end_date,
+                    'new_end_date' => Carbon::parse($task->task_end_date)->addDays($added_days->days_added_to_task_end_date_when_reject_task_proof)->format('Y-m-d'),
+                    'main_total_worker_limit' => $task->total_worker_limit,
+                    'new_total_worker_limit' => $task->total_worker_limit + 1,
+                    'reason_of_defer' => $privilege->title,
+                    'duration_of_defer' => $added_days->days_added_to_task_end_date_when_reject_task_proof,
+                ]);
+
+                /** Update the task data by modifying its completion date and the number of workers **/
+                $task->update([
+                    'total_worker_limit' => $task->total_worker_limit + 1,
+                    'task_end_date' => Carbon::parse($task->task_end_date)->addDays($added_days->days_added_to_task_end_date_when_reject_task_proof)->format('Y-m-d'),
+                ]);
+
+                alert()->toast(trans('employer::task.The proofs submitted by this worker have been successfully rejected, And we extended the completion time of this task for an additional 24 hours, with an increase in the number of workers on this task by one new worker so that he can view the task and send the correct proof'), 'info');
+                return redirect()->route('employer.show.active.tasks.proofs', [$task->id, $task->task_number]);
+
+            } else {
+                alert()->toast(trans('employer::task.This action is not available because the task has already been completed'), 'warning');
+                return redirect()->back();
+            }
+        } else {
+            alert()->toast(trans('employer::task.An error has occurred, please try again later'), 'error');
+            return redirect()->route('employer.show.active.tasks.proofs', [$task->id, $task->task_number]);
+        }
+    }
+
+
+
+
+
+
 
     public function showPendingTasks()
     {

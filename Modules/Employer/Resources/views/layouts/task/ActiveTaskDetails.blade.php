@@ -1,7 +1,8 @@
 @extends('dashboard::layouts.employer.master')
 @section('content')
-    <div class="row justify-content-between">
-        <div class="col-sm-8 mb-4">
+
+    <div class="row justify-content-between ">
+        <div class="col-sm-8 mb-4 ">
             <div class="d-flex flex-wrap mb-4 align-items-center">
                 <span class="avtar avtar-icon avtar-square avtar-l">
                     <img src="{{Storage::url($task->category->image)}}" alt="images" width="100" height="100"
@@ -14,7 +15,7 @@
                         <h1 class="mb-1 font-weight-normal">{{$task->category->title}}</h1>
 
                     @endif
-                    <p class="mb-0">{{$task->title}}</p>
+                    <p class="mb-0">{{$task->title}} </p>
                 </div>
             </div>
             <p><span class="fw-bold">{{trans("employer::task.task_description")}}:</span> {{$task->description}}</p>
@@ -61,7 +62,16 @@
             <p class="mb-2">{{trans('employer::task.task_number')}}: {{$task->task_number}}</p>
 
             <p class="mb-2">{{trans('employer::task.current_task_status')}} <span
-                    class="badge badge-pill badge-warning">{{trans('employer::task.'.$task->TaskStatuses()->latest()->first()->status()->first()->name)}}</span>
+                    class="badge badge-pill badge-success">{{trans('employer::task.'.$task->TaskStatuses()->latest()->first()->status()->first()->name)}}</span>
+                <span>
+                     @if($task->is_hidden == "true")
+                        <i class="fas fa-eye-slash text-gray"></i>
+                        <span class="text-gray">{{trans('employer::task.taskIsHidden')}}</span>
+                    @else
+                        <i class="fas fa-eye text-success"></i>
+                        <span class="text-success">{{trans('employer::task.taskIsShown')}}</span>
+                    @endif
+                </span>
             </p>
         </div>
     </div>
@@ -186,9 +196,9 @@
         </div>
 
 
-        <div class="col-xl-9 col-lg-12 filter-bar invoice-list">
+        <div class="col-xl-9 col-lg-12  ">
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-12 my-1">
+                <div class="col-lg-6 col-md-6 col-12 my-1 ">
                     <div class="card">
                         <div class="card-body">
                             <div class="row align-items-center">
@@ -196,7 +206,17 @@
                                     <div class="numbers mx-3">
                                         <p class="text-sm mb-0 text-capitalize font-weight-bold">{{trans('employer::task.task_end_date')}}</p>
                                         <h5 class="font-weight-bolder text-primary mb-0">
-                                            {{trans('employer::task.after')}}  {{\Carbon\Carbon::parse($task->task_end_date)->diffForHumans()}}
+                                            @if($task->deferred()->exists() == true)
+                                                <h5 class=" text-warning font-weight-bolder mb-0">
+                                                    {{\Carbon\Carbon::parse($task->deferred()->latest()->first()->new_end_date)->format('Y-m-d')}}
+                                                    <span
+                                                        class="text-xs">({{trans('employer::task.taskIsDeferred: ')}} {{$task->deferred()->count()}} {{trans('employer::task.once')}}) </span>
+                                                </h5>
+                                            @else
+                                                <h5 class=" font-weight-bolder mb-0">
+                                                    {{trans('employer::task.after')}}  {{\Carbon\Carbon::parse($task->task_end_date)->diffForHumans()}}
+                                                </h5>
+                                            @endif
                                         </h5>
                                     </div>
                                 </div>
@@ -208,7 +228,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-12 my-1 ">
+                <div class="col-lg-6 col-md-6 col-12 my-1  ">
                     <div class="card">
                         <div class="card-body p-3">
                             <div class="row align-items-center">
@@ -228,7 +248,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-12 my-1">
+                <div class="col-lg-6 col-md-6 col-12 my-1 ">
                     <div class="card">
                         <div class="card-body p-3">
                             <div class="row align-items-center">
@@ -236,7 +256,21 @@
                                     <div class="numbers mx-3">
                                         <p class="text-sm mb-0 text-capitalize font-weight-bold">{{trans('employer::task.count_of_worker')}}</p>
                                         <h5 class="font-weight-bolder text-primary mb-0">
-                                            <span class="text-md-center"> {{$task->total_worker_limit}}</span>
+                                            <div class="progress-wrapper">
+                                                <div class="progress-info">
+                                                    <div class="progress-percentage">
+                                                        <span class="text-sm font-weight-bold">{{trans('employer::task.count_of_worker')}}: <span
+                                                                class="text-dark">{{$task->total_worker_limit}}</span> / {{trans('employer::task.order_to_done')}} <span
+                                                                class="text-primary">{{$task->approved_workers}}</span> {{trans('employer::task.worker')}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-gradient-success" role="progressbar"
+                                                         aria-valuenow="{{$task->approved_workers}}" aria-valuemin="0"
+                                                         aria-valuemax="{{$task->total_worker_limit}}"
+                                                         style="width: {{($task->approved_workers * 100) / $task->total_worker_limit}}%;"></div>
+                                                </div>
+                                            </div>
                                         </h5>
                                     </div>
                                 </div>
@@ -247,7 +281,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-12 my-1">
+                <div class="col-lg-6 col-md-6 col-12 my-1 ">
                     <div class="card">
                         <div class="card-body">
                             <div class="row align-items-center">
@@ -267,7 +301,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-12 my-1 ">
+                <div class="col-lg-6 col-md-6 col-12 my-1  ">
                     <div class="card">
                         <div class="card-body p-3">
                             <div class="row align-items-center">
@@ -287,7 +321,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-12 my-1">
+                <div class="col-lg-6 col-md-6 col-12 my-1 ">
                     <div class="card">
                         <div class="card-body p-3">
                             <div class="row align-items-center">
@@ -307,7 +341,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-12 my-1">
                     <div class="card">
                         <div class="card-body p-3">
@@ -364,12 +397,113 @@
         </div>
 
     </div>
+    <div class="row mt-2 p-3">
+        <h5 class="mt-3 text-primary">{{trans('employer::task.TaskStatusFlow')}}</h5>
+        <div class="card mt-3 bg-white">
+            <div class="card-body p-3">
+                <div class="timeline timeline-one-side" data-timeline-axis-style="dashed">
+                    @for($i=0;$i<count($task->TaskStatuses);$i++)
+                        <div class="timeline-block mb-3">
+                            <span class="timeline-step ">
+                               <i class=""><img src="{{asset('assets/img/process.png')}}" alt="Step" width="50"
+                                                height="50"></i>
+                            </span>
+                            <div class="timeline-content max-w-unset">
+                                <h6 class="text-dark fw-bold text-sm font-weight-bold mb-0">{{trans('employer::task.status_number')}}
+                                    ({{$i+1}}): <span
+                                        class="text-lg">{{trans('employer::task.'.$task->TaskStatuses[$i]->status->name)}}</span>
+                                </h6>
+                                <p class="text-warning font-weight-bold text-xs mt-1 mb-0">{{$task->TaskStatuses[$i]->created_at}}</p>
+                                <p class="text-dark text-lg mt-3 mb-2">
+                                    {{trans('employer::task.status_flow_'.$task->TaskStatuses[$i]->status->name)}}
+                                </p>
+                            </div>
+                        </div>
+                    @endfor
+                    <div class="timeline-block mb-3">
+                            <span class="timeline-step ">
+                              <i class=""><img src="{{asset('assets/img/order.png')}}" alt="Step" width="40"
+                                               height="40"></i>
+                            </span>
+                        <div class="timeline-content max-w-unset">
+                            <h6 class="text-dark fw-bold text-sm font-weight-bold mb-0">{{trans('employer::task.worker_approved_to_now')}}</h6>
+                            <p class="text-warning font-weight-bold text-xs mt-1 mb-0">{{\Carbon\Carbon::now()}}</p>
+                            <p class="text-dark text-lg mt-3 mb-2">
+                                <span
+                                    class="text-primary text-lg">{{$task->approved_workers}}</span> {{trans('employer::task.worker')}}  {{trans('employer::task.form_all_worker')}}
+                                <span
+                                    class="text-info text-lg">{{$task->total_worker_limit}}</span> {{trans('employer::task.worker')}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if($task->deferred()->exists() == true)
+        <div class="row mt-2 p-3">
+            <h5 class="mt-3 text-primary">{{trans('employer::task.TaskEndDateFlow')}}</h5>
+            <div class="card mt-3 bg-white">
+                <div class="card-body p-3">
+                    <div class="timeline timeline-one-side" data-timeline-axis-style="dashed">
+                        @for($i=0;$i<count($task->deferred);$i++)
+                            <div class="timeline-block mb-3">
+                            <span class="timeline-step bg-light">
+                            <i class="ni ni-calendar-grid-58 text-warning text-gradient"></i>
+                            </span>
+                                <div class="timeline-content max-w-unset">
+                                    <h6 class=" text-sm font-weight-bold mb-0">{{trans('employer::task.deferred_number')}}
+                                        ({{$i+1}}): <span
+                                            class="text-lg">{{$task->deferred[$i]->duration_of_defer}} {{trans('employer::task.day')}}</span>
+                                    </h6>
+                                    <p class="text-warning font-weight-bold text-xs mt-1 mb-0">{{trans('employer::task.deferred_action_at')}}{{$task->deferred[$i]->created_at}}</p>
+                                    <p class="text-secondary text-sm mt-3 mb-2">
+                                        {{trans('employer::task.The task has been delayed due to')}}
+                                        @if(\Illuminate\Support\Facades\Lang::has('privilege::privilege.'.$task->deferred[$i]->reason_of_defer))
+                                            ({{trans('privilege::privilege.'.$task->deferred[$i]->reason_of_defer)}})
+                                        @else
+                                           ( {{$task->deferred[$i]->reason_of_defer}})
+                                        @endif
+
+
+                                        {{trans('employer::task.for_duration')}}
+                                        {{$task->deferred[$i]->duration_of_defer}}
+                                        {{trans('employer::task.day')}}
+                                        {{trans('employer::task.And we increased the number of workers from: ')}}
+                                        ({{$task->deferred[$i]->main_total_worker_limit}})
+                                        {{trans('employer::task.to_workers')}}
+                                        ({{$task->deferred[$i]->new_total_worker_limit}})
+                                        {{trans('employer::task.workers')}}
+                                        {{trans('employer::task.reason_of_increased_workers_number')}}
+                                    </p>
+                                    <p class="text-secondary text-sm mt-1 mb-2">
+                                        {{trans('employer::task.data_after_duration')}}
+                                        {{$task->deferred[$i]->main_end_date}}
+                                    </p>
+                                    <p class="text-secondary text-sm mt-1 mb-2">
+                                        {{trans('employer::task.data_before_duration')}}
+                                        {{$task->deferred[$i]->new_end_date}}
+                                    </p>
+                                </div>
+                            </div>
+                        @endfor
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
 
     <div class="row mt-4">
         <div class="button-row ">
-            <a href="{{route('employer.show.task.in.pending.status')}}"
-               class="btn btn-primary text-white btn-lg w-100   mb-2">{{trans('employer::task.back')}}</a>
+            <a href="{{route('employer.show.active.tasks.proofs',[$task->id,$task->task_number])}}"
+               class="btn btn-primary btn-lg w-100   mb-2">{{trans('employer::task.show_task_proofs')}}</a>
+        </div>
+        <div class="button-row ">
+            <a href="{{route('employer.show.task.in.active.status')}}"
+               class="btn btn-dark btn-lg w-100   mb-2">{{trans('employer::task.back')}}</a>
         </div>
     </div>
+
 
 @stop

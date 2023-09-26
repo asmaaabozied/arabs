@@ -248,8 +248,8 @@ return [
     'current_task_status' => 'حالة المهمة: ',
     'proof_details' => 'تفاصيل الإثباتات: ',
     'task_details2' => 'تفاصيل المهمة: ',
-    '' => '',
-    '' => '',
+    'taskIsHidden' => 'مخفية عن العمال',
+    'taskIsShown' => 'ظاهرة للعمال',
     '' => '',
 
 

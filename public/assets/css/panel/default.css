@@ -16,7 +16,7 @@
 
 body {
     font-family: 'Cairo', sans-serif;
-    background: #fbfbfb;
+    background: rgba(248, 249, 250, 0.96);
     font-size: 18px;
   }
 @media screen and (max-width: 576px) {

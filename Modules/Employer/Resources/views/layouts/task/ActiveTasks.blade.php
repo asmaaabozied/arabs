@@ -91,8 +91,8 @@
                                         <i class="fas fa-eye-slash text-gray"></i>
                                         <span class="text-gray">{{trans('employer::task.hideTaskForWorkers')}}</span>
                                         @else
-                                            <i class="fas fa-eye text-secondary"></i>
-                                            <span class="text-secondary">{{trans('employer::task.showTaskForWorkers')}}</span>
+                                            <i class="fas fa-eye text-purple"></i>
+                                            <span class="text-purple">{{trans('employer::task.showTaskForWorkers')}}</span>
                                         @endif
                                     </a>
 
