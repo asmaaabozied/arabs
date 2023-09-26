@@ -391,7 +391,7 @@
                                     </div>
                                 </div>
                                 <div class="col-3 text-start">
-                                    <i class="fa fa-paw text-primary text-lg opacity-10" aria-hidden="true"></i>
+                                    <i class="fa fa-paw text-primary opacity-10" aria-hidden="true"></i>
                                 </div>
                             </div>
                         </div>

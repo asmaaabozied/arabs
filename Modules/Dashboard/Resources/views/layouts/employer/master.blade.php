@@ -706,8 +706,7 @@
         $("input[type=checkbox]").prop("checked", false);
     }
 </script>
-<script src="{{asset('assets/js/core/bootstrap.min.js')}}"></script>
-
+<script src="{{asset('assets/js/core/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('assets/js/plugins/datatables-ar.js')}}"></script>
 <script>
     $(document).ready(function () {
