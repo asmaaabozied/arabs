@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use Modules\Employer\Entities\Employer;
 use Modules\Privilege\Entities\EmployerPrivilege;
 use Modules\Privilege\Entities\Privilege;
+use Modules\Region\Entities\City;
 use Modules\Setting\Entities\Status;
 use Modules\Task\Entities\Task;
 use Modules\Task\Entities\TaskStatus;
@@ -180,6 +181,82 @@ class EmployerMyTaskController extends Controller
             'pendingTasks',
         ]));
     }
+
+    public function pendingTaskDetails($task_id, $task_number)
+    {
+        $page_name = "ArabWorkers | Employer Panel - Pending Task Details";
+        $main_breadcrumb = "Pending Tasks";
+        $sub_breadcrumb = "PendingTaskDetails";
+        $task = Task::withoutTrashed()->where([
+            ['employer_id', auth()->user()->id],
+            ['task_number', $task_number],
+            ['publish_status', 'Published'],
+        ])->with('countries.country', 'cities.city', 'category', 'workflows', 'actions.categoryAction', 'TaskStatuses')->findOrFail($task_id);
+        $pending = Status::withoutTrashed()->where('name', 'pending')->first();
+
+        if ($task->TaskStatuses()->latest()->first()->task_status_id == $pending->id) {
+            $app_local = app()->getLocale();
+
+            for ($i = 0; $i < count($task->countries); $i++) {
+                $country [$task->countries[$i]->country_id] = City::withoutTrashed()->where('country_id', $task->countries[$i]->country_id)->count();
+            }
+
+            for ($i = 0; $i < count($task->countries); $i++) {
+                for ($j = 0; $j < count($task->cities); $j++) {
+                    if ($task->cities[$j]->city->country_id == $task->countries[$i]->country_id)
+                        $region [$task->countries[$i]->country_id] [] = $task->cities[$j]->city->id;
+                }
+            }
+            $keys = array_keys($country);
+            for ($i = 0; $i < count($keys); $i++) {
+                if (count($region[$keys[$i]]) == $country[$keys[$i]]) {
+                    if ($app_local == "ar") {
+                        $result [] = [
+                            'country' => $task->countries[$i]->country->ar_name,
+                            'flag' => $task->countries[$i]->country->flag,
+                            'cities' => 'all_cities'
+                        ];
+                    } else {
+                        $result [] = [
+                            'country' => $task->countries[$i]->country->name,
+                            'flag' => $task->countries[$i]->country->flag,
+                            'cities' => 'all_cities'
+                        ];
+                    }
+
+
+                } else {
+                    if ($app_local == "ar") {
+                        $result [] = [
+                            'country' => $task->countries[$i]->country->ar_name,
+                            'flag' => $task->countries[$i]->country->flag,
+                            'cities' => $region[$keys[$i]],
+                        ];
+                    } else {
+                        $result [] = [
+                            'country' => $task->countries[$i]->country->name,
+                            'flag' => $task->countries[$i]->country->flag,
+                            'cities' => $region[$keys[$i]],
+                        ];
+                    }
+
+                }
+            }
+            return view('employer::layouts.task.PendingTaskDetails', compact([
+                'page_name',
+                'main_breadcrumb',
+                'sub_breadcrumb',
+                'task',
+                'result',
+                'app_local',
+            ]));
+        } else {
+            alert()->toast(trans('employer::task.An error has occurred, please try again later'), 'error');
+            return redirect()->back();
+        }
+
+    }
+
     public function checkIfWalletContainsEnoughMoneyToPayTask($task_id, $task_number)
     {
         $pending = Status::withoutTrashed()->where('name', 'pending')->firstOrFail();
