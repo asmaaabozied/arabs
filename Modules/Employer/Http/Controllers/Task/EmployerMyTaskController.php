@@ -5,8 +5,12 @@ namespace Modules\Employer\Http\Controllers\Task;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Employer\Entities\Employer;
+use Modules\Privilege\Entities\EmployerPrivilege;
+use Modules\Privilege\Entities\Privilege;
 use Modules\Setting\Entities\Status;
 use Modules\Task\Entities\Task;
+use Modules\Task\Entities\TaskStatus;
 
 class EmployerMyTaskController extends Controller
 {
@@ -175,6 +179,72 @@ class EmployerMyTaskController extends Controller
             'sub_breadcrumb',
             'pendingTasks',
         ]));
+    }
+    public function checkIfWalletContainsEnoughMoneyToPayTask($task_id, $task_number)
+    {
+        $pending = Status::withoutTrashed()->where('name', 'pending')->firstOrFail();
+        $employer = Employer::withoutTrashed()->findOrFail(auth()->user()->id);
+        $check = TaskStatus::where([
+            ['task_id', $task_id],
+        ])->with('status', 'task.employer')->get();
+        if (count($check) == 1 and $check[0]->task->employer->id == $employer->id and $check[0]->status->name == "unPayed") {
+            $task = Task::withoutTrashed()->where([
+                ['employer_id', $employer->id],
+                ['task_number', $task_number],
+            ])->findOrFail($task_id);
+
+            if ($task->total_cost <= $employer->wallet_balance) {
+                $wallet_balance = $employer->wallet_balance;
+                $total_task_cost = $task->total_cost;
+                $amount_remaining = $wallet_balance - $total_task_cost;
+                $employer->update([
+                    'wallet_balance' => $amount_remaining,
+                    'total_spends' => $employer->total_spends + $total_task_cost,
+                ]);
+                TaskStatus::create([
+                    'task_id' => $task->id,
+                    'task_status_id' => $pending->id,
+                ]);
+
+                $privilege = Privilege::withoutTrashed()->where([
+                    ['code', 'CNT'],
+                    ['for', 'employer'],
+                ])->first();
+                /** plus Privilege to the employer **/
+                EmployerPrivilege::create([
+                    'employer_id' => $employer->id,
+                    'count_of_privileges' => $privilege->privileges,
+                    'type' => $privilege->type,
+                    'description' => $privilege->title,
+                ]);
+
+                if ($task->other_cost > 0) {
+                    $privilege2 = Privilege::withoutTrashed()->where([
+                        ['code', 'UAF'],
+                        ['for', 'employer'],
+                    ])->first();
+                    /** plus Privilege to the employer **/
+                    EmployerPrivilege::create([
+                        'employer_id' => $employer->id,
+                        'count_of_privileges' => $privilege2->privileges,
+                        'type' => $privilege2->type,
+                        'description' => $privilege2->title,
+                    ]);
+                }
+
+                alert()->toast(trans('employer::task.The price of the task has been successfully deducted from the wallet balance and is now under verification'), 'success');
+                return redirect()->route('employer.show.task.in.pending.status');
+            } else {
+                alert()->toast(trans('employer::task.An error has occurred, please try again later'), 'error');
+                return redirect()->back();
+            }
+
+        } else {
+            alert()->toast(trans('employer::task.An error has occurred, please try again later'), 'error');
+            return redirect()->back();
+
+        }
+
     }
 
 

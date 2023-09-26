@@ -6,7 +6,7 @@
             <div class="table-responsive">
                 <table class="table table-flush" id="datatable-list">
                     <thead class="thead-light">
-                    <tr>
+                    <tr class="bg-table">
                         <th>#</th>
                         <th>{{trans('employer::task.basicInformation')}}</th>
                         <th>{{trans('employer::task.task_created_at')}}</th>

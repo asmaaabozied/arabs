@@ -59,7 +59,7 @@
                     <a class="nav-link link" href="#">دليل الإحالات</a>
                 </li>
             </ul>
-            <div class="nav-item admin-nav">
+            <div class="nav-item admin-nav d-flex align-items-baseline justify-content-between">
                 <div class="dropdown dashboard-profile-dropdown">
                     <button class="dropdown-toggle profile-dropdown" type="button" id="dropdownMenuButton1"
                             data-bs-toggle="dropdown" aria-expanded="false">
@@ -85,8 +85,16 @@
                           class="d-none">
                         @csrf
                     </form>
-                </div>
 
+                </div>
+                <div>
+                    <span class=" text-primary fw-normal  mx-2">
+                             {{ number_format(convertCurrency(auth()->user()->wallet_balance, auth()->user()->current_currency),2) }}
+                                             <span class="text-xxs">{{auth()->user()->current_currency}}</span>
+                     </span>
+                    <i class="fa fa-wallet me-sm-1 mx-1 " aria-hidden="true">
+                    </i>
+                </div>
             </div>
         </div>
     </div>
@@ -250,7 +258,7 @@
                     <li class="">
                         <a class="nav-link nav-text
                                {{request()->routeIs('employer.show.my.wallet.history') ? 'active-select-nav' : ''}}
-                               {{request()->routeIs('employer.show.charge.wallet.form') ? 'active-select-nav' : ''}}
+                        {{request()->routeIs('employer.show.charge.wallet.form') ? 'active-select-nav' : ''}}
                             "
                            href="{{route('employer.show.my.wallet.history')}}">
                             <span class="sidenav-normal">{{trans('employer::employer.walletHistory')}}</span>
@@ -309,8 +317,8 @@
 
         <li class="side_menu_item
              {{request()->routeIs('employer.show.my.tickets') ? 'active_side' : ''}}
-             {{request()->routeIs('employer.show.ticket.details') ? 'active_side' : ''}}
-             {{request()->routeIs('employer.show.create.ticket.form') ? 'active_side' : ''}}
+        {{request()->routeIs('employer.show.ticket.details') ? 'active_side' : ''}}
+        {{request()->routeIs('employer.show.create.ticket.form') ? 'active_side' : ''}}
             ">
             <a data-bs-toggle="collapse" href="#EmployerSupport" class="nav-link nav-text"
                aria-controls="EmployerSupport" role="button" aria-expanded="">
@@ -320,16 +328,16 @@
             </a>
             <div class="collapse
                   {{request()->routeIs('employer.show.my.tickets') ? 'show' : ''}}
-                  {{request()->routeIs('employer.show.ticket.details') ? 'show' : ''}}
-                  {{request()->routeIs('employer.show.create.ticket.form') ? 'show' : ''}}
+            {{request()->routeIs('employer.show.ticket.details') ? 'show' : ''}}
+            {{request()->routeIs('employer.show.create.ticket.form') ? 'show' : ''}}
                 " id="EmployerSupport" style="">
                 <ul class="nav ms-4 ps-3">
 
                     <li class="">
                         <a class="nav-link nav-text
                          {{request()->routeIs('employer.show.my.tickets') ? 'active-select-nav' : ''}}
-                         {{request()->routeIs('employer.show.ticket.details') ? 'active-select-nav' : ''}}
-                         {{request()->routeIs('employer.show.create.ticket.form') ? 'active-select-nav' : ''}}
+                        {{request()->routeIs('employer.show.ticket.details') ? 'active-select-nav' : ''}}
+                        {{request()->routeIs('employer.show.create.ticket.form') ? 'active-select-nav' : ''}}
                             " href="{{route('employer.show.my.tickets')}}">
                             <span class="sidenav-normal "> {{trans('employer::employer.myTickets')}} </span>
                         </a>
