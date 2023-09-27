@@ -130,6 +130,9 @@
         {{request()->routeIs('employer.show.create.task.page') ? 'active_side' : ''}}
         {{request()->routeIs('employer.show.active.tasks.proofs') ? 'active_side' : ''}}
         {{request()->routeIs('employer.show.active.tasks.proof.details') ? 'active_side' : ''}}
+        {{request()->routeIs('employer.show.complete.tasks.details') ? 'active_side' : ''}}
+        {{request()->routeIs('employer.show.complete.tasks.proofs') ? 'active_side' : ''}}
+        {{request()->routeIs('employer.show.complete.tasks.proof.details') ? 'active_side' : ''}}
 
             ">
             <a data-bs-toggle="collapse" href="#dashboardsExamples" class="nav-link nav-text collapsed"
@@ -148,6 +151,9 @@
             {{request()->routeIs('employer.show.create.task.page') ? 'show' : ''}}
             {{request()->routeIs('employer.show.active.tasks.proofs') ? 'show' : ''}}
             {{request()->routeIs('employer.show.active.tasks.proof.details') ? 'show' : ''}}
+            {{request()->routeIs('employer.show.complete.tasks.details') ? 'show' : ''}}
+            {{request()->routeIs('employer.show.complete.tasks.proofs') ? 'show' : ''}}
+            {{request()->routeIs('employer.show.complete.tasks.proof.details') ? 'show' : ''}}
                 " id="dashboardsExamples" style="">
                 <ul class="nav ms-4 ps-3">
                     <li class=" ">
@@ -180,6 +186,9 @@
                     <li class="nav-item">
                         <a class="nav-link nav-text
                           {{request()->routeIs('employer.show.task.in.complete.status') ? 'active-select-nav' : ''}}
+                          {{request()->routeIs('employer.show.complete.tasks.details') ? 'active-select-nav' : ''}}
+                          {{request()->routeIs('employer.show.complete.tasks.proofs') ? 'active-select-nav' : ''}}
+                          {{request()->routeIs('employer.show.complete.tasks.proof.details') ? 'active-select-nav' : ''}}
 
                             " href="{{route('employer.show.task.in.complete.status')}}">
                             <span class="sidenav-normal"> {{trans('employer::employer.taskInComplete')}}  </span>

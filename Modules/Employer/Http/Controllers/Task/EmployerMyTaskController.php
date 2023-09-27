@@ -112,7 +112,7 @@ class EmployerMyTaskController extends Controller
             ['employer_id', auth()->user()->id],
             ['publish_status', 'Published'],
         ])->with('category', 'TaskStatuses.status')->get();
-
+//        dd($data);
         $complete = Status::withoutTrashed()->where('name', 'completed')->first();
         for ($i = 0; $i < count($data); $i++) {
             if ($data[$i]->TaskStatuses()->with('status')->latest()->first()->status->name == $complete->name) {
@@ -133,7 +133,142 @@ class EmployerMyTaskController extends Controller
         ]));
     }
 
+    public function completeTaskDetails($task_id, $task_number)
+    {
+        $page_name = "ArabWorkers | Employer Panel - Complete Task Details";
+        $main_breadcrumb = "Complete Tasks";
+        $sub_breadcrumb = "CompleteTaskDetails";
+        $task = Task::withoutTrashed()->where([
+            ['employer_id', auth()->user()->id],
+            ['task_number', $task_number],
+            ['publish_status', 'Published'],
+        ])->with('countries.country', 'cities.city', 'category', 'workflows', 'actions.categoryAction', 'TaskStatuses.status')->findOrFail($task_id);
+        $complete = Status::withoutTrashed()->where('name', 'completed')->first();
 
+        if ($task->TaskStatuses()->latest()->first()->task_status_id == $complete->id) {
+            $app_local = app()->getLocale();
+
+            for ($i = 0; $i < count($task->countries); $i++) {
+                $country [$task->countries[$i]->country_id] = City::withoutTrashed()->where('country_id', $task->countries[$i]->country_id)->count();
+            }
+
+            for ($i = 0; $i < count($task->countries); $i++) {
+                for ($j = 0; $j < count($task->cities); $j++) {
+                    if ($task->cities[$j]->city->country_id == $task->countries[$i]->country_id)
+                        $region [$task->countries[$i]->country_id] [] = $task->cities[$j]->city->id;
+                }
+            }
+            $keys = array_keys($country);
+            for ($i = 0; $i < count($keys); $i++) {
+                if (count($region[$keys[$i]]) == $country[$keys[$i]]) {
+                    if ($app_local == "ar") {
+                        $result [] = [
+                            'country' => $task->countries[$i]->country->ar_name,
+                            'flag' => $task->countries[$i]->country->flag,
+                            'cities' => 'all_cities'
+                        ];
+                    } else {
+                        $result [] = [
+                            'country' => $task->countries[$i]->country->name,
+                            'flag' => $task->countries[$i]->country->flag,
+                            'cities' => 'all_cities'
+                        ];
+                    }
+
+
+                } else {
+                    if ($app_local == "ar") {
+                        $result [] = [
+                            'country' => $task->countries[$i]->country->ar_name,
+                            'flag' => $task->countries[$i]->country->flag,
+                            'cities' => $region[$keys[$i]],
+                        ];
+                    } else {
+                        $result [] = [
+                            'country' => $task->countries[$i]->country->name,
+                            'flag' => $task->countries[$i]->country->flag,
+                            'cities' => $region[$keys[$i]],
+                        ];
+                    }
+
+                }
+            }
+            return view('employer::layouts.task.CompleteTaskDetails', compact([
+                'page_name',
+                'main_breadcrumb',
+                'sub_breadcrumb',
+                'task',
+                'result',
+                'app_local',
+            ]));
+        } else {
+            alert()->toast(trans('employer::task.An error has occurred, please try again later'), 'error');
+            return redirect()->back();
+        }
+    }
+
+    public function completeTaskProofs($task_id, $task_number)
+    {
+        $page_name = "ArabWorkers | Employer Panel - Complete Tasks Proofs";
+        $main_breadcrumb = "Complete Tasks Proofs";
+        $sub_breadcrumb = "Proofs";
+
+
+        $task = Task::withoutTrashed()->where([
+            ['task_number', $task_number],
+            ['publish_status', 'Published'],
+            ['employer_id', auth()->user()->id],
+        ])->with('category')->findOrFail($task_id);
+        $complete = Status::withoutTrashed()->where('name', 'completed')->first();
+
+        if ($task->TaskStatuses()->with('status')->latest()->first()->status->name == $complete->name) {
+            $proofs = $task->proofs()->with('worker')->get();
+            return view('employer::layouts.task.CompleteTaskProofs', compact([
+                'page_name',
+                'main_breadcrumb',
+                'sub_breadcrumb',
+                'proofs',
+                'task',
+
+            ]));
+
+        } else {
+            alert()->toast(trans('employer::task.An error has occurred, please try again later'), 'error');
+            return redirect()->back();
+        }
+
+    }
+
+    public function completeTaskProofDetails($task_id, $proof_id)
+    {
+        $page_name = "ArabWorkers | Employer Panel - Complete Tasks Proof Details";
+        $main_breadcrumb = "Complete Tasks Proof details";
+        $sub_breadcrumb = "Proof Details";
+
+        $task = Task::withoutTrashed()->where([
+            ['employer_id', auth()->user()->id],
+            ['publish_status', 'Published'],
+        ])->findOrFail($task_id);
+        $complete = Status::withoutTrashed()->where('name', 'completed')->first();
+
+        if ($task->TaskStatuses()->with('status')->latest()->first()->status->name == $complete->name) {
+            $proof = TaskProof::withoutTrashed()->where([
+                ['employer_id', auth()->user()->id],
+                ['task_id', $task->id],
+            ])->findOrFail($proof_id);
+            return view('employer::layouts.task.CompleteTaskProofDetails', compact([
+                'page_name',
+                'main_breadcrumb',
+                'sub_breadcrumb',
+                'proof',
+                'task',
+
+            ]));
+        } else {
+            alert()->toast(trans('employer::task.An error has occurred, please try again later'), 'error');
+            return redirect()->back();
+        }
+    }
 
     public function showActiveTasks()
     {
