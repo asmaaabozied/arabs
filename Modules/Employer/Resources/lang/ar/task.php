@@ -250,6 +250,9 @@ return [
     'task_details2' => 'تفاصيل المهمة: ',
     'taskIsHidden' => 'مخفية عن العمال',
     'taskIsShown' => 'ظاهرة للعمال',
+    'adminRefusalTask' => 'تم رفضها من قبل الإدارة',
+    '' => '',
+    '' => '',
     '' => '',
 
 
