@@ -133,6 +133,7 @@
         {{request()->routeIs('employer.show.complete.tasks.details') ? 'active_side' : ''}}
         {{request()->routeIs('employer.show.complete.tasks.proofs') ? 'active_side' : ''}}
         {{request()->routeIs('employer.show.complete.tasks.proof.details') ? 'active_side' : ''}}
+        {{request()->routeIs('employer.show.rejected.tasks.details') ? 'active_side' : ''}}
 
             ">
             <a data-bs-toggle="collapse" href="#dashboardsExamples" class="nav-link nav-text collapsed"
@@ -154,6 +155,7 @@
             {{request()->routeIs('employer.show.complete.tasks.details') ? 'show' : ''}}
             {{request()->routeIs('employer.show.complete.tasks.proofs') ? 'show' : ''}}
             {{request()->routeIs('employer.show.complete.tasks.proof.details') ? 'show' : ''}}
+            {{request()->routeIs('employer.show.rejected.tasks.details') ? 'show' : ''}}
                 " id="dashboardsExamples" style="">
                 <ul class="nav ms-4 ps-3">
                     <li class=" ">
@@ -197,6 +199,7 @@
                     <li class="nav-item">
                         <a class="nav-link nav-text
                           {{request()->routeIs('employer.show.task.in.rejected.status') ? 'active-select-nav' : ''}}
+                          {{request()->routeIs('employer.show.rejected.tasks.details') ? 'active-select-nav' : ''}}
                             " href="{{route('employer.show.task.in.rejected.status')}}">
                             <span class="sidenav-normal">  {{trans('employer::employer.taskInCanceled')}} </span>
                         </a>
