@@ -251,7 +251,7 @@ return [
     'taskIsHidden' => 'مخفية عن العمال',
     'taskIsShown' => 'ظاهرة للعمال',
     'adminRefusalTask' => 'تم رفضها من قبل الإدارة',
-    '' => '',
+    'NotPublishedYet' => 'غير منشورة بعد',
     '' => '',
     '' => '',
 

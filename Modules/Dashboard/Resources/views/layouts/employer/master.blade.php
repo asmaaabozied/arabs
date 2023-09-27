@@ -134,6 +134,7 @@
         {{request()->routeIs('employer.show.complete.tasks.proofs') ? 'active_side' : ''}}
         {{request()->routeIs('employer.show.complete.tasks.proof.details') ? 'active_side' : ''}}
         {{request()->routeIs('employer.show.rejected.tasks.details') ? 'active_side' : ''}}
+        {{request()->routeIs('employer.show.not.payed.tasks.details') ? 'active_side' : ''}}
 
             ">
             <a data-bs-toggle="collapse" href="#dashboardsExamples" class="nav-link nav-text collapsed"
@@ -156,6 +157,7 @@
             {{request()->routeIs('employer.show.complete.tasks.proofs') ? 'show' : ''}}
             {{request()->routeIs('employer.show.complete.tasks.proof.details') ? 'show' : ''}}
             {{request()->routeIs('employer.show.rejected.tasks.details') ? 'show' : ''}}
+            {{request()->routeIs('employer.show.not.payed.tasks.details') ? 'show' : ''}}
                 " id="dashboardsExamples" style="">
                 <ul class="nav ms-4 ps-3">
                     <li class=" ">
@@ -207,6 +209,7 @@
                     <li class="nav-item">
                         <a class="nav-link nav-text
                          {{request()->routeIs('employer.show.not.payed.tasks') ? 'active-select-nav' : ''}}
+                         {{request()->routeIs('employer.show.not.payed.tasks.details') ? 'active-select-nav' : ''}}
                             " href="{{route('employer.show.not.payed.tasks')}}">
                             <span class="sidenav-normal">{{trans('employer::employer.NotPayedTasks')}}</span>
                         </a>
@@ -729,22 +732,47 @@
 </script>
 <script src="{{asset('assets/js/core/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('assets/js/plugins/datatables-ar.js')}}"></script>
-<script>
-    $(document).ready(function () {
-        $(".hamburger").click(function () {
-            $(".side_menu").toggleClass("display");
-        });
-    });
 
-    $(document).ready(function () {
-        $(window).scroll(function () {
-            if ($(window).scrollTop() > 130) {
-                $('.side_menu').addClass("fixed");
-            } else if ($(window).scrollTop() < 130) {
-                $('.side_menu').removeClass("fixed");
+
+{{--<script>--}}
+{{--    $(document).ready(function () {--}}
+{{--        $(".hamburger").click(function () {--}}
+{{--            $(".side_menu").toggleClass("display");--}}
+{{--        });--}}
+{{--    });--}}
+
+{{--    $(document).ready(function () {--}}
+{{--        $(window).scroll(function () {--}}
+{{--            if ($(window).scrollTop() > 130) {--}}
+{{--                $('.side_menu').addClass("fixed");--}}
+{{--            } else if ($(window).scrollTop() < 130) {--}}
+{{--                $('.side_menu').removeClass("fixed");--}}
+{{--            }--}}
+{{--        });--}}
+{{--    });--}}
+{{--</script>--}}
+<script>
+    // Wait for the DOM to be fully loaded
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get references to elements
+        var hamburger = document.querySelector(".hamburger");
+        var sideMenu = document.querySelector(".side_menu");
+
+        // Toggle the "display" class on click
+        hamburger.addEventListener("click", function () {
+            sideMenu.classList.toggle("display");
+        });
+
+        // Add a scroll event listener to the window
+        window.addEventListener("scroll", function () {
+            if (window.scrollY > 130) {
+                sideMenu.classList.add("fixed");
+            } else {
+                sideMenu.classList.remove("fixed");
             }
         });
     });
+
 </script>
 <script>
     window.onload = function () {
