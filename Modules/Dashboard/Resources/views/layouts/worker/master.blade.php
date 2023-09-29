@@ -43,7 +43,8 @@ If any error occurs later in the style of a page, please check this file -->
     </div>
 </div>
 
-<nav class="navbar navbar-expand-lg bg-light dashboard-nav">
+
+<nav class="navbar navbar-expand-lg bg-light dashboard-nav" @if(app()->getLocale() == 'en') dir="ltr" @endif>
     <div class="container-lg">
         <li class="nav-item hamburger">
             <a class=" ms-2  profile_name hamburger-color" href="#"><i class="fa-solid fa-bars"></i></a>
@@ -55,7 +56,7 @@ If any error occurs later in the style of a page, please check this file -->
             <span class="navbar-toggler-icon"><i class="fa-solid fa-house text-primary"></i></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-lg-0">
+            <ul @if(app()->getLocale() == 'en') class="navbar-nav me-auto mb-lg-0" @else class="navbar-nav ms-auto mb-lg-0" @endif >
                 <li class="nav-item">
                     <a class="nav-link link active-up-menu" href="#">تصفح المهمة</a>
                 </li>
