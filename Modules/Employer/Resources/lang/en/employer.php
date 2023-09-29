@@ -273,5 +273,6 @@ return [
     'hello' => 'Hello',
     'employer_name' => 'Employer Name',
     'snapshot_costs_paid_tasks' => 'Snapshot of Costs Paid for Creating Tasks',
+    'switchToWorkerAccount' => 'Worker Account',
 
 ];

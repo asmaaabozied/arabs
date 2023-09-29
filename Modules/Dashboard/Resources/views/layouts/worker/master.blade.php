@@ -13,9 +13,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="{{asset('assets/css/panel/dashboard.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/panel/default.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/panel/style.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('assets/css/panel/default.css')}}"> --}}
+    {{-- <link rel="stylesheet" href="{{asset('assets/css/panel/style.css')}}"> --}}
     <link rel="stylesheet" href="{{asset('assets/css/panel/responsive.css')}}">
+    @if(app()->getLocale() == 'ar')
+        <link rel="stylesheet" href="{{asset('assets/css/panel/default.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/panel/style.css')}}">
+    @else
+        <link rel="stylesheet" href="{{asset('assets/css/panel/default_en.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/panel/style_en.css')}}">
+    @endif
     <!-- This file was causing some problems in displaying the font type in the project
 I examined it and did not find any class in it that could help us in the project
 If any error occurs later in the style of a page, please check this file -->

@@ -244,7 +244,7 @@ return [
     'EnglishLang' => 'English',
     'hello' => 'Hello',
     'workerPanel' => 'Worker Panel',
-    'switchToEmployerAccount' => 'Switch to Employer Account',
+    'switchToEmployerAccount' => 'Employer Account',
     '' => '',
     '' => '',
     '' => '',

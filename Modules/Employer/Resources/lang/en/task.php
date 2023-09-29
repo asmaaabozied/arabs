@@ -241,7 +241,14 @@ return [
     'task_is_hiding_now_description' => 'The task is currently hidden from all workers, so no worker can see it in their task list or apply to complete it unless they already applied before it was hidden. This allows you to manually control task visibility for actions you deem suitable for certain platforms.',
     'pinTaskTopNotAvailableNowDescription' => 'This feature is currently unavailable as the limit on number of tasks allowed to use it has been reached: ',
     'pinTaskTopAvailableNowDescription' => 'This feature is available now. It pins your task to the top so workers always see it first. Availability depends on number of times used on published/active tasks. Limit: ',
-
-    // 'The task has been created successfully, waiting for the confirmation of the data you have chosen to perform this'
+    'TaskInformation' => 'Task Information',
+    'discountCodeDetails' => 'Discount Code Details',
+    'current_task_status' => 'Current Task Status',
+    'proof_details' => 'Proof Details',
+    'task_details2' => 'Task Detalis',
+    'taskIsHidden' => 'Hidden Task',
+    'taskIsShown' => 'Shown Tsak',
+    'adminRefusalTask' => 'Refused Task',
+    'NotPublishedYet' => 'Not Published Yet',
 
 ];
