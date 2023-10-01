@@ -50,7 +50,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul @if(app()->getLocale() == 'en') class="navbar-nav me-auto mb-lg-0" @else class="navbar-nav ms-auto mb-lg-0" @endif >
                 <li class="nav-item">
-                    <a class="nav-link link active-up-menu" href="#">تصفح المهمة</a>
+                    <a class="nav-link link active-up-menu" href="{{route('employer.show.tasks.page')}}">تصفح المهمة</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link link" href="#">قم بإنشاء مهمة</a>

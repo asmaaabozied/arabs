@@ -63,7 +63,7 @@ return [
     'ArabWorkers | Employer Panel - Active Tasks Proofs' => 'عرب وركرز | لوحة التحكم - إثباتات المهام النشطة',
     'Active Tasks Proofs' => 'إثباتات المهام النشطة',
     'Proofs' => 'الإثباتات',
-
+    'Browse Tasks'=>'تصفخ المهام',
     'ArabWorkers | Employer Panel - Active Tasks Proof Details' => 'عرب وركرز | لوحة التحكم - تفاصيل إثباتات المهام النشطة',
     'Tasks Proof details' => 'تفاصيل إثباتات المهام النشطة',
     'Proof Details' => 'تفاصيل الإثباتات',

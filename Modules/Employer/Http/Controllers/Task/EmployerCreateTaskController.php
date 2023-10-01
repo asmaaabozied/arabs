@@ -768,4 +768,10 @@ class EmployerCreateTaskController extends Controller
 
     }
 
+    public function showTasks()
+    {
+
+        return view('tasks.index',['page_name'=>'Browse Tasks','main_breadcrumb' => 'Tasks','sub_breadcrumb' => 'Browse Tasks']);
+    }
+
 }

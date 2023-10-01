@@ -282,7 +282,7 @@ return [
 'full_name' => 'Full Name',
 'email' => 'Email',
 'phone' => 'Phone',
-
+'Browse Tasks'=>'Browse Tasks',
 'addressNotSetYet' => 'Not Defined Yet',
 'ZipCodeNotSetYet' => 'Not Defined Yet',
 'personalInformationDetails' => 'Personal Information',
