@@ -1,4 +1,4 @@
-@extends('dashboard::layouts.employer.master')
+@extends('dashboard::layouts.worker.master')
 @section('content')
     <link id="pagestyle" href="{{asset('assets/css/panel/avatar-uploade.css')}}" rel="stylesheet"/>
 

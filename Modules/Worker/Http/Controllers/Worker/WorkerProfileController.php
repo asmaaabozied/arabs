@@ -23,16 +23,6 @@ use Modules\Region\Entities\Country;
 
 class WorkerProfileController extends Controller
 {
-    // protected function guard()
-    // {
-    //     return Auth::guard('worker');
-    // }
-    // protected function employerGuard()
-    // {
-    //     return Auth::guard('employer');
-    // }
-
-
     public function getCurrentLang()
     {
         $current_lange = Session::get('applocale');
@@ -45,36 +35,32 @@ class WorkerProfileController extends Controller
         return $lang;
     }
 
-
     public function showMyProfile()
     {
-
-        $page_name = "ArabWorkers | Worker - profile";
+        $page_name = "ArabWorkers | Workers - profile";
         $main_breadcrumb = "Worker Panel";
         $sub_breadcrumb = "MyProfile";
 
-        $employer = Worker::with(['country', 'city', 'level'])->findOrFail(auth()->user()->id);
+        $worker = Worker::with(['country', 'city', 'level', 'proofs'])->findOrFail(auth()->user()->id);
+        $tasks = $worker->tasks()->with(['task.category'])->get();
 
-        $tasks = $employer->tasks()->with(['category', 'TaskStatuses.status'])->get();
-
-        if ($employer->privileges()->exists() == true){
-            for($i=0;$i<$employer->privileges()->count();$i++){
-                if ($employer->privileges[$i]->type == "plus") {
-                    $total[] = "+" . $employer->privileges[$i]->count_of_privileges;
+        if ($worker->privileges()->exists() == true){
+            for($i=0;$i<$worker->privileges()->count();$i++){
+                if ($worker->privileges[$i]->type == "plus") {
+                    $total[] = "+" . $worker->privileges[$i]->count_of_privileges;
                 }
                 else{
-                    $total[] = "-" . $employer->privileges[$i]->count_of_privileges;
+                    $total[] = "-" . $worker->privileges[$i]->count_of_privileges;
                 }
             }
         }else{
             $total [] = 0;
         }
-
         return view('worker::layouts.worker.profile', compact([
             'page_name',
             'main_breadcrumb',
             'sub_breadcrumb',
-            'employer',
+            'worker',
             'tasks',
             'total',
         ]));

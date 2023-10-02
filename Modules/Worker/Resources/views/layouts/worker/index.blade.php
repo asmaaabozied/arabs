@@ -4,8 +4,8 @@
         <div class="col-md-12">
             <div class="heading mb-5">
                 <h1><span class="purul">{{trans('worker::worker.hello')}} </span>
-                    <span class="purul">
-                        {{trans('worker::worker.worker_name')}}
+                    <span class="purul text-uppercase">
+                        {{auth()->user()->name}}
                 </span></h1>
             </div>
         </div>
@@ -16,7 +16,7 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">
                                 {{trans('worker::worker.CountOfActivatedTasks')}}
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">50</div>
@@ -38,7 +38,7 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">
                                 {{trans('worker::worker.CountOfFinishTasks')}}
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
@@ -60,7 +60,7 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">
                                 {{trans('worker::worker.CountOfAcceptedTasks')}}
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">50</div>
@@ -82,7 +82,7 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">
                                 {{trans('worker::worker.CountOfRejectedTasks')}}
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">50</div>

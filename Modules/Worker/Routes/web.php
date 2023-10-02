@@ -24,6 +24,12 @@ Route::prefix('panel/worker/my-profile')->middleware('auth:worker')->group(funct
     Route::get('edit-my-profile','Worker\WorkerProfileController@showUpdateMyProfileForm')->name('worker.show.edit.my.profile.form');
 //    Route::post('update-my-profile', 'Worker\WorkerProfileController@updateMyProfile')->name('worker.update.my.profile');
 });
+Route::prefix('panel/worker/verify-account')->middleware('auth:worker')->controller('Worker\VerifyAccountController')->group(function() {
+    Route::get('send-verify-email', 'SendEmailVerification')->name('worker.send.email.verify');
+    Route::get('verify-email-account/{token}/{worker_number}', 'verifyAccount')->name('verify.worker.account');
+    Route::get('send-sms-verification', 'SendSMSVerification')->name('worker.send.sms.verification');
+
+});
 Route::prefix('panel/worker/management-affairs/switchAccount')->controller('Worker\SwitchingAccountController')
 //    ->middleware(['auth:worker','workerProfileCompleted','enabledWorker','IsWorkerVerifyEmail'])->group(function() {
     ->middleware(['auth:worker'])->group(function() {

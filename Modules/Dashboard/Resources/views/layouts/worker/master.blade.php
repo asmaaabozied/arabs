@@ -6,16 +6,15 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>
-        {{trans('worker::worker.panel')}}
+        {{trans('worker::worker.'.$page_name)}}
     </title>
     <link rel="icon" type="image/x-icon" href="{{asset('favicon.ico')}}">
     <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="{{asset('assets/css/panel/icon/nucleo-icons.css')}}" rel="stylesheet"/>
+    <link href="{{asset('assets/css/panel/icon/nucleo-svg.css')}}" rel="stylesheet"/>
 
     <link rel="stylesheet" href="{{asset('assets/css/panel/dashboard.css')}}">
-    {{-- <link rel="stylesheet" href="{{asset('assets/css/panel/default.css')}}"> --}}
-    {{-- <link rel="stylesheet" href="{{asset('assets/css/panel/style.css')}}"> --}}
-    <link rel="stylesheet" href="{{asset('assets/css/panel/responsive.css')}}">
     @if(app()->getLocale() == 'ar')
         <link rel="stylesheet" href="{{asset('assets/css/panel/default.css')}}">
         <link rel="stylesheet" href="{{asset('assets/css/panel/style.css')}}">
@@ -23,26 +22,19 @@
         <link rel="stylesheet" href="{{asset('assets/css/panel/default_en.css')}}">
         <link rel="stylesheet" href="{{asset('assets/css/panel/style_en.css')}}">
     @endif
-    <!-- This file was causing some problems in displaying the font type in the project
-I examined it and did not find any class in it that could help us in the project
-If any error occurs later in the style of a page, please check this file -->
-{{--    <link rel="stylesheet" href="{{asset('assets/css/panel/custom.css')}}">--}}
-<!-- This file was causing some problems in displaying the font type in the project
-I examined it and did not find any class in it that could help us in the project
-If any error occurs later in the style of a page, please check this file -->
+
+    <link rel="stylesheet" href="{{asset('assets/css/panel/responsive.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/panel/dataTable.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/panel/loader.css')}}">
 </head>
 
 <body>
-
-<div class="preloader preloader-1" id="preloader">
-    <div class="spinner">
-        <div class="bounce1"></div>
-        <div class="bounce2"></div>
-        <div class="bounce3"></div>
-    </div>
+<div class="loader" id="loader">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
 </div>
-
 
 <nav class="navbar navbar-expand-lg bg-light dashboard-nav" @if(app()->getLocale() == 'en') dir="ltr" @endif>
     <div class="container-lg">
@@ -67,39 +59,62 @@ If any error occurs later in the style of a page, please check this file -->
                     <a class="nav-link link" href="#">دليل الإحالات</a>
                 </li>
             </ul>
-            <div class="nav-item admin-nav">
+
+            <div class="nav-item admin-nav d-flex align-items-baseline justify-content-between">
                 <div class="dropdown dashboard-profile-dropdown">
                     <button class="dropdown-toggle profile-dropdown" type="button" id="dropdownMenuButton1"
                             data-bs-toggle="dropdown" aria-expanded="false">
                         <a class="user-name profile_name" href="#">
-                            <img src="{{asset('assets/img/marie.jpg')}}" class="profile">
-                            <span class="me-2 text-primary">Worker Name</span>
+                            @if(auth()->user()->google_id == null)
+                                @if(auth()->user()->avatar != null)
+                                    <img src="{{Storage::url(auth()->user()->avatar)}}" class="profile">
+                                @else
+                                    <img src="{{asset('assets/img/default/default-avatar.svg')}}" class="profile">
+                                @endif
+                            @else
+                                <img src="{{auth()->user()->avatar}}" class="profile">
+                            @endif
+                            <span class="me-2 text-sm text-primary text-uppercase">{{auth()->user()->name}}</span>
                         </a>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li><a class="dropdown-item"
                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                            >Logout</a></li>
+                            >{{trans('dashboard::auth.logout')}}</a></li>
                     </ul>
                     <form id="logout-form" action="{{ route('worker.logout') }}" method="POST"
                           class="d-none">
                         @csrf
                     </form>
-                </div>
 
+                </div>
+                <div>
+                    <span class=" text-primary fw-normal  mx-2">
+                             {{ number_format(convertCurrency(auth()->user()->wallet_balance, auth()->user()->current_currency),2) }}
+                                             <span class="text-xxs">{{auth()->user()->current_currency}}</span>
+                     </span>
+                    <i class="fa fa-wallet me-sm-1 mx-1 " aria-hidden="true">
+                    </i>
+                </div>
             </div>
         </div>
     </div>
 </nav>
+
 <div class="side_menu">
     <ul class="">
-        <li class="side_menu_item active">
-            <a class="nav-link nav-text  " href="http://127.0.0.1:8001/panel/employer">
+        <li class="side_menu_item
+            {{request()->routeIs('show.worker.panel') ? 'active_side' : ''}}
+                ">
+            <a class="nav-link nav-text  " href="{{route('show.employer.panel')}}">
                 <i class="fa-solid fa fa-globe active-text"></i>
                 <span class="nav-link-text m-2 fw-bold active-text">{{trans('worker::worker.panel')}}</span>
             </a>
         </li>
-        <li class="side_menu_item">
+        <li class="side_menu_item
+        {{request()->routeIs('worker.show.my.profile') ? 'active_side' : ''}}
+        {{request()->routeIs('worker.show.edit.my.profile.form') ? 'active_side' : ''}}
+                ">
             <a class="nav-link nav-text  " href="{{ route('worker.show.my.profile')}}">
                 <i class="fa-solid fa-user"></i>
                 <span class="nav-link-text m-2 fw-bold">{{trans('worker::worker.MyProfile')}}</span>
@@ -419,6 +434,20 @@ If any error occurs later in the style of a page, please check this file -->
             }
         });
     });
+</script>
+<script>
+    window.onload = function () {
+        // Select the div element by its ID
+        const preloader = document.getElementById("loader");
+
+        // Function to hide the div
+        function hideLoader() {
+            preloader.style.display = "none";
+        }
+
+        // Hide the div after all assets are loaded
+        hideLoader();
+    };
 </script>
 @include('sweetalert::alert')
 </body>

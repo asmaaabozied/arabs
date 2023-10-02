@@ -13,3 +13,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+Route::prefix('panel/worker/management-affairs')->controller('PrivilegeController')->middleware(['auth:worker', 'workerProfileCompleted','enabledWorker','IsWorkerVerifyEmail'])->group(function() {
+    Route::get('rule-of-privileges', 'ruleOfPrivilege')->name('worker.show.rule.of.privileges');
+    Route::get('show-privilege-history', 'showPrivilegeHistory')->name('worker.show.my.privilege.history');
+
+});
