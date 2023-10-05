@@ -242,7 +242,7 @@ return [
     'addressNotSetYet' => 'غير مُعَرّف',
     'ZipCodeNotSetYet' => 'غير مُعَرّف',
     'Joined_at' => 'تاريخ الإنضمام',
-    '' => '',
+    'paypal' => 'حساب باي بال',
     '' => '',
     '' => '',
 

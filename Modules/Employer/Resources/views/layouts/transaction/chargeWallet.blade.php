@@ -58,7 +58,7 @@
                                             class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{Session::get('error')}}</span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert"
                         aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+
                 </button>
             </div>
         @endif

@@ -8,7 +8,7 @@
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <span class="alert-text"><strong>{{trans('worker::task.Error!')}}</strong> {{ $errors->first('section') }}</span>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+
                     </button>
                 </div>
             @endif  @if($errors->has('subject'))
@@ -16,7 +16,7 @@
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <span class="alert-text"><strong>{{trans('worker::task.Error!')}}</strong> {{ $errors->first('subject') }}</span>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+
                     </button>
                 </div>
             @endif  @if($errors->has('description'))
@@ -24,7 +24,7 @@
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <span class="alert-text"><strong>{{trans('worker::task.Error!')}}</strong> {{ $errors->first('description') }}</span>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+
                     </button>
                 </div>
             @endif  @if($errors->has('employer_attached_file'))
@@ -32,7 +32,7 @@
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <span class="alert-text"><strong>{{trans('worker::task.Error!')}}</strong> {{ $errors->first('employer_attached_file') }}</span>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+
                     </button>
                 </div>
             @endif

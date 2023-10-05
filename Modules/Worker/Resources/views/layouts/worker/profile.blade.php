@@ -26,7 +26,7 @@
                     </h5>
                     <p class="mb-0 font-weight-bold text-sm">
                         <span
-                            class="mb-0 font-weight-bold text-sm text-primary">{{trans('admin::worker.Joined_at')}}: {{$worker->created_at->format('d-m-Y')}}</span>
+                            class="mb-0 font-weight-bold text-sm text-primary">{{trans('admin::workers.Joined_at')}}: {{$worker->created_at->format('d-m-Y')}}</span>
                     </p>
                 </div>
             </div>
@@ -352,11 +352,11 @@
                     <thead class="thead-light">
                     <tr class="bg-table">
                         <th> #</th>
-                        <th>{{trans('admin::worker.taskDetails')}}</th>
-                        <th>{{trans('admin::worker.taskStatus')}}</th>
-                        <th>{{trans('admin::worker.taskContOfWorker')}}</th>
-                        <th>{{trans('admin::worker.taskTotalCost')}}</th>
-                        <th>{{trans('admin::worker.taskEndTime')}}</th>
+                        <th>{{trans('admin::workers.taskDetails')}}</th>
+                        <th>{{trans('admin::workers.taskStatus')}}</th>
+                        <th>{{trans('admin::workers.taskContOfWorker')}}</th>
+                        <th>{{trans('admin::workers.taskTotalCost')}}</th>
+                        <th>{{trans('admin::workers.taskEndTime')}}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -406,7 +406,7 @@
                         @endfor
                     @else
                         <td colspan="8">
-                            <div class="text-danger text-center">{{trans('admin::worker.NoDataFound')}}</div>
+                            <div class="text-danger text-center">{{trans('admin::workers.NoDataFound')}}</div>
                         </td>
                     @endif
                     </tbody>

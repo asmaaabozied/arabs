@@ -13,7 +13,7 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('name') }}</span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+
                 </button>
             </div>
         @endif
@@ -22,7 +22,7 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('address') }}</span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+
                 </button>
             </div>
         @endif
@@ -31,7 +31,7 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('zip_code') }}</span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+
                 </button>
             </div>
         @endif
@@ -40,7 +40,7 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('description') }}</span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+
                 </button>
             </div>
         @endif
@@ -49,7 +49,7 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('gender') }}</span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+
                 </button>
             </div>
         @endif
@@ -60,17 +60,26 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('avatar') }}</span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+
                 </button>
             </div>
         @endif
 
+        @if($errors->has('paypal_account'))
+
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('paypal_account') }}</span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+
+                </button>
+            </div>
+        @endif
         @if($errors->has('phone'))
 
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('phone') }}</span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+
                 </button>
             </div>
         @endif
@@ -79,7 +88,7 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('country') }}</span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+
                 </button>
             </div>
         @endif
@@ -88,7 +97,7 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('city') }}</span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+
                 </button>
             </div>
         @endif
@@ -97,7 +106,7 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('new_password') }}</span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+
                 </button>
             </div>
         @endif
@@ -106,36 +115,35 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('password_confirmation') }}</span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+
                 </button>
             </div>
         @endif
         <div class="row profile-row">
+            <h3 class="profile-info">{{trans('employer::employer.personalInformationDetails')}}</h3>
             <div class="task-details-info task-sections">
                 <div class="task-details-table d-flex flex-wrap justify-content-between">
-                    <h3 class="profile-info">{{trans('employer::employer.personalInformationDetails')}}</h3>
-                    <form method="POST" action="{{route('employer.update.my.profile')}}"
+                    <form class="w-100" method="POST" action="{{route('worker.update.my.profile')}}"
                           enctype="multipart/form-data">
                         @csrf
                         <div class="col-12 d-flex flex-wrap justify-content-between">
-                            <div class="inherit-container-width col-lg-4 col-md-4 col-12">
+                            <div class="inherit-container-width col-lg-5 col-md-5 col-12">
                                 <div class="row gx-4 flex-wrap justify-content-center">
-
                                     <div class="col-auto">
                                         <div class="personal-image">
-                                            @if($employer->google_id == null)
+                                            @if($worker->google_id == null)
                                                 <label class="label">
                                                     <input name="avatar" type="file" accept="image/*"
                                                            onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
                                                     <figure class="personal-figure">
 
-                                                        @if(isset($employer->avatar))
+                                                        @if(isset($worker->avatar))
                                                             <img class="radius" id="output"
-                                                                 src="{{Storage::url($employer->avatar)}}"
+                                                                 src="{{Storage::url($worker->avatar)}}"
                                                                  width="120" height="120">
                                                         @else
                                                             <img class="radius" id="output"
-                                                                 src="{{$default_avatar??''}}"
+                                                                 src="{{$default_avatar}}"
                                                                  width="120"
                                                                  height="120">
                                                         @endif
@@ -147,7 +155,7 @@
                                                     </figure>
                                                 </label>
                                             @else
-                                                <img src="{{$employer->avatar}}"
+                                                <img src="{{$worker->avatar}}"
                                                      class="w-100 border-radius-lg shadow-sm" alt="avatar">
                                             @endif
                                         </div>
@@ -155,12 +163,12 @@
                                     <div class="col-auto my-auto">
                                         <div class="h-100">
                                             <h5 class="mb-1 text-uppercase">
-                                                {{$employer->name}}
+                                                {{$worker->name}}
                                             </h5>
                                             <p class="mb-0 font-weight-bold text-sm text-purple">
 
-                                                {{$employer->employer_number}}
-                                                / {{trans('employer::employer.'.$employer->level->name)}}
+                                                {{$worker->worker_number}}
+                                                / {{trans('employer::employer.'.$worker->level->name)}}
                                             </p>
                                         </div>
                                     </div>
@@ -177,9 +185,9 @@
                                                                 <div class="numbers mx-3">
                                                                     <p class="text-sm mb-0 text-capitalize font-weight-bold">{{trans('admin::employer.wallet_balance')}}</p>
                                                                     <h5 class="font-weight-bolder text-primary mb-0">
-                                                                        {{ number_format(convertCurrency($employer->wallet_balance, $employer->current_currency),2) }}
+                                                                        {{ number_format(convertCurrency($worker->wallet_balance, $worker->current_currency),2) }}
                                                                         <span
-                                                                            class="text-xxs">{{$employer->current_currency}}</span>
+                                                                            class="text-xxs">{{$worker->current_currency}}</span>
                                                                     </h5>
                                                                 </div>
                                                             </div>
@@ -192,28 +200,27 @@
                                                 </div>
                                             </div>
 
-                                            {{-- <div class="col-12 my-2">
+                                             <div class="col-12 my-2">
                                                 <div class="card">
                                                     <div class="card-body p-3">
                                                         <div class="row align-items-center">
                                                             <div class="col-8">
                                                                 <div class="numbers mx-3">
-                                                                    <p class="text-sm mb-0 text-capitalize font-weight-bold">{{trans('admin::employer.total_spends')}}</p>
+                                                                    <p class="text-sm mb-0 text-capitalize font-weight-bold">{{trans('admin::workers.worker_level')}}</p>
                                                                     <h5 class="font-weight-bolder text-primary mb-0">
-                                                                        {{ number_format(convertCurrency($employer->total_spends, $employer->current_currency),2) }}
                                                                         <span
-                                                                            class="text-xxs">{{$employer->current_currency}}</span>
+                                                                            class="text-lg worker_level_{{$worker->level->name}}">{{trans('worker::worker.'.$worker->level->name)}}</span>
                                                                     </h5>
                                                                 </div>
                                                             </div>
                                                             <div class="col-3 text-start">
-                                                                <i class="ni ni-money-coins text-2rem text-success opacity-10"
+                                                                <i class="fa fa-gauge-high text-2rem text-primary opacity-10"
                                                                    aria-hidden="true"></i>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div> --}}
+                                            </div>
 
                                             <div class="col-12 my-2">
                                                 <div class="card">
@@ -230,7 +237,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-3 text-start">
-                                                                <i class="ni ni-diamond text-2rem text-info opacity-10"
+                                                                <i class="ni ni-diamond text-2rem text-primary opacity-10"
                                                                    aria-hidden="true"></i>
                                                             </div>
                                                         </div>
@@ -245,14 +252,14 @@
                                                             <div class="col-8">
                                                                 <div class="numbers mx-3">
                                                                     <p class="text-sm mb-0 text-capitalize font-weight-bold">{{trans('admin::employer.employer_status')}}</p>
-                                                                    @if($employer->status == "enable")
-                                                                        <h5 class="font-weight-bolder  {{"text_worker_".$employer->status}} mb-0">
-                                                                            {{trans('admin::employer.'.$employer->status)}}
+                                                                    @if($worker->status == "enable")
+                                                                        <h5 class="font-weight-bolder  {{"text_worker_".$worker->status}} mb-0">
+                                                                            {{trans('admin::employer.'.$worker->status)}}
                                                                         </h5>
                                                                     @else
-                                                                        <h6 class="font-weight-bolder  {{"text_worker_".$employer->status}} mb-0">
-                                                                            {{trans('admin::employer.'.$employer->status)}}
-                                                                            ({{$employer->suspend_days}} {{trans('employer::employer.suspend_days')}}
+                                                                        <h6 class="font-weight-bolder  {{"text_worker_".$worker->status}} mb-0">
+                                                                            {{trans('admin::employer.'.$worker->status)}}
+                                                                            ({{$worker->suspend_days}} {{trans('employer::employer.suspend_days')}}
                                                                             )
                                                                         </h6>
                                                                     @endif
@@ -272,7 +279,6 @@
                                 </div>
                             </div>
                             <table class="inherit-container-width col-lg-7 col-md-7 col-12">
-
                                 <tr>
                                     <td class="name-td text-purple">{{trans('employer::employer.Name')}}</td>
                                     <td class="table-details text-uppercase">
@@ -281,19 +287,33 @@
                                             <input type="text" class="form-control input-lg inputPlaceholder"
                                                    placeholder="{{trans('employer::employer.Name')}}" name="name"
                                                    required
-                                                   value="{{$employer->name}}">
+                                                   value="{{$worker->name}}">
                                             <img src="{{asset('assets/img/name.png')}}" class="input_img" width="20"
                                                  style="width: 28px!important; left: 6px!important;">
                                         </div>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td class="name-td text-purple">{{trans('worker::worker.paypal')}}</td>
+                                    <td class="table-details text-uppercase">
 
-                                @if($employer->google_id !=null and $employer->phone ==null and $employer->country_id == null and $employer->city_id == null )
+                                        <div class="col-12 relative">
+                                            <input type="text" class="form-control input-lg inputPlaceholder"
+                                                   placeholder="{{trans('worker::worker.paypal')}}" name="paypal_account"
+                                                   required
+                                                   value="{{$worker->paypal_account}}">
+                                            <img src="{{asset('assets/img/paypal.png')}}" class="input_img" width="20"
+                                                 style="width: 28px!important; left: 6px!important;">
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                @if($worker->google_id !=null and $worker->phone ==null and $worker->country_id == null and $worker->city_id == null )
                                 <tr>
                                     <td class="name-td text-purple">{{trans('employer::employer.country')}}</td>
                                     <td class="table-details">
-                                        @if($employer->country !=null)
-                                            {{$employer->country->name}}
+                                        @if($worker->country !=null)
+                                            {{$worker->country->name}}
                                         @else
                                             <div class="col-md-12 relative">
                                                 <select class="form-select" aria-label="Default select example"
@@ -328,8 +348,8 @@
                                 <tr>
                                     <td class="name-td text-purple">{{trans('employer::employer.city')}}</td>
                                     <td class="table-details">
-                                        @if($employer->city !=null)
-                                            {{$employer->city->name}}
+                                        @if($worker->city !=null)
+                                            {{$worker->city->name}}
                                         @else
                                             <div class="col-md-12 relative">
                                                 <select class="form-select" aria-label="Default select example"
@@ -350,13 +370,13 @@
                                     <td class="name-td text-purple">{{trans('employer::employer.phone')}}</td>
                                     <td class="table-details">
 
-                                        @if($employer->phone !=null)
-                                            {{$employer->phone}}
+                                        @if($worker->phone !=null)
+                                            {{$worker->phone}}
                                         @else
                                             <div class="col-12 relative">
                                                 <input type="text" class="form-control input-lg inputPlaceholder"
                                                        placeholder="{{trans('employer::signIn.phone')}}" id="CallingCode" name="phone"
-                                                       required value="{{$employer->phone}}">
+                                                       required value="{{$worker->phone}}">
                                                 <img src="{{asset('assets/img/default/phone.png')}}" class="input_img"
                                                      width="20">
                                             </div>
@@ -372,7 +392,7 @@
                                         <div class="col-12 relative">
                                             <input type="text" class="form-control input-lg inputPlaceholder"
                                                    placeholder="{{trans('employer::employer.address')}}" name="address"
-                                                   required value="{{$employer->address}}">
+                                                   required value="{{$worker->address}}">
                                             <img src="{{asset('assets/img/address.png')}}" class="input_img" width="20">
                                         </div>
 
@@ -385,7 +405,7 @@
                                             <input type="text" class="form-control input-lg inputPlaceholder"
                                                    placeholder="{{trans('employer::employer.zip_code')}}"
                                                    name="zip_code"
-                                                   required value="{{$employer->zip_code}}">
+                                                   required value="{{$worker->zip_code}}">
                                             <img src="{{asset('assets/img/zip-code.png')}}" class="input_img"
                                                  width="20">
                                         </div>
@@ -398,7 +418,7 @@
                                         <div class="col-12 relative">
                                             <input type="text" class="form-control input-lg inputPlaceholder"
                                                    placeholder="{{trans('employer::employer.description')}}"
-                                                   name="description"  value="{{$employer->description}}" required>
+                                                   name="description"  value="{{$worker->description}}" required>
                                             <img src="{{asset('assets/img/description.png')}}" class="input_img"
                                                  width="20" >
                                         </div>
@@ -412,12 +432,12 @@
                                             <select class="form-select" aria-label="Default select example"
                                                     name="gender"
                                                     required>
-                                                @if($employer->gender == "male")
+                                                @if($worker->gender == "male")
                                                     <option selected class="bg-primary"
                                                             value="male">{{trans('employer::employer.male')}}</option>
                                                     <option
                                                         value="female">{{trans('employer::employer.female')}}</option>
-                                                @elseif($employer->gender == "female")
+                                                @elseif($worker->gender == "female")
                                                     <option selected class="bg-primary"
                                                             value="female">{{trans('employer::employer.female')}}</option>
                                                     <option value="male">{{trans('employer::employer.male')}}</option>
@@ -482,7 +502,7 @@
 
     </style>
 
-    @if($employer->google_id !=null and $employer->phone ==null and $employer->country_id == null and $employer->city_id == null)
+    @if($worker->google_id !=null and $worker->phone ==null and $worker->country_id == null and $worker->city_id == null)
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
         <!--fetch city by country-->
@@ -492,7 +512,7 @@
                     var idCountry = this.value;
                     $("#city-dropdown").html('');
                     $.ajax({
-                        url: "{{route('employer.fetch.cities.when.update.profile')}}",
+                        url: "{{route('worker.fetch.cities.when.update.profile')}}",
                         type: "POST",
                         data: {
                             country_id: idCountry,

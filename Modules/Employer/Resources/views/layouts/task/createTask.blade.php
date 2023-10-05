@@ -14,7 +14,7 @@
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <span class="alert-text"><strong>{{trans('employer::task.Error!')}}</strong> {{ $errors->first('category_id') }}</span>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+
                     </button>
                 </div>
             @endif
@@ -23,7 +23,7 @@
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <span class="alert-text"><strong>{{trans('employer::task.Error!')}}</strong> {{ $errors->first('title') }}</span>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+
                     </button>
                 </div>
             @endif
@@ -32,7 +32,7 @@
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <span class="alert-text"><strong>{{trans('employer::task.Error!')}}</strong> {{ $errors->first('description') }}</span>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+
                     </button>
                 </div>
             @endif
@@ -41,7 +41,7 @@
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <span class="alert-text"><strong>{{trans('employer::task.Error!')}}</strong> {{ $errors->first('TaskWorkflow') }}</span>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+
                     </button>
                 </div>
             @endif
@@ -51,7 +51,7 @@
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <span class="alert-text"><strong>{{trans('employer::task.Error!')}}</strong> {{ $errors->first('TaskWorkflow.*.Workflow') }}</span>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+
                     </button>
                 </div>
             @endif
@@ -60,7 +60,7 @@
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <span class="alert-text"><strong>{{trans('employer::task.Error!')}}</strong> {{ $errors->first('total_worker_limit') }}</span>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+
                     </button>
                 </div>
             @endif
@@ -69,7 +69,7 @@
             {{--                        <div class="alert alert-danger alert-dismissible fade show" role="alert">--}}
             {{--                            <span class="alert-text"><strong>{{trans('employer::task.Error!')}}</strong> {{ $errors->first('cost_per_worker') }}</span>--}}
             {{--                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">--}}
-            {{--                                <span aria-hidden="true">&times;</span>--}}
+            {{--                                 --}}
             {{--                            </button>--}}
             {{--                        </div>--}}
             {{--                    @endif--}}
@@ -78,7 +78,7 @@
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <span class="alert-text"><strong>{{trans('employer::task.Error!')}}</strong> {{ $errors->first('task_end_date') }}</span>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+
                     </button>
                 </div>
             @endif
@@ -87,7 +87,7 @@
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <span class="alert-text"><strong>{{trans('employer::task.Error!')}}</strong> {{ $errors->first('TaskRegion') }}</span>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+
                     </button>
                 </div>
             @endif
@@ -96,7 +96,7 @@
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <span class="alert-text"><strong>{{trans('employer::task.Error!')}}</strong> {{ $errors->first('TaskRegion.*.Country') }}</span>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+
                     </button>
                 </div>
             @endif
@@ -105,7 +105,7 @@
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <span class="alert-text"><strong>{{trans('employer::task.Error!')}}</strong> {{ $errors->first('TaskRegion.*.City') }}</span>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+
                     </button>
                 </div>
             @endif
@@ -114,7 +114,7 @@
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <span class="alert-text"><strong>{{trans('employer::task.Error!')}}</strong> {{ $errors->first('proof_request_ques') }}</span>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+
                     </button>
                 </div>
             @endif
@@ -123,7 +123,7 @@
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <span class="alert-text"><strong>{{trans('employer::task.Error!')}}</strong> {{ $errors->first('proof_request_screenShot') }}</span>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+
                     </button>
                 </div>
             @endif
@@ -132,7 +132,7 @@
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <span class="alert-text"><strong>{{trans('employer::task.Error!')}}</strong> {{ $errors->first('special_access') }}</span>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+
                     </button>
                 </div>
             @endif
@@ -141,7 +141,7 @@
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <span class="alert-text"><strong>{{trans('employer::task.Error!')}}</strong> {{ $errors->first('only_professional') }}</span>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+
                     </button>
                 </div>
             @endif
@@ -150,7 +150,7 @@
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <span class="alert-text"><strong>{{trans('employer::task.Error!')}}</strong> {{ $errors->first('daily_limit') }}</span>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+
                     </button>
                 </div>
             @endif

@@ -7,6 +7,8 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Modules\Employer\Entities\Employer;
@@ -20,6 +22,7 @@ use Modules\Setting\Entities\Status;
 use Modules\Task\Entities\TaskWorker;
 use Modules\Region\Entities\City;
 use Modules\Region\Entities\Country;
+use Modules\Worker\Http\Requests\UpdateMyProfileRequest;
 
 class WorkerProfileController extends Controller
 {
@@ -68,19 +71,20 @@ class WorkerProfileController extends Controller
     }
     public function showUpdateMyProfileForm()
     {
-        $page_name = "ArabWorkers | Workers - edit profile";
+        $page_name = "ArabWorkers | Workers - profile";
         $main_breadcrumb = "Worker Panel";
         $sub_breadcrumb = "Edit My Profile";
-        $employer = Worker::withoutTrashed()->with('level')->findOrFail(auth()->user()->id);
+        $worker = Worker::withoutTrashed()->with('level')->findOrFail(auth()->user()->id);
+//        dd($worker);
         $default_avatar = $this->avatar();
         $countries = Country::withoutTrashed()->get();
-        if ($employer->privileges()->exists() == true){
-            for($i=0;$i<$employer->privileges()->count();$i++){
-                if ($employer->privileges[$i]->type == "plus") {
-                    $total[] = "+" . $employer->privileges[$i]->count_of_privileges;
+        if ($worker->privileges()->exists() == true){
+            for($i=0;$i<$worker->privileges()->count();$i++){
+                if ($worker->privileges[$i]->type == "plus") {
+                    $total[] = "+" . $worker->privileges[$i]->count_of_privileges;
                 }
                 else{
-                    $total[] = "-" . $employer->privileges[$i]->count_of_privileges;
+                    $total[] = "-" . $worker->privileges[$i]->count_of_privileges;
                 }
             }
         }else{
@@ -90,16 +94,104 @@ class WorkerProfileController extends Controller
             'page_name',
             'main_breadcrumb',
             'sub_breadcrumb',
-            'employer',
+            'worker',
             'default_avatar',
             'countries',
             'total',
         ]));
+    }
+
+    public function fetchCity(Request $request)
+    {
+        $lang = app()->getLocale();
+        if ($lang == "ar") {
+            $data['cities'] = City::withoutTrashed()->where("country_id", $request->country_id)->get(["id", "ar_name"]);
+            $data['phone'] = Country::select('calling_code')->find($request->country_id);
+        } else {
+            $data['cities'] = City::withoutTrashed()->where("country_id", $request->country_id)->get(["id", "name"]);
+            $data['phone'] = Country::select('calling_code')->find($request->country_id);
+
+        }
+        return response()->json($data);
     }
     public function avatar()
     {
         $default_avatar = url('assets/img/default/default-avatar.svg');
         return $default_avatar;
     }
+    public function updateMyProfile(UpdateMyProfileRequest $request)
+    {
+        $validated = $request->validated();
+        $worker = Worker::withoutTrashed()->findOrFail(auth()->user()->id);
+        if ($worker->google_id == null) {
+            if (isset($validated['avatar'])) {
+                $avatar = $validated['avatar'] = $request->file('avatar')->store('Workers/avatars', 'public');
+                File::delete(storage_path('app/public/' . $worker->avatar));
+            } else {
+                $avatar = $worker->avatar;
+            }
+        } else {
+            $avatar = $worker->avatar;
+        }
+        if (isset($validated['password'])) {
+            $worker->update([
+                'password' => Hash::make($validated['password']),
+            ]);
+        } else {
+            unset($validated['password']);
+        }
+
+
+        if ($worker->google_id == null) {
+            $worker->update([
+                'avatar' => $avatar,
+                'name' => $validated['name'],
+                'paypal_account' => $validated['paypal_account'],
+                'address' => $validated['address'],
+                'zip_code' => $validated['zip_code'],
+                'description' => $validated['description'],
+                'gender' => $validated['gender'],
+            ]);
+            alert()->toast(trans('worker::worker.You are update your information successfully'), 'success');
+            return redirect()->route('worker.show.my.profile');
+        } elseif (
+            $worker->google_id != null
+            and array_key_exists('country', $validated)
+            and array_key_exists('city', $validated)
+            and array_key_exists('phone', $validated)
+
+        ) {
+            $worker->update([
+                'avatar' => $avatar,
+                'name' => $validated['name'],
+                'paypal_account' => $validated['paypal_account'],
+                'address' => $validated['address'],
+                'zip_code' => $validated['zip_code'],
+                'description' => $validated['description'],
+                'gender' => $validated['gender'],
+                'country_id' => $validated['country'],
+                'city_id' => $validated['city'],
+                'phone' => $validated['phone'],
+            ]);
+            alert()->toast(trans('worker::worker.You are update your information successfully'), 'success');
+            return redirect()->route('worker.show.my.profile');
+        } else {
+            $worker->update([
+                'avatar' => $avatar,
+                'name' => $validated['name'],
+                'paypal_account' => $validated['paypal_account'],
+                'address' => $validated['address'],
+                'zip_code' => $validated['zip_code'],
+                'description' => $validated['description'],
+                'gender' => $validated['gender'],
+            ]);
+            alert()->toast(trans('worker::worker.You are update your information successfully'), 'success');
+            return redirect()->route('worker.show.my.profile');
+        }
+
+
+    }
+
+
 
 }

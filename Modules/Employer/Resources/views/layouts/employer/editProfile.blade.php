@@ -1,4 +1,4 @@
-@extends('dashboard::layouts.employer.master')
+@extends('dashboard::layouts.worker.master')
 @section('content')
     <link id="pagestyle" href="{{asset('assets/css/panel/avatar-uploade.css')}}" rel="stylesheet"/>
 
@@ -13,7 +13,7 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('name') }}</span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+
                 </button>
             </div>
         @endif
@@ -22,7 +22,7 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('address') }}</span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+
                 </button>
             </div>
         @endif
@@ -31,7 +31,7 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('zip_code') }}</span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+
                 </button>
             </div>
         @endif
@@ -40,7 +40,7 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('description') }}</span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+
                 </button>
             </div>
         @endif
@@ -49,7 +49,7 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('gender') }}</span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+
                 </button>
             </div>
         @endif
@@ -60,7 +60,7 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('avatar') }}</span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+
                 </button>
             </div>
         @endif
@@ -70,7 +70,7 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('phone') }}</span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+
                 </button>
             </div>
         @endif
@@ -79,7 +79,7 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('country') }}</span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+
                 </button>
             </div>
         @endif
@@ -88,7 +88,7 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('city') }}</span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+
                 </button>
             </div>
         @endif
@@ -97,7 +97,7 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('new_password') }}</span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+
                 </button>
             </div>
         @endif
@@ -106,19 +106,19 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <span class="alert-text"><strong>{{trans('employer::employer.Error!')}}</strong> {{ $errors->first('password_confirmation') }}</span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+
                 </button>
             </div>
         @endif
         <div class="row profile-row">
+            <h3 class="profile-info">{{trans('employer::employer.personalInformationDetails')}}</h3>
             <div class="task-details-info task-sections">
                 <div class="task-details-table d-flex flex-wrap justify-content-between">
-                    <h3 class="profile-info">{{trans('employer::employer.personalInformationDetails')}}</h3>
-                    <form method="POST" action="{{route('employer.update.my.profile')}}"
+                    <form class="w-100" method="POST" action="{{route('employer.update.my.profile')}}"
                           enctype="multipart/form-data">
                         @csrf
                         <div class="col-12 d-flex flex-wrap justify-content-between">
-                            <div class="inherit-container-width col-lg-4 col-md-4 col-12">
+                            <div class="inherit-container-width col-lg-5 col-md-5 col-12">
                                 <div class="row gx-4 flex-wrap justify-content-center">
 
                                     <div class="col-auto">

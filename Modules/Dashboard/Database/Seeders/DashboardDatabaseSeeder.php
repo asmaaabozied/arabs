@@ -73,7 +73,6 @@ class DashboardDatabaseSeeder extends Seeder
 
 
 //todo localhost  command
-//todo going to SupportDatabaseSeeder and uncomment some line
     /**
     php artisan module:migrate Role
     php artisan module:seed Role

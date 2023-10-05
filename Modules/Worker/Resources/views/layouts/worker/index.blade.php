@@ -19,7 +19,7 @@
                             <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">
                                 {{trans('worker::worker.CountOfActivatedTasks')}}
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">50</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$activeTasks}}</div>
                         </div>
                         <div class="col-auto">
                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"
@@ -41,7 +41,7 @@
                             <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">
                                 {{trans('worker::worker.CountOfFinishTasks')}}
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$finishTasks}}</div>
                         </div>
                         <div class="col-auto">
                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"
@@ -63,7 +63,7 @@
                             <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">
                                 {{trans('worker::worker.CountOfAcceptedTasks')}}
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">50</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$acceptedTasks}}</div>
                         </div>
                         <div class="col-auto">
                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"
@@ -85,7 +85,7 @@
                             <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">
                                 {{trans('worker::worker.CountOfRejectedTasks')}}
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">50</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$rejectedTask}}</div>
                         </div>
                         <div class="col-auto">
                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"
