@@ -98,7 +98,7 @@
                                             <div class="row align-items-center">
                                                 <div class="col-8">
                                                     <div class="numbers mx-3">
-                                                        <p class="text-lg mb-0 text-capitalize fw-bold">{{trans('worker::worker.amountYouWantTransferredToEmployerWallet')}}</p>
+                                                        <p class="text-lg mb-0 text-capitalize ">{{trans('worker::worker.amountYouWantTransferredToEmployerWallet')}}</p>
                                                         <input class="multisteps-form__input form-control" step="0.1"
                                                                value="0.00"
                                                                type="number"
