@@ -58,7 +58,7 @@
                                         @if($datum->isTransferWalletBalance == "false")
                                             <td class="align-middle text-center">
                                             <span
-                                                class="text-danger text-xs font-weight-bold">{{trans('employer::employer.TransferWalletBalance==false')}}</span>
+                                                class=" text-xs font-weight-bold">{{trans('employer::employer.TransferWalletBalance==false')}}</span>
                                             </td>
                                         @else
                                             <td class="align-middle text-center">

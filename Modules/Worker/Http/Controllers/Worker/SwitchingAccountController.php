@@ -291,7 +291,7 @@ class SwitchingAccountController extends Controller
                 $this->employerGuard()->login($my_employer_account);
                 Session::put('applocale', $lang);
                 alert()->toast(trans('worker::worker.You have been successfully Account SwitchingToEmployer And Transferred Balance'), 'success');
-                return redirect()->route('employer.show.dashboard');
+                return redirect()->route('show.employer.panel');
             }
 
 

@@ -158,13 +158,18 @@
             </div>
         </li>
 
-        <li class="side_menu_item">
+        <li class="side_menu_item
+            {{request()->routeIs('worker.show.switch.account.to.employer.with.transfer.wallet.balance.form') ? 'active_side' : ''}}
+                ">
             <a data-bs-toggle="collapse" href="#FinancialAffairs" class="nav-link nav-text collapsed"
                aria-controls="FinancialAffairs" role="button" aria-expanded="false">
                 <i class="fa-solid fa-credit-card"></i>
                 <span class="nav-link-text m-2 fw-bold">{{trans('worker::worker.Financial Affairs')}}</span>
             </a>
-            <div class="collapse" id="FinancialAffairs" style="">
+            <div class="collapse
+            {{request()->routeIs('worker.show.switch.account.to.employer.with.transfer.wallet.balance.form') ? 'show' : ''}}
+
+                " id="FinancialAffairs" style="">
                 <ul class="nav ms-4 ps-3">
 
                     <li class="">
@@ -173,7 +178,10 @@
                         </a>
                     </li>
                     <li class="">
-                        <a class="nav-link nav-text"
+                        <a class="nav-link nav-text
+                   {{request()->routeIs('worker.show.switch.account.to.employer.with.transfer.wallet.balance.form') ? 'active-select-nav' : ''}}
+
+                            "
                            href="{{route('worker.show.switch.account.to.employer.with.transfer.wallet.balance.form')}}">
                             <span class="sidenav-normal">{{trans('worker::worker.TransferWorkerWalletBalanceToEmployer')}} </span>
                         </a>
@@ -195,17 +203,27 @@
                 </ul>
             </div>
         </li>
-        <li class="side_menu_item">
+        <li class="side_menu_item
+             {{request()->routeIs('worker.show.switching.account.history') ? 'active_side' : ''}}
+            {{request()->routeIs('worker.show.my.privilege.history') ? 'active_side' : ''}}
+            {{request()->routeIs('worker.show.rule.of.privileges') ? 'active_side' : ''}}
+                ">
             <a data-bs-toggle="collapse" href="#ManagementSection" class="nav-link nav-text"
                aria-controls="ManagementSection" role="button" aria-expanded="">
                 <i class="fa fa-list-ol"></i>
                 <span class="nav-link-text m-2 fw-bold">{{trans('worker::worker.ManagementSection')}}</span>
             </a>
-            <div class="collapse" id="ManagementSection" style="">
+            <div class="collapse
+             {{request()->routeIs('worker.show.switching.account.history') ? 'show' : ''}}
+            {{request()->routeIs('worker.show.my.privilege.history') ? 'show' : ''}}
+            {{request()->routeIs('worker.show.rule.of.privileges') ? 'show' : ''}}
+            " id="ManagementSection" style="">
                 <ul class="nav ms-4 ps-3">
 
                     <li class="">
-                        <a class="nav-link nav-text"
+                        <a class="nav-link nav-text
+                          {{request()->routeIs('worker.show.switching.account.history') ? 'active-select-nav' : ''}}
+                            "
                            href="{{route('worker.show.switching.account.history')}}">
                             <span
                                 class="sidenav-normal"> {{trans('worker::worker.switchingAccountHistory')}} </span>
