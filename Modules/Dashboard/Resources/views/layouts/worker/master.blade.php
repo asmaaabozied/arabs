@@ -162,6 +162,7 @@
             {{request()->routeIs('worker.show.switch.account.to.employer.with.transfer.wallet.balance.form') ? 'active_side' : ''}}
             {{request()->routeIs('worker.show.my.profits') ? 'active_side' : ''}}
             {{request()->routeIs('worker.show.my.wallet.history') ? 'active_side' : ''}}
+            {{request()->routeIs('worker.show.my.withdraw.using.paypal.form') ? 'active_side' : ''}}
                 ">
             <a data-bs-toggle="collapse" href="#FinancialAffairs" class="nav-link nav-text collapsed"
                aria-controls="FinancialAffairs" role="button" aria-expanded="false">
@@ -172,6 +173,7 @@
             {{request()->routeIs('worker.show.switch.account.to.employer.with.transfer.wallet.balance.form') ? 'show' : ''}}
             {{request()->routeIs('worker.show.my.profits') ? 'show' : ''}}
             {{request()->routeIs('worker.show.my.wallet.history') ? 'show' : ''}}
+            {{request()->routeIs('worker.show.my.withdraw.using.paypal.form') ? 'show' : ''}}
 
                 " id="FinancialAffairs" style="">
                 <ul class="nav ms-4 ps-3">
@@ -203,8 +205,10 @@
                         </a>
                     </li>
                     <li class="">
-                        <a class="nav-link nav-text"
-                           href="#">
+                        <a class="nav-link nav-text
+                          {{request()->routeIs('worker.show.my.withdraw.using.paypal.form') ? 'active-select-nav' : ''}}
+                        "
+                           href="{{route('worker.show.my.withdraw.using.paypal.form')}}">
                             <span class="sidenav-normal">{{trans('worker::worker.WithdrawWalletBalance')}}</span>
                         </a>
                     </li>
