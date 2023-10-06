@@ -3,12 +3,12 @@
     <div class="row bg-white mt-4">
         <div class="card-body px-0 pb-0">
             <div class="text-left">
-                <a href="{{route('worker.show.my.withdraw.using.paypal.form')}}"  class="btn bg-gradient-primary w-auto m-4">{{trans('worker::worker.PayOutWalletBtn')}} </a>
+                <a href="{{route('worker.show.my.withdraw.using.paypal.form')}}"  class="btn bg-gradient-primary text-white w-auto m-4">{{trans('worker::worker.PayOutWalletBtn')}} </a>
             </div>
             <div class="table-responsive">
                 <table class="table table-flush" id="datatable-list">
                     <thead class="thead-light">
-                    <tr>
+                    <tr class="bg-table">
                         <th><span class="mx-2">#</span></th>
                         <th>{{trans('worker::worker.transactionsDetails')}}</th>
                         <th>{{trans('worker::worker.TypeOfTransaction')}}</th>

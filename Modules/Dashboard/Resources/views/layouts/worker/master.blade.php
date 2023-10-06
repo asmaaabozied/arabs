@@ -161,6 +161,7 @@
         <li class="side_menu_item
             {{request()->routeIs('worker.show.switch.account.to.employer.with.transfer.wallet.balance.form') ? 'active_side' : ''}}
             {{request()->routeIs('worker.show.my.profits') ? 'active_side' : ''}}
+            {{request()->routeIs('worker.show.my.wallet.history') ? 'active_side' : ''}}
                 ">
             <a data-bs-toggle="collapse" href="#FinancialAffairs" class="nav-link nav-text collapsed"
                aria-controls="FinancialAffairs" role="button" aria-expanded="false">
@@ -170,6 +171,7 @@
             <div class="collapse
             {{request()->routeIs('worker.show.switch.account.to.employer.with.transfer.wallet.balance.form') ? 'show' : ''}}
             {{request()->routeIs('worker.show.my.profits') ? 'show' : ''}}
+            {{request()->routeIs('worker.show.my.wallet.history') ? 'show' : ''}}
 
                 " id="FinancialAffairs" style="">
                 <ul class="nav ms-4 ps-3">
@@ -192,8 +194,10 @@
                     </li>
 
                     <li class="">
-                        <a class="nav-link nav-text"
-                           href="#">
+                        <a class="nav-link nav-text
+                          {{request()->routeIs('worker.show.my.wallet.history') ? 'active-select-nav' : ''}}
+                            "
+                           href="{{route('worker.show.my.wallet.history')}}">
                             <span
                                 class="sidenav-normal">{{trans('worker::worker.WalletHistory')}} </span>
                         </a>
@@ -340,7 +344,8 @@
             <ol class="breadcrumb">
                 {{--                <li class="breadcrumb-item"><a href="#">Home</a></li>--}}
                 {{--                <li class="breadcrumb-item "><a href="#">Library</a></li>--}}
-                <li class="breadcrumb-item text-primary font-26" aria-current="page">لوحة التحكم</li>
+                <li class="breadcrumb-item text-primary font-26"
+                    aria-current="page">{{trans('worker::worker.'.$sub_breadcrumb)}}</li>
             </ol>
         </nav>
         @yield('content')
