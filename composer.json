@@ -15,6 +15,7 @@
         "mews/captcha": "^3.3",
         "nwidart/laravel-modules": "^10.0",
         "omnipay/paypal": "^3.0",
+        "paypal/rest-api-sdk-php": "^1.6",
         "php-open-source-saver/jwt-auth": "^2.1",
         "realrashid/sweet-alert": "^7.1"
     },
