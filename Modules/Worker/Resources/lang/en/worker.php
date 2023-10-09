@@ -245,7 +245,7 @@ return [
     'hello' => 'Hello',
     'workerPanel' => 'Worker Panel',
     'switchToEmployerAccount' => 'Employer Account',
-    '' => '',
+    'paypal' => 'paypal',
     '' => '',
     '' => '',
     '' => '',
