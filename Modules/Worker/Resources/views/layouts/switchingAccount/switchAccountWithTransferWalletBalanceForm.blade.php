@@ -69,7 +69,7 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <span class="alert-text"><strong>{{trans('worker::worker.Error!')}}</strong> {{ $errors->first('AmountTransferred') }}</span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+
                 </button>
             </div>
         @endif
@@ -79,7 +79,7 @@
                                             class="alert-text"><strong>{{trans('worker::worker.Error!')}}</strong> {{Session::get('error')}}</span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert"
                         aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+
                 </button>
             </div>
         @endif

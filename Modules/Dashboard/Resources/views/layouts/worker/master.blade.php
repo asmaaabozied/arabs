@@ -262,18 +262,31 @@
             </div>
         </li>
 
-        <li class="side_menu_item ">
-            <a data-bs-toggle="collapse" href="#EmployerSupport" class="nav-link nav-text"
-               aria-controls="EmployerSupport" role="button" aria-expanded="">
+
+        <li class="side_menu_item
+             {{request()->routeIs('worker.show.my.tickets') ? 'active_side' : ''}}
+        {{request()->routeIs('worker.show.ticket.details') ? 'active_side' : ''}}
+        {{request()->routeIs('worker.show.create.ticket.form') ? 'active_side' : ''}}
+            ">
+            <a data-bs-toggle="collapse" href="#WorkerSupport" class="nav-link nav-text"
+               aria-controls="WorkerSupport" role="button" aria-expanded="">
                 <i class="fa-solid fa-headphones-simple"></i>
                 <span class="nav-link-text m-2 fw-bold">{{trans('worker::worker.SupportSection')}}</span>
 
             </a>
-            <div class="collapse" id="EmployerSupport" style="">
+            <div class="collapse
+                  {{request()->routeIs('worker.show.my.tickets') ? 'show' : ''}}
+            {{request()->routeIs('worker.show.ticket.details') ? 'show' : ''}}
+            {{request()->routeIs('worker.show.create.ticket.form') ? 'show' : ''}}
+                " id="WorkerSupport" style="">
                 <ul class="nav ms-4 ps-3">
 
                     <li class="">
-                        <a class="nav-link nav-text" href="#">
+                        <a class="nav-link nav-text
+                         {{request()->routeIs('worker.show.my.tickets') ? 'active-select-nav' : ''}}
+                        {{request()->routeIs('worker.show.ticket.details') ? 'active-select-nav' : ''}}
+                        {{request()->routeIs('worker.show.create.ticket.form') ? 'active-select-nav' : ''}}
+                            " href="{{route('worker.show.my.tickets')}}">
                             <span class="sidenav-normal "> {{trans('worker::worker.myTickets')}} </span>
                         </a>
                     </li>
