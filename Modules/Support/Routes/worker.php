@@ -23,3 +23,4 @@ Route::prefix('panel/worker/support')->middleware(['auth:worker','workerProfileC
     Route::post('send-ticket-answer/{ticket}', 'SupportController@sendAnswer')->name('worker.send.answer');
 
 });
+

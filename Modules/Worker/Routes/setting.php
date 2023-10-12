@@ -13,3 +13,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::prefix('worker/settings')->controller('LangAndCurrencyController')->middleware(['auth:worker'])->group(function() {
+    Route::get('change-app-language/{lang}', 'changeAppLang')->name('worker.change.app.language');
+    Route::get('change-app-currency/{currency}', 'changeCurrentCurrency')->name('worker.change.app.currency');
+
+});

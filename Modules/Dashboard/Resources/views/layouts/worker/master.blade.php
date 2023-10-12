@@ -280,57 +280,82 @@
                 </ul>
             </div>
         </li>
-
-
         <li class="side_menu_item">
-            <a data-bs-toggle="collapse" href="#AppLanguage" class="nav-link nav-text" aria-controls="AppLanguage"
-               role="button" aria-expanded="">
+            <a data-bs-toggle="collapse" href="#AppLanguage" class="nav-link nav-text"
+               aria-controls="AppLanguage" role="button" aria-expanded="">
                 <i class="fa-solid fa fa-globe"></i>
-
                 <span class="nav-link-text m-2 fw-bold">{{trans('worker::worker.AppLanguage')}}</span>
             </a>
-            <div class="collapse" id="AppLanguage" style="">
+            <div class="collapse " id="AppLanguage" style="">
                 <ul class="nav ms-4 ps-3">
                     <li class="">
                         <a class="nav-link nav-text active-select-nav"
-                           href="#">
-                            <span class="sidenav-normal"> {{trans('worker::worker.ArabicLang')}}   </span>
+                           href="{{route('worker.change.app.language','ar')}}">
+                            <span class="sidenav-normal"> {{trans('worker::worker.ArabicLang')}} </span>
+
                         </a>
                     </li>
                     <li class="">
                         <a class="nav-link nav-text"
-                           href="#">
-                            <span class="sidenav-normal"> {{trans('worker::worker.EnglishLang')}}   </span>
+                           href="{{route('worker.change.app.language','en')}}">
+                            <span class="sidenav-normal">  {{trans('worker::worker.EnglishLang')}} </span>
                         </a>
                     </li>
                 </ul>
             </div>
         </li>
-
         <li class="side_menu_item">
             <a data-bs-toggle="collapse" href="#SelectedCurrency" class="nav-link nav-text"
-               aria-controls="SelectedCurrency" role="button" aria-expanded="">
+               aria-controls="SelectedCurrency"
+               role="button" aria-expanded="">
                 <i class="fa fa-usd"></i>
+
                 <span class="nav-link-text m-2 fw-bold">{{trans('worker::worker.Currencies')}}</span>
             </a>
-            <div class="collapse " id="SelectedCurrency" style="">
+            <div class="collapse" id="SelectedCurrency" style="">
                 <ul class="nav ms-4 ps-3">
-                    <li class="">
-                        <a class="nav-link nav-text active-select-nav"
-                           href="#">
-                            <span class="sidenav-normal"> دولار أمريكي  </span>
+                    <?php
+                    $currencies = \Modules\Currency\Entities\Currency::withoutTrashed()->get();
+                    ?>
 
-                        </a>
-                    </li>
-                    <li class="">
-                        <a class="nav-link nav-text"
-                           href="#">
-                            <span class="sidenav-normal"> جنيه مصري  </span>
-                        </a>
-                    </li>
+                    @if(app()->getLocale() == "ar")
+                        @foreach($currencies as $currency)
+                            <li class="">
+                                <a class="nav-link nav-text
+                                 {{auth()->user()->current_currency == $currency->en_name  ? 'active-select-nav' : ''}}
+                                    "
+                                   href="{{route('worker.change.app.currency',$currency->en_name)}}">
+                                    <span class="sidenav-normal"> {{$currency->ar_name}}   </span>
+                                </a>
+                            </li>
+                        @endforeach
+                    @elseif(app()->getLocale() == "en")
+                        @foreach($currencies as $currency)
+                            <li class="">
+                                <a class="nav-link nav-text
+                                 {{auth()->user()->current_currency == $currency->en_name  ? 'active-select-nav' : ''}}
+                                    "
+                                   href="{{route('worker.change.app.currency',$currency->en_name)}}">
+                                    <span class="sidenav-normal"> {{$currency->ar_name}}   </span>
+                                </a>
+                            </li>
+                        @endforeach
+                    @else
+                        @foreach($currencies as $currency)
+                            <li class="">
+                                <a class="nav-link nav-text
+                                 {{auth()->user()->current_currency == $currency->en_name  ? 'active-select-nav' : ''}}
+                                    "
+                                   href="{{route('worker.change.app.currency',$currency->en_name)}}">
+                                    <span class="sidenav-normal"> {{$currency->ar_name}}   </span>
+                                </a>
+                            </li>
+                        @endforeach
+                    @endif
                 </ul>
             </div>
         </li>
+
         <div class=" side_menu_item ">
             <div class="d-flex justify-content-around col-auto pt-2 pb-2 ">
                 <div class="form-check form-switch my-auto">
