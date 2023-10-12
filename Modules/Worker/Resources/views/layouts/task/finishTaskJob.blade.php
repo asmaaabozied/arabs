@@ -24,16 +24,16 @@
     </div>
     <div class="row">
         <div class="col-12 mt-2">
-            <div class="card bg-gradient-secondary">
+            <div class="card bg-white">
                 <div class="card-body p-3">
                     <div class="row">
                         <div class="col-12 my-auto">
                             <div class="numbers">
-                                <p class="text-white text-center text-sm mb-0 text-capitalize font-weight-bold opacity-7">
+                                <p class=" text-center text-sm mb-0 text-capitalize font-weight-bold opacity-7">
                                     {{trans('worker::task.The remaining time to complete the task')}}
                                 </p>
                                 <h5 id="counter"
-                                    class="text-white text-center font-weight-bolder weather-line mb-0"></h5>
+                                    class="text-primary text-center font-weight-bolder weather-line mb-0"></h5>
                             </div>
                         </div>
                     </div>
@@ -150,7 +150,7 @@
                                     </div>
                                     <label class="btn btn-dark btn-lg w-100" for="file-ip-1">{{trans('worker::task.Upload Image')}}</label>
                                     <input type="file" id="file-ip-1" name="screenshot" accept="image/jpeg, image/jpg, image/png" onchange="showPreview(event);">
-                                    <button class="btn btn-danger btn-lg w-100 d-none " id="remove" onclick="removeImage()" >{{trans('worker::task.Remove Image')}}</button>
+                                    <button class="btn btn-danger btn-lg w-100 d-none my-1 " id="remove" onclick="removeImage()" >{{trans('worker::task.Remove Image')}}</button>
                                 </div>
                             </div>
                         </div>

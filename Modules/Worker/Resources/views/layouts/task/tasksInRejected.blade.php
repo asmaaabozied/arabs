@@ -5,7 +5,7 @@
             <div class="table-responsive">
                 <table class="table table-flush" id="datatable-list">
                     <thead class="thead-light">
-                    <tr>
+                    <tr class="bg-table">
                         <th><span class="mx-2">#</span></th>
                         <th>{{trans('worker::task.basicInformation')}}</th>
                         <th>{{trans('worker::task.date_of_apply')}}</th>

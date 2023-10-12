@@ -48,7 +48,8 @@
             <span class="navbar-toggler-icon"><i class="fa-solid fa-house text-primary"></i></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul @if(app()->getLocale() == 'en') class="navbar-nav me-auto mb-lg-0" @else class="navbar-nav ms-auto mb-lg-0" @endif >
+            <ul @if(app()->getLocale() == 'en') class="navbar-nav me-auto mb-lg-0"
+                @else class="navbar-nav ms-auto mb-lg-0" @endif >
                 <li class="nav-item">
                     <a class="nav-link link active-up-menu" href="#">تصفح المهمة</a>
                 </li>
@@ -105,7 +106,7 @@
     <ul class="">
         <li class="side_menu_item
             {{request()->routeIs('show.worker.panel') ? 'active_side' : ''}}
-                ">
+            ">
             <a class="nav-link nav-text  " href="{{route('show.worker.panel')}}">
                 <i class="fa-solid fa fa-globe "></i>
                 <span class="nav-link-text m-2 fw-bold ">{{trans('worker::worker.panel')}}</span>
@@ -114,43 +115,85 @@
         <li class="side_menu_item
         {{request()->routeIs('worker.show.my.profile') ? 'active_side' : ''}}
         {{request()->routeIs('worker.show.edit.my.profile.form') ? 'active_side' : ''}}
-                ">
+            ">
             <a class="nav-link nav-text  " href="{{ route('worker.show.my.profile')}}">
                 <i class="fa-solid fa-user"></i>
                 <span class="nav-link-text m-2 fw-bold">{{trans('worker::worker.MyProfile')}}</span>
             </a>
         </li>
-        <li class="side_menu_item">
+        <li class="side_menu_item
+              {{request()->routeIs('worker.browse.task') ? 'active_side' : ''}}
+        {{request()->routeIs('worker.show.task.details') ? 'active_side' : ''}}
+        {{request()->routeIs('worker.tasks.in.active') ? 'active_side' : ''}}
+        {{request()->routeIs('worker.show.task.in.active.details') ? 'active_side' : ''}}
+        {{request()->routeIs('worker.show.task.finish.the.job.form') ? 'active_side' : ''}}
+        {{request()->routeIs('worker.tasks.in.done') ? 'active_side' : ''}}
+        {{request()->routeIs('worker.show.task.in.done.details') ? 'active_side' : ''}}
+        {{request()->routeIs('worker.tasks.in.complete') ? 'active_side' : ''}}
+        {{request()->routeIs('worker.show.task.in.complete.details') ? 'active_side' : ''}}
+        {{request()->routeIs('worker.tasks.in.rejected') ? 'active_side' : ''}}
+        {{request()->routeIs('worker.show.task.in.rejected.details') ? 'active_side' : ''}}
+            ">
             <a data-bs-toggle="collapse" href="#dashboardsExamples" class="nav-link nav-text collapsed"
                aria-controls="dashboardsExamples" role="button" aria-expanded="false">
                 <i class="fa-solid fa-tag"></i>
                 <span class="nav-link-text m-2 fw-bold">{{trans('worker::worker.tasks')}}</span>
             </a>
-            <div class="collapse" id="dashboardsExamples" style="">
+            <div class="collapse
+        {{request()->routeIs('worker.browse.task') ? 'show' : ''}}
+            {{request()->routeIs('worker.show.task.details') ? 'show' : ''}}
+            {{request()->routeIs('worker.tasks.in.active') ? 'show' : ''}}
+            {{request()->routeIs('worker.show.task.in.active.details') ? 'show' : ''}}
+            {{request()->routeIs('worker.show.task.finish.the.job.form') ? 'show' : ''}}
+            {{request()->routeIs('worker.tasks.in.done') ? 'show' : ''}}
+            {{request()->routeIs('worker.show.task.in.done.details') ? 'show' : ''}}
+            {{request()->routeIs('worker.tasks.in.complete') ? 'show' : ''}}
+            {{request()->routeIs('worker.show.task.in.complete.details') ? 'show' : ''}}
+            {{request()->routeIs('worker.tasks.in.rejected') ? 'show' : ''}}
+            {{request()->routeIs('worker.show.task.in.rejected.details') ? 'show' : ''}}
+
+                " id="dashboardsExamples" style="">
                 <ul class="nav ms-4 ps-3">
-                    <li class=" ">
-                        <a class="nav-link nav-text " href="{{route('worker.browse.task')}}">
+                    <li class="">
+                        <a class="nav-link nav-text
+              {{request()->routeIs('worker.browse.task') ? 'active-select-nav' : ''}}
+                        {{request()->routeIs('worker.show.task.details') ? 'active-select-nav' : ''}}
+                            " href="{{route('worker.browse.task')}}">
                             <span class="sidenav-normal">    {{trans('worker::worker.browseTask')}}  </span>
                         </a>
                     </li>
                     <li class="">
-                        <a class="nav-link nav-text" href="#">
+                        <a class="nav-link nav-text
+                           {{request()->routeIs('worker.tasks.in.active') ? 'active-select-nav' : ''}}
+                        {{request()->routeIs('worker.show.task.in.active.details') ? 'active-select-nav' : ''}}
+                        {{request()->routeIs('worker.show.task.finish.the.job.form') ? 'active-select-nav' : ''}}
+                            " href="{{route('worker.tasks.in.active')}}">
                             <span
                                 class="sidenav-normal"> {{trans('worker::worker.Tasks_in_progress')}} </span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-text " href="#">
+                        <a class="nav-link nav-text
+                {{request()->routeIs('worker.tasks.in.done') ? 'active-select-nav' : ''}}
+                        {{request()->routeIs('worker.show.task.in.done.details') ? 'active-select-nav' : ''}}
+                            " href="{{route('worker.tasks.in.done')}}">
                             <span class="sidenav-normal"> {{trans('worker::worker.done_tasks')}} </span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-text " href="#">
+                        <a class="nav-link nav-text
+             {{request()->routeIs('worker.tasks.in.complete') ? 'active-select-nav' : ''}}
+                        {{request()->routeIs('worker.show.task.in.complete.details') ? 'active-select-nav' : ''}}
+                            " href="{{route('worker.tasks.in.complete')}}">
                             <span class="sidenav-normal"> {{trans('worker::worker.completed_tasks')}}  </span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-text " href="#">
+
+                        <a class="nav-link nav-text
+                        {{request()->routeIs('worker.tasks.in.rejected') ? 'active-select-nav' : ''}}
+                        {{request()->routeIs('worker.show.task.in.rejected.details') ? 'active-select-nav' : ''}}
+                            " href="{{route('worker.tasks.in.rejected')}}">
                             <span class="sidenav-normal">  {{trans('worker::worker.rejected_tasks')}} </span>
                         </a>
                     </li>
@@ -160,10 +203,10 @@
 
         <li class="side_menu_item
             {{request()->routeIs('worker.show.switch.account.to.employer.with.transfer.wallet.balance.form') ? 'active_side' : ''}}
-            {{request()->routeIs('worker.show.my.profits') ? 'active_side' : ''}}
-            {{request()->routeIs('worker.show.my.wallet.history') ? 'active_side' : ''}}
-            {{request()->routeIs('worker.show.my.withdraw.using.paypal.form') ? 'active_side' : ''}}
-                ">
+        {{request()->routeIs('worker.show.my.profits') ? 'active_side' : ''}}
+        {{request()->routeIs('worker.show.my.wallet.history') ? 'active_side' : ''}}
+        {{request()->routeIs('worker.show.my.withdraw.using.paypal.form') ? 'active_side' : ''}}
+            ">
             <a data-bs-toggle="collapse" href="#FinancialAffairs" class="nav-link nav-text collapsed"
                aria-controls="FinancialAffairs" role="button" aria-expanded="false">
                 <i class="fa-solid fa-credit-card"></i>
@@ -191,7 +234,8 @@
 
                             "
                            href="{{route('worker.show.switch.account.to.employer.with.transfer.wallet.balance.form')}}">
-                            <span class="sidenav-normal">{{trans('worker::worker.TransferWorkerWalletBalanceToEmployer')}} </span>
+                            <span
+                                class="sidenav-normal">{{trans('worker::worker.TransferWorkerWalletBalanceToEmployer')}} </span>
                         </a>
                     </li>
 
@@ -207,7 +251,7 @@
                     <li class="">
                         <a class="nav-link nav-text
                           {{request()->routeIs('worker.show.my.withdraw.using.paypal.form') ? 'active-select-nav' : ''}}
-                        "
+                            "
                            href="{{route('worker.show.my.withdraw.using.paypal.form')}}">
                             <span class="sidenav-normal">{{trans('worker::worker.WithdrawWalletBalance')}}</span>
                         </a>
@@ -217,9 +261,9 @@
         </li>
         <li class="side_menu_item
              {{request()->routeIs('worker.show.switching.account.history') ? 'active_side' : ''}}
-            {{request()->routeIs('worker.show.my.privilege.history') ? 'active_side' : ''}}
-            {{request()->routeIs('worker.show.rule.of.privileges') ? 'active_side' : ''}}
-                ">
+        {{request()->routeIs('worker.show.my.privilege.history') ? 'active_side' : ''}}
+        {{request()->routeIs('worker.show.rule.of.privileges') ? 'active_side' : ''}}
+            ">
             <a data-bs-toggle="collapse" href="#ManagementSection" class="nav-link nav-text"
                aria-controls="ManagementSection" role="button" aria-expanded="">
                 <i class="fa fa-list-ol"></i>
@@ -229,7 +273,7 @@
              {{request()->routeIs('worker.show.switching.account.history') ? 'show' : ''}}
             {{request()->routeIs('worker.show.my.privilege.history') ? 'show' : ''}}
             {{request()->routeIs('worker.show.rule.of.privileges') ? 'show' : ''}}
-            " id="ManagementSection" style="">
+                " id="ManagementSection" style="">
                 <ul class="nav ms-4 ps-3">
 
                     <li class="">
@@ -244,7 +288,7 @@
                     <li class="">
                         <a class="nav-link nav-text
                 {{request()->routeIs('worker.show.my.privilege.history') ? 'active-select-nav' : ''}}
-                        "
+                            "
                            href="{{route('worker.show.my.privilege.history')}}">
                             <span class="sidenav-normal">  {{trans('worker::worker.PrivilegesHistory')}}</span>
                         </a>
@@ -253,7 +297,7 @@
                         <a class="nav-link nav-text
                          {{request()->routeIs('worker.show.rule.of.privileges') ? 'active-select-nav' : ''}}
 
-                        "
+                            "
                            href="{{route('worker.show.rule.of.privileges')}}">
                             <span class="sidenav-normal">{{trans('worker::worker.RuleOfPrivileges')}}</span>
                         </a>
@@ -372,7 +416,8 @@
         <div class=" side_menu_item ">
             <div class="d-flex justify-content-around col-auto pt-2 pb-2 ">
                 <div class="form-check form-switch my-auto">
-                    <input class="form-check-input features" style="cursor: pointer" onclick="ShowSwal()" type="checkbox">
+                    <input class="form-check-input features" style="cursor: pointer" onclick="ShowSwal()"
+                           type="checkbox">
                 </div>
                 <div class="">
                     <div class="h-100">
@@ -446,7 +491,8 @@
                                          viewBox="0 0 576 512" data-fa-i2svg="">
                                         <path fill="currentColor"
                                               d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path>
-                                    </svg></a>
+                                    </svg>
+                                </a>
                             </div>
                             <div class="mx-2">
                                 <a style="color: #0A66C2;" href="#">

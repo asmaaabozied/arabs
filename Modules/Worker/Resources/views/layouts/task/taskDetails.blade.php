@@ -1,280 +1,361 @@
 @extends('dashboard::layouts.worker.master')
 @section('content')
-    <style>
-        .last-ch:last-child {
-            display: none;
-        }
 
-    </style>
-<div class="row col-lg-12 col-sm-12">
-    <div class="col-lg-6 col-sm-12 mb-2 ">
-        <div class="card">
-            <div class="card-header p-3 pb-0">
-                <div class="row">
-                    <div class="col-12 d-flex">
-                        <div>
-                            <img src="{{Storage::url($task->category->image)}}"
-                                 class="avatar avatar-xl me-2"
-                                 alt="avatar image">
-                        </div>
-                        <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-lg">{{trans("worker::task.task_category")}}</h6>
-                            <p class="text-xl">{{$task->category->title}}</p>
-                        </div>
-                    </div>
+    <div class="row justify-content-between ">
+        <div class="col-sm-8 mb-4 ">
+            <div class="d-flex flex-wrap mb-4 align-items-center">
+                <span class="avtar avtar-icon avtar-square avtar-l">
+                    <img src="{{Storage::url($task->category->image)}}" alt="images" width="100" height="100"
+                         class="img-fluid">
+                </span>
+                <div class=" mx-2 ">
+                    @if(app()->getLocale() == "ar")
+                        <h1 class="mb-1 font-weight-normal">{{$task->category->ar_title}}</h1>
+                    @else
+                        <h1 class="mb-1 font-weight-normal">{{$task->category->title}}</h1>
+
+                    @endif
+                    <p class="mb-0">{{$task->title}} </p>
                 </div>
             </div>
-
-            <hr class="horizontal dark">
-            <div class="card-body p-3 pt-1">
-                <h6>{{trans("worker::task.task_title")}}</h6>
-                <p class="text-sm"> {{$task->title}}</p>
-            </div>
-            <hr class="horizontal dark">
-            <div class="card-body p-3 pt-1">
-                <h6>{{trans("worker::task.task_description")}}</h6>
-                <p class="text-sm">{{$task->description}}</p>
-            </div>
-            <hr class="horizontal dark">
-            <div class="card-body pt-0">
-
-                <h6>{{trans('worker::task.category_actions')}}</h6>
-                @for($i=0;$i<count($task->actions);$i++)
-                    <div class="d-flex align-items-center">
-                        <div class="text-center mx-2 w-5">
-                            <img src="{{asset('assets/img/default/action.png')}}" class="avatar-sm" alt="Actions">
-                        </div>
-                        <div class="my-auto ms-3">
-                            <div class="h-100">
-                                @if(app()->getLocale() == "ar")
-                                <p class="text-sm mb-1">
-                                    {{$task->actions[$i]->categoryAction->ar_name}}
-                                </p>
-                                @else
-                                    <p class="text-sm mb-1">
-                                        {{$task->actions[$i]->categoryAction->name}}
-                                    </p>
-                                @endif
-                            </div>
-                        </div>
-                        <span
-                            class="badge bg-gradient-success badge-sm my-auto ms-auto me-3">{{trans('worker::task.action_enable')}}</span>
-                    </div>
-                    <hr class="horizontal dark last-ch">
-                @endfor
-
-            </div>
+            <p><span class="fw-bold">{{trans("employer::task.task_description")}}:</span> {{$task->description}}</p>
         </div>
-
+        <div class="col-sm-4 mb-4 text-right">
+            <h6 class="text-body text-uppercase f-12">{{trans('employer::task.final_task_price')}}</h6>
+            <h1 class="display-4 font-weight-normal">
+                {{ convertCurrency($task->total_cost, auth()->user()->current_currency) }}
+                <span class="text-xs">{{auth()->user()->current_currency}}</span>
+            </h1>
+        </div>
     </div>
-    <div class="col-lg-6 col-sm-12 ">
-        <div class="card">
-            <div class="card-header pb-0 p-3">
-                <div class="d-flex justify-content-between">
-                    <h6 class="mb-0">{{trans('worker::task.TaskRegion')}}</h6>
-                </div>
-            </div>
-            <div class="card-body p-3">
-                <ul class="list-group list-group-flush list my--3">
-                    @for($i=0;$i<count($result);$i++)
-                        <li class="list-group-item px-0 border-0">
-                            <div class="row align-items-center">
-                                <div class="col-auto">
+    <div class="row justify-content-between">
+        <div class="col-md-4">
+            <h6 class="mb-3">{{trans('employer::task.proof_details')}}</h6>
+            @if($task->proof_request_ques == null)
+                <p class="mb-2 text-danger">
+                    <span class="fw-bold text-dark">{{trans('employer::task.question_as_worker2')}}:</span>
+                    {{trans('employer::task.not_proof_request_ques')}}
+                </p>
+            @else
+                <p class="mb-2 ">
+                    <span class="fw-bold text-dark">{{trans('employer::task.question_as_worker2')}}:</span>
+                    {{$task->proof_request_ques}}
+                </p>
+            @endif
 
-                                    <img src="{{Storage::url($result[$i]['flag'])}}" class="avatar-sm"
-                                         alt="Country flag">
-                                </div>
-                                <div class="col">
-                                    <h6 class="text-sm mb-0">{{$result[$i]['country']}}</h6>
-                                </div>
-                                <div class="col text-center">
-                                    <ul class="font-elmessiry">
+            @if($task->proof_request_screenShot == null)
+                <p class="mb-2 text-danger">
+                    <span class="fw-bold text-dark">{{trans('employer::task.screenshot_as_worker')}}:</span>
+                    {{trans('employer::task.not_proof_request_screenShot')}}
+                </p>
+            @else
+                <p class="mb-2 ">
+                    <span class="fw-bold text-dark">{{trans('employer::task.screenshot_as_worker')}}:</span>
+                    {{$task->proof_request_screenShot}}
+                </p>
+            @endif
+
+
+        </div>
+        <div class="col-md-4">
+            <h6 class="mb-3">{{trans('employer::task.task_details2')}}</h6>
+            <p class="mb-2">{{trans('employer::task.task_number')}}: {{$task->task_number}}</p>
+
+            <p class="mb-2">{{trans('employer::task.current_task_status')}} <span
+                    class="badge badge-pill badge-success">{{trans('employer::task.'.$task->TaskStatuses()->latest()->first()->status()->first()->name)}}</span>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-xl-3 col-lg-12">
+            <div class="card task-board-left">
+                <div class="card-body">
+                    <div class="task-right">
+                        <div class="header-countries">
+                            <span class="f-w-400">{{trans('employer::task.TaskRegion2')}}</span>
+                        </div>
+                        <div class="pt-2">
+                            @for($i=0;$i<count($result);$i++)
+                                <div class="d-flex my-1 align-items-center">
+                                    <div class="">
+                                        <a href="#!">
+                                            <img class="avatar-sm " src="{{Storage::url($result[$i]['flag'])}}"
+                                                 alt="Generic placeholder image">
+                                        </a>
+                                    </div>
+                                    <div class="mx-3">
                                         @if(is_array($result[$i]['cities']))
-                                            <ul>
-                                                @if($app_local == "ar")
-                                                    @for($j=0;$j<count($result[$i]['cities']);$j++)
-                                                        <li> {{\Modules\Region\Entities\City::withoutTrashed()->find($result[$i]['cities'][$j])->ar_name}} </li>
-                                                    @endfor
-                                                @else
-                                                    <li> {{\Modules\Region\Entities\City::withoutTrashed()->find($result[$i]['cities'][$j])->name}} </li>
+                                            @if($app_local == "ar")
+                                                @for($j=0;$j<count($result[$i]['cities']);$j++)
+                                                    <span
+                                                        class="text-primary">{{\Modules\Region\Entities\City::withoutTrashed()->find($result[$i]['cities'][$j])->ar_name}}</span>
+                                                    <span class="last-child">,</span>
+                                                @endfor
 
-                                                @endif
-                                            </ul>
+                                            @else
+                                                <span
+                                                    class="text-primary">{{\Modules\Region\Entities\City::withoutTrashed()->find($result[$i]['cities'][$j])->name}}</span>
+                                                <span class="last-child">,</span>
+                                            @endif
 
                                         @else
                                             <span
-                                                class="text-primary">{{trans('worker::task.all_city_in:').$result[$i]['country']}}</span>
+                                                class="text-primary">{{trans('employer::task.all_city_in:').$result[$i]['country']}}</span>
                                         @endif
+                                    </div>
+                                </div>
+                                <hr>
+                            @endfor
+                        </div>
+                        <div class="header-countries">
+                            <span class="f-w-400">{{trans('employer::task.Additional features')}}</span>
+                        </div>
+                        <div class="">
+                            <div class="d-flex align-items-center my-1">
+                                <div class="">
+                                    @if($task->only_professional == "true")
+                                        <a class="btn  btn-outline-success">
+                                            <i class="fas fa-circle-check"></i>
+                                        </a>
+                                    @else
+                                        <a class="btn  btn-outline-danger">
+                                            <i class="fas fa-circle-xmark"></i>
 
-                                    </ul>
+                                        </a>
+                                    @endif
+
+
+                                </div>
+                                <div class="mx-2">
+                                    <div class="chat-header f-w-400 mb-1">{{trans('employer::task.professionalOnly')}}
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="d-flex align-items-center my-1">
+                                <div class="">
+                                    @if($task->special_access == "true")
+                                        <a class="btn  btn-outline-success">
+                                            <i class="fas fa-circle-check"></i>
+                                        </a>
+                                    @else
+                                        <a class="btn  btn-outline-danger">
+                                            <i class="fas fa-circle-xmark"></i>
+
+                                        </a>
+                                    @endif
+                                </div>
+                                <div class="mx-2">
+                                    <div class="chat-header f-w-400 mb-1">{{trans('employer::task.pinTaskTop')}}
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="d-flex align-items-center my-1">
+                                <div class="">
+                                    @if($task->daily_limit == null)
+                                        <a class="btn  btn-outline-danger">
+                                            <i class="fas fa-circle-xmark"></i>
+                                        </a>
+                                    @else
+                                        <a class="btn  btn-outline-success">
+                                            <i class="fas fa-circle-check"></i>
+                                        </a>
+                                    @endif
+                                </div>
+                                <div class="mx-2">
+                                    <div class="chat-header f-w-400 mb-1">
+                                        {{trans('employer::task.worker_daily_limit')}}
+                                        @if($task->daily_limit != null)
+                                            <span class="text-success">({{$task->daily_limit}})</span>
+                                        @endif
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-xl-9 col-lg-12  ">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-12 my-1 ">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-8">
+                                    <div class="numbers mx-3">
+                                        <p class="text-sm mb-0 text-capitalize font-weight-bold">{{trans('worker::task.max_task_end_date')}}</p>
+                                        <h5 class="font-weight-bolder text-primary mb-0">
+                                            {{\Carbon\Carbon::parse($task->task_end_date)->format('Y-m-d')}}
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="col-3 text-start">
+                                    <i class="ni ni-calendar-grid-58 text-primary text-lg opacity-10"
+                                       aria-hidden="true"></i>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12 my-1  ">
+                    <div class="card">
+                        <div class="card-body p-3">
+                            <div class="row align-items-center">
+                                <div class="col-8">
+                                    <div class="numbers mx-3">
+                                        <p class="text-sm mb-0 text-capitalize font-weight-bold">  {{trans('worker::task.task_price')}}</p>
+                                        <h5 class="font-weight-bolder text-primary mb-0">
 
-                        </li>
-                        <hr class="horizontal dark mt-3 mb-1 last-ch">
-                    @endfor
+                                            <span>{{ number_format(convertCurrency($task->total_cost, auth()->user()->current_currency),1) }}</span>
+                                            <span class="text-xxs">{{auth()->user()->current_currency}}</span>
 
-                </ul>
-            </div>
-        </div>
-        <div class="card mt-3 bg-gradient-white">
-            <div class="card-header bg-transparent pb-0">
-                <h6 class="">{{trans('worker::task.TaskWorkFlow')}}</h6>
-            </div>
-            <div class="card-body p-3">
-
-                <div class="timeline timeline-one-side" data-timeline-axis-style="dashed">
-                    @for($i=0;$i<count($task->workflows);$i++)
-                        <div class="timeline-block mb-3">
-                            <span class="timeline-step bg-light">
-                            <i class="ni ni-ui-04 text-success text-gradient"></i>
-                            </span>
-                            <div class="timeline-content">
-                                <h6 class=" text-sm font-weight-bold mb-0">{{trans('worker::task.steep_number: ')}}{{$i+1}}</h6>
-                                <p class=" text-sm mt-3 mb-2">
-                                    {{$task->workflows[$i]->work_flow}}
-                                </p>
+                                            <span
+                                                class="text-warning text-sm">({{trans('worker::task.cost_per_worker')}} {{ number_format(convertCurrency($task->cost_per_worker, auth()->user()->current_currency),1) }}  <span
+                                                    class="text-xxs">{{auth()->user()->current_currency}}</span>)</span>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="col-3 text-start">
+                                    <i class="ni ni-credit-card text-primary text-lg opacity-10" aria-hidden="true"></i>
+                                </div>
                             </div>
                         </div>
-                    @endfor
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
+                <div class="col-lg-6 col-md-6 col-12 my-1 ">
+                    <div class="card">
+                        <div class="card-body p-3">
+                            <div class="row align-items-center">
+                                <div class="col-8">
+                                    <div class="numbers mx-3">
+                                        <p class="text-sm mb-0 text-capitalize font-weight-bold">{{trans('worker::task.count_of_worker')}}</p>
+                                        <h5 class="font-weight-bolder text-primary mb-0">
+                                            {{$task->total_worker_limit}}
+                                    <span
+                                        class="text-warning text-sm">({{trans('worker::task.worker_request_to_task')}} {{$task->approved_workers}})</span>
 
-    <div class="card mt-4 mx-lg-4 mx-sm-0 col-lg-6 col-sm-12">
-        <div class="card-body p-3">
-            <div class="d-flex">
-                <div class="avatar mx-2 avatar-lg">
-                    <img class="" alt="Image placeholder" src="{{asset('assets/img/default/asking.png')}}">
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="col-3 text-start">
+                                    <i class="ni ni-user-run text-primary text-lg opacity-10" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="ms-2 my-auto">
-                    <h6 class="mb-0">{{trans('worker::task.question_as_worker')}}</h6>
-                </div>
-            </div>
-            @if($task->proof_request_ques == null)
-                <p class="mt-3 text-danger"> {{trans('worker::task.not_proof_request_ques')}} </p>
-            @else
-                <p class="mt-3"> {{$task->proof_request_ques}}</p>
-            @endif
+                <div class="col-lg-6 col-md-6 col-12 my-1 ">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-8">
+                                    <div class="numbers mx-3">
+                                        <p class="text-sm mb-0 text-capitalize font-weight-bold">{{trans('worker::task.daily_worker_limit')}}</p>
+                                         <h5 class="font-weight-bolder text-primary mb-0">
+                                    @if($task->daily_limit == null)
+                                        <span class="text-success text-sm">({{trans('worker::task.no_daily_worker_limit')}})</span>
+                                    @else
+                                        {{$task->daily_limit}}
+                                        <span
+                                            class="text-warning text-sm">({{trans('worker::task.worker_request_today_to_task_done')}} {{$count_of_today_workers}})</span>
+                                    @endif
 
-            <hr class="horizontal dark">
-            <div class="d-flex">
-                <div class="avatar mx-2 avatar-lg">
-                    <img alt="Image placeholder" src="{{asset('assets/img/default/screenshot-2.png')}}">
+                                </h5>
+                                    </div>
+                                </div>
+                                <div class="col-3 text-start">
+                                    <i class="ni ni-lock-circle-open text-primary text-lg opacity-10" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="ms-2 my-auto">
-                    <h6 class="mb-0">{{trans('worker::task.screenshot_as_worker')}}</h6>
+                <div class="col-12 my-1">
+                    <div class="card">
+                        <div class="card-body p-3">
+                            <div class="row align-items-center">
+                                <div class="col-8">
+                                    <div class="numbers mx-3">
+                                        <p class="text-sm mb-0 text-capitalize font-weight-bold">{{trans('employer::task.TaskWorkFlow')}}</p>
+                                        @for($i=0;$i<count($task->workflows);$i++)
+                                            <h5 class="font-weight-bolder text-primary my-2">
+                                                <i class="fa fa-circle-dot  opacity-10"
+                                                   aria-hidden="true"></i> {{$task->workflows[$i]->work_flow}}
+                                            </h5>
+                                        @endfor
+                                    </div>
+                                </div>
+                                <div class="col-3 text-start">
+                                    <i class="fa fa-paw text-primary opacity-10" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            @if($task->proof_request_screenShot == null)
-                <p class="mt-3 text-danger"> {{trans('worker::task.not_proof_request_screenShot')}} </p>
-            @else
-                <p class="mt-3">{{$task->proof_request_screenShot }}</p>
-            @endif
+                <div class="col-12 my-1">
+                    <div class="card">
+                        <div class="card-body p-3">
+                            <div class="row align-items-center">
+                                <div class="col-8">
+                                    <div class="numbers mx-3">
+                                        <p class="text-sm mb-0 text-capitalize font-weight-bold">{{trans('employer::task.category_actions')}}</p>
+                                        @for($i=0;$i<count($task->actions);$i++)
+                                            @if(app()->getLocale()=="ar")
+                                                <h5 class="font-weight-bolder text-primary my-2">
+                                                    <i class="fa fa-circle-dot  opacity-10"
+                                                       aria-hidden="true"></i> {{$task->actions[$i]->categoryAction->ar_name}}
+                                                </h5>
+                                            @else
 
-        </div>
-    </div>
-    <div class="mt-4 mx-1 col-lg-5 ">
-        <div class="card bg-gradient-light mt-2">
-            <div class="card-body p-3">
-                <div class="row">
-                    <div class="col-8">
-                        <div class="numbers">
-                            <p class=" text-sm mb-0 text-capitalize font-weight-bold opacity-7">{{trans('worker::task.max_task_end_date')}}</p>
-                            <h5 class=" font-weight-bolder mb-0">
-                               {{\Carbon\Carbon::parse($task->task_end_date)->format('Y-m-d')}}
-                            </h5>
-                        </div>
-                    </div>
-                    <div class="col-4 text-end">
-                        <div class="icon icon-shape bg-white shadow text-center border-radius-md">
-                            <i class="ni ni-calendar-grid-58 text-dark text-lg opacity-10" aria-hidden="true"></i>
+                                                <h5 class="font-weight-bolder text-primary my-2">
+                                                    <i class="fa fa-circle-dot  opacity-10"
+                                                       aria-hidden="true"></i> {{$task->actions[$i]->categoryAction->name}}
+                                                </h5>
+                                            @endif
+                                        @endfor
+                                    </div>
+                                </div>
+                                <div class="col-3 text-start">
+                                    <i class="fa fa-icons text-primary text-lg opacity-10" aria-hidden="true"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="card bg-gradient-light mt-2">
-            <div class="card-body p-3">
-                <div class="row">
-                    <div class="col-8">
-                        <div class="numbers">
-                            <p class=" text-sm mb-0 text-capitalize font-weight-bold opacity-7">{{trans('worker::task.task_price')}}</p>
-                            <h5 class=" font-weight-bolder mb-0" >
-                                <span>{{ number_format(convertCurrency($task->total_cost, auth()->user()->current_currency),1) }}</span>
-                                <span class="text-xxs">{{auth()->user()->current_currency}}</span>
-
-                                <span class="text-warning text-sm">({{trans('worker::task.cost_per_worker')}} {{ number_format(convertCurrency($task->cost_per_worker, auth()->user()->current_currency),1) }}  <span class="text-xxs">{{auth()->user()->current_currency}}</span>)</span>
-                            </h5>
-                        </div>
-                    </div>
-                    <div class="col-4 text-end">
-                        <div class="icon icon-shape bg-white shadow text-center border-radius-md">
-                            <i class="ni ni-credit-card text-dark text-lg opacity-10" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card bg-gradient-light my-2">
-            <div class="card-body p-3">
-                <div class="row">
-                    <div class="col-8">
-                        <div class="numbers">
-                            <p class="text-sm mb-0 text-capitalize font-weight-bold opacity-7">{{trans('worker::task.count_of_worker')}}</p>
-                            <h5 class="font-weight-bolder mb-0">
-                                {{$task->total_worker_limit}}
-                                <span class="text-warning text-sm">({{trans('worker::task.worker_request_to_task')}} {{$task->approved_workers}})</span>
-
-                            </h5>
-                        </div>
-                    </div>
-                    <div class="col-4 text-end">
-                        <div class="icon icon-shape bg-white shadow text-center border-radius-md">
-                            <i class="ni ni-user-run text-dark text-lg opacity-10" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card bg-gradient-light my-2">
-            <div class="card-body p-3">
-                <div class="row">
-                    <div class="col-8">
-                        <div class="numbers">
-                            <p class="text-sm mb-0 text-capitalize font-weight-bold opacity-7">{{trans('worker::task.daily_worker_limit')}}</p>
-                            <h5 class="font-weight-bolder mb-0">
-                               @if($task->daily_limit == null)
-                                    <span class="text-success text-sm">({{trans('worker::task.no_daily_worker_limit')}})</span>
-                                @else
-                                    {{$task->daily_limit}}
-                                    <span class="text-warning text-sm">({{trans('worker::task.worker_request_today_to_task_done')}} {{$count_of_today_workers}})</span>
-                                @endif
-
-                            </h5>
-                        </div>
-                    </div>
-                    <div class="col-4 text-end">
-                        <div class="icon icon-shape bg-white shadow text-center border-radius-md">
-                            <i class="ni ni-lock-circle-open text-dark text-lg opacity-10" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<form method="POST" action="{{route('worker.submit.to.task.done',[$task->id,$task->task_number])}}"
-      enctype="multipart/form-data">
-    @csrf
-    <div class="row mt-4">
-        <div class="button-row  mt-4">
-                <button type="submit" class="btn btn-primary btn-lg w-100">{{trans('worker::task.accept_this_task')}}</button>
-                <a href="{{route('worker.browse.task')}}" class="btn btn-secondary btn-lg w-100">{{trans('worker::task.BackToTaskList')}}</a>
         </div>
 
     </div>
-</form>
+
+
+
+
+
+
+    <form method="POST" action="{{route('worker.submit.to.task.done',[$task->id,$task->task_number])}}"
+          enctype="multipart/form-data">
+        @csrf
+        <div class="row mt-4">
+            <div class="button-row  mt-4">
+                <button type="submit"
+                        class="btn btn-primary btn-lg w-100">{{trans('worker::task.accept_this_task')}}</button>
+                <a href="{{route('worker.browse.task')}}"
+                   class="btn btn-secondary btn-lg w-100 my-2">{{trans('worker::task.BackToTaskList')}}</a>
+            </div>
+
+        </div>
+    </form>
 
 @stop

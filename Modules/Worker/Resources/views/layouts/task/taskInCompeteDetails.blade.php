@@ -1,7 +1,8 @@
 @extends('dashboard::layouts.worker.master')
 @section('content')
 
-    <link href="{{asset('assets/css/image-view-box.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/panel/image-view-box.css')}}" rel="stylesheet">
+
 
     <div class="row flex-md-row flex-md-row flex-column-reverse">
         <div class="col-xl-7 mt-4 mt-md-0 mt-lg-0">
@@ -60,7 +61,7 @@
                                         </h5>
                                     </div>
                                 </div>
-                                <div class="col-4 text-end">
+                                <div class="col-4 text-start">
                                     <img class="w-50 " style="border-radius: 18px"
                                          src="{{asset('assets/img/default/proof-'.$proof->isEmployerAcceptProof.'.gif')}}"
                                          alt="Status Icon">
@@ -69,32 +70,32 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 mt-2">
-                    <div class="card {{"prof_".$proof->isAdminAcceptProof}}">
-                        <div class="card-body p-3">
-                            <div class="row">
-                                <div class="col-8 my-auto">
-                                    <div class="numbers">
-                                        <p class="text-white text-sm mb-0 text-capitalize font-weight-bold opacity-7">
-                                            {{trans('worker::task.taskAdminProfStatus')}} </p>
-                                        <h5 class="text-white font-weight-bolder weather-line mb-0">
-                                            @if($proof->isAdminAcceptProof == "NotSeenYet")
-                                                {{trans('worker::task.'.$proof->isAdminAcceptProof)}}
-                                            @else
-                                                {{trans('worker::task.'.$proof->isAdminAcceptProof)}} {{$proof->updated_at->diffForHumans()}}
-                                            @endif
-                                        </h5>
-                                    </div>
-                                </div>
-                                <div class="col-4 text-end">
-                                    <img class="w-50 " style="border-radius: 18px"
-                                         src="{{asset('assets/img/default/proof-'.$proof->isAdminAcceptProof.'.gif')}}"
-                                         alt="Status Icon">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+{{--                <div class="col-12 mt-2">--}}
+{{--                    <div class="card {{"prof_".$proof->isAdminAcceptProof}}">--}}
+{{--                        <div class="card-body p-3">--}}
+{{--                            <div class="row">--}}
+{{--                                <div class="col-8 my-auto">--}}
+{{--                                    <div class="numbers">--}}
+{{--                                        <p class="text-white text-sm mb-0 text-capitalize font-weight-bold opacity-7">--}}
+{{--                                            {{trans('worker::task.taskAdminProfStatus')}} </p>--}}
+{{--                                        <h5 class="text-white font-weight-bolder weather-line mb-0">--}}
+{{--                                            @if($proof->isAdminAcceptProof == "NotSeenYet")--}}
+{{--                                                {{trans('worker::task.'.$proof->isAdminAcceptProof)}}--}}
+{{--                                            @else--}}
+{{--                                                {{trans('worker::task.'.$proof->isAdminAcceptProof)}} {{$proof->updated_at->diffForHumans()}}--}}
+{{--                                            @endif--}}
+{{--                                        </h5>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-4 text-end">--}}
+{{--                                    <img class="w-50 " style="border-radius: 18px"--}}
+{{--                                         src="{{asset('assets/img/default/proof-'.$proof->isAdminAcceptProof.'.gif')}}"--}}
+{{--                                         alt="Status Icon">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
             <div class="row mt-2">
                 <div class="col-md-6 mt-md-2 mt-2">
@@ -102,7 +103,13 @@
                         <div class="card-body text-center">
                             <h1 class="text-gradient text-primary"> <span class="text-lg ms-n2"> {{trans('worker::task.category')}}</span>
                             </h1>
-                            <h6 class="mb-0 font-weight-bolder">{{$data->task->category->title}}</h6>
+                            <h6 class="mb-0 font-weight-bolder">
+                                @if(app()->getLocale() == "ar")
+                                    {{$data->task->category->ar_title}}
+                                @else
+                                    {{$data->task->category->title}}
+                                @endif
+                            </h6>
                         </div>
                     </div>
                 </div>
@@ -141,44 +148,46 @@
                     </div>
                 </div>
 
+                <div class="col-md-12 mt-md-2 mt-2">
+                    <div class="card">
+                        <div class="card-body ar-text-right ">
+                            <h1 class="text-gradient text-primary "><span
+                                    class="text-lg ms-n1"> {{trans('worker::task.taskProofQuestion')}} </span></h1>
+                            @if($data->task->proof_request_ques !=Null)
+                                <h6 class="mb-0 font-weight-bolder"> {{$data->task->proof_request_ques}} </h6>
+                            @else
+                                <h6 class="mb-0 text-danger font-weight-bolder"> {{trans('worker::task.The employer did not ask any questions')}} </h6>
+                            @endif
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-md-2 mt-2 ">
+                    <div class="card">
+                        <div class="card-body ar-text-right ">
+                            <h1 class="text-gradient text-primary "><span
+                                    class="text-lg ms-n1"> {{trans('worker::task.taskProofAnswer')}} </span></h1>
+                            @if($proof->answer_text !=Null)
+                                <h6 class="mb-0 font-weight-bolder"> {{$proof->answer_text}} </h6>
+                            @else
+                                <h6 class="mb-0 text-danger font-weight-bolder"> {{trans('worker::task.The worker did not answer any question')}} </h6>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
         </div>
     </div>
 
     <div class="row mt-4">
-        <div class="col-md-12 ">
-            <div class="card">
-                <div class="card-body ar-text-right ">
-                    <h1 class="text-gradient text-primary "><span
-                            class="text-lg ms-n1"> {{trans('worker::task.taskProofQuestion')}} </span></h1>
-                    @if($data->task->proof_request_ques !=Null)
-                        <h6 class="mb-0 font-weight-bolder"> {{$data->task->proof_request_ques}} </h6>
-                    @else
-                        <h6 class="mb-0 text-danger font-weight-bolder"> {{trans('worker::task.The employer did not ask any questions')}} </h6>
-                    @endif
 
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12 mt-md-4 mt-4 ">
-            <div class="card">
-                <div class="card-body ar-text-right ">
-                    <h1 class="text-gradient text-info "><span
-                            class="text-lg ms-n1"> {{trans('worker::task.taskProofAnswer')}} </span></h1>
-                    @if($proof->answer_text !=Null)
-                        <h6 class="mb-0 font-weight-bolder"> {{$proof->answer_text}} </h6>
-                    @else
-                        <h6 class="mb-0 text-danger font-weight-bolder"> {{trans('worker::task.The worker did not answer any question')}} </h6>
-                    @endif
-                </div>
-            </div>
-        </div>
         <div class="col-md-12 mt-md-4 mt-4">
 
             <div class="text-center">
                 <a href="{{route('worker.tasks.in.complete')}}"
-                   class="btn bg-gradient-secondary btn-lg  mb-0">{{trans('worker::task.back')}}</a>
+                   class="btn btn btn-secondary w-100 btn-lg  mb-0">{{trans('worker::task.back')}}</a>
             </div>
         </div>
     </div>
