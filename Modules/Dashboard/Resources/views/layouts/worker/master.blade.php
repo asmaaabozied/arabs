@@ -242,14 +242,19 @@
                         </a>
                     </li>
                     <li class="">
-                        <a class="nav-link nav-text"
-                           href="#">
+                        <a class="nav-link nav-text
+                {{request()->routeIs('worker.show.my.privilege.history') ? 'active-select-nav' : ''}}
+                        "
+                           href="{{route('worker.show.my.privilege.history')}}">
                             <span class="sidenav-normal">  {{trans('worker::worker.PrivilegesHistory')}}</span>
                         </a>
                     </li>
                     <li class="">
-                        <a class="nav-link nav-text"
-                           href="#">
+                        <a class="nav-link nav-text
+                         {{request()->routeIs('worker.show.rule.of.privileges') ? 'active-select-nav' : ''}}
+
+                        "
+                           href="{{route('worker.show.rule.of.privileges')}}">
                             <span class="sidenav-normal">{{trans('worker::worker.RuleOfPrivileges')}}</span>
                         </a>
                     </li>

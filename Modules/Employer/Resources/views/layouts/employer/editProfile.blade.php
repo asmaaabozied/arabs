@@ -1,4 +1,4 @@
-@extends('dashboard::layouts.worker.master')
+@extends('dashboard::layouts.employer.master')
 @section('content')
     <link id="pagestyle" href="{{asset('assets/css/panel/avatar-uploade.css')}}" rel="stylesheet"/>
 
@@ -119,7 +119,7 @@
                         @csrf
                         <div class="col-12 d-flex flex-wrap justify-content-between">
                             <div class="inherit-container-width col-lg-5 col-md-5 col-12">
-                                <div class="row gx-4 flex-wrap justify-content-center">
+                                <div class="row gx-4 flex-wrap">
 
                                     <div class="col-auto">
                                         <div class="personal-image">
@@ -169,7 +169,7 @@
                                 <div class="row gx-4 flex-wrap justify-content-center">
                                     <div class="col-lg-12">
                                         <div class="row mt-4">
-                                            <div class="col-12 my-2">
+                                            <div class="col-7 my-2">
                                                 <div class="card">
                                                     <div class="card-body p-3">
                                                         <div class="row align-items-center">
@@ -192,7 +192,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-12 my-2">
+                                            <div class="col-7 my-2">
                                                 <div class="card">
                                                     <div class="card-body p-3">
                                                         <div class="row align-items-center">
@@ -215,7 +215,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-12 my-2">
+                                            <div class="col-7 my-2">
                                                 <div class="card">
                                                     <div class="card-body p-3">
                                                         <div class="row align-items-center">
@@ -238,7 +238,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-12 my-2">
+                                            <div class="col-7 my-2">
                                                 <div class="card">
                                                     <div class="card-body p-3">
                                                         <div class="row align-items-center">
