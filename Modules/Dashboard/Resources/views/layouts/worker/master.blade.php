@@ -129,7 +129,7 @@
             <div class="collapse" id="dashboardsExamples" style="">
                 <ul class="nav ms-4 ps-3">
                     <li class=" ">
-                        <a class="nav-link nav-text " href="#">
+                        <a class="nav-link nav-text " href="{{route('worker.browse.task')}}">
                             <span class="sidenav-normal">    {{trans('worker::worker.browseTask')}}  </span>
                         </a>
                     </li>
