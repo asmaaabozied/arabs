@@ -39,7 +39,7 @@ return [
      'ArabWorkers | Reset Password' => 'Reset Your Password',
      'confirm' => 'Confirm',
      'reset Mail Your password' => 'Send Reset Password to Your Mail',
-
+     'logout' => 'Logout',
 
     // '' => '',
     // '' => '',

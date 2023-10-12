@@ -1511,7 +1511,9 @@ Start of Site Setting Style
 /**********************************************************************
 End of Site Setting Style
 ***********************************************************************/
-
+.bg-gradient-primary {
+    background-image: linear-gradient(310deg, #0099ff, #0099ff)
+}
 
 /**********************************************************************
         Start Discound Page Style

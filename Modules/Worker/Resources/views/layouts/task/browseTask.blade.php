@@ -52,8 +52,8 @@
             </div>
         </div>
 
-        <div class="col-lg-9 col-md-12 col-12">
-            <div class="dropdown">
+        <div class="col-lg-9 col-md-12 col-12 ">
+            <div class="dropdown border border-radius-2" style="">
                 <button class="btn bg-gradient-primary w-100 dropdown-toggle text-lg d-flex justify-content-between"
                     type="button" id="SortTaskMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                     <span id="SortTypeText">{{ trans('worker::task.SortTasksBy') }}</span>
@@ -187,30 +187,32 @@
                 @if (isset($specialToNormalAccessTasks) and count($specialToNormalAccessTasks) > 0)
                     @foreach ($specialToNormalAccessTasks as $task)
                         @if ($task->special_access == 'true')
-                            <div
-                                class="d-flex  gx-4 position-relative task-featured-preview-border-gradient text-dark  py-2 border-radius-xl justify-content-lg-start justify-content-md-start justify-content-center mt-1  ">
+                            <div class="d-flex  gx-4 position-relative task-featured-preview-border-gradient text-dark  py-2 border-radius-xl justify-content-lg-start justify-content-md-start justify-content-center mt-1  ">
 
-                                <img class="featured-task" data-bs-toggle="tooltip" data-bs-placement="top"
+                                <div class="col-auto ">
+                                    <img class="featured-task col-md-8 " data-bs-toggle="tooltip" data-bs-placement="top"
                                     title="{{ trans('worker::task.ThisFutcheredTasks') }}" data-container="body"
-                                    data-animation="true" {{--                                         src="{{asset('assets/img/default/FutcheredTasks.png')}}" --}}
-                                    src="{{ asset('assets/img/default/FutcheredTasks2.png') }}" width="5%"
+                                    data-animation="true" {{--src="{{asset('assets/img/default/FutcheredTasks.png')}}" --}}
+                                    src="{{ asset('assets/img/default/FutcheredTasks2.png') }}" width="40%" height="80%"
                                     alt="">
+                                </div>
                             @else
-                                <div
-                                    class="row gx-4  task-normal-preview-border-gradient text-dark  py-2 border-radius-xl justify-content-lg-start justify-content-md-start justify-content-center mt-1  ">
+
+                                <div class="row gx-4  task-normal-preview-border-gradient text-dark  py-2 border-radius-xl justify-content-lg-start justify-content-md-start justify-content-center mt-1  ">
                         @endif
-                        <div class="row align-items-center justify-content-between">
-                            <div class="col-lg-1 col-md-12 col-12 mx-lg-4 mx-md-4 mx-0  text-center  ">
+                        {{-- task items --}}
+                        <div class="row align-items-center justify-content-between ">
+                            {{-- logo task  --}}
+                            <div class="col-lg-2 col-md-12 col-12 text-center">
                                 <div class="avatar avatar-xl position-relative">
                                     <img src="{{ Storage::url($task->category->image) }}" alt="profile_image"
-                                        class="w-100 border-radius-lg " width="5%">
+                                        class="w-50 border-radius-lg " width="">
                                 </div>
                             </div>
-                            <div class="col-lg-8 col-md-12 col-sm-12">
-                                <div class="nav-wrapper position-relative end-0">
-                                    <h5 class="mb-1 mt-1 text-dark">
-                                        {{ $task->title }} <span
-                                            class="text-xs text-info">{{ $task->created_at->diffForHumans() }}</span>
+                            {{-- task description and pice --}}
+                            <div class="col-lg-8 col-md-12 col-sm-12 ">
+                                <div class="col-auto nav-wrapper position-relative end-0">
+                                    <h5 class="mb-1 mt-3 text-dark">{{ $task->title }} <span class="text-xs text-info mx-3 ">{{ $task->created_at->diffForHumans() }}</span>
                                     </h5>
                                     @if (\Illuminate\Support\Str::length($task->description) > 70)
                                         <p class="mb-1 mt-1 text-justify">{{ substr($task->description, 0, 70) . '...' }}
@@ -221,32 +223,33 @@
                                 </div>
 
                                 <div
-                                    class="col-auto d-flex flex-wrap mt-2 mb-1 justify-content-center justify-content-md-start justify-content-lg-start">
+                                    class="d-flex flex-wrap mt-2 mb-1 justify-content-center justify-content-md-start justify-content-lg-start">
                                     <div
-                                        class="col-3 d-flex  align-items-center flex-wrap text-dark   border-radius-2xl text-lg  mt-2 mt-lg-0 mt-md-2">
+                                        class="d-flex  align-items-center flex-wrap text-dark   border-radius-2xl text-lg  mt-2 mt-lg-0 mt-md-2">
                                         <i class="fa fa-dollar text-success  text-1-5-rem "></i>
 
-                                        <span
+                                        <b>
+                                            <span
                                             class="text-dark mx-2   {{ $current_currency->rate > 10 ? 'font-size-16' : '' }}">
                                             {{ number_format(convertCurrency($task->total_cost, auth()->user()->current_currency), 1) }}
                                             <span class="text-xxs">{{ auth()->user()->current_currency }}</span>
                                         </span>
+                                        </b>
                                     </div>
                                     <div
-                                        class="col-3 d-flex  align-items-center flex-wrap p-2 text-dark  border-radius-2xl text-lg mx-2 mt-2 mt-lg-0 mt-md-2">
+                                        class="d-flex  align-items-center flex-wrap p-2 text-dark  border-radius-2xl text-lg mx-2 mt-2 mt-lg-0 mt-md-2">
                                         <i class="fa fa-code-fork text-secondary  text-1-5-rem mx-2"></i>
                                         <span class="text-dark">{{ $task->total_worker_limit }} / </span>
                                         <span class="text-primary">{{ $task->approved_workers }} </span>
                                     </div>
-                                    <div
-                                        class="col-auto d-flex align-items-center flex-wrap text-dark border-radius-2xl text-lg mt-2 mt-lg-0 mt-md-2">
+                                    <div class="d-flex d-inline align-items-center flex-wrap text-dark border-radius-2xl text-lg mt-2 mt-lg-0 mt-md-2 ">
                                         <i class="fas fa-map-marker-alt text-secondary  text-1-5-rem mx-2"></i>
-                                        <span class="text-dark" id="LimitTaskCountries">
+                                        <span class="row text-dark" id="LimitTaskCountries">
                                             <div class="avatar-group">
                                                 @if (count($task->countries) <= 6)
                                                     @for ($i = 0; $i < count($task->countries); $i++)
                                                         <a href="javascript:;"
-                                                            class="avatar  avatar-xs rounded-circle flag-first-child-{{ app()->getLocale() }} flag-first-child-{{ app()->getLocale() }}"
+                                                            class=" rounded-circle flag-first-child-{{ app()->getLocale() }} flag-first-child-{{ app()->getLocale() }}"
                                                             data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                             @if (app()->getLocale() == 'ar') title="{{ $task->countries[$i]->country->ar_name }}"
                                                                                 @else
@@ -256,11 +259,11 @@
                                                             @if ($task->countries[$i]->country->flag != null)
                                                                 <img alt="Country Flag"
                                                                     src="{{ Storage::url($task->countries[$i]->country->flag) }}"
-                                                                    width="5%" class="">
+                                                                    width="5%" class="d-flex ">
                                                             @else
-                                                                <img alt="Country Flag" width="5%"
+                                                                <img alt="Country Flag"
                                                                     src="{{ asset('assets/img/flag/flag.svg') }}"
-                                                                    class="">
+                                                                    class="d-flex">
                                                             @endif
 
                                                         </a>
@@ -281,13 +284,12 @@
                                                             @else
                                                                 <img alt="Country Flag"
                                                                     src="{{ asset('assets/img/flag/flag.svg') }}"
-                                                                    class="">
+                                                                    class="col">
                                                             @endif
 
                                                         </a>
                                                     @endfor
-                                                    <span
-                                                        class="mx-3 text-primary">{{ trans('worker::task.andMoreCountries') }}</span>
+                                                    <span class="mx-3 text-primary">{{ trans('worker::task.andMoreCountries') }}</span>
                                                 @elseif(count($task->countries) == count($countries))
                                                     <span class="mx-3 text-primary">
                                                         {{ trans('worker::task.AllCountries') }}</span>
@@ -312,8 +314,7 @@
 
                                                         </a>
                                                     @endfor
-                                                    <span
-                                                        class="mx-3 text-primary">{{ trans('worker::task.andMoreCountries') }}</span>
+                                                    <span class="mx-3 text-primary">{{ trans('worker::task.andMoreCountries') }}</span>
 
                                                 @endif
 
@@ -321,16 +322,19 @@
                                             </div>
                                         </span>
                                         <a href="#" class="ml-3"> <i class="fa fa-refresh" aria-hidden="true"> </i> Retask  </a>
+
                                     </div>
+
                                 </div>
+
                             </div>
-
-
                             <div class="col-lg-2 col-md-12 col-sm-12  text-lg-start text-center   mt-3 ">
                                 <a href="{{ route('worker.show.task.details', [$task->id, $task->task_number]) }}"
                                     class="btn btn-sm btn-secondary " style="padding-top: 20px;padding-bottom: 20px">
                                     {{ trans('worker::task.showTaskDetailsBtn') }}</a>
                             </div>
+
+
 
                         </div>
 
