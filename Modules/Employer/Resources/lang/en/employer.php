@@ -296,5 +296,6 @@ return [
 'joined_using_google_account' => 'Using Google Account',
 'default_currency' => 'Default Currency',
 'EmployerTaskDetails' => 'Task Information',
-
+'TaskCost' => 'Task Cart',
+'Total' => 'Total',
 ];

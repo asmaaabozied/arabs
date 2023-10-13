@@ -170,7 +170,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-10 col-lg-10 m-auto">
+                <div class="col-9 col-lg-9 m-auto">
                     <form action="{{route('employer.create.task.steep.one')}}" method="POST"
                           enctype="multipart/form-data"
                           class="multisteps-form__form ">
@@ -268,17 +268,20 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="button-row d-flex ">
-                                    <button id="backToCategoryMenuBtn" class="btn bg-gradient-light  mb-0 d-none "
-                                            type="button" onclick="BackToCategoryList()"
-                                            title="{{trans('employer::task.prev_step')}}">{{trans('employer::task.prev_step')}}
-                                    </button>
-                                    <button class="btn bg-gradient-primary ms-auto mb-0 d-none "
+                                <div class="button-row d-flex justify-content-between ">
+                                    <div class="text-end">
+                                        <button id="backToCategoryMenuBtn" class="btn bg-gradient-light  mb-0 d-none text-end"
+                                        type="button" onclick="BackToCategoryList()"
+                                        title="{{trans('employer::task.prev_step')}}">{{trans('employer::task.prev_step')}}
+                                        </button>
+                                        </div>
+                                        <div class="text-start">
+                                    <button class="btn bg-gradient-primary ms-auto mb-0 d-none  "
                                             id="firstNextStep"
                                             type="button"
                                             title="{{trans('employer::task.next_step')}}">{{trans('employer::task.next_step')}}
                                     </button>
-
+                                </div>
                                 </div>
                             </div>
 
@@ -369,17 +372,25 @@
 
                                     </div>
                                 </div>
+                                <br>
+                                <br>
+                                <div class="row">
+                                    <div class="button-row d-flex justify-content-between ">
+                                        <div class="text-end">
+                                            <button class="btn bg-gradient-light mb-0 js-btn-prev" type="button"
+                                                title="{{trans('employer::task.prev_step')}}">{{trans('employer::task.prev_step')}}
+                                        </button>
+                                        </div>
+                                        <div class="text-start">
+                                            <button class="btn bg-gradient-primary d-none ms-auto mb-0" id="secoundNextStepBtn"
+                                                type="button"
+                                                onmouseover="checkAllInputs()"
+                                                title="{{trans('employer::task.next_step')}}">{{trans('employer::task.next_step')}}
+                                        </button>
+                                        </div>
+                                    </div>
+                                 </div>
 
-                                <div class="button-row d-flex mt-4">
-                                    <button class="btn bg-gradient-light mb-0 js-btn-prev" type="button"
-                                            title="{{trans('employer::task.prev_step')}}">{{trans('employer::task.prev_step')}}
-                                    </button>
-                                    <button class="btn bg-gradient-primary d-none ms-auto mb-0" id="secoundNextStepBtn"
-                                            type="button"
-                                            onmouseover="checkAllInputs()"
-                                            title="{{trans('employer::task.next_step')}}">{{trans('employer::task.next_step')}}
-                                    </button>
-                                </div>
                             </div>
                         </div>
                         <div class="card multisteps-form__panel p-3 border-radius-xl bg-white"
@@ -649,26 +660,38 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="button-row d-flex mt-4">
-                                    <button class="btn bg-gradient-light mb-0 js-btn-prev" type="button"
+
+                                <br>
+                                <br>
+                                <div class="row">
+                                    <div class="button-row d-flex justify-content-between ">
+                                        <div class="text-end">
+                                            <button class="btn bg-gradient-light mb-0 js-btn-prev" type="button"
                                             title="{{trans('employer::task.prev_step')}}">{{trans('employer::task.prev_step')}}
-                                    </button>
-                                    <button class="btn bg-gradient-primary ms-auto mb-0"
-                                            onmouseover="CheckCountryInput()" type="submit" title="Send">
-                                        {{trans('employer::employer.createTaskBTN')}}
-                                    </button>
-                                </div>
+                                             </button>
+                                        </div>
+                                        <div class="text-start">
+                                            <button class="btn bg-gradient-primary ms-auto mb-0"
+                                                onmouseover="CheckCountryInput()" type="submit" title="Send">
+                                                  {{trans('employer::employer.createTaskBTN')}}
+                                            </button>
+                                        </div>
+                                    </div>
+                                 </div>
+
+
                             </div>
                         </div>
                     </form>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <div class="card p-1 ">
-
-                            <div id="cart">
-                                <h4 class="text-center">Task Cost </h4>
+                            <div id="cart" class="rounded">
+                                <h4 class="text-center"> {{trans('employer::employer.TaskCost')}} </h4>
                                 <ul id="cart-items"></ul>
-                                <div class="text-center"> <span >Total</span> <span id="cart-total" >$0</span></div>
+
+                                <hr>
+                                <div class="text-center"> <span >{{trans('employer::employer.Total')}}</span> <span id="cart-total" >USD 0</span></div>
                             </div>
 
                     </div>
@@ -819,7 +842,7 @@
                                 total += price;
                                 });
 
-                                $('#cart-total').text('$' + total);
+                                $('#cart-total').text('USD ' + total.toFixed(2));
                             }
 
                             $('#cart-items').on('click',  function() {

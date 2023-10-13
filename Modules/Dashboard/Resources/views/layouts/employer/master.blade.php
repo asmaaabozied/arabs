@@ -27,7 +27,11 @@
     <link rel="stylesheet" href="{{asset('assets/css/panel/dataTable.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/panel/loader.css')}}">
 </head>
-
+<style>
+    *{
+        font-size: 10.5pt;
+    }
+</style>
 <body>
 
 <div class="loader" id="loader">
@@ -467,7 +471,7 @@
 
 
 <div class="page_continer">
-    <div class="container-fluid min-vh-93">
+    <div class="container min-vh-93">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 {{--                <li class="breadcrumb-item"><a href="#">Home</a></li>--}}
