@@ -35,7 +35,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-10 col-md-10 col-12 mx-1 mt-lg-0">
+            <div class="col-lg-12 col-md-10 col-12 mx-1 mt-lg-0">
                 <div class="card-body p-1">
                     <div class="row">
                         <div class="col-12 text-center">
@@ -56,7 +56,7 @@
             <div class="dropdown border border-radius-2" style="">
                 <button class="btn bg-gradient-primary w-100 dropdown-toggle text-lg d-flex justify-content-between"
                     type="button" id="SortTaskMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                    <span id="SortTypeText">{{ trans('worker::task.SortTasksBy') }}</span>
+                    <span id="SortTypeText" class="text-white">{{ trans('worker::task.SortTasksBy') }}</span>
                 </button>
                 <ul class="dropdown-menu w-100 text-lg sort-buttons" aria-labelledby="SortTaskMenuButton">
                     <li><a class="dropdown-item" data-sort-type="oldest">{{ trans('worker::task.SortTaskBy_oldest') }}</a>
@@ -80,7 +80,7 @@
         <div class="col-lg-3 col-md-3 col-12 mb-lg-0 mb-md-3 mb-3">
             <div class="col-12  mt-2 mt-lg-2">
                 <div class="dropdown">
-                    <button class="btn bg-gradient-primary w-100 dropdown-toggle text-lg d-flex justify-content-between"
+                    <button class="btn bg-gradient-primary w-100 dropdown-toggle text-lg d-flex justify-content-between text-white"
                         type="button" id="TaskCategoryFilter" data-bs-toggle="dropdown" aria-expanded="false">
                         <span id="TaskCategoryFilterText">{{ trans('worker::task.TaskCategory') }}</span>
                     </button>
@@ -105,7 +105,7 @@
                 <div class="dropdown">
                     <button class="btn bg-gradient-primary w-100 dropdown-toggle text-lg d-flex justify-content-between"
                         type="button" id="TaskCountryFilter" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span id="TaskCountryFilterText">{{ trans('worker::task.TaskCountry') }}</span>
+                        <span id="TaskCountryFilterText" class="text-white">{{ trans('worker::task.TaskCountry') }}</span>
                     </button>
                     <ul class="dropdown-menu w-100 text-lg task-country-filter-buttons" aria-labelledby="TaskCountryFilter">
                         <li><a class="dropdown-item" data-country-name="AllCountryFilterBtn"
@@ -132,7 +132,7 @@
                     <button class="btn bg-gradient-primary w-100 dropdown-toggle text-lg d-flex justify-content-between"
                         type="button" id="ProfessionalOrNormalTaskLevelButton" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        <span id="TaskLevelText">{{ trans('worker::task.TaskLevel') }}</span>
+                        <span id="TaskLevelText" class="text-white">{{ trans('worker::task.TaskLevel') }}</span>
                     </button>
                     <ul class="dropdown-menu w-100 text-lg task-level-buttons"
                         aria-labelledby="ProfessionalOrNormalTaskLevelButton">
@@ -187,22 +187,27 @@
                 @if (isset($specialToNormalAccessTasks) and count($specialToNormalAccessTasks) > 0)
                     @foreach ($specialToNormalAccessTasks as $task)
                         @if ($task->special_access == 'true')
-                            <div class="d-flex  gx-4 position-relative task-featured-preview-border-gradient text-dark  py-2 border-radius-xl justify-content-lg-start justify-content-md-start justify-content-center mt-1  ">
+                            <div class="row  gx-4 position-relative task-featured-preview-border-gradient text-dark  py-2 border-radius-xl justify-content-lg-start justify-content-md-start justify-content-center mt-1  ">
 
-                                <div class="col-auto ">
+                                <div class="col-md-1 d-flex text-start ">
                                     <img class="featured-task col-md-8 " data-bs-toggle="tooltip" data-bs-placement="top"
                                     title="{{ trans('worker::task.ThisFutcheredTasks') }}" data-container="body"
                                     data-animation="true" {{--src="{{asset('assets/img/default/FutcheredTasks.png')}}" --}}
                                     src="{{ asset('assets/img/default/FutcheredTasks2.png') }}" width="40%" height="80%"
                                     alt="">
                                 </div>
-                            @else
+                        @else
 
-                                <div class="row gx-4  task-normal-preview-border-gradient text-dark  py-2 border-radius-xl justify-content-lg-start justify-content-md-start justify-content-center mt-1  ">
+                                <div class="col-md-12 gx-4  task-normal-preview-border-gradient text-dark  py-2 border-radius-xl justify-content-lg-start justify-content-md-start justify-content-center mt-1  ">
                         @endif
                         {{-- task items --}}
-                        <div class="row align-items-center justify-content-between ">
+                        @if ($task->special_access == 'true')
+                        <div class="col-md-11 align-items-center justify-content-between ">
+                        @else
+                        <div class="col-md-12 align-items-center justify-content-between ">
+                        @endif
                             {{-- logo task  --}}
+                            <div class="row">
                             <div class="col-lg-2 col-md-12 col-12 text-center">
                                 <div class="avatar avatar-xl position-relative">
                                     <img src="{{ Storage::url($task->category->image) }}" alt="profile_image"
@@ -211,6 +216,7 @@
                             </div>
                             {{-- task description and pice --}}
                             <div class="col-lg-8 col-md-12 col-sm-12 ">
+
                                 <div class="col-auto nav-wrapper position-relative end-0">
                                     <h5 class="mb-1 mt-3 text-dark">{{ $task->title }} <span class="text-xs text-info mx-3 ">{{ $task->created_at->diffForHumans() }}</span>
                                     </h5>
@@ -335,7 +341,7 @@
                             </div>
 
 
-
+                        </div>
                         </div>
 
             </div>
@@ -379,7 +385,7 @@
     <script>
         const  TaskNormal = function (tasks,limitedCountryArray){
                                        return "<div data-cost='"+(Math.round(tasks.total_cost *{{ $current_currency->rate }} * 100) /100).toFixed(1)+"' data-date='"+moment(tasks.created_at).format("YYYY-MM-DD/HH:mm")+"' class='row gx-4  task-normal-preview-border-gradient text-dark  py-2 border-radius-xl justify-content-lg-start justify-content-md-start justify-content-center mt-1'>" +
-                                        '<div class="row align-items-center justify-content-between">' +
+                                        '<div class="row  align-items-center justify-content-between">' +
                                         // img task
                                        '<div class="col-lg-2 col-md-12 col-12 text-center">' +
                                         '<div class="avatar avatar-xl position-relative">' +
@@ -402,14 +408,14 @@
                                         '<div class="d-flex flex-wrap mt-2 mb-1 justify-content-center justify-content-md-start justify-content-lg-start">' +
                                         '<div class="d-flex  align-items-center flex-wrap text-dark   border-radius-2xl text-lg  mt-2 mt-lg-0 mt-md-2">' +
                                         '<i class="fa fa-dollar text-success  text-1-5-rem "></i>' +
-                                        '<span class="text-dark mx-2  {{ $current_currency->rate > 10 ? 'font-size-16' : '' }}">' +
+                                        '<span class="text-dark mx-2  {{ $current_currency->rate > 10 ? 'font-size-16' : '' }}"><b> ' +
                                         (Math.round(tasks.total_cost *
                                                 {{ $current_currency->rate }} * 100) /
                                             100).toFixed(1) +
                                         '<span class="text-xxs">' +
                                         ' {{ $current_currency->en_name }} ' +
                                         '</span>' +
-                                        '</span>' +
+                                        '</b></span>' +
                                         '</div>' +
                                         '<div class="d-flex  align-items-center flex-wrap p-2 text-dark  border-radius-2xl text-lg mx-2 mt-2 mt-lg-0 mt-md-2">' +
                                         '<i class="fa fa-code-fork text-secondary text-lg mx-2"></i>' +
@@ -423,7 +429,7 @@
                                         '<span class="text-dark" id="LimitTaskCountries">' +
                                         limitedCountryArray +
                                         '</span>' +
-                                        '<a href="#" class="mx-3"> <i class="fa fa-refresh" aria-hidden="true"> </i> Retask  </a>'+
+                                        // '<a href="#" class="mx-3"> <i class="fa fa-refresh" aria-hidden="true"> </i> Retask  </a>'+
                                         '</div>' +
                                         '</div>' +
                                         '</div>' +
@@ -440,55 +446,60 @@
                                         '</div>';
             }
             const TaskFutchered  = function (tasks,limitedCountryArray){
-                    return "<div data-cost='"+(Math.round(tasks.total_cost *{{ $current_currency->rate }} * 100) /100).toFixed(1)+"' data-date='"+moment(tasks.created_at).format("YYYY-MM-DD/HH:mm")+"' class='d-flex gx-4 position-relative task-featured-preview-border-gradient text-dark  py-2 border-radius-xl justify-content-lg-start justify-content-md-start justify-content-center mt-1 '>" +
+                    return "<div data-cost='"+(Math.round(tasks.total_cost *{{ $current_currency->rate }} * 100) /100).toFixed(1)+"' data-date='"+moment(tasks.created_at).format("YYYY-MM-DD/HH:mm")+"' class='row gx-4 position-relative task-featured-preview-border-gradient text-dark  py-2 border-radius-xl justify-content-lg-start justify-content-md-start justify-content-center mt-1 '>" +
                        '<div class="row align-items-center justify-content-between">' +
-                        // img task
-                        '<div class="col-lg-1 col-md-12 col-12 text-center">' +
-                        '<img  src="/assets/img/default/FutcheredTasks2.png' +
-                        '"' +
-                        'alt="special_access_task" width=""  class="featured-task col-md-8 " width="40%" height="80%" > ' +
-                        '</div>' +
-                                       '<div class="col-lg-1 col-md-12 col-12 text-center">' +
-
+                                       '<div class="col-lg-2 col-md-12 col-12">' +
+                                        '<div class="row"> '+
+                                        '<div class="col-md-4"> '+
+                                        '<img  src="/assets/img/default/FutcheredTasks2.png' +
+                                        '"' +
+                                        'alt="special_access_task" width=""  class="featured-task  col-md-12 " width="70%" height="100%"  > ' +
+                                        '</div><div class="col-md-8"> '+
                                         '<div class="avatar avatar-xl position-relative">' +
                                         '<img src="/storage/' + tasks.category.image +
                                         '"' +
-                                        ' alt="profile_image" class="border-radius-lg w-50 ">' +
+                                        ' alt="profile_image" class="border-radius-lg "width="75%" height="100%"></div></div>'+
+
                                         '</div> </div>' +
-                        '<div class="col-lg-8 col-md-12 col-sm-12">' +
-                        '<div class="col-auto nav-wrapper position-relative end-0">' +
-                        '<h5 class="mb-1 mt-1 text-dark">' +
-                        '<span class="text-xs text-info mx-3">' + moment(tasks.created_at).format('YYYY-MM-DD/HH:mm') + '</span>' + tasks.title +
-                        '</h5>' +
-                        '<p class="mb-1 mt-1 text-justify">' + tasks
-                        .description.slice(0, 70) + "..." + '</p>' +
-                        '</div>' +
-                        '<div class="d-flex flex-wrap mt-2 mb-1 justify-content-center justify-content-md-start justify-content-lg-start">' +
-                        '<div class="d-flex  align-items-center flex-wrap text-dark   border-radius-2xl text-lg  mt-2 mt-lg-0 mt-md-2">' +
-                        '<i class="fa fa-dollar text-success  text-1-5-rem "></i>' +
-                        '<span class="text-dark mx-2  {{ $current_currency->rate > 10 ? 'font-size-16' : '' }}">' +
-                        (Math.round(tasks.total_cost *{{ $current_currency->rate }} * 100) /100).toFixed(1) +
-                        '<span class="text-xxs">' +
-                        ' {{ $current_currency->en_name }} ' +
-                        '</span>' +
-                        '</span>' +
-                        '</div>' +
-                        '<div class="d-flex  align-items-center flex-wrap p-2 text-dark  border-radius-2xl text-lg mx-2 mt-2 mt-lg-0 mt-md-2">' +
-                        '<i class="fa fa-code-fork text-secondary text-lg mx-2"></i>' +
-                        '<span class="text-dark">' + tasks
-                        .total_worker_limit + '/' + '</span>' +
-                        '<span class="text-primary">' + tasks
-                        .approved_workers + '</span>' +
-                        '</div>' +
-                        '<div class="col-auto d-flex align-items-center flex-wrap text-dark border-radius-2xl text-lg mt-2 mt-lg-0 mt-md-2">' +
-                        '<i class="fas fa-map-marker-alt text-secondary text-lg mx-2"></i>' +
-                        '<span class="text-dark" id="LimitTaskCountries">' +
-                        limitedCountryArray +
-                        '</span>' +
-                        '<a href="#" class="mx-3"> <i class="fa fa-refresh" aria-hidden="true"> </i> Retask  </a>'+
-                        '</div>' +
-                        '</div>' +
-                        '</div>' +
+                        // task description
+                        '<div class="col-lg-8 col-md-12 col-sm-12 ">' +
+                                        '<div class="col-auto nav-wrapper position-relative end-0">' +
+                                        '<h5 class="mb-1 mt-1 text-dark">' +
+                                        '<span class="text-xs text-info mx-3">' + moment(
+                                            tasks.created_at).format(
+                                        'YYYY-MM-DD/HH:mm') + '</span>' + tasks.title +
+                                        '</h5>' +
+                                        '<p class="mb-1 mt-1 text-justify">' + tasks
+                                        .description.slice(0, 70) + "..." + '</p>' +
+                                        '</div>' +
+                                        '<div class="d-flex flex-wrap mt-2 mb-1 justify-content-center justify-content-md-start justify-content-lg-start">' +
+                                        '<div class="d-flex  align-items-center flex-wrap text-dark   border-radius-2xl text-lg  mt-2 mt-lg-0 mt-md-2">' +
+                                        '<i class="fa fa-dollar text-success  text-1-5-rem "></i>' +
+                                        '<span class="text-dark mx-2  {{ $current_currency->rate > 10 ? 'font-size-16' : '' }}"><b> ' +
+                                        (Math.round(tasks.total_cost *
+                                                {{ $current_currency->rate }} * 100) /
+                                            100).toFixed(1) +
+                                        '<span class="text-xxs">' +
+                                        ' {{ $current_currency->en_name }} ' +
+                                        '</span>' +
+                                        '</b></span>' +
+                                        '</div>' +
+                                        '<div class="d-flex  align-items-center flex-wrap p-2 text-dark  border-radius-2xl text-lg mx-2 mt-2 mt-lg-0 mt-md-2">' +
+                                        '<i class="fa fa-code-fork text-secondary text-lg mx-2"></i>' +
+                                        '<span class="text-dark">' + tasks
+                                        .total_worker_limit + '/' + '</span>' +
+                                        '<span class="text-primary">' + tasks
+                                        .approved_workers + '</span>' +
+                                        '</div>' +
+                                        '<div class="col-auto d-flex align-items-center flex-wrap text-dark border-radius-2xl text-lg mt-2 mt-lg-0 mt-md-2">' +
+                                        '<i class="fas fa-map-marker-alt text-secondary text-lg mx-2"></i>' +
+                                        '<span class="text-dark" id="LimitTaskCountries">' +
+                                        limitedCountryArray +
+                                        '</span>' +
+                                        // '<a href="#" class="mx-3"> <i class="fa fa-refresh" aria-hidden="true"> </i> Retask  </a>'+
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div>' +
                         '<div class="col-lg-2 col-md-12 col-sm-12  text-lg-start text-center   mt-3 ">' +
                         '<a href="' +
                         'https://arabworkers.com/app/panel/worker/tasks/task-details/' +
@@ -539,124 +550,13 @@
                                         } else {
                                             limitedCountryArray += CountriesArray;
                                         }
-                                        // var TaskFutchered =
-                                        //     "<div class='d-flex gx-4 position-relative task-featured-preview-border-gradient text-dark  py-2 border-radius-xl justify-content-lg-start justify-content-md-start justify-content-center mt-1 '>" +
-                                        //     '<div class=" ">' +
-                                        //     '<img  src="/assets/img/default/FutcheredTasks2.png' + '"' +
-                                        //     'alt="special_access_task" width=""  class="featured-task">' +
-                                        //     '</div>' +
-                                        //     '<div class="row align-items-center justify-content-between">' +
-                                        //     '<div class=""col-lg-1 col-md-12 col-12 text-center">' +
-                                        //     '<div class="avatar avatar-xl position-relative">' +
-                                        //     '<img  src="/storage/' + tasks.category.image + '"' +
-                                        //     ' alt="profile_image" class="border-radius-lg">' +
-                                        //     '</div> </div>' +
-                                        //     '<div class="col-lg-8 col-md-12 col-sm-12">' +
-                                        //     '<div class="col-auto nav-wrapper position-relative end-0">' +
-                                        //     '<h5 class="mb-1 mt-1 text-dark">' +
-                                        //     '<span class="text-xs text-info mx-3">' + moment(tasks
-                                        //         .created_at).format('YYYY-MM-DD/HH:mm') + '</span>' +
-                                        //     tasks.title + '</h5>' +
-                                        //     '<p class="mb-1 mt-1 text-justify">' + tasks.description
-                                        //     .slice(0, 70) + "..." + '</p>' +
-                                        //     '</div>' +
-                                        //     '<div class="d-flex flex-wrap mt-2 mb-1 justify-content-center justify-content-md-start justify-content-lg-start">' +
-                                        //     '<div class="d-flex  align-items-center flex-wrap text-dark   border-radius-2xl text-lg  mt-2 mt-lg-0 mt-md-2">' +
-                                        //     '<i class="fa fa-dollar text-success  text-1-5-rem "></i>' +
-                                        //     '<span class="text-dark mx-2  {{ $current_currency->rate > 10 ? 'font-size-16' : '' }}">' +
-                                        //     (Math.round(tasks.total_cost *
-                                        //         {{ $current_currency->rate }} * 100) / 100).toFixed(
-                                        //     1) +
-                                        //     '<span class="text-xxs">' +
-                                        //     ' {{ $current_currency->en_name }} ' + '</span>' +
-                                        //     '</span>' +
-                                        //     '</div>' +
-                                        //     '<div class="col-3 d-flex  align-items-center flex-wrap p-2 text-dark  border-radius-2xl text-lg mx-2 mt-2 mt-lg-0 mt-md-2">' +
-                                        //     '<i class="fa fa-code-fork text-secondary text-lg mx-2"></i>' +
-                                        //     '<span class="text-dark">' + tasks.total_worker_limit +
-                                        //     '/' + '</span>' +
-                                        //     '<span class="text-primary">' + tasks.approved_workers +
-                                        //     '</span>' +
-                                        //     '</div>' +
-                                        //     '<div class="col-auto d-flex align-items-center flex-wrap text-dark border-radius-2xl text-lg mt-2 mt-lg-0 mt-md-2">' +
-                                        //     '<i class="fas fa-map-marker-alt text-secondary text-lg mx-2"></i>' +
-                                        //     '<span class="text-dark" id="LimitTaskCountries">' +
-                                        //     limitedCountryArray +
-                                        //     '</span>' +
-                                        //     '</div>' +
-                                        //     '</div>' +
-                                        //     '</div>' +
-                                        //     '<div class="col-lg-2 col-md-12 col-sm-12  text-lg-start text-center   mt-3 ">' +
-                                        //     '<a href="' +
-                                        //     'https://arabworkers.com/app/panel/worker/tasks/task-details/' +
-                                        //     tasks.id + '/' + tasks.task_number + '"' +
-                                        //     'class="btn btn-sm btn-secondary " style="padding-top: 20px;padding-bottom: 20px"> {{ trans('worker::task.showTaskDetailsBtn') }}</a>' +
-                                        //     '</div>' +
-                                        //     '</div>' +
-                                        //     '</div>';
-
-                                        // var TaskNormal =
-                                        //     "<div class='row gx-4  task-normal-preview-border-gradient text-dark  py-2 border-radius-xl justify-content-lg-start justify-content-md-start justify-content-center mt-1'>" +
-                                        //     '<div class="row align-items-center justify-content-between">' +
-                                        //     '<div class=""col-lg-1 col-md-12 col-12 text-center">' +
-                                        //     '<div class="avatar avatar-xl position-relative">' +
-                                        //     '<img  src="/storage/' + tasks.category.image + '"' +
-                                        //     ' alt="profile_image" class="border-radius-lg">' +
-                                        //     '</div> </div>' +
-                                        //     '<div class="col-lg-8 col-md-12 col-sm-12">' +
-                                        //     '<div class="col-auto nav-wrapper position-relative end-0">' +
-                                        //     '<h5 class="mb-1 mt-1 text-dark">' +
-                                        //     '<span class="text-xs text-info mx-3">' + moment(tasks
-                                        //         .created_at).format('YYYY-MM-DD/HH:mm') + '</span>' +
-                                        //     tasks.title + '</h5>' +
-                                        //     '<p class="mb-1 mt-1 text-justify">' + tasks.description
-                                        //     .slice(0, 70) + "..." + '</p>' +
-                                        //     '</div>' +
-                                        //     '<div class="d-flex flex-wrap mt-2 mb-1 justify-content-center justify-content-md-start justify-content-lg-start">' +
-                                        //     '<div class="d-flex  align-items-center flex-wrap text-dark   border-radius-2xl text-lg  mt-2 mt-lg-0 mt-md-2">' +
-                                        //     '<i class="fa fa-dollar text-success  text-1-5-rem "></i>' +
-                                        //     '<span class="text-dark mx-2  {{ $current_currency->rate > 10 ? 'font-size-16' : '' }}">' +
-                                        //     (Math.round(tasks.total_cost *
-                                        //         {{ $current_currency->rate }} * 100) / 100).toFixed(
-                                        //     1) +
-                                        //     '<span class="text-xxs">' +
-                                        //     ' {{ $current_currency->en_name }} ' + '</span>' +
-                                        //     '</span>' +
-                                        //     '</div>' +
-                                        //     '<div class="d-flex  align-items-center flex-wrap p-2 text-dark  border-radius-2xl text-lg mx-2 mt-2 mt-lg-0 mt-md-2">' +
-                                        //     '<i class="fa fa-code-fork text-secondary text-lg mx-2"></i>' +
-                                        //     '<span class="text-dark">' + tasks.total_worker_limit +
-                                        //     '/' + '</span>' +
-                                        //     '<span class="text-primary">' + tasks.approved_workers +
-                                        //     '</span>' +
-                                        //     '</div>' +
-                                        //     '<div class="col-auto d-flex align-items-center flex-wrap text-dark border-radius-2xl text-lg mt-2 mt-lg-0 mt-md-2">' +
-                                        //     '<i class="fas fa-map-marker-alt text-secondary text-lg mx-2"></i>' +
-                                        //     '<span class="text-dark" id="LimitTaskCountries">' +
-                                        //     limitedCountryArray +
-                                        //     '</span>' +
-                                        //     '</div>' +
-                                        //     '</div>' +
-                                        //     '</div>' +
-                                        //     '<div class="col-lg-2 col-md-12 col-sm-12  text-lg-start text-center   mt-3 ">' +
-                                        //     '<a href="' +
-                                        //     'https://arabworkers.com/app/panel/worker/tasks/task-details/' +
-                                        //     tasks.id + '/' + tasks.task_number + '"' +
-                                        //     'class="btn btn-sm btn-secondary " style="padding-top: 20px;padding-bottom: 20px"> {{ trans('worker::task.showTaskDetailsBtn') }}</a>' +
-                                        //     '</div>' +
-                                        //     '</div>' +
-                                        //     '</div>';
 
                                             if (tasks.special_access === "true") {
                                                 SortedTaskList.append(TaskFutchered(tasks,limitedCountryArray));
                                             } else {
                                                 SortedTaskList.append(TaskNormal(tasks,limitedCountryArray));
                                             }
-                                        // if (tasks.special_access === "true") {
-                                        //     SortedTaskList.append(TaskFutchered);
-                                        // } else {
-                                        //     SortedTaskList.append(TaskNormal);
-                                        // }
+
                                     });
                                 } else {
                                     NoResulte.classList.remove('d-none');
@@ -1087,122 +987,13 @@
                                     } else {
                                         limitedCountryArray += CountriesArray;
                                     }
-                                    // var TaskFutchered =
-                                    //     "<div class='d-flex gx-4 position-relative task-featured-preview-border-gradient text-dark  py-2 border-radius-xl justify-content-lg-start justify-content-md-start justify-content-center mt-1 '>" +
-                                    //     '<div class=" ">' +
-                                    //     '<img  src="/assets/img/default/FutcheredTasks2.png' + '"' +
-                                    //     'alt="special_access_task" width=""  class="featured-task">' +
-                                    //     '</div>' +
-                                    //     '<div class="row align-items-center justify-content-between">' +
-                                    //     '<div class=""col-lg-1 col-md-12 col-12 text-center">' +
-                                    //     '<div class="avatar avatar-xl position-relative">' +
-                                    //     '<img  src="/storage/' + tasks.category.image + '"' +
-                                    //     ' alt="profile_image" class="border-radius-lg">' +
-                                    //     '</div> </div>' +
-                                    //     '<div class="col-lg-8 col-md-12 col-sm-12">' +
-                                    //     '<div class="col-auto nav-wrapper position-relative end-0">' +
-                                    //     '<h5 class="mb-1 mt-1 text-dark">' +
-                                    //     '<span class="text-xs text-info mx-3">' + moment(tasks.created_at)
-                                    //     .format('YYYY-MM-DD/HH:mm') + '</span>' + tasks.title +
-                                    //     '</h5>' +
-                                    //     '<p class="mb-1 mt-1 text-justify">' + tasks.description.slice(
-                                    //         0, 70) + "..." + '</p>' +
-                                    //     '</div>' +
-                                    //     '<div class="d-flex flex-wrap mt-2 mb-1 justify-content-center justify-content-md-start justify-content-lg-start">' +
-                                    //     '<div class="d-flex  align-items-center flex-wrap text-dark   border-radius-2xl text-lg  mt-2 mt-lg-0 mt-md-2">' +
-                                    //     '<i class="fa fa-dollar text-success  text-1-5-rem "></i>' +
-                                    //     '<span class="text-dark mx-2  {{ $current_currency->rate > 10 ? 'font-size-16' : '' }}">' +
-                                    //     (Math.round(tasks.total_cost * {{ $current_currency->rate }} *
-                                    //         100) / 100).toFixed(1) +
-                                    //     '<span class="text-xxs">' +
-                                    //     ' {{ $current_currency->en_name }} ' + '</span>' +
-                                    //     '</span>' +
-                                    //     '</div>' +
-                                    //     '<div class="d-flex  align-items-center flex-wrap p-2 text-dark  border-radius-2xl text-lg mx-2 mt-2 mt-lg-0 mt-md-2">' +
-                                    //     '<i class="fa fa-code-fork text-secondary text-lg mx-2"></i>' +
-                                    //     '<span class="text-dark">' + tasks.total_worker_limit + '/' +
-                                    //     '</span>' +
-                                    //     '<span class="text-primary">' + tasks.approved_workers +
-                                    //     '</span>' +
-                                    //     '</div>' +
-                                    //     '<div class="col-auto d-flex align-items-center flex-wrap text-dark border-radius-2xl text-lg mt-2 mt-lg-0 mt-md-2">' +
-                                    //     '<i class="fas fa-map-marker-alt text-secondary text-lg mx-2"></i>' +
-                                    //     '<span class="text-dark" id="LimitTaskCountries">' +
-                                    //     limitedCountryArray +
-                                    //     '</span>' +
-                                    //     '</div>' +
-                                    //     '</div>' +
-                                    //     '</div>' +
-                                    //     '<div class="col-lg-2 col-md-12 col-sm-12  text-lg-start text-center   mt-3 ">' +
-                                    //     '<a href="' +
-                                    //     'https://arabworkers.com/app/panel/worker/tasks/task-details/' +
-                                    //     tasks.id + '/' + tasks.task_number + '"' +
-                                    //     'class="btn btn-sm btn-secondary " style="padding-top: 20px;padding-bottom: 20px"> {{ trans('worker::task.showTaskDetailsBtn') }}</a>' +
-                                    //     '</div>' +
-                                    //     '</div>' +
-                                    //     '</div>';
-
-                                    // var TaskNormal =
-                                    //     "<div class='row gx-4  task-normal-preview-border-gradient text-dark  py-2 border-radius-xl justify-content-lg-start justify-content-md-start justify-content-center mt-1'>" +
-                                    //     '<div class="row align-items-center justify-content-between">' +
-                                    //     '<div class=""col-lg-1 col-md-12 col-12 text-center">' +
-                                    //     '<div class="avatar avatar-xl position-relative">' +
-                                    //     '<img  src="/storage/' + tasks.category.image + '"' +
-                                    //     ' alt="profile_image" class="border-radius-lg">' +
-                                    //     '</div> </div>' +
-                                    //     '<div class="col-lg-8 col-md-12 col-sm-12">' +
-                                    //     '<div class="col-auto nav-wrapper position-relative end-0">' +
-                                    //     '<h5 class="mb-1 mt-1 text-dark">' +
-                                    //     '<span class="text-xs text-info mx-3">' + moment(tasks.created_at)
-                                    //     .format('YYYY-MM-DD/HH:mm') + '</span>' + tasks.title +
-                                    //     '</h5>' +
-                                    //     '<p class="mb-1 mt-1 text-justify">' + tasks.description.slice(
-                                    //         0, 70) + "..." + '</p>' +
-                                    //     '</div>' +
-                                    //     '<div class="d-flex flex-wrap mt-2 mb-1 justify-content-center justify-content-md-start justify-content-lg-start">' +
-                                    //     '<div class="d-flex  align-items-center flex-wrap text-dark   border-radius-2xl text-lg  mt-2 mt-lg-0 mt-md-2">' +
-                                    //     '<i class="fa fa-dollar text-success  text-1-5-rem "></i>' +
-                                    //     '<span class="text-dark mx-2  {{ $current_currency->rate > 10 ? 'font-size-16' : '' }}">' +
-                                    //     (Math.round(tasks.total_cost * {{ $current_currency->rate }} *
-                                    //         100) / 100).toFixed(1) +
-                                    //     '<span class="text-xxs">' +
-                                    //     ' {{ $current_currency->en_name }} ' + '</span>' +
-                                    //     '</span>' +
-                                    //     '</div>' +
-                                    //     '<div class="d-flex  align-items-center flex-wrap p-2 text-dark  border-radius-2xl text-lg mx-2 mt-2 mt-lg-0 mt-md-2">' +
-                                    //     '<i class="fa fa-code-fork text-secondary text-lg mx-2"></i>' +
-                                    //     '<span class="text-dark">' + tasks.total_worker_limit + '/' +
-                                    //     '</span>' +
-                                    //     '<span class="text-primary">' + tasks.approved_workers +
-                                    //     '</span>' +
-                                    //     '</div>' +
-                                    //     '<div class="col-auto d-flex align-items-center flex-wrap text-dark border-radius-2xl text-lg mt-2 mt-lg-0 mt-md-2">' +
-                                    //     '<i class="fas fa-map-marker-alt text-secondary text-lg mx-2"></i>' +
-                                    //     '<span class="text-dark" id="LimitTaskCountries">' +
-                                    //     limitedCountryArray +
-                                    //     '</span>' +
-                                    //     '</div>' +
-                                    //     '</div>' +
-                                    //     '</div>' +
-                                    //     '<div class="col-lg-2 col-md-12 col-sm-12  text-lg-start text-center   mt-3 ">' +
-                                    //     '<a href="' +
-                                    //     'https://arabworkers.com/app/panel/worker/tasks/task-details/' +
-                                    //     tasks.id + '/' + tasks.task_number + '"' +
-                                    //     'class="btn btn-sm btn-secondary " style="padding-top: 20px;padding-bottom: 20px"> {{ trans('worker::task.showTaskDetailsBtn') }}</a>' +
-                                    //     '</div>' +
-                                    //     '</div>' +
-                                    //     '</div>';
 
                                     if (tasks.special_access === "true") {
                                                 SortedTaskList.append(TaskFutchered(tasks,limitedCountryArray));
                                             } else {
                                                 SortedTaskList.append(TaskNormal(tasks,limitedCountryArray));
                                             }
-                                    // if (tasks.special_access === "true") {
-                                        // SortedTaskList.append(TaskFutchered);
-                                    // } else {
-                                        // SortedTaskList.append(TaskNormal);
-                                    // }
+
                                 });
                             } else {
                                 NoResulte.classList.remove('d-none');
