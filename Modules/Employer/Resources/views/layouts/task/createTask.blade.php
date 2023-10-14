@@ -691,7 +691,7 @@
                                 <br>
                                 <ul class="list-group" id="cart-items"></ul>
                                 <hr>
-                                <div class="text-center pt-2"> <span >{{trans('employer::employer.Total')}}</span> <span id="cart-total" >USD 0.00</span></div>
+                                <div class="text-center pt-2"> <span >{{trans('employer::employer.Total')}}</span> <span class="fw-bold" id="cart-total" >@if(app()->getLocale() =="ar") USD 0.00 @else 0.00 USD @endif</span></div>
                             </div>
 
                     </div>
@@ -754,7 +754,7 @@
 
                                     '<div class="col-2 text-center">' +
                                     '<div class="form-check form-switch" >' +
-                                    '<input class="form-check-input features toggle" name="' + 'CategoryAction[' + actions.id + '][toggle]' + '"' + 'data-price="' + actions.price + '"' + 'data-item="' + actions.ar_name + '"' + 'type="checkbox" aria-checked="ch" >' +
+                                    '<input class="form-check-input features toggle" name="' + 'CategoryAction[' + actions.id + '][toggle]' + '"' + 'data-price="' + actions.price + '"' + 'data-item="' + actions.name + '"' + 'type="checkbox" aria-checked="ch" >' +
                                     '</div>' +
                                     '</div>' +
                                     '</div>' +
@@ -822,7 +822,7 @@
                                 // add item html to cart
                                 $('#cart-items').append(`
                                     <li class="list-group-item px-2 py-1" data-item="${item}" data-price="${price}">
-                                    ${item} : $${price}
+                                    ${item} : <b>${price} USD</b>
 
                                     </li>
                                 `);
@@ -841,8 +841,13 @@
                                 var price = $(this).data('price');
                                 total += price;
                                 });
-
+                                @if(app()->getLocale() =="ar")
                                 $('#cart-total').text('USD ' + total.toFixed(2));
+                                @else
+                                $('#cart-total').text(total.toFixed(2)+' USD ');
+                                @endif
+
+
                             }
 
                             $('#cart-items').on('click',  function() {
