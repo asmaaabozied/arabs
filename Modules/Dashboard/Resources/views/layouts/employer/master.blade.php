@@ -19,7 +19,9 @@
         <link rel="stylesheet" href="{{asset('assets/css/panel/default.css')}}">
         <link rel="stylesheet" href="{{asset('assets/css/panel/style.css')}}">
     @else
+        <link rel="stylesheet" href="{{asset('assets/css/panel/default.css')}}">
         <link rel="stylesheet" href="{{asset('assets/css/panel/default_en.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/panel/style.css')}}">
         <link rel="stylesheet" href="{{asset('assets/css/panel/style_en.css')}}">
     @endif
 

@@ -688,10 +688,10 @@
                     <div class="card p-1 ">
                             <div id="cart" class="rounded">
                                 <h4 class="text-center"> {{trans('employer::employer.TaskCost')}} </h4>
-                                <ul id="cart-items"></ul>
-
+                                <br>
+                                <ul class="list-group" id="cart-items"></ul>
                                 <hr>
-                                <div class="text-center"> <span >{{trans('employer::employer.Total')}}</span> <span id="cart-total" >USD 0</span></div>
+                                <div class="text-center pt-2"> <span >{{trans('employer::employer.Total')}}</span> <span id="cart-total" >USD 0.00</span></div>
                             </div>
 
                     </div>
@@ -821,7 +821,7 @@
                             function addToCart(item, price) {
                                 // add item html to cart
                                 $('#cart-items').append(`
-                                    <li data-item="${item}" data-price="${price}">
+                                    <li class="list-group-item px-2 py-1" data-item="${item}" data-price="${price}">
                                     ${item} : $${price}
 
                                     </li>
