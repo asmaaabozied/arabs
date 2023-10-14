@@ -301,25 +301,30 @@ class EmployerCreateTaskController extends Controller
                         ['id', $value],
                     ])->select('min_city_cost')->first()->min_city_cost;
                 }
-                foreach ($min_cost_for_selected_city_ids as $values => $val) {
-                    $average_selected_cities [$values] = array_sum($val) / count($val);
-                }
             }
         } else {
-            $average_selected_cities = [];
+            $selected_cities_in_country = [];
         }
-
-        if (count($average_selected_cities) == 0) {
+        if (count($selected_cities_in_country) == 0) {
             $final_average_of_all_country_and_city = array_sum($true_country_min_price) / count($true_country_min_price);
             $final_average_of_all_region_and_actions = $final_average_of_all_country_and_city + $average_price_of_category_actions;
         } elseif (count($true_country_min_price) == 0) {
-            $final_average_of_all_country_and_city = array_sum($average_selected_cities) / count($average_selected_cities);
+            $outputOfAllCityArray = [];
+            foreach ($min_cost_for_selected_city_ids as $subArray) {
+                $outputOfAllCityArray = array_merge($outputOfAllCityArray, $subArray);
+            }
+            $outputOfAllCityArray = array_values($outputOfAllCityArray);
+            $final_average_of_all_country_and_city = array_sum($outputOfAllCityArray) / count($outputOfAllCityArray);
             $final_average_of_all_region_and_actions = $final_average_of_all_country_and_city + $average_price_of_category_actions;
 
         } else {
-            $average_of_selected_country = array_sum($true_country_min_price) / count($true_country_min_price);
-            $average_of_all_selected_cities = array_sum($average_selected_cities) / count($average_selected_cities);
-            $final_average_of_all_country_and_city = ($average_of_all_selected_cities + $average_of_selected_country) / 2;
+            $outputOfAllCityArray = [];
+            foreach ($min_cost_for_selected_city_ids as $subArray) {
+                $outputOfAllCityArray = array_merge($outputOfAllCityArray, $subArray);
+            }
+            $outputOfAllCityArray = array_values($outputOfAllCityArray);
+            $allOfSelectedCountryAndCity = array_merge($true_country_min_price, $outputOfAllCityArray);
+            $final_average_of_all_country_and_city = array_sum($allOfSelectedCountryAndCity) / count($allOfSelectedCountryAndCity);
             $final_average_of_all_region_and_actions = $final_average_of_all_country_and_city + $average_price_of_category_actions;
         }
 
