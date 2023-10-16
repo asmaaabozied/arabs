@@ -298,4 +298,6 @@ return [
 'EmployerTaskDetails' => 'Task Information',
 'TaskCost' => 'Task Cart',
 'Total' => 'Total',
+'worker' => 'Workers',
+
 ];

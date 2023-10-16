@@ -170,32 +170,32 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-9 col-lg-9 m-auto">
+                <div class="col-9 col-md-9">
                     <form action="{{route('employer.create.task.steep.one')}}" method="POST"
                           enctype="multipart/form-data"
                           class="multisteps-form__form ">
                         @csrf
-                        <div class="card multisteps-form__panel p-3 border-radius-xl bg-white js-active"
+                        <div class="card multisteps-form__panel js-active "
                              data-animation="FadeIn">
                             <h5 class="font-weight-bolder mb-0"
                                 id="category-menu-title"> {{trans('employer::task.pleas_select_type_of_category')}} </h5>
                             <div class="multisteps-form__content">
                                 <div class="row">
-                                    <div class="col-12">
-                                        <ul class=" w-100 text-lg d-flex flex-wrap p-0 category-menu"
+                                    <div class="col-12 col-md-12">
+                                        <ul class="row category-menu"
                                             aria-labelledby="CategoryMenu" id="CategoryMenu">
                                             @if(count($categories) > 0)
                                                 <input type="number" class="d-none" id="category_id" name="category_id"
                                                        value="">
                                                 @foreach($categories as $category)
-                                                    <li class="d-flex col-4 move-on-hover cursor-pointer"
+                                                    <li class="col-12 col-md-4  move-on-hover cursor-pointer "
                                                         data-category-type="{{$category->id}}">
-                                                        <div class="col-12">
-                                                            <div class="card m-2">
-                                                                <div class="card-body p-3">
+                                                        <div class="col-12 col-md-12">
+                                                            <div class="card">
+                                                                <div class="card-body">
                                                                     <div class="row align-items-center">
-                                                                        <div class="col-9">
-                                                                            <div class="numbers">
+                                                                        <div class="col-9 col-md-9">
+                                                                            <div class="numbers2">
                                                                                 <h5 class="font-weight-bolder mb-0">
                                                                                     @if(app()->getLocale() == "ar")
                                                                                         {{$category->ar_title}}
@@ -206,7 +206,7 @@
                                                                                 <p class="text-sm mb-0 text-capitalize font-weight-bold"> {{$category->description}}</p>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-3 text-end">
+                                                                        <div class="col-3 col-md-3 text-end">
                                                                             <div
                                                                                 class="avatar avatar-xl position-relative">
                                                                                 <img
@@ -270,13 +270,13 @@
                                 </div>
                                 <div class="button-row d-flex justify-content-between ">
                                     <div class="text-end">
-                                        <button id="backToCategoryMenuBtn" class="btn bg-gradient-light  mb-0 d-none text-end"
+                                        <button id="backToCategoryMenuBtn" class="btn bg-gradient-light  m-4 d-none text-end"
                                         type="button" onclick="BackToCategoryList()"
                                         title="{{trans('employer::task.prev_step')}}">{{trans('employer::task.prev_step')}}
                                         </button>
                                         </div>
                                         <div class="text-start">
-                                    <button class="btn bg-gradient-primary ms-auto mb-0 d-none  "
+                                    <button class="btn bg-gradient-primary ms-auto m-4 d-none  "
                                             id="firstNextStep"
                                             type="button"
                                             title="{{trans('employer::task.next_step')}}">{{trans('employer::task.next_step')}}
@@ -483,7 +483,7 @@
                                         <div class="row">
                                             <!--  If the number of tasks pin to top is less than the allowable limit, can use this feature  -->
                                             @if($activeAndAvailableTasks < $limit_of_pin_to_top->pin_in_top_task_limit_count)
-                                                <div class="d-flex col-12 ">
+                                                <div class="col-12 col-md-12 ">
                                                     <div class="col-12">
                                                         <div class="card m-2">
                                                             <div class="card-body p-3">
@@ -528,7 +528,7 @@
                                                     </div>
                                                 </div>
                                             @else
-                                                <div class="d-flex col-12">
+                                                <div class="col-12 col-md-12">
                                                     <div class="col-12">
                                                         <div class="card m-2 " style="background-color: #EBEBF0">
                                                             <div class="card-body p-3">
@@ -575,7 +575,7 @@
                                             @endif
 
 
-                                            <div class="d-flex col-12 ">
+                                            <div class="col-12 col-md-12 ">
                                                 <div class="col-12">
                                                     <div class="card m-2">
                                                         <div class="card-body p-3">
@@ -611,7 +611,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="d-flex col-12 ">
+                                            <div class="col-12 col-md-12 ">
                                                 <div class="col-12">
                                                     <div class="card m-2">
                                                         <div class="card-body p-3">
@@ -684,10 +684,11 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-md-3">
+                <div class="col-12 col-md-3">
                     <div class="card p-1 ">
                             <div id="cart" class="rounded">
                                 <h4 class="text-center"> {{trans('employer::employer.TaskCost')}} </h4>
+                                <span>{{trans('employer::employer.worker')}} <b id="count_worker">= 1</b></span>
                                 <br>
                                 <ul class="list-group" id="cart-items"></ul>
                                 <hr>
@@ -735,7 +736,7 @@
                                 document.getElementById('category-menu-title').innerHTML = '{{ trans('employer::task.pleas_select_category_actions') }}';
                             }, 0);
                             response.forEach(function (actions) {
-                                var en_action = '<li class="d-flex col-4 move-on-hover ">' +
+                                var en_action = '<li class="col-12 col-md-4 move-on-hover ">' +
                                     '<div class="col-12">' +
                                     '<div class="card m-2">' +
                                     '<div class="card-body p-3">' +
@@ -763,7 +764,7 @@
                                     '</div>' +
                                     '</li>';
 
-                                var ar_action = '<li class="d-flex col-4 move-on-hover ">' +
+                                var ar_action = '<li class="col-12 col-md-4 move-on-hover ">' +
                                     '<div class="col-12">' +
                                     '<div class="card m-2">' +
                                     '<div class="card-body p-3">' +
@@ -899,12 +900,13 @@
                     var cost = $(this).find('option:selected').data('cost');
                     var city = $(this).find('option:selected').text();
                     var workers  = $('#workerCount').val();
-                    var price = parseFloat(workers) * parseFloat(cost);
-
+                    // var price = parseFloat(workers) * parseFloat(cost);
+                    var price = parseFloat(cost);
+                    $($('#count_worker').text(workers));
 
                     $('#cart-items').append(`
                             <li class='workers_city' data-item="${city}" data-price="${price}">
-                            ${workers} × ${city} : ${price}
+                             ${city} : ${price}
                             </li>
                         `);
                 })
