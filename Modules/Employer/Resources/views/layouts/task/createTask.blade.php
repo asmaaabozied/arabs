@@ -919,7 +919,7 @@
                 var price = $(this).data('price');
                     total += price;
                 });
-                $('#cart-total').text('$' + total);
+                $('#cart-total').text('USD' + total);
             }
             $(document).on('change', '.mession-list .country_repeater', function () {
                 var idCountry = this.value;
@@ -935,19 +935,29 @@
                     },
                     dataType: 'json',
                     success: function (result) {
+                        var minCost = Number.MAX_VALUE;
                         @if(app()->getLocale() == "ar")
-                        $city_repeater.html('<option class="bg-gray-500" selected  value="all_cities_in_this_country[' + idCountry + ']">' + "{{trans('employer::task.select_all_cities_in_this_country')}}" + '</option>');
+                        $city_repeater.html('<option class="bg-gray-500" selected id="all_cities_in_this_country_' + idCountry +'" value="all_cities_in_this_country[' + idCountry + ']">' + "{{trans('employer::task.select_all_cities_in_this_country')}}" + '</option>');
+
                         $.each(result.cities, function (key, value) {
+                            if(value.min_city_cost < minCost) minCost = value.min_city_cost;
+
                             $city_repeater.append('<option data-cost="'+value.min_city_cost+'" value="' + value
                                 .id + '">' + value.ar_name + '</option>');
                         });
-                        @else
-                        $city_repeater.html('<option class="bg-gray-500" selected  value="all_cities_in_this_country[' + idCountry + ']">' + "{{trans('employer::task.select_all_cities_in_this_country')}}" + '</option>');
+                        console.log(minCost);
+                        $('#all_cities_in_this_country_' + idCountry +'').data('cost',minCost);
 
+                        @else
+                        $city_repeater.html('<option class="bg-gray-500" selected id="all_cities_in_this_country_' + idCountry +'"  value="all_cities_in_this_country[' + idCountry + ']">' + "{{trans('employer::task.select_all_cities_in_this_country')}}" + '</option>');
                         $.each(result.cities, function (key, value) {
+                            if(value.min_city_cost < minCost) minCost = value.min_city_cost;
                             $city_repeater.append('<option data-cost="'+value.min_city_cost+'" value="' + value
                                 .id + '">' + value.name + '</option>');
                         });
+                        console.log(minCost);
+                        $('#all_cities_in_this_country_' + idCountry +'').data('cost',minCost);
+
                         @endif
 
                         city_update_price();
