@@ -36,7 +36,7 @@ return [
     'worker_in_task' => 'عامل',
     'worker_daily_limit' => 'الحد الأقصى العدد العُمّال يومياً',
     'worker_daily_limit_input' => 'حدد العدد الأقصى للعمّال الذين سيعملون على المهمة يومياً، ويرجى الإنتباه إلى أن هذا الحد قد يؤدي إلى زيادة مدة تنفيذ المشروع',
-    'select_all_cities_in_this_country' => 'اختيار جميع المدن في هذه الدولة',
+    'select_all_cities_in_this_country' => 'اختيار جميع المدن في دولة ',
     'pleas_select_country_to_fetch_cities' => 'يرجى ااختيار الدولة أولاً لتظهر المدن',
     'pleas_select_country' => 'يرجى اختيار الدولة',
     'pleas_select_city' => 'يرجى اختيار المدينة',

@@ -37,7 +37,7 @@ return [
     'worker_in_task' => 'Worker',
     'worker_daily_limit' => 'Max daily workers',
     'worker_daily_limit_input' => 'Set max daily workers. This may increase project duration.',
-    'select_all_cities_in_this_country' => 'Select all cities in this country',
+    'select_all_cities_in_this_country' => 'Select all cities in ',
     'pleas_select_country_to_fetch_cities' => 'Please select country first to show cities',
     'pleas_select_country' => 'Please select country',
     'pleas_select_city' => 'Please select city',

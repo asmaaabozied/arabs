@@ -900,12 +900,12 @@
                     var cost = $(this).find('option:selected').data('cost');
                     var city = $(this).find('option:selected').text();
                     var workers  = $('#workerCount').val();
+                    $($('#count_worker').text(workers));
                     // var price = parseFloat(workers) * parseFloat(cost);
                     var price = parseFloat(cost);
-                    $($('#count_worker').text(workers));
 
                     $('#cart-items').append(`
-                            <li class='workers_city' data-item="${city}" data-price="${price}">
+                            <li class='workers_city' data-item="${city}" data-priceworker="${price}">
                              ${city} : ${price}
                             </li>
                         `);
@@ -913,16 +913,40 @@
                 updateCartTotal();
             })
             }
+
+            $('#workerCount').on('change',function (){
+                var workers  = $('#workerCount').val();
+                $($('#count_worker').text(workers));
+                updateCartTotal();
+            })
             function updateCartTotal() {
-                var total = 0;
+                var total_service = 0;
+                var Totalcountries = 0;
+                var count_service = 0;
+                var count = 0;
                 $('#cart-items li').each(function() {
-                var price = $(this).data('price');
-                    total += price;
+                    if($(this).data('price')){
+                        var price = $(this).data('price');
+                        count_service+=1;
+                        total_service += price;
+                    }
+                    if($(this).data('priceworker')){
+                        var price = $(this).data('priceworker');
+                        Totalcountries +=  price;
+                        count+=1
+                    }
+
                 });
-                $('#cart-total').text('USD' + total);
+                var workers  = $('#workerCount').val();
+                // formula total cities / counts countries // change workers
+                var end = (( (total_service/count_service)+(Totalcountries/count) )*workers)/2;
+                $('#cart-total').text('USD ' + end.toFixed(2));
             }
             $(document).on('change', '.mession-list .country_repeater', function () {
                 var idCountry = this.value;
+                // var country = this;
+                var country = $(this).find(":selected").text();
+
 
                 $city_repeater = $(this).parents('.mession-list').find('.city_repeater')
                 $city_repeater.html('');
@@ -937,7 +961,7 @@
                     success: function (result) {
                         var minCost = Number.MAX_VALUE;
                         @if(app()->getLocale() == "ar")
-                        $city_repeater.html('<option class="bg-gray-500" selected id="all_cities_in_this_country_' + idCountry +'" value="all_cities_in_this_country[' + idCountry + ']">' + "{{trans('employer::task.select_all_cities_in_this_country')}}" + '</option>');
+                        $city_repeater.html('<option class="bg-gray-500" selected id="all_cities_in_this_country_' + idCountry +'" value="all_cities_in_this_country[' + idCountry + ']">' + "{{trans('employer::task.select_all_cities_in_this_country')}}" +country+ '</option>');
 
                         $.each(result.cities, function (key, value) {
                             if(value.min_city_cost < minCost) minCost = value.min_city_cost;
