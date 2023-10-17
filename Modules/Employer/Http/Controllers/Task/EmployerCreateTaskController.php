@@ -329,7 +329,7 @@ class EmployerCreateTaskController extends Controller
         }
 
         $minimum_cost_per_worker = round($final_average_of_all_region_and_actions,2);
-        $workers_price = round($minimum_cost_per_worker * $validated['total_worker_limit'],2);
+        $workers_price = round($minimum_cost_per_worker * $validated['total_worker_limit'],2)/2;
         $additional_features = round($special_access_price + $only_professional_price + $daily_limit_price,2);
         /**
          * total price of task = ( (category price + average of cities) X count of workers) + price of Additional features
