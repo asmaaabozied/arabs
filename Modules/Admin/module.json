@@ -7,5 +7,7 @@
     "providers": [
         "Modules\\Admin\\Providers\\AdminServiceProvider"
     ],
-    "files": []
+    "aliases": {},
+    "files": [],
+    "requires": []
 }
