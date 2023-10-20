@@ -19,7 +19,7 @@ class SupportDatabaseSeeder extends Seeder
 
 
 //         todo local must be uncomment
-         $this->call(EmployerTicketTableSeeder::class);
-         $this->call(WorkerTicketTableSeeder::class);
+//         $this->call(EmployerTicketTableSeeder::class);
+//         $this->call(WorkerTicketTableSeeder::class);
     }
 }
