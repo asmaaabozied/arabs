@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Modules\Employer\Entities\Employer;
 use Modules\Employer\Http\Requests\UpdateMyProfileRequest;
 use Modules\Region\Entities\City;
@@ -19,6 +20,7 @@ class EmployerProfileController extends Controller
         $default_avatar = url('assets/img/default/default-avatar.svg');
         return $default_avatar;
     }
+
     public function showMyProfile()
     {
         $page_name = "ArabWorkers | Employers - profile";
@@ -29,16 +31,15 @@ class EmployerProfileController extends Controller
 
         $tasks = $employer->tasks()->with(['category', 'TaskStatuses.status'])->get();
 
-        if ($employer->privileges()->exists() == true){
-            for($i=0;$i<$employer->privileges()->count();$i++){
+        if ($employer->privileges()->exists() == true) {
+            for ($i = 0; $i < $employer->privileges()->count(); $i++) {
                 if ($employer->privileges[$i]->type == "plus") {
                     $total[] = "+" . $employer->privileges[$i]->count_of_privileges;
-                }
-                else{
+                } else {
                     $total[] = "-" . $employer->privileges[$i]->count_of_privileges;
                 }
             }
-        }else{
+        } else {
             $total [] = 0;
         }
 //        dd($tasks, $employer);
@@ -62,16 +63,15 @@ class EmployerProfileController extends Controller
         $employer = Employer::withoutTrashed()->with('level')->findOrFail(auth()->user()->id);
         $default_avatar = $this->avatar();
         $countries = Country::withoutTrashed()->get();
-        if ($employer->privileges()->exists() == true){
-            for($i=0;$i<$employer->privileges()->count();$i++){
+        if ($employer->privileges()->exists() == true) {
+            for ($i = 0; $i < $employer->privileges()->count(); $i++) {
                 if ($employer->privileges[$i]->type == "plus") {
                     $total[] = "+" . $employer->privileges[$i]->count_of_privileges;
-                }
-                else{
+                } else {
                     $total[] = "-" . $employer->privileges[$i]->count_of_privileges;
                 }
             }
-        }else{
+        } else {
             $total [] = 0;
         }
         return view('employer::layouts.employer.editProfile', compact([
@@ -84,6 +84,7 @@ class EmployerProfileController extends Controller
             'total',
         ]));
     }
+
     public function fetchCity(Request $request)
     {
         $lang = app()->getLocale();
@@ -109,8 +110,7 @@ class EmployerProfileController extends Controller
             } else {
                 $avatar = $employer->avatar;
             }
-        }
-        else {
+        } else {
             $avatar = $employer->avatar;
         }
         if (isset($validated['password'])) {
@@ -120,7 +120,6 @@ class EmployerProfileController extends Controller
         } else {
             unset($validated['password']);
         }
-
 
 
         if ($employer->google_id == null) {
@@ -139,17 +138,25 @@ class EmployerProfileController extends Controller
             and array_key_exists('phone', $validated)
 
         ) {
-            $employer->update([
-                'avatar' => $avatar,
-                'name' => $validated['name'],
-                'address' => $validated['address'],
-                'zip_code' => $validated['zip_code'],
-                'description' => $validated['description'],
-                'gender' => $validated['gender'],
-                'country_id' => $validated['country'],
-                'city_id' => $validated['city'],
-                'phone' => $validated['phone'],
-            ]);
+            $country = Country::withoutTrashed()->findOrFail($validated['country']);
+
+            if (Str::contains($validated['phone'], $country->calling_code) and Str::length($validated['phone']) > Str::length($country->calling_code)) {
+                $employer->update([
+                    'avatar' => $avatar,
+                    'name' => $validated['name'],
+                    'address' => $validated['address'],
+                    'zip_code' => $validated['zip_code'],
+                    'description' => $validated['description'],
+                    'gender' => $validated['gender'],
+                    'country_id' => $validated['country'],
+                    'city_id' => $validated['city'],
+                    'phone' => $validated['phone'],
+                ]);
+            } else {
+                alert()->toast(trans('employer::employer.The phone number entered is incorrect'), 'error');
+                return redirect()->back();
+            }
+
         } else {
             $employer->update([
                 'avatar' => $avatar,

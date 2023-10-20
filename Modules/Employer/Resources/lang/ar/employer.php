@@ -289,7 +289,7 @@ return [
     'joined_using_google_account' => 'باستخدام حساب غوغل',
     'default_currency' => 'العملة الإفتراضية',
     'EmployerTaskDetails' => 'معلومات المهام',
-    '' => '',
+    'The phone number entered is incorrect' => 'يرجى اختيار رقم موبايل من نفس الدولة التي تعيش فيها',
     '' => '',
     '' => '',
     '' => '',

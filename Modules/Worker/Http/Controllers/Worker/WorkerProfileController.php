@@ -161,20 +161,27 @@ class WorkerProfileController extends Controller
             and array_key_exists('phone', $validated)
 
         ) {
-            $worker->update([
-                'avatar' => $avatar,
-                'name' => $validated['name'],
-                'paypal_account' => $validated['paypal_account'],
-                'address' => $validated['address'],
-                'zip_code' => $validated['zip_code'],
-                'description' => $validated['description'],
-                'gender' => $validated['gender'],
-                'country_id' => $validated['country'],
-                'city_id' => $validated['city'],
-                'phone' => $validated['phone'],
-            ]);
-            alert()->toast(trans('worker::worker.You are update your information successfully'), 'success');
-            return redirect()->route('worker.show.my.profile');
+            $country = Country::withoutTrashed()->findOrFail($validated['country']);
+            if (Str::contains($validated['phone'], $country->calling_code) and Str::length($validated['phone']) > Str::length($country->calling_code)) {
+                $worker->update([
+                    'avatar' => $avatar,
+                    'name' => $validated['name'],
+                    'paypal_account' => $validated['paypal_account'],
+                    'address' => $validated['address'],
+                    'zip_code' => $validated['zip_code'],
+                    'description' => $validated['description'],
+                    'gender' => $validated['gender'],
+                    'country_id' => $validated['country'],
+                    'city_id' => $validated['city'],
+                    'phone' => $validated['phone'],
+                ]);
+                alert()->toast(trans('worker::worker.You are update your information successfully'), 'success');
+                return redirect()->route('worker.show.my.profile');
+            }else{
+                alert()->toast(trans('employer::employer.The phone number entered is incorrect'), 'error');
+                return redirect()->back();
+            }
+
         } else {
             $worker->update([
                 'avatar' => $avatar,
