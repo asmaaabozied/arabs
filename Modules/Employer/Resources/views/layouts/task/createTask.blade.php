@@ -938,8 +938,13 @@
 
                 });
                 var workers  = $('#workerCount').val();
+
                 // formula total cities / counts countries // change workers
+                if(Totalcountries == 0 )
+                var end = (( (total_service/count_service)+0)*workers)/2;
+                else
                 var end = (( (total_service/count_service)+(Totalcountries/count) )*workers)/2;
+
                 $('#cart-total').text('USD ' + end.toFixed(2));
             }
             $(document).on('change', '.mession-list .country_repeater', function () {
