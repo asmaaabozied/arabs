@@ -170,7 +170,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-9 col-md-9">
+                <div class="col-lg-9 col-md-12 col-sm-12 ">
                     <form action="{{route('employer.create.task.steep.one')}}" method="POST"
                           enctype="multipart/form-data"
                           class="multisteps-form__form ">
@@ -684,20 +684,20 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-12 col-md-3">
-                    <div class="card p-1 ">
-                            <div id="cart" class="rounded">
-                                <h4 class="text-center"> {{trans('employer::employer.TaskCost')}} </h4>
-                                <span>{{trans('employer::employer.worker')}} <b id="count_worker">= 1</b></span>
-                                <br>
-                                <ul class="list-group" id="cart-items"></ul>
-                                <hr>
-                                <div class="text-center pt-2"> <span >{{trans('employer::employer.Total')}}</span> <span class="fw-bold" id="cart-total" >@if(app()->getLocale() =="ar") USD 0.00 @else 0.00 USD @endif</span></div>
+                <div class="col-12 col-md-3 col-sm-12 ">
+                    <div class="card p-1">
+                        <div id="cart" class="rounded">
+                            <h4 class="text-center">{{trans('employer::employer.TaskCost')}}</h4>
+                            <span>{{trans('employer::employer.worker')}} <b id="count_worker">= 1</b></span>
+                            <br>
+                            <ul class="list-group" id="cart-items"></ul>
+                            <hr>
+                            <div class="text-center pt-2">
+                                <span>{{trans('employer::employer.Total')}}</span>
+                                <span class="fw-bold" id="cart-total">@if(app()->getLocale() =="ar") USD 0.00 @else 0.00 USD @endif</span>
                             </div>
-
+                        </div>
                     </div>
-
-
                 </div>
 
             </div>
