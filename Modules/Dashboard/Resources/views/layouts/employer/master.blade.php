@@ -1,673 +1,631 @@
-<!doctype html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="utf-8">
-    <meta name="author" content="ArabWorkers | Mohammad Gamel">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>
-        {{trans('employer::employer.'.$page_name)}}
-    </title>
-    <link rel="icon" type="image/x-icon" href="{{asset('favicon.ico')}}">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="{{asset('assets/css/panel/icon/nucleo-icons.css')}}" rel="stylesheet"/>
-    <link href="{{asset('assets/css/panel/icon/nucleo-svg.css')}}" rel="stylesheet"/>
-
-    <link rel="stylesheet" href="{{asset('assets/css/panel/dashboard.css')}}">
-    @if(app()->getLocale() == 'ar')
-        <link rel="stylesheet" href="{{asset('assets/css/panel/default.css')}}">
-        <link rel="stylesheet" href="{{asset('assets/css/panel/style.css')}}">
-    @else
-        <link rel="stylesheet" href="{{asset('assets/css/panel/default.css')}}">
-        <link rel="stylesheet" href="{{asset('assets/css/panel/default_en.css')}}">
-        <link rel="stylesheet" href="{{asset('assets/css/panel/style.css')}}">
-        <link rel="stylesheet" href="{{asset('assets/css/panel/style_en.css')}}">
-    @endif
-
-    <link rel="stylesheet" href="{{asset('assets/css/panel/responsive.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/panel/dataTable.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/panel/loader.css')}}">
-</head>
-<style>
-    *{
-        font-size: 10.5pt;
-    }
-</style>
-<body>
-
-<div class="loader" id="loader">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-</div>
-<nav class="navbar navbar-expand-lg bg-light dashboard-nav" @if(app()->getLocale() == 'en') dir="ltr" @endif>
-    <div class="container-lg">
-        <li class="nav-item hamburger">
-            <a class=" ms-2  profile_name hamburger-color" href="#"><i class="fa-solid fa-bars"></i></a>
-        </li>
-        <a class="navbar-brand" href="#"><img src="{{asset("assets/icons/arabWorkers/logo.png")}}"
-                                              class="brand-logo"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"><i class="fa-solid fa-house text-primary"></i></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul @if(app()->getLocale() == 'en') class="navbar-nav me-auto mb-lg-0" @else class="navbar-nav ms-auto mb-lg-0" @endif >
-                <li class="nav-item">
-                    <a class="nav-link link active-up-menu" href="{{route('employer.show.tasks.page')}}">تصفح المهمة</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link link" href="#">قم بإنشاء مهمة</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link link" href="#">دليل الإحالات</a>
-                </li>
-            </ul>
-            <div class="nav-item admin-nav d-flex align-items-baseline justify-content-between">
-                <div class="dropdown dashboard-profile-dropdown">
-                    <button class="dropdown-toggle profile-dropdown" type="button" id="dropdownMenuButton1"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                        <a class="user-name profile_name" href="#">
-                            @if(auth()->user()->google_id == null)
-                                @if(auth()->user()->avatar != null)
-                                    <img src="{{Storage::url(auth()->user()->avatar)}}" class="profile">
-                                @else
-                                    <img src="{{asset('assets/img/default/default-avatar.svg')}}" class="profile">
-                                @endif
-                            @else
-                                <img src="{{auth()->user()->avatar}}" class="profile">
-                            @endif
-                            <span class="me-2 text-sm text-primary text-uppercase">{{auth()->user()->name}}</span>
-                        </a>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item"
-                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                            >{{trans('dashboard::auth.logout')}}</a></li>
-                    </ul>
-                    <form id="logout-form" action="{{ route('employer.logout') }}" method="POST"
-                          class="d-none">
-                        @csrf
-                    </form>
-
-                </div>
-                <div>
-                    <span class=" text-primary fw-normal  mx-2">
-                             {{ number_format(convertCurrency(auth()->user()->wallet_balance, auth()->user()->current_currency),2) }}
-                                             <span class="text-xxs">{{auth()->user()->current_currency}}</span>
-                     </span>
-                    <i class="fa fa-wallet me-sm-1 mx-1 " aria-hidden="true">
-                    </i>
-                </div>
-            </div>
-        </div>
-    </div>
-</nav>
-
-<div class="side_menu">
-    <ul class="">
-        <li class="side_menu_item
-            {{request()->routeIs('show.employer.panel') ? 'active_side' : ''}}
-            ">
-            <a class="nav-link nav-text  " href="{{route('show.employer.panel')}}">
-                <i class="fa-solid fa fa-globe"></i>
-                <span class="nav-link-text m-2 fw-bold">{{trans('employer::employer.panel')}}</span>
-            </a>
-        </li>
-        <li class="side_menu_item
-            {{request()->routeIs('employer.show.my.profile') ? 'active_side' : ''}}
-        {{request()->routeIs('employer.show.edit.my.profile.form') ? 'active_side' : ''}}
-            ">
-            <a class="nav-link nav-text" href="{{route('employer.show.my.profile')}}">
-                <i class="fa-solid fa-user"></i>
-                <span class="nav-link-text m-2 fw-bold">{{trans('employer::employer.MyProfile')}}</span>
-            </a>
-        </li>
-        <li class="side_menu_item
-                     {{request()->routeIs('employer.show.not.published.tasks') ? 'active_side' : ''}}
-        {{request()->routeIs('employer.show.not.payed.tasks') ? 'active_side' : ''}}
-        {{request()->routeIs('employer.show.task.in.rejected.status') ? 'active_side' : ''}}
-        {{request()->routeIs('employer.show.task.in.complete.status') ? 'active_side' : ''}}
-        {{request()->routeIs('employer.show.task.in.active.status') ? 'active_side' : ''}}
-        {{request()->routeIs('employer.show.task.in.pending.status') ? 'active_side' : ''}}
-        {{request()->routeIs('employer.show.pending.tasks.details') ? 'active_side' : ''}}
-        {{request()->routeIs('employer.show.create.task.page') ? 'active_side' : ''}}
-        {{request()->routeIs('employer.show.active.tasks.proofs') ? 'active_side' : ''}}
-        {{request()->routeIs('employer.show.active.tasks.proof.details') ? 'active_side' : ''}}
-        {{request()->routeIs('employer.show.complete.tasks.details') ? 'active_side' : ''}}
-        {{request()->routeIs('employer.show.complete.tasks.proofs') ? 'active_side' : ''}}
-        {{request()->routeIs('employer.show.complete.tasks.proof.details') ? 'active_side' : ''}}
-        {{request()->routeIs('employer.show.rejected.tasks.details') ? 'active_side' : ''}}
-        {{request()->routeIs('employer.show.not.payed.tasks.details') ? 'active_side' : ''}}
-
-            ">
-            <a data-bs-toggle="collapse" href="#dashboardsExamples" class="nav-link nav-text collapsed"
-               aria-controls="dashboardsExamples" role="button" aria-expanded="false">
-                <i class="fa-solid fa-tag"></i>
-                <span class="nav-link-text m-2 fw-bold">{{trans('employer::employer.tasks')}}</span>
-            </a>
-            <div class="collapse
-                  {{request()->routeIs('employer.show.not.published.tasks') ? 'show' : ''}}
-            {{request()->routeIs('employer.show.not.payed.tasks') ? 'show' : ''}}
-            {{request()->routeIs('employer.show.task.in.rejected.status') ? 'show' : ''}}
-            {{request()->routeIs('employer.show.task.in.complete.status') ? 'show' : ''}}
-            {{request()->routeIs('employer.show.task.in.active.status') ? 'show' : ''}}
-            {{request()->routeIs('employer.show.task.in.pending.status') ? 'show' : ''}}
-            {{request()->routeIs('employer.show.pending.tasks.details') ? 'show' : ''}}
-            {{request()->routeIs('employer.show.create.task.page') ? 'show' : ''}}
-            {{request()->routeIs('employer.show.active.tasks.proofs') ? 'show' : ''}}
-            {{request()->routeIs('employer.show.active.tasks.proof.details') ? 'show' : ''}}
-            {{request()->routeIs('employer.show.complete.tasks.details') ? 'show' : ''}}
-            {{request()->routeIs('employer.show.complete.tasks.proofs') ? 'show' : ''}}
-            {{request()->routeIs('employer.show.complete.tasks.proof.details') ? 'show' : ''}}
-            {{request()->routeIs('employer.show.rejected.tasks.details') ? 'show' : ''}}
-            {{request()->routeIs('employer.show.not.payed.tasks.details') ? 'show' : ''}}
-                " id="dashboardsExamples" style="">
-                <ul class="nav ms-4 ps-3">
-                    <li class=" ">
-                        <a class="nav-link nav-text
-                         {{request()->routeIs('employer.show.create.task.page') ? 'active-select-nav' : ''}}
-
-                            " href="{{route('employer.show.create.task.page')}}">
-                            <span class="sidenav-normal">   {{trans('employer::employer.createTask')}} </span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a class="nav-link nav-text
-                        {{request()->routeIs('employer.show.task.in.pending.status') ? 'active-select-nav' : ''}}
-                        {{request()->routeIs('employer.show.pending.tasks.details') ? 'active-select-nav' : ''}}
-                            " href="{{route('employer.show.task.in.pending.status')}}">
-                            <span
-                                class="sidenav-normal"> {{trans('employer::employer.taskInPendingToAcceptAdmin')}} </span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-text
-                          {{request()->routeIs('employer.show.task.in.active.status') ? 'active-select-nav' : ''}}
-                          {{request()->routeIs('employer.show.active.tasks.proofs') ? 'active-select-nav' : ''}}
-                          {{request()->routeIs('employer.show.active.tasks.proof.details') ? 'active-select-nav' : ''}}
-
-                            " href="{{route('employer.show.task.in.active.status')}}">
-                            <span class="sidenav-normal"> {{trans('employer::employer.taskInActive')}} </span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-text
-                          {{request()->routeIs('employer.show.task.in.complete.status') ? 'active-select-nav' : ''}}
-                          {{request()->routeIs('employer.show.complete.tasks.details') ? 'active-select-nav' : ''}}
-                          {{request()->routeIs('employer.show.complete.tasks.proofs') ? 'active-select-nav' : ''}}
-                          {{request()->routeIs('employer.show.complete.tasks.proof.details') ? 'active-select-nav' : ''}}
-
-                            " href="{{route('employer.show.task.in.complete.status')}}">
-                            <span class="sidenav-normal"> {{trans('employer::employer.taskInComplete')}}  </span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-text
-                          {{request()->routeIs('employer.show.task.in.rejected.status') ? 'active-select-nav' : ''}}
-                          {{request()->routeIs('employer.show.rejected.tasks.details') ? 'active-select-nav' : ''}}
-                            " href="{{route('employer.show.task.in.rejected.status')}}">
-                            <span class="sidenav-normal">  {{trans('employer::employer.taskInCanceled')}} </span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-text
-                         {{request()->routeIs('employer.show.not.payed.tasks') ? 'active-select-nav' : ''}}
-                         {{request()->routeIs('employer.show.not.payed.tasks.details') ? 'active-select-nav' : ''}}
-                            " href="{{route('employer.show.not.payed.tasks')}}">
-                            <span class="sidenav-normal">{{trans('employer::employer.NotPayedTasks')}}</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-text
-                            {{request()->routeIs('employer.show.not.published.tasks') ? 'active-select-nav' : ''}}
-
-                            "
-                           href="{{route('employer.show.not.published.tasks')}}">
-                            <span class="sidenav-normal">{{trans('employer::employer.NotPublishedTasks')}} </span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-
-        <li class="side_menu_item
-              {{request()->routeIs('employer.show.my.discount.code') ? 'active_side' : ''}}
-        {{request()->routeIs('employer.show.discountCode.invoice') ? 'active_side' : ''}}
-        {{request()->routeIs('employer.show.my.wages.and.costs') ? 'active_side' : ''}}
-        {{request()->routeIs('employer.show.my.wallet.history') ? 'active_side' : ''}}
-        {{request()->routeIs('employer.show.switch.account.to.worker.with.transfer.wallet.balance.form') ? 'active_side' : ''}}
-        {{request()->routeIs('employer.show.charge.wallet.form') ? 'active_side' : ''}}
-            ">
-
-            <a data-bs-toggle="collapse" href="#FinancialAffairs" class="nav-link nav-text collapsed"
-               aria-controls="FinancialAffairs" role="button" aria-expanded="false">
-                <i class="fa-solid fa-credit-card"></i>
-                <span class="nav-link-text m-2 fw-bold">{{trans('employer::employer.Financial Affairs')}}</span>
-            </a>
-            <div class="collapse
-            {{request()->routeIs('employer.show.my.discount.code') ? 'show' : ''}}
-            {{request()->routeIs('employer.show.discountCode.invoice') ? 'show' : ''}}
-            {{request()->routeIs('employer.show.my.wages.and.costs') ? 'show' : ''}}
-            {{request()->routeIs('employer.show.my.wallet.history') ? 'show' : ''}}
-            {{request()->routeIs('employer.show.switch.account.to.worker.with.transfer.wallet.balance.form') ? 'show' : ''}}
-            {{request()->routeIs('employer.show.charge.wallet.form') ? 'show' : ''}}
-
-                " id="FinancialAffairs" style="">
-                <ul class="nav ms-4 ps-3">
-
-                    <li class="nav-item">
-                        <a class="nav-link nav-text
-                           {{request()->routeIs('employer.show.my.discount.code') ? 'active-select-nav' : ''}}
-                        {{request()->routeIs('employer.show.discountCode.invoice') ? 'active-select-nav' : ''}}
-                            " href="{{route('employer.show.my.discount.code')}}">
-                            <span class="sidenav-normal">  {{trans('employer::employer.DiscountCodes')}}</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-text
-                                {{request()->routeIs('employer.show.my.wages.and.costs') ? 'active-select-nav' : ''}}
-                            "
-                           href="{{route('employer.show.my.wages.and.costs')}}">
-                            <span class="sidenav-normal"> {{trans('employer::employer.WagesAndCosts')}} </span>
-                        </a>
-                    </li>
-
-                    <li class="">
-                        <a class="nav-link nav-text
-                   {{request()->routeIs('employer.show.switch.account.to.worker.with.transfer.wallet.balance.form') ? 'active-select-nav' : ''}}
-
-                            "
-                           href="{{route('employer.show.switch.account.to.worker.with.transfer.wallet.balance.form')}}">
-                            <span
-                                class="sidenav-normal"> {{trans('employer::employer.TransferEmployerWalletBalanceToWorker')}} </span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a class="nav-link nav-text
-                               {{request()->routeIs('employer.show.my.wallet.history') ? 'active-select-nav' : ''}}
-                        {{request()->routeIs('employer.show.charge.wallet.form') ? 'active-select-nav' : ''}}
-                            "
-                           href="{{route('employer.show.my.wallet.history')}}">
-                            <span class="sidenav-normal">{{trans('employer::employer.walletHistory')}}</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li class="side_menu_item
-          {{request()->routeIs('employer.show.switching.account.history') ? 'active_side' : ''}}
-        {{request()->routeIs('employer.show.my.privilege.history') ? 'active_side' : ''}}
-        {{request()->routeIs('employer.show.rule.of.privileges') ? 'active_side' : ''}}
-            ">
-            <a data-bs-toggle="collapse" href="#ManagementSection" class="nav-link nav-text"
-               aria-controls="ManagementSection" role="button" aria-expanded="">
-                <i class="fa fa-list-ol"></i>
-                <span class="nav-link-text m-2 fw-bold">{{trans('employer::employer.ManagementSection')}}</span>
-            </a>
-            <div class="collapse
-                {{request()->routeIs('employer.show.switching.account.history') ? 'show' : ''}}
-            {{request()->routeIs('employer.show.my.privilege.history') ? 'show' : ''}}
-            {{request()->routeIs('employer.show.rule.of.privileges') ? 'show' : ''}}
-                " id="ManagementSection" style="">
-                <ul class="nav ms-4 ps-3">
-
-                    <li class="">
-                        <a class="nav-link nav-text
-                            {{request()->routeIs('employer.show.switching.account.history') ? 'active-select-nav' : ''}}
-                            "
-                           href="{{route('employer.show.switching.account.history')}}">
-                            <span
-                                class="sidenav-normal">  {{trans('employer::employer.switchingAccountHistory')}}</span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a class="nav-link nav-text
-                             {{request()->routeIs('employer.show.my.privilege.history') ? 'active-select-nav' : ''}}
-                            "
-
-                           href="{{route('employer.show.my.privilege.history')}}">
-                            <span class="sidenav-normal">  {{trans('employer::employer.PrivilegesHistory')}} </span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a class="nav-link nav-text
-                             {{request()->routeIs('employer.show.rule.of.privileges') ? 'active-select-nav' : ''}}
-
-                            "
-                           href="{{route('employer.show.rule.of.privileges')}}">
-                            <span class="sidenav-normal">{{trans('employer::employer.RuleOfPrivileges')}} </span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-
-        <li class="side_menu_item
-             {{request()->routeIs('employer.show.my.tickets') ? 'active_side' : ''}}
-        {{request()->routeIs('employer.show.ticket.details') ? 'active_side' : ''}}
-        {{request()->routeIs('employer.show.create.ticket.form') ? 'active_side' : ''}}
-            ">
-            <a data-bs-toggle="collapse" href="#EmployerSupport" class="nav-link nav-text"
-               aria-controls="EmployerSupport" role="button" aria-expanded="">
-                <i class="fa-solid fa-headphones-simple"></i>
-                <span class="nav-link-text m-2 fw-bold">{{trans('employer::employer.SupportSection')}}</span>
-
-            </a>
-            <div class="collapse
-                  {{request()->routeIs('employer.show.my.tickets') ? 'show' : ''}}
-            {{request()->routeIs('employer.show.ticket.details') ? 'show' : ''}}
-            {{request()->routeIs('employer.show.create.ticket.form') ? 'show' : ''}}
-                " id="EmployerSupport" style="">
-                <ul class="nav ms-4 ps-3">
-
-                    <li class="">
-                        <a class="nav-link nav-text
-                         {{request()->routeIs('employer.show.my.tickets') ? 'active-select-nav' : ''}}
-                        {{request()->routeIs('employer.show.ticket.details') ? 'active-select-nav' : ''}}
-                        {{request()->routeIs('employer.show.create.ticket.form') ? 'active-select-nav' : ''}}
-                            " href="{{route('employer.show.my.tickets')}}">
-                            <span class="sidenav-normal "> {{trans('employer::employer.myTickets')}} </span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-
-
-        <li class="side_menu_item">
-            <a data-bs-toggle="collapse" href="#AppLanguage" class="nav-link nav-text"
-               aria-controls="AppLanguage" role="button" aria-expanded="">
-                <i class="fa-solid fa fa-globe"></i>
-                <span class="nav-link-text m-2 fw-bold">{{trans('employer::employer.AppLanguage')}}</span>
-            </a>
-            <div class="collapse " id="AppLanguage" style="">
-                <ul class="nav ms-4 ps-3">
-                    <li class="">
-                        <a class="nav-link nav-text active-select-nav"
-                           href="{{route('employer.change.app.language','ar')}}">
-                            <span class="sidenav-normal"> {{trans('employer::employer.ArabicLang')}} </span>
-
-                        </a>
-                    </li>
-                    <li class="">
-                        <a class="nav-link nav-text"
-                           href="{{route('employer.change.app.language','en')}}">
-                            <span class="sidenav-normal">  {{trans('employer::employer.EnglishLang')}} </span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li class="side_menu_item">
-            <a data-bs-toggle="collapse" href="#SelectedCurrency" class="nav-link nav-text"
-               aria-controls="SelectedCurrency"
-               role="button" aria-expanded="">
-                <i class="fa fa-usd"></i>
-
-                <span class="nav-link-text m-2 fw-bold">{{trans('employer::employer.Currencies')}}</span>
-            </a>
-            <div class="collapse" id="SelectedCurrency" style="">
-                <ul class="nav ms-4 ps-3">
-                    <?php
-                    $currencies = \Modules\Currency\Entities\Currency::withoutTrashed()->get();
-                    ?>
-
-                    @if(app()->getLocale() == "ar")
-                        @foreach($currencies as $currency)
-                            <li class="">
-                                <a class="nav-link nav-text
-                                 {{auth()->user()->current_currency == $currency->en_name  ? 'active-select-nav' : ''}}
-                                    "
-                                   href="{{route('employer.change.app.currency',$currency->en_name)}}">
-                                    <span class="sidenav-normal"> {{$currency->ar_name}}   </span>
-                                </a>
-                            </li>
-                        @endforeach
-                    @elseif(app()->getLocale() == "en")
-                        @foreach($currencies as $currency)
-                            <li class="">
-                                <a class="nav-link nav-text
-                                 {{auth()->user()->current_currency == $currency->en_name  ? 'active-select-nav' : ''}}
-                                    "
-                                   href="{{route('employer.change.app.currency',$currency->en_name)}}">
-                                    <span class="sidenav-normal"> {{$currency->ar_name}}   </span>
-                                </a>
-                            </li>
-                        @endforeach
-                    @else
-                        @foreach($currencies as $currency)
-                            <li class="">
-                                <a class="nav-link nav-text
-                                 {{auth()->user()->current_currency == $currency->en_name  ? 'active-select-nav' : ''}}
-                                    "
-                                   href="{{route('employer.change.app.currency',$currency->en_name)}}">
-                                    <span class="sidenav-normal"> {{$currency->ar_name}}   </span>
-                                </a>
-                            </li>
-                        @endforeach
-                    @endif
-                </ul>
-            </div>
-        </li>
-
-
-        <div class=" side_menu_item ">
-            <div class="d-flex justify-content-around col-auto pt-2 pb-2 ">
-                <div class="form-check form-switch my-auto">
-                    <input class="form-check-input features" style="cursor: pointer" onclick="ShowSwal()"
-                           type="checkbox">
-                </div>
-                <div class="">
-                    <div class="h-100">
-                        <h5 class="mb-0 fw-bold">{{trans('employer::employer.switchToWorkerAccount')}}</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </ul>
-
-</div>
-
-
-<div class="page_continer">
-    <div class="container min-vh-93">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                {{--                <li class="breadcrumb-item"><a href="#">Home</a></li>--}}
-                {{--                <li class="breadcrumb-item "><a href="#">Library</a></li>--}}
-                <li class="breadcrumb-item text-primary font-26"
-                    aria-current="page">{{trans('employer::employer.'.$sub_breadcrumb)}}</li>
-            </ol>
-        </nav>
-        @yield('content')
-    </div>
-    <footer class="bg-body footer">
-        <div class="container ">
-            <div class="row gy-4">
-                <div class="col-12">
-                    <div class="copy_right">
-                        <div class="copyright text-center text-sm text-muted">
-                            <a href="https://arabworkers.com/" class="font-weight-bold" target="_blank">
-                                {{trans('admin::admin.company_name')}}
-                            </a> {{trans('admin::admin.company_description')}}
-                            {{trans('admin::admin.allRightsAreSave')}}
-                            ©
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script>
-
-                        </div>
-                        <div class="d-flex justify-content-center my-2">
-                            <div class="mx-2">
-                                <a style="color: #395185;" href="#">
-                                    <svg class="svg-inline--fa fa-facebook" width="25" aria-hidden="true"
-                                         focusable="false"
-                                         data-prefix="fab" data-icon="facebook" role="img"
-                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                        <path fill="currentColor"
-                                              d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path>
-                                    </svg>
-                                </a>
-                            </div>
-                            <div class="mx-2">
-                                <a style="color: #55ACEE;" href="#">
-                                    <svg class="svg-inline--fa fa-twitter" width="25" aria-hidden="true"
-                                         focusable="false"
-                                         data-prefix="fab" data-icon="twitter" role="img"
-                                         xmlns="http://www.w3.org/2000/svg"
-                                         viewBox="0 0 512 512" data-fa-i2svg="">
-                                        <path fill="currentColor"
-                                              d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path>
-                                    </svg>
-                                </a>
-                            </div>
-                            <div class="mx-2">
-                                <a style="color: #FF0000;" href="#">
-                                    <svg class="svg-inline--fa fa-youtube" width="25" aria-hidden="true"
-                                         focusable="false"
-                                         data-prefix="fab" data-icon="youtube" role="img"
-                                         xmlns="http://www.w3.org/2000/svg"
-                                         viewBox="0 0 576 512" data-fa-i2svg="">
-                                        <path fill="currentColor"
-                                              d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path>
-                                    </svg></a>
-                            </div>
-                            <div class="mx-2">
-                                <a style="color: #0A66C2;" href="#">
-                                    <svg class="svg-inline--fa fa-linkedin" width="25" aria-hidden="true"
-                                         focusable="false"
-                                         data-prefix="fab" data-icon="linkedin" role="img"
-                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                                        <path fill="currentColor"
-                                              d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-</div>
-
-<div class="swal-overlay swal-overlay--show-modal d-none" id="CustomSwal" tabindex="-1">
-    <div class="swal-modal" role="dialog" aria-modal="true">
-        <div class="swal-icon swal-icon--info"></div>
-        <div class="swal-title">{{trans('employer::employer.switchAccountToWorkerTitle')}}</div>
-        <div class="swal-text text-center">
-            {{trans('employer::employer.switchAccountToWorkerText')}}
-        </div>
-        <div class="swal-footer">
-            <div class="swal-button-container d-flex justify-content-between">
-                <a onclick="event.preventDefault(); document.getElementById('switch-account-form').submit();"
-                   class="btn bg-success text-white w-auto m-4 ">{{trans('employer::employer.switchBtn')}}</a>
-                <button class="btn bg-dark text-white w-auto m-4"
-                        onclick="hideSwal()">{{trans('employer::employer.cancelBtn')}}</button>
-            </div>
-            <form id="switch-account-form" action="{{route('employer.switch.account.to.worker')}}" method="POST"
-                  class="d-none">
-                @csrf
-            </form>
-        </div>
-    </div>
-</div>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-@if(app()->getLocale() == "en")
-    <script src="{{asset('assets/js/plugins/datatables-en.js')}}"></script>
+<!DOCTYPE html>
+@if(app()->getLocale() == 'en')
+<html lang="en" dir="ltr" data-mode="light" class="scroll-smooths group" data-theme-color="violet">
 @else
-    <script src="{{asset('assets/js/plugins/datatables-ar.js')}}"></script>
-
+<html lang="ar" dir="rtl" data-mode="light" class="scroll-smooths group" data-theme-color="violet">
 @endif
-<script>
-    if (document.getElementById('datatable-list')) {
-        const dataTableSearch = new simpleDatatables.DataTable("#datatable-list", {
-            searchable: true,
-            fixedHeight: false,
-            perPage: 10
-        });
+    <head>
 
-    }
-    ;
-</script>
-<script>
+        <meta charset="utf-8" />
+        <title>Arab Workers</title>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+        <meta
+          content="Tailwind Admin & Dashboard Template"
+          name="description"
+        />
+        <meta content="" name="Themesbrand" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    function ShowSwal() {
-        document.getElementById('CustomSwal').classList.remove('d-none')
-    }
+        <!-- App favicon -->
+        {{-- <link rel="shortcut icon" href="assets/images/favicon.ico" /> --}}
+        <link rel="icon" type="image/x-icon" href="{{asset('favicon.ico')}}">
 
-    function hideSwal() {
-        document.getElementById('CustomSwal').classList.add('d-none');
-        $("input[type=checkbox]").prop("checked", false);
-    }
-</script>
-<script src="{{asset('assets/js/core/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('assets/js/plugins/datatables-ar.js')}}"></script>
+        <link rel="stylesheet" href="{{asset('assets/Dashboard/assets/css/icons.css')}}" />
+        <link rel="stylesheet" href="{{asset('assets/Dashboard/assets/css/tailwind.css')}}"/>
+        <link href="{{ asset('assets/Dashboard/assets/libs/choices.js/public/assets/styles/choices.min.css')}}" rel="stylesheet" type="text/css" />
+
+        @yield('libraries')
+
+    </head>
+
+    <body data-mode="light" data-sidebar-size="lg">
 
 
-{{--<script>--}}
-{{--    $(document).ready(function () {--}}
-{{--        $(".hamburger").click(function () {--}}
-{{--            $(".side_menu").toggleClass("display");--}}
-{{--        });--}}
-{{--    });--}}
+        <!-- leftbar-tab-menu -->
+        <nav class="border-b border-slate-100 dark:bg-zinc-800 print:hidden flex items-center fixed top-0 right-0 left-0 bg-white z-10 dark:border-zinc-700">
 
-{{--    $(document).ready(function () {--}}
-{{--        $(window).scroll(function () {--}}
-{{--            if ($(window).scrollTop() > 130) {--}}
-{{--                $('.side_menu').addClass("fixed");--}}
-{{--            } else if ($(window).scrollTop() < 130) {--}}
-{{--                $('.side_menu').removeClass("fixed");--}}
-{{--            }--}}
-{{--        });--}}
-{{--    });--}}
-{{--</script>--}}
-<script>
-    // Wait for the DOM to be fully loaded
-    document.addEventListener("DOMContentLoaded", function () {
-        // Get references to elements
-        var hamburger = document.querySelector(".hamburger");
-        var sideMenu = document.querySelector(".side_menu");
+            <div class="flex items-center justify-between w-full">
+                <div class="topbar-brand flex items-center">
+                    <div class="navbar-brand flex items-center justify-between shrink px-5 h-[70px] border-r bg-slate-50 border-r-gray-50 dark:border-zinc-700 dark:bg-zinc-800">
+                        <a href="#" class="flex items-center font-bold text-lg  dark:text-white">
+                            <img src="{{asset("assets/icons/arabWorkers/logo.png")}}" alt="" class="ltr:mr-2 rtl:ml-2 inline-block mt-1 h-8" />
+                            {{-- <span class="hidden xl:block align-middle">Arab Workers</span> --}}
+                        </a>
+                    </div>
+                    <button type="button" class="text-gray-600 dark:text-white h-[70px] ltr:-ml-10 ltr:mr-6 rtl:-mr-10 rtl:ml-10 vertical-menu-btn" id="vertical-menu-btn">
+                        <i class="fa fa-fw fa-bars"></i>
+                    </button>
+                    <form class="app-search hidden xl:block px-5">
+                        <div class="relative inline-block">
+                            <input type="text" class="bg-gray-50/30 dark:bg-zinc-700/50 border-0 rounded focus:ring-0 placeholder:text-sm px-4 dark:placeholder:text-gray-200 dark:text-gray-100 dark:border-zinc-700 " placeholder="Search...">
+                            <button class="py-1.5 px-2.5 text-white bg-violet-500 inline-block absolute ltr:right-1 top-1 rounded shadow shadow-violet-100 dark:shadow-gray-900 rtl:left-1 rtl:right-auto" type="button"><i class="bx bx-search-alt align-middle"></i></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="flex items-center">
 
-        // Toggle the "display" class on click
-        hamburger.addEventListener("click", function () {
-            sideMenu.classList.toggle("display");
-        });
+                    <div>
+                        <div class="dropdown relative sm:hidden block">
+                            <button type="button" class="text-xl px-4 h-[70px] text-gray-600 dark:text-gray-100 dropdown-toggle" data-dropdown-toggle="navNotifications">
+                                <i data-feather="search" class="h-5 w-5"></i>
+                            </button>
 
-        // Add a scroll event listener to the window
-        window.addEventListener("scroll", function () {
-            if (window.scrollY > 130) {
-                sideMenu.classList.add("fixed");
-            } else {
-                sideMenu.classList.remove("fixed");
+                            <div class="dropdown-menu absolute px-4 -left-36 top-0 mx-4 w-72 z-50 hidden list-none border border-gray-50 rounded bg-white shadow dark:bg-zinc-800 dark:border-zinc-600 dark:text-gray-300" id="navNotifications">
+                                <form class="py-3 dropdown-item" aria-labelledby="navNotifications">
+                                    <div class="form-group m-0">
+                                        <div class="flex w-full">
+                                            <input type="text" class="border-gray-100 dark:border-zinc-600 dark:text-zinc-100 w-fit" placeholder="Search ..." aria-label="Search Result">
+                                            <button class="btn btn-primary border-l-0 rounded-l-none bg-violet-500 border-transparent text-white" type="submit"><i class="mdi mdi-magnify"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dropdown relative language hidden sm:block">
+                        <button class="btn border-0 py-0 dropdown-toggle px-4 h-[70px]" type="button" aria-expanded="false" data-dropdown-toggle="navNotifications">
+                            <img src="{{asset('assets/Dashboard/assets/images/flags/us.jpg')}}" alt="" class="h-4" id="header-lang-img">
+                        </button>
+                        <div class="dropdown-menu absolute -left-24 z-50 hidden w-40 list-none rounded bg-white shadow dark:bg-zinc-800" id="navNotifications">
+                            <ul class="border border-gray-50 dark:border-gray-700" aria-labelledby="navNotifications">
+                                <li>
+                                    <a href="{{route('employer.change.app.language','en')}}" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-50/50 dark:text-gray-200 dark:hover:bg-zinc-600/50 dark:hover:text-white"><img src="{{asset('assets/Dashboard/assets/images/flags/us.jpg')}}" alt="user-image" class="mr-1 inline-block h-3"> <span class="align-middle">English</span></a>
+                                </li>
+                                <li>
+                                    <a href="{{route('employer.change.app.language','ar')}}" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-50/50 dark:text-gray-200 dark:hover:bg-zinc-600/50 dark:hover:text-white"><img src="{{asset('assets/Dashboard/assets/images/flags/ksa.png')}}" alt="user-image" class="mr-1 inline-block h-3"> <span class="align-middle">العربية</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                        {{-- Dark and light Themes --}}
+                    <div>
+                        <button type="button" class="light-dark-mode text-xl px-4 h-[70px] text-gray-600 dark:text-gray-100 hidden sm:block ">
+                            <i data-feather="moon" class="h-5 w-5 block dark:hidden"></i>
+                            <i data-feather="sun" class="h-5 w-5 hidden dark:block"></i>
+                    </div>
+
+                    <div>
+
+                        <span class=" text-primary fw-normal  mx-2">
+                            {{ number_format(convertCurrency(auth()->user()->wallet_balance, auth()->user()->current_currency),2) }}
+                                            <span class="text-xxs">{{auth()->user()->current_currency}}</span>
+                        </span>
+                        <i class="fa fa-wallet me-sm-1 mx-1 " aria-hidden="true"></i>
+                    </div>
+
+                    <div>
+                        <div class="dropdown relative ">
+                            <div class="relative">
+                                <button type="button" class="btn border-0 h-[70px] dropdown-toggle px-4 text-gray-500 dark:text-gray-100" aria-expanded="false" data-dropdown-toggle="notification">
+                                    <i data-feather="bell" class="h-5 w-5"></i>
+                                </button>
+                                    <span class="absolute text-xs px-1.5 bg-red-500 text-white font-medium rounded-full left-6 top-2.5">5</span>
+                            </div>
+                            <div class="dropdown-menu absolute z-50 hidden w-80 list-none rounded bg-white shadow dark:bg-zinc-800 " id="notification">
+                                <div class="border border-gray-50 dark:border-gray-700 rounded" aria-labelledby="notification">
+                                    <div class="grid grid-cols-12 p-4">
+                                        <div class="col-span-6">
+                                            <h6 class="m-0 text-gray-700 dark:text-gray-100"> Notifications </h6>
+                                        </div>
+                                        <div class="col-span-6 justify-self-end">
+                                            <a href="#!" class="text-xs underline dark:text-gray-400"> Unread (3)</a>
+                                        </div>
+                                    </div>
+                                    <div class="max-h-56" data-simplebar>
+                                        <div>
+                                            <a href="#!" class="text-reset notification-item">
+                                                <div class="flex px-4 py-2 hover:bg-gray-50/50 dark:hover:bg-zinc-700/50">
+                                                    <div class="flex-shrink-0 ltr:mr-3 rtl:ml-3">
+                                                        <img src="{{asset('assets/Dashboard/assets/images/users/avatar-3.jpg')}}" class="rounded-full h-8 w-8" alt="user-pic">
+                                                    </div>
+                                                    <div class="flex-grow">
+                                                        <h6 class="mb-1 text-gray-700 dark:text-gray-100">James Lemire</h6>
+                                                        <div class="text-13 text-gray-600">
+                                                            <p class="mb-1 dark:text-gray-400">It will seem like simplified English.</p>
+                                                            <p class="mb-0"><i class="mdi mdi-clock-outline dark:text-gray-400"></i> <span>1 hour ago</span></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a href="#!" class="text-reset notification-item">
+                                                <div class="flex px-4 py-2 hover:bg-gray-50/50 dark:hover:bg-zinc-700/50">
+                                                    <div class="flex-shrink-0 ltr:mr-3 rtl:ml-3">
+                                                        <div class="h-8 w-8 bg-violet-500 rounded-full text-center">
+                                                            <i class="bx bx-cart text-xl leading-relaxed text-white"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-grow">
+                                                        <h6 class="mb-1 text-gray-700 dark:text-gray-100">Your order is placed</h6>
+                                                        <div class="text-13 text-gray-600">
+                                                            <p class="mb-1 dark:text-gray-400">If several languages coalesce the grammar</p>
+                                                            <p class="mb-0"><i class="mdi mdi-clock-outline dark:text-gray-400"></i> <span>3 min ago</span></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a href="#!" class="text-reset notification-item">
+                                                <div class="flex px-4 py-2 hover:bg-gray-50/50 dark:hover:bg-zinc-700/50">
+                                                    <div class="flex-shrink-0 ltr:mr-3 rtl:ml-3">
+                                                        <div class="h-8 w-8 bg-green-500 rounded-full text-center">
+                                                            <i class="bx bx-badge-check text-xl leading-relaxed text-white"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-grow">
+                                                        <h6 class="mb-1 text-gray-700 dark:text-gray-100">Your item is shipped</h6>
+                                                        <div class="text-13 text-gray-600">
+                                                            <p class="mb-1 dark:text-gray-400">If several languages coalesce the grammar</p>
+                                                            <p class="mb-0"><i class="mdi mdi-clock-outline dark:text-gray-400"></i> <span>3 min ago</span></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a href="#!" class="text-reset notification-item">
+                                                <div class="flex px-4 py-2 hover:bg-gray-50/50 dark:hover:bg-zinc-700/50">
+                                                    <div class="flex-shrink-0 ltr:mr-3 rtl:ml-3">
+                                                        <img src="{{asset('assets/Dashboard/assets/images/users/avatar-6.jpg')}}" class="rounded-full h-8 w-8" alt="user-pic">
+                                                    </div>
+                                                    <div class="flex-grow">
+                                                        <h6 class="mb-1 text-gray-700 dark:text-gray-100">Salena Layfield</h6>
+                                                        <div class="text-13 text-gray-600">
+                                                            <p class="mb-1 dark:text-gray-400">As a skeptical Cambridge friend of mine occidental.</p>
+                                                            <p class="mb-0"><i class="mdi mdi-clock-outline dark:text-gray-400"></i> <span>1 hour ago</span></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="p-1 border-t grid border-gray-50 dark:border-zinc-600 justify-items-center">
+                                        <a class="btn border-0 text-violet-500" href="javascript:void(0)">
+                                            <i class="mdi mdi-arrow-right-circle mr-1"></i> <span>View More..</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <div class="dropdown relative ltr:mr-4 rtl:ml-4">
+                            <button type="button" class="flex items-center px-4 py-5 border-x border-gray-50 bg-gray-50/30 dropdown-toggle dark:bg-zinc-700 dark:border-zinc-600 dark:text-gray-100" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <img class="h-8 w-8 rounded-full ltr:xl:mr-2 rtl:xl:ml-2" src="{{asset('assets/Dashboard/assets/images/users/avatar-1.jpg')}}" alt="Header Avatar">
+                                <span class="fw-medium hidden xl:block">Shawn L.</span>
+                                <i class="mdi mdi-chevron-down align-bottom hidden xl:block"></i>
+                            </button>
+                            <div class="dropdown-menu absolute top-0 ltr:-left-3 rtl:-right-3 z-50 hidden w-40 list-none rounded bg-white shadow dark:bg-zinc-800" id="profile/log">
+                                <div class="border border-gray-50 dark:border-zinc-600" aria-labelledby="navNotifications">
+                                    <div class="dropdown-item dark:text-gray-100">
+                                        <a class="px-3 py-2 hover:bg-gray-50/50 block dark:hover:bg-zinc-700/50" href="{{route('employer.show.my.profile')}}">
+                                            <i class="mdi mdi-face-man text-16 align-middle mr-1"></i> Profile
+                                        </a>
+                                    </div>
+                                    {{-- <div class="dropdown-item dark:text-gray-100">
+                                        <a class="px-3 py-2 hover:bg-gray-50/50 block dark:hover:bg-zinc-700/50" href="lock-screen.html">
+                                            <i class="mdi mdi-lock text-16 align-middle mr-1"></i> Lock Screen
+                                        </a>
+                                    </div> --}}
+                                    <hr class="border-gray-50 dark:border-gray-700">
+                                    <div class="dropdown-item dark:text-gray-100">
+                                        <a onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="p-3 hover:bg-gray-50/50 block dark:hover:bg-zinc-700/50" href="logout.html">
+                                            <i class="mdi mdi-logout text-16 align-middle mr-1"></i> {{trans('dashboard::auth.logout')}}
+                                        </a>
+                                        <form id="logout-form" action="{{ route('employer.logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+                <div class="hidden">
+                    <div class="fixed inset-0 bg-black/40 transition-opacity z-40"></div>
+                    <div class="h-screen z-50 bg-white fixed w-80 right-0" data-simplebar>
+                        <div class="flex items-center p-4 border-b border-gray-100">
+                            <h5 class="m-0 mr-2">Theme Customizer</h5>
+                            <a href="javascript:void(0);" class="h-6 w-6 text-center bg-gray-700 ml-auto rounded-full" >
+                                <i class="mdi mdi-close text-15 align-middle text-white leading-relaxed"></i>
+                            </a>
+                        </div>
+                        <div class="p-4">
+                            <h6 class="mb-3">Layout</h6>
+                            <div class="flex gap-4">
+                                <div>
+                                    <input class="focus:ring-0" checked type="radio" name="layout" id="layout-vertical" value="vertical">
+                                    <label class="align-middle" for="layout-vertical">Vertical</label>
+                                </div>
+                                <div>
+                                    <input class="focus:ring-0" type="radio" name="layout" id="layout-horizontal" value="horizontal">
+                                    <label class="align-middle" for="layout-horizontal">Horizontal</label>
+                                </div>
+                            </div>
+
+                            <h6 class="mt-4 mb-3 pt-2">Layout Mode</h6>
+                            <div class="flex gap-4">
+                                <div>
+                                    <input class="focus:ring-0" checked type="radio" name="layout-mode" id="layout-mode-light" value="light">
+                                    <label class="form-check-label" for="layout-mode-light">Light</label>
+                                </div>
+                                <div>
+                                    <input class="focus:ring-0" type="radio" name="layout-mode" id="layout-mode-dark" value="dark">
+                                    <label class="form-check-label" for="layout-mode-dark">Dark</label>
+                                </div>
+                            </div>
+
+                            <h6 class="mt-4 mb-3 pt-2">Layout Width</h6>
+
+                            <div class="flex gap-4">
+                                <div>
+                                    <input class="focus:ring-0" checked type="radio" name="layout-width" id="layout-width-fuild" value="fuild" onchange="document.body.setAttribute('data-layout-size', 'fluid')">
+                                    <label class="form-check-label" for="layout-width-fuild">Fluid</label>
+                                </div>
+                                <div>
+                                    <input class="focus:ring-0" type="radio" name="layout-width" id="layout-width-boxed" value="boxed" onchange="document.body.setAttribute('data-layout-size', 'boxed')">
+                                    <label class="form-check-label" for="layout-width-boxed">Boxed</label>
+                                </div>
+                            </div>
+
+                            <h6 class="mt-4 mb-3 pt-2">Layout Position</h6>
+                            <div class="flex gap-4">
+                                <div>
+                                    <input class="focus:ring-0" checked type="radio" name="layout-position" id="layout-position-fixed" value="fixed" onchange="document.body.setAttribute('data-layout-scrollable', 'false')">
+                                    <label class="form-check-label" for="layout-position-fixed">Fixed</label>
+                                </div>
+                                <div>
+                                    <input class="focus:ring-0" checked type="radio" name="layout-position" id="layout-position-scrollable" value="scrollable" onchange="document.body.setAttribute('data-layout-scrollable', 'true')">
+                                    <label class="form-check-label" for="layout-position-scrollable">Scrollable</label>
+                                </div>
+                            </div>
+
+                            <h6 class="mt-4 mb-3 pt-2">Topbar Color</h6>
+                            <div class="flex gap-4">
+                                <div>
+                                    <input class="focus:ring-0" checked type="radio" name="topbar-color" id="topbar-color-light" value="light" onchange="document.body.setAttribute('data-topbar', 'light')">
+                                    <label class="form-check-label" for="topbar-color-light">Light</label>
+                                </div>
+                                <div>
+                                    <input class="focus:ring-0" type="radio" name="topbar-color" id="topbar-color-dark" value="dark" onchange="document.body.setAttribute('data-topbar', 'dark')">
+                                    <label class="form-check-label" for="topbar-color-dark">Dark</label>
+                                </div>
+                            </div>
+
+                            <h6 class="mt-4 mb-3 pt-2 sidebar-setting">Sidebar Size</h6>
+
+                            <div class="space-y-1">
+                                <div class="form-check sidebar-setting">
+                                    <input class="focus:ring-0" checked type="radio" name="sidebar-size" id="sidebar-size-default" value="default" onchange="document.body.setAttribute('data-sidebar-size', 'lg')">
+                                    <label class="form-check-label" for="sidebar-size-default">Default</label>
+                                </div>
+                                <div class="form-check sidebar-setting">
+                                    <input class="focus:ring-0" type="radio" name="sidebar-size" id="sidebar-size-compact" value="compact" onchange="document.body.setAttribute('data-sidebar-size', 'md')">
+                                    <label class="form-check-label" for="sidebar-size-compact">Compact</label>
+                                </div>
+                                <div class="form-check sidebar-setting">
+                                    <input class="focus:ring-0" type="radio" name="sidebar-size" id="sidebar-size-small" value="small" onchange="document.body.setAttribute('data-sidebar-size', 'sm')">
+                                    <label class="form-check-label" for="sidebar-size-small">Small (Icon View)</label>
+                                </div>
+                            </div>
+
+                            <h6 class="mt-4 mb-3 pt-2 sidebar-setting">Sidebar Color</h6>
+                            <div class="space-y-1">
+                                <div class="form-check sidebar-setting">
+                                    <input class="focus:ring-0" checked type="radio" name="sidebar-color" id="sidebar-color-light" value="light" onchange="document.body.setAttribute('data-sidebar', 'light')">
+                                    <label class="form-check-label" for="sidebar-color-light">Light</label>
+                                </div>
+                                <div class="form-check sidebar-setting">
+                                    <input class="focus:ring-0" type="radio" name="sidebar-color" id="sidebar-color-dark" value="dark" onchange="document.body.setAttribute('data-sidebar', 'dark')">
+                                    <label class="form-check-label" for="sidebar-color-dark">Dark</label>
+                                </div>
+                                <div class="form-check sidebar-setting">
+                                    <input class="focus:ring-0" type="radio" name="sidebar-color" id="sidebar-color-brand" value="brand" onchange="document.body.setAttribute('data-sidebar', 'brand')">
+                                    <label class="form-check-label" for="sidebar-color-brand">Brand</label>
+                                </div>
+                            </div>
+
+                            <h6 class="mt-4 mb-3 pt-2">Direction</h6>
+                            <div class="space-y-1">
+                                <div>
+                                    <input class="focus:ring-0" checked type="radio" name="layout-direction" id="layout-direction-ltr" value="ltr">
+                                    <label class="form-check-label" for="layout-direction-ltr">LTR</label>
+                                </div>
+                                <div>
+                                    <input class="focus:ring-0" type="radio" name="layout-direction" id="layout-direction-rtl" value="rtl">
+                                    <label class="form-check-label" for="layout-direction-rtl">RTL</label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+        <!-- ========== Left Sidebar Start ========== -->
+        <div class="vertical-menu rtl:right-0 fixed ltr:left-0 bottom-0 top-16 h-screen border-r bg-slate-50 border-gray-50 print:hidden dark:bg-zinc-800 dark:border-neutral-700 z-10">
+
+            <div data-simplebar class="h-full">
+                <!--- Sidemenu -->
+                <div id="sidebar-menu">
+                    <!-- Left Menu Start -->
+                    <ul class="metismenu" id="side-menu">
+
+                        <li class="menu-heading text-xs font-medium text-gray-500 cursor-default inline-flex items-center px-4 py-3.5" data-key="t-menu">
+                            <input type="checkbox"  id="switch7" switch="info" onclick="ShowSwal()" checked />
+                            <label for="switch7" data-on-label="C" data-off-label="W" class="mx-1"></label>
+                            <b class="text-15 text-gray-700 dark:text-gray-100 ">{{ trans('employer::employer.switchToWorkerAccount') }}</b>
+                            </b>
+                        </li>
+
+
+
+                        <li>
+                            <a href="{{route('show.employer.panel')}}" class="pl-6 pr-4 py-3 block text-sm font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
+                                <i data-feather="home"></i>
+                                <span data-key="t-dashboard"> {{trans('employer::employer.panel')}} </span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="javascript: void(0);" aria-expanded="false" class="nav-menu pl-6 pr-4 py-3 block text-sm font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
+                                <i data-feather="grid"></i>
+                                <span data-key="t-apps"> {{trans('employer::employer.tasks')}}</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="{{route('employer.show.create.task.page')}}" class="pl-14 pr-4 py-2 block text-[13.5px] font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">{{trans('employer::employer.createTask')}}</a>
+                                </li>
+                                <li>
+                                    <a href="{{route('employer.show.task.in.pending.status')}}" class="pl-14 pr-4 py-2 block text-[13.5px] font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">{{trans('employer::employer.taskInPendingToAcceptAdmin')}}</a>
+                                </li>
+                                <li>
+                                    <a href="{{route('employer.show.task.in.active.status')}}" class="pl-14 pr-4 py-2 block text-[13.5px] font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">{{trans('employer::employer.taskInActive')}}</a>
+                                </li>
+
+                                <li>
+                                    <a href="{{route('employer.show.task.in.complete.status')}}" class="pl-14 pr-4 py-2 block text-[13.5px] font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">{{trans('employer::employer.taskInComplete')}}</a>
+                                </li>
+
+                                <li>
+                                    <a href="{{route('employer.show.task.in.rejected.status')}}" class="pl-14 pr-4 py-2 block text-[13.5px] font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">{{trans('employer::employer.taskInCanceled')}}</a>
+                                </li>
+                                <li>
+                                    <a href="{{route('employer.show.not.payed.tasks')}}" class="pl-14 pr-4 py-2 block text-[13.5px] font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">{{trans('employer::employer.NotPayedTasks')}}</a>
+                                </li>
+                                <li>
+                                    <a href="{{route('employer.show.not.published.tasks')}}" class="pl-14 pr-4 py-2 block text-[13.5px] font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">{{trans('employer::employer.NotPublishedTasks')}}</a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+
+                        <li>
+                            <a href="javascript: void(0);" aria-expanded="false"  class="nav-menu pl-6 pr-4 py-3 block text-sm font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
+                                <i data-feather="users"></i>
+                                <span data-key="t-auth">{{trans('employer::employer.Financial Affairs')}}</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="{{route('employer.show.my.discount.code')}}" class="pl-14 pr-4 py-2 block text-[13.5px] font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">{{trans('employer::employer.DiscountCodes')}}</a>
+                                </li>
+                                <li>
+                                    <a href="{{route('employer.show.my.wages.and.costs')}}" class="pl-14 pr-4 py-2 block text-[13.5px] font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">{{trans('employer::employer.WagesAndCosts')}}</a>
+                                </li>
+                                 <li>
+                                    <a href="{{route('employer.show.switch.account.to.worker.with.transfer.wallet.balance.form')}}" class="pl-14 pr-4 py-2 block text-[13.5px] font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">{{trans('employer::employer.TransferEmployerWalletBalanceToWorker')}}</a>
+                                </li>
+                                <li>
+                                    <a href="{{route('employer.show.my.wallet.history')}}" class="pl-14 pr-4 py-2 block text-[13.5px] font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">{{trans('employer::employer.walletHistory')}}</a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+                         <li>
+                            <a href="javascript: void(0);" aria-expanded="false" class="nav-menu pl-6 pr-4 py-3 block text-sm font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
+                                <i data-feather="briefcase"></i><span data-key="t-pages">{{trans('employer::employer.ManagementSection')}}</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="{{route('employer.show.switching.account.history')}}" class="pl-14 pr-4 py-2 block text-[13.5px] font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">{{trans('employer::employer.switchingAccountHistory')}}</a>
+                                </li>
+                                <li>
+                                    <a href="{{route('employer.show.my.privilege.history')}}" class="pl-14 pr-4 py-2 block text-[13.5px] font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">{{trans('employer::employer.PrivilegesHistory')}}</a>
+                                </li>
+                                 <li>
+                                    <a href="{{route('employer.show.rule.of.privileges')}}" class="pl-14 pr-4 py-2 block text-[13.5px] font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">{{trans('employer::employer.RuleOfPrivileges')}}</a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+                        {{-- <li class="menu-heading px-4 py-3 text-xs font-medium text-gray-500 cursor-default" data-key="t-elements">Elements</li> --}}
+
+                        <li>
+                            <a href="javascript: void(0);" aria-expanded="false"  class="nav-menu pl-6 pr-4 py-3 block text-sm font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
+                                <i class="bx bx-help-circle"></i>
+                                <span data-key="t-compo">{{trans('employer::employer.SupportSection')}}</span>
+                            </a>
+                            <ul>
+                                <?php
+                                    $currencies = \Modules\Currency\Entities\Currency::withoutTrashed()->get();
+                                    ?>
+                                <li>
+                                    <a href="{{route('employer.show.my.tickets')}}" class="pl-14 pr-4 py-2 block text-[13.5px] font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">{{trans('employer::employer.myTickets')}}</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" aria-expanded="false"  class="nav-menu pl-6 pr-4 py-3 block text-sm font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
+                                <i class="bx bx-money"></i>
+                                <span data-key="t-compo">{{trans('employer::employer.Currencies')}}</span>
+                            </a>
+                            <ul>
+                                @if(app()->getLocale() == "ar")
+                                    @foreach($currencies as $currency)
+                                    <li>
+                                        <a href="{{route('employer.change.app.currency',$currency->en_name)}}" class="pl-14 pr-4 py-2 block text-[13.5px] font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">{{$currency->ar_name}}</a>
+                                    </li>
+                                    @endforeach
+                                @else
+                                @foreach($currencies as $currency)
+                                <li>
+                                    <a href="{{route('employer.change.app.currency',$currency->en_name)}}" class="pl-14 pr-4 py-2 block text-[13.5px] font-medium text-gray-700 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">{{$currency->ar_name}}</a>
+                                </li>
+                                @endforeach
+                                @endif
+                            </ul>
+                        </li>
+
+
+                    </ul>
+
+                    {{-- <div class="sidebar-alert text-center mx-5 my-12">
+                        <div class="card-body bg-primary rounded bg-violet-50/50 dark:bg-zinc-700/60">
+                            <img src="assets/images/giftbox.png" alt="" class="block mx-auto">
+                            <div class="mt-4">
+                                <h5 class="text-violet-500 mb-3 font-medium">Unlimited Access</h5>
+                                <p class="text-slate-600 text-13 dark:text-gray-50">Upgrade your plan from a Free trial, to select ‘Business Plan’.</p>
+                                <a href="#!" class="btn bg-violet-500 text-white border-transparent mt-6">Upgrade Now</a>
+                            </div>
+                        </div>
+                    </div> --}}
+                </div>
+                <!-- Sidebar -->
+            </div>
+        </div>
+        <!-- Left Sidebar End -->
+
+        <div class="main-content">
+                <div class="page-content dark:bg-zinc-700 min-h-screen">
+                    <div class="container-fluid px-[0.625rem]">
+                    <div class="grid grid-cols-1 mb-5">
+                        <div class="flex items-center justify-between">
+                            {{-- <h4 class="mb-sm-0 text-lg font-semibold grow text-gray-800 dark:text-gray-100">Starter Page</h4> --}}
+                            <nav class="flex" aria-label="Breadcrumb">
+                                <ol class="inline-flex items-center space-x-1 ltr:md:space-x-3 rtl:md:space-x-0">
+                                    <li class="inline-flex items-center">
+                                        <a href="#" class="inline-flex items-center text-sm font-medium text-gray-800 hover:text-gray-900 dark:text-zinc-100 dark:hover:text-white">
+                                            {{trans('employer::employer.'.$sub_breadcrumb)}}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="flex items-center">
+                                            <svg class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                                            </svg>
+                                            <a href="#" class="ltr:ml-1 rtl:mr-1 text-sm font-medium text-gray-500 hover:text-gray-900 ltr:md:ml-2 rtl:md:mr-2 dark:text-gray-100 dark:hover:text-white"></a>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                    {{-- content --}}
+                    @yield('content')
+
+                    <!-- Footer Start -->
+                    <footer class="footer absolute bottom-0 right-0 left-0 border-t border-gray-50 py-5 px-5 bg-white dark:bg-zinc-700 dark:border-zinc-600 dark:text-gray-200">
+                        <div class="grid grid-cols-2">
+                            <div class="grow">
+                                &copy;
+                                <script>
+                                    document.write(new Date().getFullYear());
+                                </script>ArabWorkers
+                            </div>
+                            {{-- <div class="hidden md:inline-block text-end">Design & Develop by <a href="" class="text-violet-500 underline">Themesbrand</a></div> --}}
+
+                        </div>
+                    </footer>
+                    <!-- end Footer -->
+                </div>
+            </div>
+        </div>
+
+
+
+            <div class="fixed ltr:right-5 rtl:left-5 bottom-10 flex flex-col gap-3 z-40 animate-bounce">
+                <!-- light-dark mode button -->
+                <a href="javascript: void(0);" id="ltr-rtl" class="px-3.5 py-4 z-40 text-14 transition-all duration-300 ease-linear text-white bg-violet-500 hover:bg-violet-600 rounded-full font-medium" onclick="changeMode(event)">
+                    <span class="ltr:hidden">LTR</span>
+                    <span  class="rtl:hidden">RTL</span>
+                </a>
+            </div>
+
+
+        <script src="{{asset('assets/Dashboard/assets/libs/@popperjs/core/umd/popper.min.js')}} "></script>
+        <script src="{{asset('assets/Dashboard/assets/libs/feather-icons/feather.min.js')}} "></script>
+        <script src="{{asset('assets/Dashboard/assets/libs/metismenujs/metismenujs.min.js')}} "></script>
+        <script src="{{asset('assets/Dashboard/assets/libs/simplebar/simplebar.min.js')}} "></script>
+        <script src="{{asset('assets/Dashboard/assets/libs/feather-icons/feather.min.js')}} "></script>
+        {{-- <script src="{{asset('assets/Dashboard/assets/js/pages/form-advanced.init.js')}}"></script> --}}
+        <script src="{{asset('assets/Dashboard/assets/libs/choices.js/public/assets/scripts/choices.min.js')}}"></script>
+        <script src="{{asset('assets/Dashboard/assets/js/app.js')}}"></script>
+
+        <!-- choices js -->
+
+        <!-- init js -->
+
+
+        <script src="{{asset('assets/js/plugins/datatables-ar.js')}}"></script>
+        <script>
+            if (document.getElementById('datatable-list')) {
+                const dataTableSearch = new simpleDatatables.DataTable("#datatable-list", {
+                    searchable: true,
+                    fixedHeight: false,
+                    perPage: 10
+                });
+
             }
-        });
-    });
+            ;
+        </script>
+        <script>
 
-</script>
-<script>
-    window.onload = function () {
-        // Select the div element by its ID
-        const preloader = document.getElementById("loader");
+            function ShowSwal() {
+                document.getElementById('CustomSwal').classList.remove('hidden')
+            }
 
-        // Function to hide the div
-        function hideLoader() {
-            preloader.style.display = "none";
-        }
+            function hideSwal() {
+                document.getElementById('CustomSwal').classList.add('hidden');
+                $("input[type=checkbox]").prop("checked", false);
+            }
+        </script>
+        <div class="hidden fixed inset-0 flex items-center justify-center z-50" id="CustomSwal">
+            <div class="relative max-w-md w-full bg-white p-4 rounded-lg shadow-md" role="dialog" aria-modal="true">
+                <div class="text-center text-2xl text-primary">{{ trans('employer::employer.switchAccountToWorkerTitle') }}</div>
+                <div class="text-center py-4">{{ trans('employer::employer.switchAccountToWorkerText') }}</div>
+                <div class="flex justify-center space-x-4 p-4">
+                    <a
+                        href="{{ route('employer.switch.account.to.worker') }}"
+                        onclick="event.preventDefault(); document.getElementById('switch-account-form').submit();"
+                        class="btn bg-success text-black p-2 rounded-lg">{{ trans('employer::employer.switchBtn') }}</a>
+                    <button
+                        class="btn bg-dark text-black p-2 rounded-lg"
+                        onclick="hideSwal()">{{ trans('employer::employer.cancelBtn') }}</button>
+                </div>
+                <form id="switch-account-form" action="{{ route('employer.switch.account.to.worker') }}" method="POST" class="hidden">
+                    @csrf
+                </form>
+            </div>
+        </div>
 
-        // Hide the div after all assets are loaded
-        hideLoader();
-    };
-</script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @include('sweetalert::alert')
 </body>
-
 </html>
-
-
-

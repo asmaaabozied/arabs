@@ -188,6 +188,7 @@ return [
     'task_active' => 'Active',
     'task_completed' => 'Completed',
     'task_adminRefusalTask' => 'Rejected by Admin',
+    'status_flow_adminRefusalTask'=>'Status Flow Refused by Admin ',
     'NoRejectedTasks' => 'No rejected tasks',
     'this not payed task has be successfully deleted' => 'This unpaid task deleted successfully',
     'pleas_select_type_of_category' => 'Select task type',

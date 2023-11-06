@@ -18,17 +18,17 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row flex items-center justify-center">
 
-        <div class="col-xl-4 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
+        <div class="w-1/2 sm:w-1 md:w-1/2 lg:w-1/3 mb-3">
+            <div class="border-l-4 border-primary shadow h-full py-2">
                 <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">
-                               {{trans('employer::employer.taskInComplete')}}
+                    <div class="flex items-center">
+                        <div class="flex-1">
+                            <div class="text-lg font-bold text-primary text-uppercase mb-1">
+                                {{ trans('employer::employer.taskInComplete') }}
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">  {{count($completeTasks)}}</div>
+                            <div class="text-5xl font-bold text-gray-800">{{ count($completeTasks) }}</div>
                         </div>
                         <div class="col-auto">
                             <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 28 28"
@@ -43,15 +43,16 @@
             </div>
         </div>
 
-        <div class="col-xl-4 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
+
+        <div class="w-1/2 sm:w-1 md:w-1/2 lg:w-1/3 mb-3">
+            <div class="border-l-4 border-primary shadow h-full py-2">
                 <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">
-                                {{trans('employer::employer.taskInActive')}}
+                    <div class="flex items-center">
+                        <div class="flex-1">
+                            <div class="text-lg font-bold text-primary text-uppercase mb-1">
+                                {{ trans('employer::employer.taskInActive') }}
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">     {{count($activeTasks)}}</div>
+                            <div class="text-5xl font-bold text-gray-800">{{ count($activeTasks) }}</div>
                         </div>
                         <div class="col-auto">
                             <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 28 28"
@@ -66,15 +67,15 @@
             </div>
         </div>
 
-        <div class="col-xl-4 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
+        <div class="w-1/2 sm:w-1 md:w-1/2 lg:w-1/3 mb-3">
+            <div class="border-l-4 border-primary shadow h-full py-2">
                 <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">
-                                {{trans('employer::employer.taskInPendingToAcceptAdmin')}}
+                    <div class="flex items-center">
+                        <div class="flex-1">
+                            <div class="text-lg font-bold text-primary text-uppercase mb-1">
+                                {{ trans('employer::employer.taskInPendingToAcceptAdmin') }}
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">    {{count($pendingTasks)}}</div>
+                            <div class="text-5xl font-bold text-gray-800">{{ count($pendingTasks) }}</div>
                         </div>
                         <div class="col-auto">
                             <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 28 28"
@@ -88,17 +89,26 @@
                 </div>
             </div>
         </div>
+{{-- mosab --}}
+        {{-- <div class="col-span-12 lg:col-span-4">
+            <h6 class="text-gray-700 dark:text-gray-100 mb-3">Wrap normally</h6>
+            <div class="flex flex-row w-full flex-wrap gap-4 pb-4">
+                <div class="bg-gray-50 dark:bg-zinc-600 dark:text-gray-100 px-16 py-4 rounded-md">01</div>
+                <div class="bg-gray-50 dark:bg-zinc-600 dark:text-gray-100 px-16 py-4 rounded-md">02</div>
+                <div class="bg-gray-50 dark:bg-zinc-600 dark:text-gray-100 px-16 py-4 rounded-md">03</div>
+                <div class="bg-gray-50 dark:bg-zinc-600 dark:text-gray-100 px-16 py-4 rounded-md">04</div>
+            </div>
+        </div> --}}
 
-
-        <div class="col-xl-4 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
+        <div class="w-1/2 sm:w-1 md:w-1/2 lg:w-1/3 mb-3">
+            <div class="border-l-4 border-primary shadow h-full py-2">
                 <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">
-                                {{trans('employer::employer.taskInCanceled')}}
+                    <div class="flex items-center">
+                        <div class="flex-1">
+                            <div class="text-lg font-bold text-primary text-uppercase mb-1">
+                                {{ trans('employer::employer.taskInCanceled') }}
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"> {{count($rejectedTasks)}}</div>
+                            <div class="text-5xl font-bold text-gray-800">{{ count($rejectedTasks) }}</div>
                         </div>
                         <div class="col-auto">
                             <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 28 28"
@@ -114,15 +124,15 @@
         </div>
 
 
-        <div class="col-xl-4 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
+        <div class="w-1/2 sm:w-1 md:w-1/2 lg:w-1/3 mb-3">
+            <div class="border-l-4 border-primary shadow h-full py-2">
                 <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">
-                                {{trans('employer::employer.NotPayedTasks')}}
+                    <div class="flex items-center">
+                        <div class="flex-1">
+                            <div class="text-lg font-bold text-primary text-uppercase mb-1">
+                                {{ trans('employer::employer.NotPayedTasks') }}
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{count($unPayedTasks)}}</div>
+                            <div class="text-5xl font-bold text-gray-800">{{ count($unPayedTasks) }}</div>
                         </div>
                         <div class="col-auto">
                             <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 28 28"
@@ -137,16 +147,15 @@
             </div>
         </div>
 
-
-        <div class="col-xl-4 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
+        <div class="w-1/2 sm:w-1 md:w-1/2 lg:w-1/3 mb-3">
+            <div class="border-l-4 border-primary shadow h-full py-2">
                 <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">
-                                {{trans('employer::employer.NotPublishedTasks')}}
+                    <div class="flex items-center">
+                        <div class="flex-1">
+                            <div class="text-lg font-bold text-primary text-uppercase mb-1">
+                                {{ trans('employer::employer.NotPublishedTasks') }}
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"> {{$count_NotPublished_tasks}}</div>
+                            <div class="text-5xl font-bold text-gray-800">{{ $count_NotPublished_tasks }}</div>
                         </div>
                         <div class="col-auto">
                             <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 28 28"
@@ -161,7 +170,6 @@
             </div>
         </div>
 
-
     </div>
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -170,60 +178,59 @@
     <div class="row">
         <div class="col-md-12">
             <div class="heading mb-5">
-                <h1><span class="purul">{{trans('employer::employer.snapshot_costs_paid_tasks')}}</span></h1>
+                <h2><span class="purul">{{trans('employer::employer.snapshot_costs_paid_tasks')}}</span></h2>
             </div>
         </div>
     </div>
     <div class="row">
         {{-- new card --}}
-        <div class="col-xl-4 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
+        <div class="w-1/2 md:w-1/2 mb-4 ">
+            <div class="shadow border-l-4 border-primary rounded-lg p-4">
                 <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">
-                                {{trans('employer::employer.MainCosts')}}
+                    <div class="flex items-center">
+                        <div class="flex-1">
+                            <div class="text-lg font-bold text-primary text-uppercase mb-1">
+                                {{ trans('employer::employer.MainCosts') }}
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-{{--                                <pre>1500 US</pre>--}}
-                                <h5 class="font-weight-bolder  mb-0">
+                            <div class="text-5xl font-bold text-gray-800">
+                                <h5 class="font-extrabold mb-0">
                                     {{ convertCurrency($total_task_cost, auth()->user()->current_currency) }}
-                                    <span class="text-xs">{{auth()->user()->current_currency}}</span>
+                                    <span class="text-xs">{{ auth()->user()->current_currency }}</span>
                                 </h5>
                             </div>
                         </div>
-                        <div class="col-auto">
-                            <img src="{{asset('assets/img/default/costs.png')}}" alt="costs icon" width="45" height="45">
+                        <div class="flex-initial">
+                            <img src="{{ asset('assets/img/default/costs.png') }}" alt="costs icon" width="45" height="45">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         {{-- new card --}}
-        <div class="col-xl-4 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
+        <div class="w-1/2 md:w-1/2 mb-4 sm:w-1">
+            <div class="shadow border-l-4 border-primary rounded-lg p-4">
                 <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">
-                                {{trans('employer::employer.AdditionalCosts')}}
+                    <div class="flex items-center">
+                        <div class="flex-1">
+                            <div class="text-lg font-bold text-primary text-uppercase mb-1">
+                                {{ trans('employer::employer.AdditionalCosts') }}
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-{{--                                <pre>750 US</pre>--}}
-                                <h5 class="font-weight-bolder mb-0">
+                            <div class="text-5xl font-bold text-gray-800">
+                                <h5 class="font-extrabold mb-0">
                                     {{ convertCurrency($total_other_cost, auth()->user()->current_currency) }}
-                                    <span class="text-xs">{{auth()->user()->current_currency}}</span>
+                                    <span class="text-xs">{{ auth()->user()->current_currency }}</span>
                                 </h5>
                             </div>
                         </div>
-                        <div class="col-auto">
-                            <img src="{{asset('assets/img/default/costs.png')}}" alt="costs icon" width="45" height="45">
+                        <div class="flex-initial">
+                            <img src="{{ asset('assets/img/default/costs.png') }}" alt="costs icon" width="45" height="45">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
 
 
     </div>
